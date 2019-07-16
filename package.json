@@ -1,13 +1,18 @@
 {
   "name": "project-greenfield",
+  "jest": {
+    "verbose": true
+  },
   "version": "1.0.0",
-  "description": "",
+  "description": "A complete redesign of a client-facing retail web-portal",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack -d --watch",
+    "build": "webpack -d",
+    "build:watch": "npm run build -- --watch",
     "test": "jest",
-    "dev": "concurrently \"npm start\" \"npm run build\""
+    "test:watch": "npm test -- --watch",
+    "dev": "concurrently \"npm start\" \"npm run build:watch\""
   },
   "repository": {
     "type": "git",
@@ -36,7 +41,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
-    "eslint": "^6.0.1",
     "jest": "^24.8.0",
     "react-test-renderer": "^16.8.6",
     "url-loader": "^2.0.1",
