@@ -6,5 +6,4 @@ const setCurrentId = (state = 11, { type, payload }) => {
       return state;
   }
 };
-
 export default setCurrentId;

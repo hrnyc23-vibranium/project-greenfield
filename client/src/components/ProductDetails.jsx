@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const ProductDetails = ({ match }) => {
   return (
@@ -6,6 +6,6 @@ const ProductDetails = ({ match }) => {
       <h3>ID: {match.params.id}</h3>
     </div>
   );
-}
+};
 
-export default ProductDetails
+export default ProductDetails;
