@@ -1,3 +1,7 @@
+### Status
+
+[![Build Status](https://travis-ci.com/hrnyc23-vibranium/project-greenfield.png)](https://travis-ci.com/hrnyc23-vibranium/project-greenfield)
+
 # project-greenfield
 
 Redesign outdated client-facing retail web-portal.
