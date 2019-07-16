@@ -8,7 +8,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
-    "build": "webpack -d --watch",
+    "build": "webpack -d",
     "build:watch": "npm run build -- --watch",
     "test": "jest",
     "test:watch": "npm test -- --watch",
