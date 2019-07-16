@@ -1,4 +1,4 @@
-const setCurrentId = (state = 11, { type, payload }) => {
+const setCurrentId = (state = 1, { type, payload }) => {
   switch (type) {
     case 'SET_CURRENT_ID':
       return payload;

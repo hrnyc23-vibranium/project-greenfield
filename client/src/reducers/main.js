@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import IdReducer from './IdReducer.js';
 
-var rootReducer = combineReducers({
+const rootReducer = combineReducers({
   productId: IdReducer
 });
 export default rootReducer;
