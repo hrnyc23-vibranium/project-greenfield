@@ -1,12 +1,15 @@
 {
   "name": "project-greenfield",
+  "jest": {
+    "verbose": true
+  },
   "version": "1.0.0",
-  "description": "",
+  "description": "A complete redesign of a client-facing retail web-portal",
   "main": "index.js",
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack -d --watch",
-    "test": "jest",
+    "test": "jest --watch",
     "dev": "concurrently \"npm start\" \"npm run build\""
   },
   "repository": {
