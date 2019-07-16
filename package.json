@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js",
     "build": "webpack -d --watch",
-    "dev": "concurrently \"npm start\" \"npm run build\" "
+    "test": "jest",
+    "dev": "concurrently \"npm start\" \"npm run build\""
   },
   "repository": {
     "type": "git",
@@ -32,7 +33,10 @@
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
+    "jest": "^24.8.0",
+    "react-test-renderer": "^16.8.6",
     "url-loader": "^2.0.1",
     "webpack": "^4.35.3",
     "webpack-cli": "^3.3.6"

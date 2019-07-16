@@ -1,7 +1,10 @@
 language: node_js
-node_js: 
+node_js:
   - 10
   - node
 
-  before_install:
-  -npm i -g npm@6.9.0
+before_install:
+  - npm i -g npm@6.9.0
+
+notifications:
+  email: false
