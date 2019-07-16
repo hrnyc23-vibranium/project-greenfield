@@ -10,13 +10,13 @@ First install dependencies:
 npm install
 ```
 
-To run in hot module reloading mode:
+To create a development build:
 
 ```sh
-npm start
+npm run build
 ```
 
-To create a development build:
+To start the server and continuously build webpack
 
 ```sh
 npm run dev
