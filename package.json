@@ -25,9 +25,12 @@
   },
   "homepage": "https://github.com/hrnyc23-vibranium/project-greenfield#readme",
   "dependencies": {
+    "@babel/plugin-transform-runtime": "^7.5.0",
+    "babel-runtime": "^6.26.0",
     "concurrently": "^4.1.1",
     "express": "^4.17.1",
     "nodemon": "^1.19.1",
+    "puppeteer": "^1.18.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
