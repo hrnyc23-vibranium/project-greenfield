@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom'
-
-function ProductDetails({ match }) {
-  return (
-    <div>
-      <h3>ID: {match.params.id}</h3>
-    </div>
-  );
-}
+import ProductDetails from './ProductDetails'
 
 export default class App extends Component {
   render() {
