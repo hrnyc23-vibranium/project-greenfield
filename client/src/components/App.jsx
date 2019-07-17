@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ProductDetails from './ProductDetails';
+import Overview from './overview/Overview.jsx';
 
 export default class App extends Component {
   render() {
@@ -10,7 +11,8 @@ export default class App extends Component {
           <div>
             <h1>Vibranium</h1>
           </div>
-          <Route path='/:id' component={ProductDetails} />
+          <Route path="/:id" component={ProductDetails} />
+          <Overview />
         </div>
       </BrowserRouter>
     );
