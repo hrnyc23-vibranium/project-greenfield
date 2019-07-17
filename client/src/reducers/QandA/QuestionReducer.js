@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import axios from 'axios';
 
 //url for get questions and post question - pass in a product id
 const urlByProduct = 'http://18.222.40.124/qa/';
@@ -19,17 +19,7 @@ const urlByQuestion = 'http://18.222.40.124/qa/question/';
 const QuestionReducer = (state = {}, { type, payload }) => {
   switch (type) {
     case 'GET_QUESTIONS':
-      console.log(payload);
-      //for get question, payload is the productid
-      Axios.get(urlByProduct + payload)
-        .then(response => {
-          console.log(response);
-          return Object.assign(state, { questions: response.data });
-        })
-        .catch(err => {
-          console.log(err);
-          return state;
-        });
+      return Object.assign({}, state, payload);
     case 'POST_QUESTION':
       return payload;
     case 'VOTE_QUESTION':
