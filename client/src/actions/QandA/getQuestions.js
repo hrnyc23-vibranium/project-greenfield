@@ -1,13 +1,13 @@
-const GET_QUESTION = {
-  type: "GET_QUESTION",
-  text: 'Get questions by product id'
-}
+const GET_QUESTIONS = {
+  type: 'GET_QUESTIONS',
+  text: 'Get questions by product id',
+};
 
-const getQuestions = (productid) => {
+const getQuestions = productid => {
   return {
-    type: "GET_QUESTION",
-    payload: productid
-  }
-}
+    type: 'GET_QUESTIONS',
+    payload: productid,
+  };
+};
 
 export default getQuestions;
