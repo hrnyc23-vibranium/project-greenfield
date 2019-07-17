@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-
+import ReviewsList from './ReviewsList.jsx';
 export default class Reviews extends Component {
-  componentDidMount() {}
-
   render() {
-    return <div>Reviews</div>;
+    return (
+      <div>
+        Review
+        <ReviewsList />
+      </div>
+    );
   }
 }

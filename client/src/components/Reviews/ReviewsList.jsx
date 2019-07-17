@@ -4,8 +4,9 @@ import * as actions from '../../actions/Reviews/getData.js';
 
 class ReviewsList extends Component {
   componentDidMount() {
-    const { getList, productId } = this.props;
+    const { getList, productId, getMeta } = this.props;
     getList(productId, 'relevant');
+    getMeta(productId);
   }
 
   render() {
@@ -15,7 +16,8 @@ class ReviewsList extends Component {
 
 const mapStateToProps = state => ({
   productId: state.productId,
-  reviewList: state.reviewList
+  reviewList: state.reviewList,
+  metaInfo: state.metaInfo
 });
 
 export default connect(
