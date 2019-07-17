@@ -7,28 +7,36 @@ import getQuestions from '../../actions/QandA/getQuestions';
 
 class Questions extends React.Component {
   componentDidMount() {
-    this.loadQuestions(props.productId);
+    console.log('questionmount for product: ', this.props.productId);
+    getQuestions(this.props.productId);
   }
+
   render() {
-    return (
-      <div>
-        {questions.map(question => {
-          return <Question question={question} />;
-        })}
-      </div>
-    );
+    if (!this.props.questions.results) {
+      console.log(this.props);
+      return <div />;
+    } else {
+      return (
+        <div>
+          {this.props.questions.results.map(question => {
+            return <Question question={question} key={question.questionId} />;
+          })}
+        </div>
+      );
+    }
   }
 }
 
 const mapStateToProps = state => {
   return {
+    productId: state.productId,
     questions: state.questions,
   };
 };
 
 const mapActionToState = dispatch => {
   return {
-    loadQuestions: productId => {
+    getQuestions: productId => {
       dispatch(getQuestions(productId));
     },
   };

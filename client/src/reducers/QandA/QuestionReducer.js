@@ -16,9 +16,10 @@ const urlByQuestion = 'http://18.222.40.124/qa/question/';
 //Report Question (by question id)
 //PUT http://18.222.40.124/qa/question/56/report
 
-const QuestionReducer = (state, { type, payload }) => {
+const QuestionReducer = (state = {}, { type, payload }) => {
   switch (type) {
     case 'GET_QUESTIONS':
+      console.log(payload);
       //for get question, payload is the productid
       Axios.get(urlByProduct + payload)
         .then(response => {
