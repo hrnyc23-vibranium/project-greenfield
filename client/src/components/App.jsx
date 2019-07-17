@@ -9,9 +9,6 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <div>
-            <h1>Vibranium</h1>
-          </div>
           <Route path="/:id" component={ProductDetails} />
           <Overview />
           <Reviews />
