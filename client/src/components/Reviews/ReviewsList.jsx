@@ -28,8 +28,8 @@ class ReviewsList extends Component {
 }
 
 const mapStateToProps = state => ({
-  // productId: state.productId,
-  productId: 2,
+  productId: state.productId,
+  // productId: 2,
   reviewList: state.reviewList,
   metaInfo: state.metaInfo
 });
