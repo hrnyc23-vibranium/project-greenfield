@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions/setCurrentId.js';
+// React components
+import Overview from './overview/Overview.jsx';
+import Reviews from './Reviews/Reviews.jsx';
+import Questions from './QandA/Question_List';
 
 class ProductDetails extends Component {
   componentDidMount() {
@@ -8,11 +12,12 @@ class ProductDetails extends Component {
     setCurrentId(match.params.id);
   }
   render() {
-    const { match } = this.props;
     return (
-      <div>
-        <h3>ID: {match.params.id}</h3>
-      </div>
+      <Fragment>
+        <Overview />
+        <Questions />
+        <Reviews />
+      </Fragment>
     );
   }
 }

@@ -1,22 +1,19 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import ProductDetails from './ProductDetails';
-import Overview from './overview/Overview.jsx';
-import Questions from './QandA/Question_List';
-import Reviews from './Reviews/Reviews.jsx';
+// Material UI Components
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Container from '@material-ui/core/Container';
+// React Components
+import ProductDetails from './ProductDetails.jsx';
+
 export default class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div>
-          <div>
-            <h1>Vibranium</h1>
-          </div>
+        <CssBaseline />
+        <Container maxWidth={false}>
           <Route path="/:id" component={ProductDetails} />
-          <Overview />
-          <Questions />
-          <Reviews />
-        </div>
+        </Container>
       </BrowserRouter>
     );
   }

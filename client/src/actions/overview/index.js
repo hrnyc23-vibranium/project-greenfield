@@ -1,17 +1,15 @@
 import axios from 'axios';
 import { GET_PRODUCT_STYLES, GET_PRODUCT } from './types';
 
-export const getProduct = () => async dispatch => {
-  const res = await axios.get(
-    `https://cors-anywhere.herokuapp.com${'/18.222.40.124/products/1'}`
-  );
+export const getProduct = productId => async dispatch => {
+  const res = await axios.get(`http://18.222.40.124/products/${productId}`);
 
   dispatch({ type: GET_PRODUCT, payload: res.data });
 };
 
-export const getProductStyles = () => async dispatch => {
+export const getProductStyles = productId => async dispatch => {
   const res = await axios.get(
-    `https://cors-anywhere.herokuapp.com${'/18.222.40.124/products/1/styles'}`
+    `http://18.222.40.124/products/${productId}/styles`
   );
   dispatch({ type: GET_PRODUCT_STYLES, payload: res.data });
 };
