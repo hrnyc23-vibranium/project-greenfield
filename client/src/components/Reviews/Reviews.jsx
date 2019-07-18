@@ -4,7 +4,7 @@ import ReviewsList from './ReviewsList.jsx';
 import Grid from '@material-ui/core/Grid/';
 import Button from '@material-ui/core/Button';
 import Meta from './Meta.jsx';
-export default class Reviews extends Component {
+class Reviews extends Component {
   render() {
     return (
       <div>
@@ -31,3 +31,5 @@ export default class Reviews extends Component {
     );
   }
 }
+
+export default Reviews;

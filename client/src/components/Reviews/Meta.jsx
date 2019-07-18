@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 
-export default class Meta extends Component {
+class Meta extends Component {
   render() {
     return <div>3.5 Stars</div>;
   }
 }
+
+export default Meta
