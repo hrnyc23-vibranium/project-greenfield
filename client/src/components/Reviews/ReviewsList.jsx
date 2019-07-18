@@ -6,12 +6,14 @@ import ReviewsEntry from './ReviewsEntry.jsx';
 class ReviewsList extends Component {
   componentDidMount() {
     const { getList, productId, getMeta } = this.props;
+    console.log(this.props.productId);
     getList(productId, 'relevant');
     getMeta(productId);
   }
 
   render() {
     const { reviewList } = this.props;
+    console.log(this.props.productId);
     return reviewList.results ? (
       <div>
         <div>288 reviews, sorted by </div>
