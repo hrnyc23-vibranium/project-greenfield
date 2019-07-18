@@ -7,24 +7,27 @@ import Meta from './Meta.jsx';
 export default class Reviews extends Component {
   render() {
     return (
-      <Grid container>
-        <Grid item l={2}>
-          <Grid container spacing={10}>
-            <Grid item>
-              <Meta />
-            </Grid>
-            <Grid item>
-              <ReviewsList />
-              <Button size="large" variant="outlined">
-                MORE REVIEWS
-              </Button>
-              <Button size="large" variant="outlined">
-                ADD A REVIEW +
-              </Button>
+      <div>
+        RATINGS & REVIEWS
+        <Grid container>
+          <Grid item l={2}>
+            <Grid container spacing={10}>
+              <Grid item>
+                <Meta />
+              </Grid>
+              <Grid item>
+                <ReviewsList />
+                <Button size="large" variant="outlined">
+                  MORE REVIEWS
+                </Button>
+                <Button size="large" variant="outlined">
+                  ADD A REVIEW +
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </Grid>
-      </Grid>
+      </div>
     );
   }
 }
