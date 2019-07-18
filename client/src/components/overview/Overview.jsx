@@ -7,6 +7,9 @@ import Box from '@material-ui/core/Box';
 // Components
 import Header from './Header.jsx';
 import Carousel from './Carousel.jsx';
+import StyleList from './StyleList.jsx';
+import Selectors from './Selectors.jsx';
+import CartButton from './CartButton.jsx';
 
 class Overview extends Component {
   componentDidMount() {
@@ -30,6 +33,9 @@ class Overview extends Component {
             <h2>{product.name}</h2>
             <Box>{product.slogan}</Box>
             <Box>{`$${product.default_price}`}</Box>
+            <StyleList />
+            <Selectors />
+            <CartButton />
           </Grid>
         </Grid>
         <Grid container direction="row">
