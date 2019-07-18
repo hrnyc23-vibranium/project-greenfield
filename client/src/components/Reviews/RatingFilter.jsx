@@ -65,7 +65,6 @@ class RatingFilter extends Component {
     return recommended ? (
       <div>
         {this.renderRecommended()}
-        <div>Bar graphs</div>
         {this.renderRatings()}
       </div>
     ) : (
