@@ -12,27 +12,35 @@ class RatingFilter extends Component {
       getMeta(productId);
     }
   }
+
+  normalize(curr, max) {
+    return (curr / max) * 100;
+  }
+
   renderRatings() {
     const { ratings, totalReviews } = this.props;
-    return (
+    return ratings ? (
       <Grid container direction="column">
         {[1, 2, 3, 4, 5].map(num => {
+          let normalized = this.normalize(ratings[num] || 0, totalReviews);
           return (
-            <Grid container direction="row">
+            <Grid container direction="row" key={num}>
               <Grid item sm={12} md={2}>
                 <span>{num} Star</span>
               </Grid>
               <Grid item sm={12} md={7}>
                 <BorderLinearProgress
                   variant="determinate"
-                  color="secondary"
-                  value={20}
+                  // color="secondary"
+                  value={normalized}
                 />
               </Grid>
             </Grid>
           );
         })}
       </Grid>
+    ) : (
+      <div>Loading...</div>
     );
   }
 
