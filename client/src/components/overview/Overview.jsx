@@ -19,15 +19,14 @@ class Overview extends Component {
 
   render() {
     const product = this.props.product;
-    const styles = this.props.styles.results;
     return (
       <Box>
         <Header />
         <Grid container direction="row">
-          <Grid item xs={12} sm={8}>
+          <Grid item sm={12} md={8}>
             <Carousel />
           </Grid>
-          <Grid item xs={12} sm={4}>
+          <Grid item sm={12} md={4}>
             <p>Stars</p>
             <h5>{product.category}</h5>
             <h2>{product.name}</h2>
@@ -39,7 +38,7 @@ class Overview extends Component {
           </Grid>
         </Grid>
         <Grid container direction="row">
-          <Grid item xs={12} sm={8}>
+          <Grid item sm={12} md={8}>
             <Box>{product.description}</Box>
           </Grid>
         </Grid>
@@ -51,7 +50,6 @@ class Overview extends Component {
 const mapStateToProps = state => ({
   id: state.productId,
   product: state.product,
-  styles: state.styles,
 });
 
 export default connect(
