@@ -10,7 +10,6 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 class Questions extends React.Component {
   componentDidMount() {
-    //console.log('questionmount for product: ', this.props.productId);
     this.props.getQuestions(this.props.productId);
   }
 
@@ -19,7 +18,6 @@ class Questions extends React.Component {
       return (
         <div>
           {this.props.questions.results.map(question => {
-            // console.log(question.question_id);
             return <Question question={question} key={question.question_id} />;
           })}
         </div>
@@ -36,31 +34,7 @@ const mapStateToProps = state => {
     questions: state.questions,
   };
 };
-// const mapActionToState = dispatch => {
-//   return {
-//     loadQuestion: questions => {
-//       dispatch(getQuestions(questions));
-//     },
-//   };
-// };
-// const mapActionToState = async dispatch => {
-//   return {
-//     question: productId => {
-//       console.log('start');
-//       let questions = {};
-//       axios
-//         .get(`http://18.222.40.124/qa/${productId}`)
-//         .then(res => {
-//           console.log(res);
-//           questions = res.data;
-//         })
-//         .catch(err => {
-//           qustions = err;
-//         });
-//        dispatch(getQuestions(questions));
-//     },
-//   };
-// };
+
 export default connect(
   mapStateToProps,
   { getQuestions }

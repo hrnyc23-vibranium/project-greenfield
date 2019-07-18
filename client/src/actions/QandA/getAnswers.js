@@ -7,7 +7,6 @@ import axios from 'axios';
 
 const getAnswers = questionId => async dispatch => {
   const res = await axios.get(`http://18.222.40.124/qa/${questionId}/answers`);
-  console.log(res.data);
   dispatch({
     type: 'GET_ANSWERS',
     payload: res.data,
