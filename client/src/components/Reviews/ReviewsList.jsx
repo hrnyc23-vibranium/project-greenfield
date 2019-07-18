@@ -4,10 +4,12 @@ import * as actions from '../../actions/Reviews/getData.js';
 // React Components
 import ReviewsEntry from './ReviewsEntry.jsx';
 class ReviewsList extends Component {
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
     const { getList, productId, getMeta } = this.props;
-    getList(productId, 'relevant');
-    getMeta(productId);
+    if (this.props.productId !== prevProps.productId) {
+      getList(productId, 'relevant');
+      getMeta(productId);
+    }
   }
 
   render() {
