@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReviewsList from './ReviewsList.jsx';
+
 import Grid from '@material-ui/core/Grid/';
+import Button from '@material-ui/core/Button';
 import Meta from './Meta.jsx';
 export default class Reviews extends Component {
   render() {
@@ -13,6 +15,12 @@ export default class Reviews extends Component {
             </Grid>
             <Grid item>
               <ReviewsList />
+              <Button size="large" variant="outlined">
+                MORE REVIEWS
+              </Button>
+              <Button size="large" variant="outlined">
+                ADD A REVIEW +
+              </Button>
             </Grid>
           </Grid>
         </Grid>
