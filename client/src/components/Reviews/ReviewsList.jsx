@@ -3,17 +3,18 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/Reviews/getData.js';
 // React Components
 import ReviewsEntry from './ReviewsEntry.jsx';
+import { withRouter } from 'react-router-dom';
 class ReviewsList extends Component {
-  componentDidMount() {
+  componentDidUpdate(prevProps) {
     const { getList, productId, getMeta } = this.props;
-    console.log(this.props.productId);
-    getList(productId, 'relevant');
-    getMeta(productId);
+    if (this.props.productId !== prevProps.productId) {
+      getList(productId, 'relevant');
+      getMeta(productId);
+    }
   }
 
   render() {
     const { reviewList } = this.props;
-    console.log(this.props.productId);
     return reviewList.results ? (
       <div>
         <div>288 reviews, sorted by </div>
@@ -31,12 +32,13 @@ class ReviewsList extends Component {
 
 const mapStateToProps = state => ({
   productId: state.productId,
-  // productId: 2,
   reviewList: state.reviewList,
   metaInfo: state.metaInfo
 });
 
-export default connect(
-  mapStateToProps,
-  actions
-)(ReviewsList);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    actions
+  )(ReviewsList)
+);
