@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions/setCurrentId.js';
+// React components
+import Overview from './overview/Overview.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
-const ProductDetails = ({ match }) => {
-  return (
-    <div>
-      <h3>ID: {match.params.id}</h3>
-    </div>
-  );
-};
+class ProductDetails extends Component {
+  componentDidMount() {
+    const { setCurrentId, match } = this.props;
+    setCurrentId(match.params.id);
+  }
+  render() {
+    return (
+      <Fragment>
+        <Overview />
+        <Reviews />
+      </Fragment>
+    );
+  }
+}
 
-export default ProductDetails;
+export default connect(
+  null,
+  actions
+)(ProductDetails);
