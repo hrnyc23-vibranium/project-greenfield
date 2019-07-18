@@ -1,20 +1,37 @@
 import React from 'react';
 import Answer from './Answer';
-import { connect } from 'react-redux';
-import getAnswers from '../../actions/QandA/getAnswers';
+//import { connect } from 'react-redux';
+//import XgetAnswers from '../../actions/QandA/getAnswers';
+import axios from 'axios';
 
 class Answers extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { answers: [] };
+    this.getAnswers = this.getAnswers.bind(this);
+  }
   componentDidMount() {
-    this.props.getAnswers(this.props.questionId);
+    //this.state.answers = this.props.getAnswers();
+    this.getAnswers();
+  }
+
+  getAnswers() {
+    axios
+      .get(`http://18.222.40.124/qa/${this.props.questionId}/answers`)
+      .then(res => {
+        this.setState({ answers: res.data.results });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   render() {
-    if (this.props.answers.results) {
+    if (this.state.answers.length > 0) {
       return (
         <div>
-          {this.props.answers.results.map((answer, index) => {
-            return <div key={index}>answer will be liast here</div>;
-            //return <Answer key={this.props.questionId} answer={answer} />;
+          {this.state.answers.map((answer, index) => {
+            return <Answer answer={answer} key={index} />;
           })}
         </div>
       );
@@ -24,12 +41,14 @@ class Answers extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    answers: state.answers,
-  };
-};
-export default connect(
-  mapStateToProps,
-  { getAnswers }
-)(Answers);
+// const mapStateToProps = state => {
+//   return {
+//     answers: state.answers,
+//   };
+// };
+// export default connect(
+//   null,
+//   { XgetAnswers }
+// )(Answers);
+
+export default Answers;

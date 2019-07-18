@@ -3,6 +3,8 @@ import React from 'react';
 import { getQuestions } from '../../actions/QandA/getQuestions';
 import Question from './Question';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Container } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
 
 // import postQuestion from '../../actions/QandA/postQuestion';
 // import voteQuestion from '../../actions/QandA/voteQuestion';
