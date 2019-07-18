@@ -18,9 +18,18 @@ const renderPhotos = photos => {
   }
 };
 
+const renderResponse = response => {
+  return response ? (
+    <span>
+      Response: <br /> {response}
+    </span>
+  ) : (
+    ''
+  );
+};
 const ReviewsEntry = ({ review }) => {
   return (
-    <React.Fragment>
+    <div style={{ borderBottom: '2px solid black' }}>
       <span>Stars</span>
       <span>
         {review.reviewer_name}, {review.date}
@@ -28,6 +37,8 @@ const ReviewsEntry = ({ review }) => {
       <h5>{review.reviewer_name}</h5>
       <p>{review.body}</p>
       {review.recommend ? <span>I recommend this product</span> : ''}
+      {renderResponse(review.response)}
+      <br />
       {renderPhotos(review.photos)}
       <span>
         <span>Helpful?</span>
@@ -35,7 +46,7 @@ const ReviewsEntry = ({ review }) => {
         <button>Report</button>
       </span>
       <br />
-    </React.Fragment>
+    </div>
   );
 };
 
