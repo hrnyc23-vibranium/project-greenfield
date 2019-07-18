@@ -4,6 +4,7 @@ import * as actions from '../actions/setCurrentId.js';
 // React components
 import Overview from './overview/Overview.jsx';
 import Reviews from './Reviews/Reviews.jsx';
+import Questions from './QandA/Question_List';
 
 class ProductDetails extends Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class ProductDetails extends Component {
     return (
       <Fragment>
         <Overview />
+        <Questions />
         <Reviews />
       </Fragment>
     );
