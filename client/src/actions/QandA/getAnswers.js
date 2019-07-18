@@ -1,13 +1,17 @@
-const GET_ANSWERS = {
-  type: 'GET_ANSWERS',
-  text: 'Get answers by question id',
-};
+import axios from 'axios';
 
-const getAnswers = questionid => {
-  return {
+// const GET_ANSWERS = {
+//   type: 'GET_ANSWERS',
+//   text: 'Get answers by question id',
+// };
+
+const getAnswers = questionId => async dispatch => {
+  const res = await axios.get(`http://18.222.40.124/qa/${questionId}/answers`);
+  console.log(res.data);
+  dispatch({
     type: 'GET_ANSWERS',
-    payload: questionid,
-  };
+    payload: res.data,
+  });
 };
 
 export default getAnswers;

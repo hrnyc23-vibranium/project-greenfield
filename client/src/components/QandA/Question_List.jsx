@@ -19,7 +19,7 @@ class Questions extends React.Component {
       return (
         <div>
           {this.props.questions.results.map(question => {
-            console.log(question.question_id);
+            // console.log(question.question_id);
             return <Question question={question} key={question.question_id} />;
           })}
         </div>
