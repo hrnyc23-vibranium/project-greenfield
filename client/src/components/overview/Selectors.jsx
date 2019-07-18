@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 // Material UI Components
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -23,4 +24,8 @@ const Selectors = () => {
   );
 };
 
-export default Selectors;
+const mapStateToProps = state => ({
+  styles: state.styles,
+});
+
+export default connect(mapStateToProps)(Selectors);

@@ -14,10 +14,9 @@ import CartButton from './CartButton.jsx';
 
 class Overview extends Component {
   componentDidUpdate(prevProps) {
-    const { id, getProduct, getProductStyles } = this.props;
+    const { id, getProduct } = this.props;
     if (id !== prevProps.id) {
       getProduct(id);
-      getProductStyles(id);
     }
   }
 
