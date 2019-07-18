@@ -11,8 +11,10 @@ import Grid from '@material-ui/core/Grid';
 // import reportQuestion from '../../actions/QandA/reportQuestion';
 
 class Questions extends React.Component {
-  componentDidMount() {
-    this.props.getQuestions(this.props.productId);
+  componentDidUpdate(prevProps) {
+    if (this.props.productId !== prevProps.productId) {
+      this.props.getQuestions(this.props.productId, 1, 4);
+    }
   }
 
   render() {
