@@ -5,6 +5,7 @@ import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Box from '@material-ui/core/Box';
+import Avatar from '@material-ui/core/Avatar';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -19,27 +20,44 @@ const useStyles = makeStyles(theme => ({
     height: 'auto',
     overflow: 'hidden',
   },
-  progress: {},
+  avatar: {
+    margin: 10,
+    width: 80,
+    height: 80,
+  },
+  progress: {
+    position: 'relative',
+    width: 50,
+    height: 50,
+    overflow: 'hidden',
+  },
 }));
 
 const StyleList = props => {
   const classes = useStyles();
 
   return (
-    <div className={classes.root}>
-      <GridList cellHeight={100} cols={4} spacing={10}>
-        {props.styles.results ? (
-          props.styles.results.map(style => (
-            <GridListTile key={style.style_id} cols={1}>
-              <Box className={classes.image}>
-                <img src={style.photos[0].thumbnail_url} />
-              </Box>
-            </GridListTile>
-          ))
-        ) : (
-          <CircularProgress />
-        )}
-      </GridList>
+    <div>
+      <div className={classes.root}>
+        <GridList cellHeight={100} cols={4}>
+          {props.styles.results ? (
+            props.styles.results.map(style => (
+              <GridListTile key={style.style_id} cols={1}>
+                <Avatar
+                  alt={style.name}
+                  src={style.photos[0].thumbnail_url}
+                  className={classes.avatar}
+                />
+                {/* <Box className={classes.image}>
+                  <img src={style.photos[0].thumbnail_url} />
+                </Box> */}
+              </GridListTile>
+            ))
+          ) : (
+            <CircularProgress className={classes.progress} />
+          )}
+        </GridList>
+      </div>
     </div>
   );
 };
