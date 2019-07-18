@@ -1,11 +1,35 @@
 import React from 'react';
-import StyleListEntry from './StyleListEntry.jsx';
+// Material UI Components
+import { makeStyles } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
-const StyleList = () => {
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+  },
+}));
+
+const StyleList = props => {
+  const classes = useStyles();
+
   return (
-    <div>
-      <p>This is where the styles will go!</p>
-      <StyleListEntry />
+    <div className={classes.root}>
+      <GridList cellHeight={160} cols={3}>
+        {props.styles.results ? (
+          props.styles.results[0].photos.map(photo => (
+            <GridListTile key={photo.url} cols={1}>
+              <img src={photo.thumbnail_url} />
+            </GridListTile>
+          ))
+        ) : (
+          <CircularProgress />
+        )}
+      </GridList>
     </div>
   );
 };

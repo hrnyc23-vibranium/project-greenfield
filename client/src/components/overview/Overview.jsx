@@ -13,21 +13,27 @@ import Selectors from './Selectors.jsx';
 import CartButton from './CartButton.jsx';
 
 class Overview extends Component {
-  componentDidUpdate(prevProps) {
-    const { id, getProduct } = this.props;
-    if (id !== prevProps.id) {
-      getProduct(id);
-    }
+  componentDidMount() {
+    this.props.getProduct(this.props.id);
+    this.props.getProductStyles(this.props.id);
   }
+
+  // componentDidUpdate(prevProps) {
+  //   if (this.props.id !== prevProps.id) {
+  //     this.props.getProduct(this.props.id);
+  //     this.props.getProductStyles(this.props.id);
+  //   }
+  // }
 
   render() {
     const product = this.props.product;
+    const styles = this.props.styles;
     return (
       <Box>
         <Header />
         <Grid container direction="row">
           <Grid item sm={12} md={8}>
-            <Carousel />
+            <Carousel styles={styles} />
           </Grid>
           <Grid item sm={12} md={4}>
             <p>Stars</p>
@@ -35,8 +41,8 @@ class Overview extends Component {
             <Typography variant="h3">{product.name}</Typography>
             <Box>{product.slogan}</Box>
             <Box>{`$${product.default_price}`}</Box>
-            <StyleList />
-            <Selectors />
+            <StyleList styles={styles} />
+            <Selectors styles={styles} />
             <CartButton />
           </Grid>
         </Grid>
@@ -53,6 +59,7 @@ class Overview extends Component {
 const mapStateToProps = state => ({
   id: state.productId,
   product: state.product,
+  styles: state.styles,
 });
 
 export default connect(

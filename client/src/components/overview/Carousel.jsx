@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+const styles = {};
 export default class Carousel extends Component {
   render() {
     return (

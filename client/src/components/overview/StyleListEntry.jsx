@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import GridListTile from '@material-ui/core/GridListTile';
 
-const StyleListEntry = () => {
+const StyleListEntry = props => {
   return (
-    <div>
-      <ul>
-        <li>Style 1</li>
-        <li>Style 2</li>
-        <li>Style 3</li>
-        <li>Style 4</li>
-      </ul>
-    </div>
+    <Fragment>
+      {props.photos.map(photo => (
+        <GridListTile key={photo.url} cols={1}>
+          <img src={photo.thumbnail_url} />
+        </GridListTile>
+      ))}
+    </Fragment>
   );
 };
 
