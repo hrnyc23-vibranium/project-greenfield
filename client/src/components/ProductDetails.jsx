@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { Fragment } from 'react';
+import Overview from './overview/Overview.jsx';
+import Reviews from './Reviews/Reviews.jsx';
 
 const ProductDetails = ({ match }) => {
   return (
-    <div>
+    <Fragment>
       <h3>ID: {match.params.id}</h3>
-    </div>
+      <Overview />
+      <Reviews />
+    </Fragment>
   );
 };
 
