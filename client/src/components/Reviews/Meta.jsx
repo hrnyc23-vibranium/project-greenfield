@@ -6,4 +6,4 @@ class Meta extends Component {
   }
 }
 
-export default Meta
+export default Meta;

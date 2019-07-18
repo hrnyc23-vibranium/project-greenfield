@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import ReviewsList from './ReviewsList.jsx';
-
+// Material UI Components
 import Grid from '@material-ui/core/Grid/';
 import Button from '@material-ui/core/Button';
 import Meta from './Meta.jsx';
+// React Components
+import ReviewsList from './ReviewsList.jsx';
 class Reviews extends Component {
   render() {
     return (

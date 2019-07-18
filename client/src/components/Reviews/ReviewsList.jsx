@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/Reviews/getData.js';
-
+// React Components
 import ReviewsEntry from './ReviewsEntry.jsx';
 class ReviewsList extends Component {
   componentDidMount() {
