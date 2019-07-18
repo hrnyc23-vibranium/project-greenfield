@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
 
+//components
+import RatingFilter from './RatingFilter.jsx';
 class Meta extends Component {
   render() {
-    return <div>3.5 Stars</div>;
+    return (
+      <div>
+        <RatingFilter />
+        <div>Rating Breakdown</div>
+      </div>
+    );
   }
 }
 
