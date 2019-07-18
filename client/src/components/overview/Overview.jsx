@@ -36,14 +36,20 @@ class Overview extends Component {
             <Carousel styles={styles} />
           </Grid>
           <Grid item sm={12} md={4}>
-            <p>Stars</p>
-            <Typography variant="overline">{product.category}</Typography>
-            <Typography variant="h3">{product.name}</Typography>
-            <Box>{product.slogan}</Box>
-            <Box>{`$${product.default_price}`}</Box>
-            <StyleList styles={styles} />
-            <Selectors styles={styles} />
-            <CartButton />
+            <Grid
+              container
+              direction="column"
+              justify="space-around"
+              alignContent="space-around">
+              <p>Stars</p>
+              <Typography variant="overline">{product.category}</Typography>
+              <Typography variant="h3">{product.name}</Typography>
+              <Box>{product.slogan}</Box>
+              <Box>{`$${product.default_price}`}</Box>
+              <StyleList styles={styles} />
+              <Selectors styles={styles} />
+              <CartButton />
+            </Grid>
           </Grid>
         </Grid>
         <Grid container direction="row">
