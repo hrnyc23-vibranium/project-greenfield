@@ -5,10 +5,9 @@ import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 
 const Question = props => {
-  //console.log(props.question);
   return (
     <div>
-      <Grid lg={12} container={true}>
+      <Grid container={true}>
         <Grid lg={8} md={8} item={true}>
           <Typography component="h4">
             Q: {props.question.question_body}
@@ -27,19 +26,6 @@ const Question = props => {
       </Grid>
       <div>
         <AnswerList questionId={props.question.question_id} />
-        {/* {Object.keys(props.question.answers).length > 0 ? (
-          Object.keys(props.question.answers).map(answerid => {
-            let answer = props.question.answers[answerid].body;
-            // console.log(answer.body);
-            return (
-              <div>
-                <Typography component="h4">{answer}</Typography>
-              </div>
-            );
-          })
-        ) : (
-          <div />
-        )} */}
       </div>
     </div>
   );
