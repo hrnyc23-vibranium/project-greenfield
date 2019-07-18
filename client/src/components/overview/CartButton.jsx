@@ -1,9 +1,10 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
 
 const CartButton = () => {
   return (
     <div>
-      <p>This is where the add to cart button will go!</p>
+      <Button variant="outlined">Add To Cart +</Button>
     </div>
   );
 };
