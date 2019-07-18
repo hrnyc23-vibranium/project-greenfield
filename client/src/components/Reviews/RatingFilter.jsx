@@ -13,16 +13,21 @@ class RatingFilter extends Component {
     }
   }
 
-  normalize(curr, max) {
-    return (curr / max) * 100;
+  //calculate percent of current rating out of total reviews
+  normalizeRating(curr, total) {
+    return (curr / total) * 100;
   }
 
+  //render out rating breakdown with rating bars
   renderRatings() {
     const { ratings, totalReviews } = this.props;
     return ratings ? (
       <Grid container direction="column">
         {[1, 2, 3, 4, 5].map(num => {
-          let normalized = this.normalize(ratings[num] || 0, totalReviews);
+          let normalized = this.normalizeRating(
+            ratings[num] || 0,
+            totalReviews
+          );
           return (
             <Grid container direction="row" key={num}>
               <Grid item sm={12} md={2}>
@@ -31,7 +36,6 @@ class RatingFilter extends Component {
               <Grid item sm={12} md={7}>
                 <BorderLinearProgress
                   variant="determinate"
-                  // color="secondary"
                   value={normalized}
                 />
               </Grid>
@@ -44,13 +48,28 @@ class RatingFilter extends Component {
     );
   }
 
+  //calculate percent recommended out of total reviews
+  normalizeRecommended(curr, total) {
+    return (curr / total) * 100;
+  }
+
+  //render out recommended percentage
+  renderRecommended() {
+    const { recommended, totalReviews } = this.props;
+    let normalized = this.normalizeRecommended(recommended[0], totalReviews);
+    return <div>{normalized}% of reviews recommend this product</div>;
+  }
+
   render() {
-    return (
+    const { recommended } = this.props;
+    return recommended ? (
       <div>
-        <div>100% of reviews recommend this product</div>
+        {this.renderRecommended()}
         <div>Bar graphs</div>
         {this.renderRatings()}
       </div>
+    ) : (
+      <div>Loading...</div>
     );
   }
 }
@@ -58,7 +77,7 @@ class RatingFilter extends Component {
 let mapStateToProps = state => ({
   productId: state.productId,
   ratings: state.metaInfo.ratings,
-  recommend: state.metaInfo.recommend,
+  recommended: state.metaInfo.recommended,
   totalReviews: state.reviewList.count
 });
 
