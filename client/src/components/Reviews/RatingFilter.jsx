@@ -33,7 +33,7 @@ class RatingFilter extends Component {
               <Grid item sm={12} md={2}>
                 <span>{num} Star</span>
               </Grid>
-              <Grid item sm={12} md={7}>
+              <Grid item sm={12} md={10}>
                 <BorderLinearProgress
                   variant="determinate"
                   value={normalized}
@@ -77,6 +77,7 @@ class RatingFilter extends Component {
         <span>{this.renderAvgRating()} stars</span>
         {this.renderRecommended()}
         {this.renderRatings()}
+        <br />
       </div>
     ) : (
       <div>Loading...</div>

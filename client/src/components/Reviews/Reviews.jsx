@@ -10,7 +10,7 @@ class Reviews extends Component {
     return (
       <div>
         RATINGS & REVIEWS
-        <Grid container direction="row">
+        <Grid container direction="row" justify="space-between">
           <Grid item sm={12} md={3}>
             <Meta />
           </Grid>

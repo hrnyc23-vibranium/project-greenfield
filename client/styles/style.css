@@ -1,6 +1,6 @@
 .slider {
   -webkit-appearance: none;
-  width: 75%;
+  width: 100%;
   height: 10px;
   background: #d3d3d3;
   outline: none;
@@ -13,15 +13,15 @@
   width: 20px;
   height: 20px;
   border: 0;
-  background: url('triangle.png');
+  background: url('thumb.svg');
   background-size: 20px;
   vertical-align: top;
   background-repeat: no-repeat;
-  margin-top: 9px;
+  /* margin-top: 9px; */
 }
 
 .slider::-moz-range-thumb {
-  background: url('triangle.png');
+  background: url('thumb.svg');
   width: 20px;
   height: 20px;
   border: 0;

@@ -1,13 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 import * as actions from '../../actions/Reviews/getData.js';
 class ProductBreakdown extends Component {
+  renderLabel(category) {
+    if (category === 'Fit' || category === 'Length') {
+      return (
+        <label htmlFor="tickmarks">
+          <Grid container direction="row" justify="space-between">
+            <option value="0" label="Too small" />
+            <option value="0" label="Perfect" />
+            <option value="0" label="Too large" />
+          </Grid>
+        </label>
+      );
+    }
+    return (
+      <label htmlFor="tickmarks">
+        <Grid container direction="row" justify="space-between">
+          <option value="0" label="Poor" />
+          <option value="0" label="Perfect" />
+        </Grid>
+      </label>
+    );
+  }
+
   renderBreakdown(breakdown) {
     return Object.keys(breakdown).map(category => {
       let number = Number(breakdown[category]) * 10;
       return (
         <div key={category}>
+          <br />
           {category}
           <div>
             <input
@@ -19,6 +44,7 @@ class ProductBreakdown extends Component {
               list="tickmarks"
               value={number}
             />
+            {this.renderLabel(category)}
           </div>
         </div>
       );
@@ -28,10 +54,10 @@ class ProductBreakdown extends Component {
   render() {
     const { breakdown } = this.props;
     return breakdown ? (
-      <div>
+      <React.Fragment>
         ProductBreakdown
         {this.renderBreakdown(breakdown)}
-      </div>
+      </React.Fragment>
     ) : (
       <div>Loading...</div>
     );
