@@ -8,8 +8,27 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  smallbutton: {
+    margin: theme.spacing(1),
+    'border-radius': 0,
+    padding: '15px',
+  },
+  smallbutton: {
+    margin: theme.spacing(1),
+    'border-radius': 0,
+    padding: '15px',
+  },
+  input: {
+    display: 'none',
+  },
+}));
 
 const Question = props => {
+  const classes = useStyles();
+
   return (
     <div>
       <Grid container justify="space-between">
@@ -37,7 +56,7 @@ const Question = props => {
           <Grid
             container
             direction="row"
-            justify="flex-start"
+            justify="flex-end"
             alignItems="center">
             <Button size="small">
               Helpful? ({props.question.question_helpfulness})

@@ -13,35 +13,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const Answer = props => {
   return (
-    <div>
-      <Grid container>
-        <Grid container>
-          <Typography variant="body2" component="p">
-            {props.answer.body}{' '}
-          </Typography>
-        </Grid>
+    <Box>
+      <Typography variant="body2">{props.answer.body} </Typography>
+      {props.answer.photos.length > 0 ? (
+        <AnswerImages photos={props.answer.photos} />
+      ) : (
+        <div />
+      )}
 
-        {props.answer.photos.length > 0 ? (
-          <AnswerImages photos={props.answer.photos} />
-        ) : (
-          <div />
-        )}
-
-        <Grid
-          container
-          direction="row"
-          justify="flex-start"
-          alignItems="center">
-          <Typography variant="caption" component="p">
-            by {props.answer.answerer_name},{' '}
-            {props.answer.date.substring(0, 10)} | Helpful?
-          </Typography>
-          <Button size="small">Yes ({+props.answer.helpfulness})</Button>
-          <Typography component="h4"> | </Typography>
-          <Button size="small">Report</Button>
-        </Grid>
+      <Grid container direction="row" justify="flex-start" alignItems="center">
+        <Typography variant="caption">
+          by {props.answer.answerer_name}, {props.answer.date.substring(0, 10)}{' '}
+          | Helpful?
+        </Typography>
+        <Button size="small">Yes ({+props.answer.helpfulness})</Button>
+        <Typography component="h4"> | </Typography>
+        <Button size="small">Report</Button>
       </Grid>
-    </div>
+    </Box>
   );
 };
 

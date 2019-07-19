@@ -12,7 +12,7 @@ class Answers extends React.Component {
     this.getAnswers();
   }
 
-  getAnswers(page = 1, count = 100) {
+  getAnswers(page = 1, count = 2) {
     axios
       .get(
         `http://18.222.40.124/qa/${
@@ -30,7 +30,7 @@ class Answers extends React.Component {
   render() {
     if (this.state.answers.length > 0) {
       return (
-        <div>
+        <div className="answerContainer">
           {this.state.answers.map((answer, index) => {
             return <Answer answer={answer} key={index} />;
           })}
