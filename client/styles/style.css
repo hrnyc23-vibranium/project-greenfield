@@ -30,3 +30,7 @@
   background-repeat: no-repeat;
   margin-top: 9px;
 }
+
+div .makeStyles-button-211:first-child {
+  margin-left: 0 !important;
+}
