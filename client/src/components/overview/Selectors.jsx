@@ -12,10 +12,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
-  box: {
-    borderRadius: 0,
-    padding: '15px',
-  },
   sizeControl: {
     marginTop: theme.spacing(2),
     minWidth: '72%',
@@ -42,7 +38,6 @@ const Selectors = props => {
   };
 
   const handleQuantChange = event => {
-    console.log('event.target', event.target);
     setCartQuant(event.target.value);
   };
 
