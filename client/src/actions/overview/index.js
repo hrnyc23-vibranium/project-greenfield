@@ -13,7 +13,3 @@ export const getProductStyles = productId => async dispatch => {
   );
   dispatch({ type: GET_PRODUCT_STYLES, payload: res.data });
 };
-
-export const getStyle = styleId => dispatch => {
-  dispatch({ type: GET_STYLE, payload: styleId });
-};
