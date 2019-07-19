@@ -16,6 +16,7 @@ class ProductBreakdown extends Component {
               max="50"
               readOnly
               className="slider"
+              list="tickmarks"
               value={number}
             />
           </div>
