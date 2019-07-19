@@ -7,13 +7,19 @@ const useStyles = makeStyles(theme => ({
   size: {
     marginTop: theme.spacing(2),
   },
+  button: {
+    borderRadius: 0,
+    padding: '15px',
+  },
 }));
 
 const CartButton = () => {
   const classes = useStyles();
   return (
     <ButtonGroup fullWidth className={classes.size}>
-      <Button variant="outlined">Add To Cart</Button>
+      <Button variant="outlined" className={classes.button}>
+        Add To Cart
+      </Button>
     </ButtonGroup>
   );
 };

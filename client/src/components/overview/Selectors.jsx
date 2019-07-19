@@ -12,6 +12,10 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexWrap: 'wrap',
   },
+  box: {
+    borderRadius: 0,
+    padding: '15px',
+  },
   sizeControl: {
     marginTop: theme.spacing(2),
     minWidth: '72%',
@@ -29,11 +33,17 @@ const Selectors = props => {
   const [currSize, setSize] = useState('');
   const [currQuant, setQuantity] = useState('');
   const [quant, setQuant] = useState(true);
+  const [cartQuant, setCartQuant] = useState('');
 
   const handleChange = event => {
     setSize(event.target.value);
     setQuantity(props.skus[event.target.value]);
     setQuant(false);
+  };
+
+  const handleQuantChange = event => {
+    console.log('event.target', event.target);
+    setCartQuant(event.target.value);
   };
 
   const renderItem = quantity => {
@@ -71,7 +81,8 @@ const Selectors = props => {
           disabled={quant}>
           <InputLabel htmlFor="outlined-quant">Quantity</InputLabel>
           <Select
-            value={currQuant}
+            value={cartQuant}
+            onChange={handleQuantChange}
             input={
               <OutlinedInput
                 labelWidth={60}
@@ -80,7 +91,7 @@ const Selectors = props => {
               />
             }>
             {renderItem(currQuant).map(number => (
-              <MenuItem key={number} val={number}>
+              <MenuItem key={number} value={number}>
                 {number}
               </MenuItem>
             ))}
