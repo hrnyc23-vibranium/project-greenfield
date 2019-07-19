@@ -24,11 +24,9 @@ const useStyles = makeStyles(theme => ({
 
 const Selectors = props => {
   const classes = useStyles();
-  console.log('props', props);
 
   const [currSize, setSize] = useState('');
   const [currQuant, setQuantity] = useState('');
-  console.log('currSize', currSize);
 
   const handleChange = event => {
     setSize(event.target.value);
