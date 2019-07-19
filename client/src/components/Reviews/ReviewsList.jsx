@@ -15,9 +15,10 @@ class ReviewsList extends Component {
 
   render() {
     const { reviewList } = this.props;
+    console.log(reviewList);
     return reviewList.results ? (
       <div>
-        <div>288 reviews, sorted by </div>
+        <div>{reviewList.results.length} reviews, sorted by </div>
         <div>
           {reviewList.results.map(review => {
             return <ReviewsEntry key={review.review_id} review={review} />;
