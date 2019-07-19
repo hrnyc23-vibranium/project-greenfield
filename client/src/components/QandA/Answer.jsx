@@ -15,9 +15,18 @@ const Answer = props => {
   return (
     <div>
       <Grid container>
-        <Typography variant="body2" component="p">
-          {props.answer.body}{' '}
-        </Typography>
+        <Grid container>
+          <Typography variant="body2" component="p">
+            {props.answer.body}{' '}
+          </Typography>
+        </Grid>
+
+        {props.answer.photos.length > 0 ? (
+          <AnswerImages photos={props.answer.photos} />
+        ) : (
+          <div />
+        )}
+
         <Grid
           container
           direction="row"
@@ -30,13 +39,8 @@ const Answer = props => {
           <Button size="small">Yes ({+props.answer.helpfulness})</Button>
           <Typography component="h4"> | </Typography>
           <Button size="small">Report</Button>
-          {props.answer.photos.length > 0 ? (
-            <AnswerImages photos={props.answer.photos} />
-          ) : (
-            <div />
-          )}
         </Grid>
-      </Grid>{' '}
+      </Grid>
     </div>
   );
 };

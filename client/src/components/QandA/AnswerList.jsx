@@ -12,7 +12,7 @@ class Answers extends React.Component {
     this.getAnswers();
   }
 
-  getAnswers(page = 1, count = 2) {
+  getAnswers(page = 1, count = 100) {
     axios
       .get(
         `http://18.222.40.124/qa/${
