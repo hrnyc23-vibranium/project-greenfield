@@ -1,17 +1,15 @@
+//Dev Dependencies
 import React from 'react';
 
 //Material Components
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-// import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const useStyles = makeStyles(theme => ({
   gridList: {
     'max-width': '650px',
-    // flexWrap: 'nowrap',
     // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
     transform: 'translateZ(0)',
   },

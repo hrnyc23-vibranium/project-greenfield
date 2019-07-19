@@ -1,9 +1,10 @@
+//Dev Dependencies
 import React from 'react';
 
-//react component
+//React Component
 import AnswerList from './AnswerList';
 
-//material componenets
+//Material Componenets
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
@@ -27,8 +28,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Question = props => {
-  const classes = useStyles();
-
   return (
     <div>
       <Grid container justify="space-between">

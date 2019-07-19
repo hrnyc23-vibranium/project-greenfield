@@ -13,5 +13,3 @@ export const getQuestions = (
     payload: res.data,
   });
 };
-
-//export default getQuestions;

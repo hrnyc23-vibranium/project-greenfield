@@ -1,15 +1,14 @@
+//Dev Dependencies
 import React from 'react';
-import { Fragment } from 'react-dom';
+
+//React Component
 import AnswerImages from './AnswerImages.jsx';
 
 //Material Componenets
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import { Container } from '@material-ui/core';
-import { typography } from '@material-ui/system';
 import Button from '@material-ui/core/Button';
-import { makeStyles } from '@material-ui/core/styles';
 
 const Answer = props => {
   return (
@@ -18,7 +17,7 @@ const Answer = props => {
       {props.answer.photos.length > 0 ? (
         <AnswerImages photos={props.answer.photos} />
       ) : (
-        <div />
+        <Box />
       )}
 
       <Grid container direction="row" justify="flex-start" alignItems="center">
