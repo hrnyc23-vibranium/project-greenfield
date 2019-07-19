@@ -11,7 +11,7 @@ import Button from '@material-ui/core/Button';
 
 const Question = props => {
   return (
-    <Container maxWidth="md">
+    <div>
       <Grid container justify="space-between">
         <Grid item lg={9} md={9} sm={12}>
           <Grid container spacing={1}>
@@ -47,8 +47,7 @@ const Question = props => {
           </Grid>
         </Grid>
       </Grid>
-      <div />
-    </Container>
+    </div>
   );
 };
 
