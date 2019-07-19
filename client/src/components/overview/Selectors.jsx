@@ -27,10 +27,12 @@ const Selectors = props => {
 
   const [currSize, setSize] = useState('');
   const [currQuant, setQuantity] = useState('');
+  const [quant, setQuant] = useState(true);
 
   const handleChange = event => {
     setSize(event.target.value);
     setQuantity(props.skus[event.target.value]);
+    setQuant(false);
   };
 
   const renderItem = quantity => {
@@ -66,7 +68,10 @@ const Selectors = props => {
             <MenuItem value={'XL'}>XL</MenuItem>
           </Select>
         </FormControl>
-        <FormControl variant="outlined" className={classes.quantControl}>
+        <FormControl
+          variant="outlined"
+          className={classes.quantControl}
+          disabled={quant}>
           <InputLabel htmlFor="outlined-quant">Quantity</InputLabel>
           <Select
             value={currQuant}

@@ -50,10 +50,7 @@ class Overview extends Component {
               <Typography variant="h3" gutterBottom>
                 {product.name}
               </Typography>
-              {/* <Style styles={styles} id={id} product={product} /> */}
               <StyleList styles={styles} id={id} />
-              {/* <Selectors styles={styles} /> */}
-              {/* <CartButton /> */}
             </Grid>
           </Grid>
         </Grid>
