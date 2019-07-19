@@ -51,11 +51,8 @@ class Overview extends Component {
               <Typography variant="subtitle1" gutterBottom>
                 {product.slogan}
               </Typography>
-              <Typography variant="subtitle2" gutterBottom>{`$${
-                product.default_price
-              }`}</Typography>
               <StyleList styles={styles} />
-              <Selectors styles={styles} />
+              {/* <Selectors styles={styles} /> */}
               <CartButton />
             </Grid>
           </Grid>

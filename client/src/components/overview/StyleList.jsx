@@ -38,9 +38,13 @@ const StyleList = props => {
   const classes = useStyles();
 
   const [currentStyle, changeStyle] = useState('Forest Green & Black');
+  const [originalPrice, changePrice] = useState('140');
 
   return (
     <div>
+      <Typography
+        variant="subtitle2"
+        gutterBottom>{`$${originalPrice}`}</Typography>
       <Typography variant="overline" gutterBottom>
         <strong>Style > </strong>
         {currentStyle}
@@ -52,8 +56,10 @@ const StyleList = props => {
               <GridListTile
                 key={style.style_id}
                 cols={1}
-                onClick={() => changeStyle(style.name)}>
-                {console.log('currentStyle', currentStyle)}
+                onClick={() => {
+                  changeStyle(style.name);
+                  changePrice(style.original_price);
+                }}>
                 <Tooltip title={style.name} placement="bottom">
                   <Avatar
                     alt={style.name}
