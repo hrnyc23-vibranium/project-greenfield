@@ -92,7 +92,6 @@ let mapStateToProps = state => ({
   productId: state.productId,
   ratings: state.metaInfo.ratings,
   recommended: state.metaInfo.recommended,
-  // totalReviews: state.reviewList.count,
   totalReviews: state.reviewList.results
 });
 
