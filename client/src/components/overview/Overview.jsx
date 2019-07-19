@@ -4,41 +4,58 @@ import * as actions from '../../actions/overview';
 // Material UI Components
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-// Components
+import Typography from '@material-ui/core/Typography';
+// React Components
 import Header from './Header.jsx';
 import Carousel from './Carousel.jsx';
 import StyleList from './StyleList.jsx';
-import Selectors from './Selectors.jsx';
-import CartButton from './CartButton.jsx';
 
 class Overview extends Component {
-  componentDidMount() {
-    this.props.getProduct(this.props.id);
-    this.props.getProductStyles(this.props.id);
+  // componentDidMount() {
+  //   this.props.getProduct(this.props.id);
+  //   this.props.getProductStyles(this.props.id);
+  // }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this.props.getProduct(this.props.id);
+      this.props.getProductStyles(this.props.id);
+    }
   }
 
   render() {
     const product = this.props.product;
+    const styles = this.props.styles;
+    const id = this.props.id;
     return (
       <Box>
         <Header />
         <Grid container direction="row">
           <Grid item sm={12} md={8}>
-            <Carousel />
+            <Carousel styles={styles} />
           </Grid>
           <Grid item sm={12} md={4}>
-            <p>Stars</p>
-            <h5>{product.category}</h5>
-            <h2>{product.name}</h2>
-            <Box>{product.slogan}</Box>
-            <Box>{`$${product.default_price}`}</Box>
-            <StyleList />
-            <Selectors />
-            <CartButton />
+            <Grid
+              container
+              direction="column"
+              justify="space-around"
+              alignContent="space-around">
+              <p>Average Rating</p>
+              <Typography variant="overline" gutterBottom>
+                {product.category}
+              </Typography>
+              <Typography variant="h3" gutterBottom>
+                {product.name}
+              </Typography>
+              <StyleList styles={styles} id={id} />
+            </Grid>
           </Grid>
         </Grid>
         <Grid container direction="row">
           <Grid item sm={12} md={8}>
+            <Typography variant="h6" gutterBottom>
+              {product.slogan}
+            </Typography>
             <Box>{product.description}</Box>
           </Grid>
         </Grid>
@@ -50,6 +67,7 @@ class Overview extends Component {
 const mapStateToProps = state => ({
   id: state.productId,
   product: state.product,
+  styles: state.styles,
 });
 
 export default connect(
