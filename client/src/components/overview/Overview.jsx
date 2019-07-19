@@ -8,26 +8,28 @@ import Typography from '@material-ui/core/Typography';
 // React Components
 import Header from './Header.jsx';
 import Carousel from './Carousel.jsx';
+import Style from './Style.jsx';
 import StyleList from './StyleList.jsx';
 import Selectors from './Selectors.jsx';
 import CartButton from './CartButton.jsx';
 
 class Overview extends Component {
-  componentDidMount() {
-    this.props.getProduct(this.props.id);
-    this.props.getProductStyles(this.props.id);
-  }
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.id !== prevProps.id) {
-  //     this.props.getProduct(this.props.id);
-  //     this.props.getProductStyles(this.props.id);
-  //   }
+  // componentDidMount() {
+  //   this.props.getProduct(this.props.id);
+  //   this.props.getProductStyles(this.props.id);
   // }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      this.props.getProduct(this.props.id);
+      this.props.getProductStyles(this.props.id);
+    }
+  }
 
   render() {
     const product = this.props.product;
     const styles = this.props.styles;
+    const id = this.props.id;
     return (
       <Box>
         <Header />
@@ -48,17 +50,18 @@ class Overview extends Component {
               <Typography variant="h3" gutterBottom>
                 {product.name}
               </Typography>
-              <Typography variant="subtitle1" gutterBottom>
-                {product.slogan}
-              </Typography>
-              <StyleList styles={styles} />
+              {/* <Style styles={styles} id={id} product={product} /> */}
+              <StyleList styles={styles} id={id} />
               {/* <Selectors styles={styles} /> */}
-              <CartButton />
+              {/* <CartButton /> */}
             </Grid>
           </Grid>
         </Grid>
         <Grid container direction="row">
           <Grid item sm={12} md={8}>
+            <Typography variant="h6" gutterBottom>
+              {product.slogan}
+            </Typography>
             <Box>{product.description}</Box>
           </Grid>
         </Grid>

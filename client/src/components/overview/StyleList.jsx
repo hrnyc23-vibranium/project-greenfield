@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
@@ -7,6 +7,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+// React Components
+import Selectors from './Selectors.jsx';
+import CartButton from './CartButton.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -27,18 +30,32 @@ const useStyles = makeStyles(theme => ({
     height: 80,
   },
   progress: {
-    position: 'relative',
-    width: 50,
-    height: 50,
-    overflow: 'hidden',
+    margin: theme.spacing(1),
   },
 }));
 
 const StyleList = props => {
   const classes = useStyles();
 
-  const [currentStyle, changeStyle] = useState('Forest Green & Black');
-  const [originalPrice, changePrice] = useState('140');
+  // const [currentStyle, changeStyle] = useState(
+  //   props.styles.results ? props.styles.results[0].name : ''
+  // );
+  const [currentStyle, setStyle] = useState('Forest Green & Black');
+  const [originalPrice, setPrice] = useState('140');
+  const [skus, setSkus] = useState({ XS: 8, S: 16, M: 17, L: 10, XL: 15 });
+
+  // const [originalPrice, changePrice] = useState(
+  //   props.styles.results ? props.styles.results[0].original_price : ''
+  // );
+
+  // console.log('currentStyle', currentStyle);
+
+  // useEffect(() => {
+  //   if (props.styles.results) {
+  //     changeStyle(props.styles.results[0].name);
+  //     changePrice(props.styles.results[0].original_price);
+  //   }
+  // }, []);
 
   return (
     <div>
@@ -57,8 +74,9 @@ const StyleList = props => {
                 key={style.style_id}
                 cols={1}
                 onClick={() => {
-                  changeStyle(style.name);
-                  changePrice(style.original_price);
+                  setStyle(style.name);
+                  setPrice(style.original_price);
+                  setSkus(style.skus);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
                   <Avatar
@@ -70,10 +88,14 @@ const StyleList = props => {
               </GridListTile>
             ))
           ) : (
-            <CircularProgress className={classes.progress} />
+            <GridListTile cols={4}>
+              <CircularProgress className={classes.progress} />
+            </GridListTile>
           )}
         </GridList>
       </div>
+      <Selectors style={currentStyle} skus={skus} />
+      <CartButton />
     </div>
   );
 };
