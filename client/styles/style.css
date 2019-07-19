@@ -1,3 +1,36 @@
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 10px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: url('thumb.svg');
+  background-size: 20px;
+  vertical-align: top;
+  background-repeat: no-repeat;
+  /* margin-top: 9px; */
+}
+
+.slider::-moz-range-thumb {
+  background: url('thumb.svg');
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background-size: 20px;
+  vertical-align: top;
+  background-repeat: no-repeat;
+  margin-top: 9px;
+}
+
 div .makeStyles-button-211:first-child {
   margin-left: 0 !important;
 }
