@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // Material UI Components
 import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -28,7 +27,6 @@ const useStyles = makeStyles(theme => ({
 
 const Carousel = props => {
   const classes = useStyles();
-  console.log('props', props);
   return (
     <Box className={classes.root}>
       {props.styles.results ? (
