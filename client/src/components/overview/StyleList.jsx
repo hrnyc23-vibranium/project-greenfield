@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Box from '@material-ui/core/Box';
 import Avatar from '@material-ui/core/Avatar';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,21 +37,30 @@ const useStyles = makeStyles(theme => ({
 const StyleList = props => {
   const classes = useStyles();
 
+  const [currentStyle, changeStyle] = useState('Forest Green & Black');
+
   return (
     <div>
+      <Typography variant="overline" gutterBottom>
+        <strong>Style > </strong>
+        {currentStyle}
+      </Typography>
       <div className={classes.root}>
         <GridList cellHeight={100} cols={4}>
           {props.styles.results ? (
             props.styles.results.map(style => (
-              <GridListTile key={style.style_id} cols={1}>
-                <Avatar
-                  alt={style.name}
-                  src={style.photos[0].thumbnail_url}
-                  className={classes.avatar}
-                />
-                {/* <Box className={classes.image}>
-                  <img src={style.photos[0].thumbnail_url} />
-                </Box> */}
+              <GridListTile
+                key={style.style_id}
+                cols={1}
+                onClick={() => changeStyle(style.name)}>
+                {console.log('currentStyle', currentStyle)}
+                <Tooltip title={style.name} placement="bottom">
+                  <Avatar
+                    alt={style.name}
+                    src={style.photos[0].thumbnail_url}
+                    className={classes.avatar}
+                  />
+                </Tooltip>
               </GridListTile>
             ))
           ) : (

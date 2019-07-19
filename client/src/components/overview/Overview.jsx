@@ -42,10 +42,18 @@ class Overview extends Component {
               justify="space-around"
               alignContent="space-around">
               <p>Stars</p>
-              <Typography variant="overline">{product.category}</Typography>
-              <Typography variant="h3">{product.name}</Typography>
-              <Box>{product.slogan}</Box>
-              <Box>{`$${product.default_price}`}</Box>
+              <Typography variant="overline" gutterBottom>
+                {product.category}
+              </Typography>
+              <Typography variant="h3" gutterBottom>
+                {product.name}
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom>
+                {product.slogan}
+              </Typography>
+              <Typography variant="subtitle2" gutterBottom>{`$${
+                product.default_price
+              }`}</Typography>
               <StyleList styles={styles} />
               <Selectors styles={styles} />
               <CartButton />
