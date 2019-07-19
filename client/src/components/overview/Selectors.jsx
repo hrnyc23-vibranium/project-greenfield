@@ -78,7 +78,9 @@ const Selectors = props => {
               />
             }>
             {renderItem(currQuant).map(number => (
-              <MenuItem val={number}>{number}</MenuItem>
+              <MenuItem key={number} val={number}>
+                {number}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>
