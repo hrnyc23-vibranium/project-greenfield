@@ -26,13 +26,13 @@ const useStyles = makeStyles(theme => ({
 const QuestionAndAnswer = props => {
   const classes = useStyles();
   return (
-    <Container maxWidth="md">
+    <div id="QA">
       <Typography variant="h6" component="h2">
         Question and Answers
       </Typography>
       <Search />
       <QuestionList />
-      <div>
+      <div id="questionbuttons">
         <Button variant="outlined" className={classes.button}>
           More answered Questions
         </Button>
@@ -40,7 +40,7 @@ const QuestionAndAnswer = props => {
           Add a quetion +
         </Button>
       </div>
-    </Container>
+    </div>
   );
 };
 

@@ -31,6 +31,11 @@
   margin-top: 9px;
 }
 
-div .makeStyles-button-211:first-child {
+#questionbuttons button:first-child {
   margin-left: 0 !important;
+}
+#QA {
+  margin: 20px, 0 !important;
+  padding: 20px 0;
+  max-width: 960px;
 }
