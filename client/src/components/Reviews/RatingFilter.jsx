@@ -60,10 +60,21 @@ class RatingFilter extends Component {
     return <div>{normalized}% of reviews recommend this product</div>;
   }
 
+  renderAvgRating() {
+    const { ratings, totalReviews } = this.props;
+    let totalStars = 0;
+    for (let stars in ratings) {
+      let reviews = ratings[stars];
+      totalStars += stars * reviews;
+    }
+    return totalStars / totalReviews;
+  }
+
   render() {
     const { recommended } = this.props;
     return recommended ? (
       <div>
+        <span>{this.renderAvgRating()} stars</span>
         {this.renderRecommended()}
         {this.renderRatings()}
       </div>
