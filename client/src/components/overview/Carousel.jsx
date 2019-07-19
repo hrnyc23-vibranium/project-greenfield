@@ -18,6 +18,7 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
     objectFit: 'cover',
+    marginTop: theme.spacing(2),
     marginBottom: theme.spacing(5),
   },
   progress: {
