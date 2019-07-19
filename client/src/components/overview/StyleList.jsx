@@ -1,6 +1,7 @@
 import React, { useState, useEffect, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -25,7 +26,9 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
   },
   avatar: {
-    margin: 10,
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(1),
+    marginBottom: theme.spacing(5),
     width: 80,
     height: 80,
   },
@@ -94,8 +97,10 @@ const StyleList = props => {
           )}
         </GridList>
       </div>
-      <Selectors style={currentStyle} skus={skus} />
-      <CartButton />
+      <Grid item xs={12}>
+        <Selectors style={currentStyle} skus={skus} />
+        <CartButton />
+      </Grid>
     </div>
   );
 };

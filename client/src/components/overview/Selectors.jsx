@@ -13,11 +13,12 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'wrap',
   },
   sizeControl: {
-    margin: theme.spacing(1),
-    minWidth: '65%',
+    marginTop: theme.spacing(2),
+    minWidth: '72%',
   },
   quantControl: {
-    margin: theme.spacing(1),
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2),
     minWidth: '25%',
   },
 }));
@@ -46,20 +47,16 @@ const Selectors = props => {
     return quantArr;
   };
 
-  console.log('currQuant', currQuant);
   return (
     <Fragment>
       <form className={classes.root} autoComplete="off">
-        <FormControl
-          variant="outlined"
-          className={classes.sizeControl}
-          required>
+        <FormControl variant="outlined" className={classes.sizeControl}>
           <InputLabel htmlFor="outlined-size">Size</InputLabel>
           <Select
             value={currSize}
             onChange={handleChange}
             input={
-              <OutlinedInput labelWidth={45} name="size" id="outlined-size" />
+              <OutlinedInput labelWidth={30} name="size" id="outlined-size" />
             }>
             <MenuItem value={'XS'}>XS</MenuItem>
             <MenuItem value={'S'}>S</MenuItem>

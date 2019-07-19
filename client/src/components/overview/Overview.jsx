@@ -8,10 +8,7 @@ import Typography from '@material-ui/core/Typography';
 // React Components
 import Header from './Header.jsx';
 import Carousel from './Carousel.jsx';
-import Style from './Style.jsx';
 import StyleList from './StyleList.jsx';
-import Selectors from './Selectors.jsx';
-import CartButton from './CartButton.jsx';
 
 class Overview extends Component {
   // componentDidMount() {
@@ -43,7 +40,7 @@ class Overview extends Component {
               direction="column"
               justify="space-around"
               alignContent="space-around">
-              <p>Stars</p>
+              <p>Average Rating</p>
               <Typography variant="overline" gutterBottom>
                 {product.category}
               </Typography>
