@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../../actions/Reviews/getData.js';
 // React Components
 import ReviewsEntry from './ReviewsEntry.jsx';
+import { withRouter } from 'react-router-dom';
 class ReviewsList extends Component {
   componentDidUpdate(prevProps) {
     const { getList, productId, getMeta } = this.props;
@@ -31,12 +32,13 @@ class ReviewsList extends Component {
 
 const mapStateToProps = state => ({
   productId: state.productId,
-  // productId: 2,
   reviewList: state.reviewList,
   metaInfo: state.metaInfo
 });
 
-export default connect(
-  mapStateToProps,
-  actions
-)(ReviewsList);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    actions
+  )(ReviewsList)
+);

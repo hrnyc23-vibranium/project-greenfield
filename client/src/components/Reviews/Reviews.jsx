@@ -10,22 +10,18 @@ class Reviews extends Component {
     return (
       <div>
         RATINGS & REVIEWS
-        <Grid container>
-          <Grid item l={2}>
-            <Grid container spacing={10}>
-              <Grid item>
-                <Meta />
-              </Grid>
-              <Grid item>
-                <ReviewsList />
-                <Button size="large" variant="outlined">
-                  MORE REVIEWS
-                </Button>
-                <Button size="large" variant="outlined">
-                  ADD A REVIEW +
-                </Button>
-              </Grid>
-            </Grid>
+        <Grid container direction="row" justify="space-between">
+          <Grid item sm={12} md={3}>
+            <Meta />
+          </Grid>
+          <Grid item sm={12} md={9}>
+            <ReviewsList />
+            <Button size="large" variant="outlined">
+              MORE REVIEWS
+            </Button>
+            <Button size="large" variant="outlined">
+              ADD A REVIEW +
+            </Button>
           </Grid>
         </Grid>
       </div>
