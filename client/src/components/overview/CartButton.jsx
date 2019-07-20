@@ -103,6 +103,7 @@ const CartButton = props => {
               </Grid>
             </Grid>
           </Grid>
+          <hr />
           <Grid container direction="row" className={classes.price}>
             <Typography variant="h5" gutterBottom>
               <strong>Price: </strong>
