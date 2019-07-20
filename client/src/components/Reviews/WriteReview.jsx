@@ -13,37 +13,41 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import * as actions from '../../actions/Reviews/setFormRating.js';
 
-const renderRating = rating => {
-  let ratings = {
-    '1': 'Poor',
-    '2': 'Fair',
-    '3': 'Average',
-    '4': 'Good',
-    '5': 'Great'
-  };
-  return <div> {ratings[rating]} </div>;
-};
-
 const WriteReview = props => {
   const [rating, setFormRating] = React.useState(0);
 
-  return (
-    <div>
-      <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
-      <DialogContent>
-        <DialogContentText>About the Product Name</DialogContentText>
-        <h4>Overall Rating*</h4>
-        <Grid container direction="row">
-          <Rating
-            name="rating"
-            value={rating}
-            onChange={(e, newValue) => {
-              setFormRating(newValue);
-            }}
-            precision={1}
-          />
-          {renderRating(rating)}
-        </Grid>
+  //render meaning depending on the rating selected
+  const renderMeaning = rating => {
+    let ratings = {
+      '1': 'Poor',
+      '2': 'Fair',
+      '3': 'Average',
+      '4': 'Good',
+      '5': 'Great'
+    };
+    return <div> {ratings[rating]} </div>;
+  };
+
+  //selecting rating changes the stars displayed
+  const renderRating = () => {
+    return (
+      <Grid container direction="row">
+        <Rating
+          name="rating"
+          value={rating}
+          onChange={(e, newValue) => {
+            setFormRating(newValue);
+          }}
+          precision={1}
+        />
+        {renderMeaning(rating)}
+      </Grid>
+    );
+  };
+
+  const renderEmail = () => {
+    return (
+      <React.Fragment>
         <TextField
           autoFocus
           margin="dense"
@@ -52,13 +56,32 @@ const WriteReview = props => {
           type="email"
           fullWidth
         />
+      </React.Fragment>
+    );
+  };
+
+  return (
+    <div>
+      <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
+      <DialogContent>
+        <DialogContentText>About the Product Name</DialogContentText>
+        <h4>Overall Rating*</h4>
+        {renderRating()}
+        <h4>Do you recommend this product?*</h4>
+        <h4>Characteristics*</h4>
+        <h4>Review Summary</h4>
+        <h4>Review Body*</h4>
+        <h4>Upload your photos</h4>
+        <h4>What is your nickname*</h4>
+        <h4>Your email*</h4>
+        {renderEmail()}
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
         <Button onClick={props.handleClose} color="primary">
-          Submit
+          Submit review
         </Button>
       </DialogActions>
     </div>
