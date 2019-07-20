@@ -35,18 +35,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
+  const top = 50;
+  const left = 50;
 
   return {
     top: `${top}%`,
     left: `${left}%`,
     transform: `translate(-${top}%, -${left}%)`,
   };
-}
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
 }
 
 const QuestionAndAnswer = props => {
