@@ -24,6 +24,7 @@ const ReviewSummary = ({ form, setForm }) => {
         className={classes.textField}
         value={form.summary}
         onChange={handleChange}
+        inputProps={{ maxLength: 60 }}
       />
     </React.Fragment>
   );
