@@ -8,10 +8,15 @@ import Checkmark from '@material-ui/icons/Check';
 
 const useStyles = makeStyles(theme => ({
   root: {
+    width: '100%',
     marginTop: theme.spacing(2),
   },
+  featureMargin: {
+    marginLeft: theme.spacing(2),
+  },
   margin: {
-    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(2),
+    // marginRight: theme.spacing(1),
   },
 }));
 
@@ -29,25 +34,27 @@ const Features = props => {
         </Typography>
       </Grid>
       <Grid item md={12} lg={4} className={classes.root}>
-        <Grid
-          container
-          direction="column"
-          justify="space-around"
-          alignContent="space-around">
-          {props.features
-            ? props.features.map(feature => (
-                <Grid container direction="row" key={feature.feature}>
-                  <Checkmark className={classes.margin} />
-                  <Typography variant="subtitle1" className={classes.margin}>
-                    <strong>{`${feature.feature}:`}</strong>
-                  </Typography>
-                  <Typography variant="subtitle1" className={classes.margin}>
-                    {feature.value}
-                  </Typography>
-                </Grid>
-              ))
-            : ''}
-        </Grid>
+        <Box borderLeft={2}>
+          <Grid
+            container
+            direction="column"
+            justify="space-around"
+            alignContent="space-around">
+            {props.features
+              ? props.features.map(feature => (
+                  <Grid container direction="row" key={feature.feature}>
+                    <Checkmark className={classes.margin} />
+                    <Typography variant="subtitle1" className={classes.margin}>
+                      <strong>{`${feature.feature}:`}</strong>
+                    </Typography>
+                    <Typography variant="subtitle1" className={classes.margin}>
+                      {feature.value}
+                    </Typography>
+                  </Grid>
+                ))
+              : ''}
+          </Grid>
+        </Box>
       </Grid>
     </Fragment>
   );
