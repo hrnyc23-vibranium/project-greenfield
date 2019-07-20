@@ -70,7 +70,7 @@ const QuestionAndAnswer = props => {
           variant="outlined"
           className={classes.button}
           onClick={handleOpen}>
-          Add a quetion +
+          Add a question +
         </Button>
         <Modal
           aria-labelledby="simple-modal-title"
