@@ -5,7 +5,7 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    width: 400
+    width: 500
   }
 }));
 
@@ -28,13 +28,13 @@ const ReviewBody = ({ form, setForm }) => {
   return (
     <React.Fragment>
       <TextField
-        required={true}
-        multiline
-        placeholder="Why did you like the product or not"
         className={classes.textField}
-        value={form.body}
-        onChange={handleChange}
         inputProps={{ maxLength: 1000 }}
+        multiline
+        onChange={handleChange}
+        placeholder="Why did you like the product or not"
+        required={true}
+        value={form.body}
       />
       <span>{minReqChars()}</span>
     </React.Fragment>
