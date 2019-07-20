@@ -35,7 +35,54 @@
   margin-left: 0 !important;
 }
 #QA {
-  margin: 20px, 0 !important;
+  /* margin: 20px, 0 !important; */
+  margin: auto;
   padding: 20px 0;
   max-width: 960px;
+}
+.fade {
+  background-color: darkgray;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  display: relative;
+}
+
+#gallery {
+  width: 800px;
+  height: 600px;
+  padding: 10px;
+}
+#gallery div {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+#gallery img {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+.gallerybutton {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  cursor: pointer;
+}
+.gallerybutton.prev {
+  left: 10px;
+}
+
+.MuiButton-sizeSmall {
+  margin-top: -4px !important;
+  /* padding-top: 0 !important; */
+  background: none;
+  text-transform: capitalize !important;
+  text-decoration: underline !important;
+}
+.MuiButton-sizeSmall:hover {
+  background: none !important;
+  text-decoration: underline !important;
 }

@@ -2,7 +2,7 @@
 import React from 'react';
 
 //React Component
-import AnswerImages from './AnswerImages.jsx';
+import ImageGallery from '../ImageGallery.jsx';
 
 //Material Componenets
 import Typography from '@material-ui/core/Typography';
@@ -15,7 +15,7 @@ const Answer = props => {
     <Box>
       <Typography variant="body2">{props.answer.body} </Typography>
       {props.answer.photos.length > 0 ? (
-        <AnswerImages photos={props.answer.photos} />
+        <ImageGallery photos={props.answer.photos} />
       ) : (
         <Box />
       )}

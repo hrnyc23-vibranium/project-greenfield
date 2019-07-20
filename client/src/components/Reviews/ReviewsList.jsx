@@ -33,7 +33,7 @@ class ReviewsList extends Component {
 const mapStateToProps = state => ({
   productId: state.productId,
   reviewList: state.reviewList,
-  metaInfo: state.metaInfo
+  metaInfo: state.metaInfo,
 });
 
 export default withRouter(

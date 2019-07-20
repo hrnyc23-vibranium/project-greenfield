@@ -32,6 +32,7 @@ const SearchQuestion = () => {
       <InputBase
         className={classes.input}
         variant="outlined"
+        label="Search"
         placeholder="Have a question? Search for answers"
         inputProps={{ 'aria-label': 'Have a question? Search for answers' }}
       />
