@@ -35,7 +35,17 @@
   margin-left: 0 !important;
 }
 #QA {
-  margin: 20px, 0 !important;
+  /* margin: 20px, 0 !important; */
+  margin: auto;
   padding: 20px 0;
   max-width: 960px;
+}
+.fade {
+  background-color: darkgray;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  display: relative;
 }
