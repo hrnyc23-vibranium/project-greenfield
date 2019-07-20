@@ -100,7 +100,7 @@ let mapStateToProps = state => ({
   productId: state.productId,
   ratings: state.metaInfo.ratings,
   recommended: state.metaInfo.recommended,
-  totalReviews: state.reviewList.results
+  totalReviews: state.reviewList.results,
 });
 
 export default connect(

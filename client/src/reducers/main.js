@@ -4,6 +4,7 @@ import productReducer from './overview/productReducer.js';
 import styleReducer from './overview/styleReducer.js';
 import questionReducer from './QandA/QuestionReducer.js';
 import answerReducer from './QandA/AnswerReducer.js';
+import galleryReducer from './galleryReducer.js';
 
 import listReducer from './Reviews/listReducer.js';
 import metaReducer from './Reviews/metaReducer.js';
@@ -18,8 +19,9 @@ const rootReducer = combineReducers({
   answers: answerReducer,
   reviewList: listReducer,
   metaInfo: metaReducer,
+  gallery: galleryReducer,
   open: openReducer,
-  reviewForm: reviewFormReducer
+  reviewForm: reviewFormReducer,
 });
 
 export default rootReducer;
