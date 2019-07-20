@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { nextImage, prevImage } from '../actions/galleryActions';
 
 //Material Componenets
-//import { ArrowBack, ArrowForward } from '@material-ui/icons';
+import { ArrowBack, ArrowForward } from '@material-ui/icons';
 
 const Gallery = ({ images, current, clickNext, clickPrev }) => {
   return (
