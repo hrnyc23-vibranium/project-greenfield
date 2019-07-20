@@ -17,7 +17,7 @@ class ReviewsList extends Component {
     const { reviewList } = this.props;
     return reviewList.results ? (
       <div>
-        <div>288 reviews, sorted by </div>
+        <div>{reviewList.results.length} reviews, sorted by </div>
         <div>
           {reviewList.results.map(review => {
             return <ReviewsEntry key={review.review_id} review={review} />;
@@ -33,7 +33,7 @@ class ReviewsList extends Component {
 const mapStateToProps = state => ({
   productId: state.productId,
   reviewList: state.reviewList,
-  metaInfo: state.metaInfo
+  metaInfo: state.metaInfo,
 });
 
 export default withRouter(

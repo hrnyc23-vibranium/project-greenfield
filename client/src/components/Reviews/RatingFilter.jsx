@@ -28,7 +28,7 @@ class RatingFilter extends Component {
         {[1, 2, 3, 4, 5].map(num => {
           let normalized = this.normalizeRating(
             ratings[num] || 0,
-            totalReviews
+            totalReviews.length
           );
           return (
             <Grid container direction="row" key={num}>
@@ -58,7 +58,10 @@ class RatingFilter extends Component {
   //render out recommended percentage
   renderRecommended() {
     const { recommended, totalReviews } = this.props;
-    let normalized = this.normalizeRecommended(recommended[0], totalReviews);
+    let normalized = this.normalizeRecommended(
+      recommended[0],
+      totalReviews.length
+    );
     return <div>{normalized}% of reviews recommend this product</div>;
   }
 
@@ -97,7 +100,7 @@ let mapStateToProps = state => ({
   productId: state.productId,
   ratings: state.metaInfo.ratings,
   recommended: state.metaInfo.recommended,
-  totalReviews: state.reviewList.count,
+  totalReviews: state.reviewList.results,
 });
 
 export default connect(
