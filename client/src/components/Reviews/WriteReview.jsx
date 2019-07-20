@@ -1,18 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const WriteReview = ({ handleClose }) => {
+import * as actions from '../../actions/Reviews/setFormRating.js';
+
+const WriteReview = props => {
+  const [rating, setFormRating] = React.useState(0);
+
   return (
     <div>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
       <DialogContent>
         <DialogContentText>About the Product Name</DialogContentText>
+        <h4>Overall Rating*</h4>
+        <Rating
+          name="rating"
+          value={rating}
+          onChange={(e, newValue) => {
+            setFormRating(newValue);
+          }}
+          precision={1}
+        />
         <TextField
           autoFocus
           margin="dense"
@@ -23,10 +39,10 @@ const WriteReview = ({ handleClose }) => {
         />
       </DialogContent>
       <DialogActions>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={handleClose} color="primary">
+        <Button onClick={props.handleClose} color="primary">
           Submit
         </Button>
       </DialogActions>
@@ -34,4 +50,11 @@ const WriteReview = ({ handleClose }) => {
   );
 };
 
-export default WriteReview;
+let mapStateToProps = state => ({
+  rating: state.formRating
+});
+
+export default connect(
+  mapStateToProps,
+  actions
+)(WriteReview);
