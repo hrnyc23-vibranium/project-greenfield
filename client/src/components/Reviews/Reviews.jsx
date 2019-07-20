@@ -1,11 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // Material UI Components
 import Grid from '@material-ui/core/Grid/';
 import Button from '@material-ui/core/Button';
-import Meta from './Meta.jsx';
+import Dialog from '@material-ui/core/Dialog';
+
 // React Components
+import Meta from './Meta.jsx';
 import ReviewsList from './ReviewsList.jsx';
+import WriteReview from './WriteReview.jsx';
+import * as actions from '../../actions/Reviews/setOpen.js';
+
 class Reviews extends Component {
+  handleOpen() {
+    this.props.setOpen(true);
+  }
+  handleClose() {
+    this.props.setOpen(false);
+  }
+
   render() {
     return (
       <div>
@@ -19,9 +32,16 @@ class Reviews extends Component {
             <Button size="large" variant="outlined">
               MORE REVIEWS
             </Button>
-            <Button size="large" variant="outlined">
+            <Button
+              size="large"
+              variant="outlined"
+              onClick={this.handleOpen.bind(this)}
+            >
               ADD A REVIEW +
             </Button>
+            <Dialog open={this.props.open} onClose={this.handleClose}>
+              <WriteReview handleClose={this.handleClose.bind(this)} />
+            </Dialog>
           </Grid>
         </Grid>
       </div>
@@ -29,4 +49,11 @@ class Reviews extends Component {
   }
 }
 
-export default Reviews;
+let mapStateToProps = state => ({
+  open: state.open
+});
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Reviews);

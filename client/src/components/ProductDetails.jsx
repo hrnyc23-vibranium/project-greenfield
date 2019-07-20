@@ -14,8 +14,8 @@ class ProductDetails extends Component {
   render() {
     return (
       <Fragment>
-        <Overview />
-        <Questions />
+        {/* <Overview />
+        <Questions /> */}
         <Reviews />
       </Fragment>
     );

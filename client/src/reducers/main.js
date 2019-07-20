@@ -7,6 +7,7 @@ import answerReducer from './QandA/AnswerReducer.js';
 
 import listReducer from './Reviews/listReducer.js';
 import metaReducer from './Reviews/metaReducer.js';
+import openReducer from './Reviews/openReducer.js';
 
 const rootReducer = combineReducers({
   productId: IdReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   answers: answerReducer,
   reviewList: listReducer,
   metaInfo: metaReducer,
+  open: openReducer
 });
 
 export default rootReducer;
