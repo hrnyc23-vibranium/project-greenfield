@@ -49,7 +49,7 @@ class QuestionsForm extends React.Component {
             label="Your Question"
             helperText="place your question here"
             fullWidth
-            questiontext={this.state.question}
+            value={this.state.question}
           />
           <TextField
             id="nickename"

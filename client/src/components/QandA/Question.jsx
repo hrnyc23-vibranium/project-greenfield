@@ -3,6 +3,7 @@ import React from 'react';
 
 //React Component
 import AnswerList from './AnswerList';
+import AnswerForm from './AnswerForm';
 
 //Material Componenets
 import Typography from '@material-ui/core/Typography';
@@ -30,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 const Question = props => {
   return (
     <div>
-      <Grid container justify="space-between">
+      <Grid container justify="space-between" alignItems="flex-start">
         <Grid item lg={9} md={9} sm={12}>
           <Grid container spacing={1}>
             <Grid item>
@@ -56,12 +57,15 @@ const Question = props => {
             container
             direction="row"
             justify="flex-end"
-            alignItems="center">
+            alignItems="flex-start">
             <Button size="small">
               Helpful? ({props.question.question_helpfulness})
             </Button>
             <Typography component="h4"> | </Typography>
-            <Button size="small">Add Answer</Button>
+            <AnswerForm
+              product={'something'}
+              question={props.question.question_body}
+            />
           </Grid>
         </Grid>
       </Grid>
