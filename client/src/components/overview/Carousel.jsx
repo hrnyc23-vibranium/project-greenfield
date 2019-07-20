@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 // Material UI Components
 import Box from '@material-ui/core/Box';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -10,8 +10,10 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'nowrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    width: '750px',
+    width: '95%',
     height: '750px',
+    backgroundColor: '#E0E0E0',
+    marginTop: theme.spacing(1),
   },
   img: {
     display: 'flex',
@@ -19,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '100%',
     objectFit: 'cover',
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(5),
+    marginBottom: theme.spacing(2),
   },
   progress: {
     margin: theme.spacing(1),

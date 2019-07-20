@@ -8,9 +8,10 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 // React Components
 import Selectors from './Selectors.jsx';
-import CartButton from './CartButton.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,36 +36,80 @@ const useStyles = makeStyles(theme => ({
   progress: {
     margin: theme.spacing(1),
   },
+  sale: {
+    color: 'red',
+    marginLeft: theme.spacing(1),
+  },
+  checkmark: {
+    color: 'green',
+    position: 'absolute',
+    top: 7,
+    right: 20,
+  },
 }));
 
 const StyleList = props => {
   const classes = useStyles();
 
-  // const [currentStyle, changeStyle] = useState(
-  //   props.styles.results ? props.styles.results[0].name : ''
-  // );
   const [currentStyle, setStyle] = useState('Forest Green & Black');
   const [originalPrice, setPrice] = useState('140');
   const [skus, setSkus] = useState({ XS: 8, S: 16, M: 17, L: 10, XL: 15 });
+  const [salePrice, setSalePrice] = useState('0');
+  const [currPrice, setCurrPrice] = useState('140');
+  const [cartImage, setCartImage] = useState(
+    'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
+  );
+  const [selected, setSelected] = useState('none');
 
-  // const [originalPrice, changePrice] = useState(
-  //   props.styles.results ? props.styles.results[0].original_price : ''
-  // );
+  const renderPrice = () => {
+    if (salePrice !== '0') {
+      return (
+        <div>
+          <Grid container direction="row">
+            <Typography variant="subtitle2">
+              <strike>{`$${originalPrice}`}</strike>
+            </Typography>
+            <Typography
+              variant="subtitle2"
+              className={classes.sale}>{`$${salePrice}`}</Typography>
+          </Grid>
+        </div>
+      );
+    } else {
+      return (
+        <Grid container direction="row">
+          <Typography variant="subtitle2" gutterBottom>
+            {`$${originalPrice}`}
+          </Typography>
+        </Grid>
+      );
+    }
+  };
 
-  // console.log('currentStyle', currentStyle);
+  const changeCurrPrice = (price, sale) => {
+    if (sale === '0') {
+      setCurrPrice(price);
+    } else {
+      setCurrPrice(sale);
+    }
+  };
 
-  // useEffect(() => {
-  //   if (props.styles.results) {
-  //     changeStyle(props.styles.results[0].name);
-  //     changePrice(props.styles.results[0].original_price);
-  //   }
-  // }, []);
+  const changeSelected = (selectedName, stateName) => {
+    if (selectedName === stateName) {
+      setSelected('inline');
+      console.log('return');
+      return 'returning';
+      // <Box display={selected}>
+      //   <CheckCircle className={classes.checkmark} />
+      // </Box>
+    } else {
+      setSelected('none');
+    }
+  };
 
   return (
     <div>
-      <Typography
-        variant="subtitle2"
-        gutterBottom>{`$${originalPrice}`}</Typography>
+      {renderPrice()}
       <Typography variant="overline" gutterBottom>
         <strong>Style > </strong>
         {currentStyle}
@@ -80,6 +125,10 @@ const StyleList = props => {
                   setStyle(style.name);
                   setPrice(style.original_price);
                   setSkus(style.skus);
+                  setSalePrice(style.sale_price);
+                  setCartImage(style.photos[0].thumbnail_url);
+                  changeCurrPrice(style.original_price, style.sale_price);
+                  changeSelected(style.name, currentStyle);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
                   <Avatar
@@ -98,8 +147,13 @@ const StyleList = props => {
         </GridList>
       </div>
       <Grid item xs={12}>
-        <Selectors style={currentStyle} skus={skus} />
-        <CartButton />
+        <Selectors
+          product={props.product}
+          style={currentStyle}
+          price={currPrice}
+          skus={skus}
+          cartImage={cartImage}
+        />
       </Grid>
     </div>
   );

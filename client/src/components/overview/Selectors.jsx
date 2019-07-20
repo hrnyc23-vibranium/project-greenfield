@@ -6,6 +6,9 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+import Grid from '@material-ui/core/Grid';
+// React Components
+import CartButton from './CartButton.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,12 +17,11 @@ const useStyles = makeStyles(theme => ({
   },
   sizeControl: {
     marginTop: theme.spacing(2),
-    minWidth: '72%',
+    minWidth: '100%',
   },
   quantControl: {
     marginTop: theme.spacing(2),
-    marginLeft: theme.spacing(2),
-    minWidth: '25%',
+    minWidth: '100%',
   },
 }));
 
@@ -30,6 +32,7 @@ const Selectors = props => {
   const [currQuant, setQuantity] = useState('');
   const [quant, setQuant] = useState(true);
   const [cartQuant, setCartQuant] = useState('');
+  const [cartStatus, setCartStatus] = useState(true);
 
   const handleChange = event => {
     setSize(event.target.value);
@@ -39,6 +42,7 @@ const Selectors = props => {
 
   const handleQuantChange = event => {
     setCartQuant(event.target.value);
+    setCartStatus(false);
   };
 
   const renderItem = quantity => {
@@ -46,7 +50,7 @@ const Selectors = props => {
     if (quantity > 15) {
       quantity = 15;
     }
-    for (let i = 0; i <= quantity; i++) {
+    for (let i = 1; i <= quantity; i++) {
       quantArr.push(i);
     }
     return quantArr;
@@ -54,45 +58,59 @@ const Selectors = props => {
 
   return (
     <Fragment>
-      <form className={classes.root} autoComplete="off">
-        <FormControl variant="outlined" className={classes.sizeControl}>
-          <InputLabel htmlFor="outlined-size">Size</InputLabel>
-          <Select
-            value={currSize}
-            onChange={handleChange}
-            input={
-              <OutlinedInput labelWidth={30} name="size" id="outlined-size" />
-            }>
-            <MenuItem value={'XS'}>XS</MenuItem>
-            <MenuItem value={'S'}>S</MenuItem>
-            <MenuItem value={'M'}>M</MenuItem>
-            <MenuItem value={'L'}>L</MenuItem>
-            <MenuItem value={'XL'}>XL</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl
-          variant="outlined"
-          className={classes.quantControl}
-          disabled={quant}>
-          <InputLabel htmlFor="outlined-quant">Quantity</InputLabel>
-          <Select
-            value={cartQuant}
-            onChange={handleQuantChange}
-            input={
-              <OutlinedInput
-                labelWidth={60}
-                name="quantity"
-                id="outlined-quant"
-              />
-            }>
-            {renderItem(currQuant).map(number => (
-              <MenuItem key={number} value={number}>
-                {number}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </form>
+      <Grid container direction="row" justify="space-between">
+        <Grid item xs={12} md={12} lg={8}>
+          <FormControl variant="outlined" className={classes.sizeControl}>
+            <InputLabel htmlFor="outlined-size">Size</InputLabel>
+            <Select
+              value={currSize}
+              onChange={handleChange}
+              input={
+                <OutlinedInput labelWidth={30} name="size" id="outlined-size" />
+              }>
+              <MenuItem value={'XS'}>XS</MenuItem>
+              <MenuItem value={'S'}>S</MenuItem>
+              <MenuItem value={'M'}>M</MenuItem>
+              <MenuItem value={'L'}>L</MenuItem>
+              <MenuItem value={'XL'}>XL</MenuItem>
+            </Select>
+          </FormControl>
+        </Grid>
+        <Grid item xs={12} md={12} lg={3}>
+          <FormControl
+            variant="outlined"
+            className={classes.quantControl}
+            disabled={quant}>
+            <InputLabel htmlFor="outlined-quant">Quantity</InputLabel>
+            <Select
+              value={cartQuant}
+              onChange={handleQuantChange}
+              input={
+                <OutlinedInput
+                  labelWidth={60}
+                  name="quantity"
+                  id="outlined-quant"
+                />
+              }>
+              {renderItem(currQuant).map(number => (
+                <MenuItem key={number} value={number}>
+                  {number}
+                </MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        </Grid>
+      </Grid>
+
+      <CartButton
+        product={props.product}
+        style={props.style}
+        size={currSize}
+        quantity={cartQuant}
+        status={cartStatus}
+        price={props.price}
+        image={props.cartImage}
+      />
     </Fragment>
   );
 };
