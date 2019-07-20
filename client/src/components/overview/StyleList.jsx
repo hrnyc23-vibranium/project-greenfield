@@ -8,6 +8,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
+import CheckCircle from '@material-ui/icons/CheckCircle';
 // React Components
 import Selectors from './Selectors.jsx';
 
@@ -38,6 +40,12 @@ const useStyles = makeStyles(theme => ({
     color: 'red',
     marginLeft: theme.spacing(1),
   },
+  checkmark: {
+    color: 'green',
+    position: 'absolute',
+    top: 16,
+    right: 13,
+  },
 }));
 
 const StyleList = props => {
@@ -51,6 +59,7 @@ const StyleList = props => {
   const [cartImage, setCartImage] = useState(
     'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
   );
+  const [selected, setSelected] = useState(true);
 
   const renderPrice = () => {
     if (salePrice !== '0') {
@@ -106,13 +115,20 @@ const StyleList = props => {
                   setSalePrice(style.sale_price);
                   setCartImage(style.photos[0].thumbnail_url);
                   changeCurrPrice(style.original_price, style.sale_price);
+                  setSelected(false);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
-                  <Avatar
-                    alt={style.name}
-                    src={style.photos[0].thumbnail_url}
-                    className={classes.avatar}
-                  />
+                  <Badge
+                    invisible={selected}
+                    badgeContent={
+                      <CheckCircle className={classes.checkmark} />
+                    }>
+                    <Avatar
+                      alt={style.name}
+                      src={style.photos[0].thumbnail_url}
+                      className={classes.avatar}
+                    />
+                  </Badge>
                 </Tooltip>
               </GridListTile>
             ))
