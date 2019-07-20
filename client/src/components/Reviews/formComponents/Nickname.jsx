@@ -15,7 +15,7 @@ const Nickname = ({ form, setForm }) => {
   const handleChange = e => {
     e.persist();
     setForm(prevState => {
-      return { ...prevState, nickname: e.target.value };
+      return { ...prevState, name: e.target.value };
     });
   };
 
@@ -28,7 +28,7 @@ const Nickname = ({ form, setForm }) => {
         onChange={handleChange}
         placeholder="Example: Captain America"
         required={true}
-        value={form.nickname}
+        value={form.name}
       />
       <span>
         For privacy reasons, do not use your full name or email address

@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 const Recommend = ({ form, setForm }) => {
   const handleChange = e => {
     setForm(prevState => {
-      return { ...prevState, helpful: e.target.value };
+      return { ...prevState, recommend: e.target.value };
     });
   };
 
@@ -15,7 +15,7 @@ const Recommend = ({ form, setForm }) => {
     <FormControl component="fieldset">
       <RadioGroup
         name="position"
-        value={form.helpful || ''}
+        value={form.recommend}
         onChange={handleChange}
         row
       >

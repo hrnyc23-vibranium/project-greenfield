@@ -21,21 +21,15 @@ import Images from './formComponents/Images.jsx';
 
 const defaultForm = {
   rating: 0,
-  helpful: '',
-  Comfort: '',
-  Fit: '',
-  Length: '',
-  Quality: '',
+  recommend: '',
   summary: '',
   body: '',
-  nickname: '',
-  images: ''
+  email: '',
+  name: ''
 };
 
 const WriteReview = props => {
   const [form, setForm] = useState(defaultForm);
-
-  console.log(form);
 
   return form ? (
     <React.Fragment>
