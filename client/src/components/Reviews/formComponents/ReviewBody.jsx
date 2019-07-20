@@ -19,22 +19,24 @@ const ReviewBody = ({ form, setForm }) => {
 
   const minReqChars = () => {
     let remainingChars = 50 - form.body.length;
-    return remainingChars >= 0 ? remainingChars : 0;
+    return remainingChars > 0
+      ? `Minimum required characters left: ${remainingChars}`
+      : 'Minimum reached';
   };
 
   const classes = useStyles();
   return (
     <React.Fragment>
       <TextField
-        required
+        required={true}
         multiline
         placeholder="Why did you like the product or not"
         className={classes.textField}
         value={form.body}
         onChange={handleChange}
-        inputProps={{ maxLength: 50 }}
+        inputProps={{ maxLength: 1000 }}
       />
-      <span>Minimum required characters left: {minReqChars()} </span>
+      <span>{minReqChars()}</span>
     </React.Fragment>
   );
 };
