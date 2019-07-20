@@ -11,11 +11,9 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import * as actions from '../../actions/Reviews/setFormRating.js';
+import * as actions from '../../actions/Reviews/setForm.js';
 
 const WriteReview = props => {
-  const [rating, setFormRating] = React.useState(0);
-
   //render meaning depending on the rating selected
   const renderMeaning = rating => {
     let ratings = {
@@ -34,13 +32,13 @@ const WriteReview = props => {
       <Grid container direction="row">
         <Rating
           name="rating"
-          value={rating}
+          value={props.form.rating}
           onChange={(e, newValue) => {
-            setFormRating(newValue);
+            props.setRating(newValue);
           }}
           precision={1}
         />
-        {renderMeaning(rating)}
+        {renderMeaning(props.form.rating)}
       </Grid>
     );
   };
@@ -60,7 +58,7 @@ const WriteReview = props => {
     );
   };
 
-  return (
+  return props.form ? (
     <div>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
       <DialogContent>
@@ -85,11 +83,13 @@ const WriteReview = props => {
         </Button>
       </DialogActions>
     </div>
+  ) : (
+    <div>Loading...</div>
   );
 };
 
 let mapStateToProps = state => ({
-  rating: state.formRating
+  form: state.reviewForm
 });
 
 export default connect(

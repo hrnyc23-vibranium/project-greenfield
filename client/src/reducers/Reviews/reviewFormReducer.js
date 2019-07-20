@@ -1,9 +1,14 @@
 import { SET_FORM_RATING } from '../../actions/Reviews/types.js';
 
-const formRatingReducer = (state = 0, { type, payload }) => {
+const defaultForm = {
+  rating: 0,
+  isHelpful: ''
+};
+
+const formRatingReducer = (state = defaultForm, { type, payload }) => {
   switch (type) {
     case SET_FORM_RATING:
-      return payload;
+      return Object.assign({}, state, payload);
     default:
       return state;
   }
