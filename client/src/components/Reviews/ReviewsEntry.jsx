@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Ratings from '../Ratings.jsx';
+
 const renderPhotos = photos => {
   if (photos.length > 0) {
     return (
@@ -30,7 +32,7 @@ const renderResponse = response => {
 const ReviewsEntry = ({ review }) => {
   return (
     <div style={{ borderBottom: '2px solid black' }}>
-      <span>Stars</span>
+      <Ratings rating={review.rating} />
       <span>
         {review.reviewer_name}, {review.date}
       </span>
