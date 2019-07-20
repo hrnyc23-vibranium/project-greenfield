@@ -95,8 +95,6 @@ const StyleList = props => {
   };
 
   const changeSelected = (selectedName, stateName) => {
-    console.log('selectedName', selectedName);
-    console.log('stateName', stateName);
     if (selectedName === stateName) {
       setSelected('inline');
       console.log('return');
