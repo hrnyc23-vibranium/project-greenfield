@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Header from './Header.jsx';
 import Carousel from './Carousel.jsx';
 import StyleList from './StyleList.jsx';
+import Features from './Features.jsx';
 
 class Overview extends Component {
   // componentDidMount() {
@@ -47,7 +48,7 @@ class Overview extends Component {
               <Typography variant="h3" gutterBottom>
                 {product.name}
               </Typography>
-              <StyleList styles={styles} id={id} />
+              <StyleList product={product} styles={styles} id={id} />
             </Grid>
           </Grid>
         </Grid>
@@ -56,8 +57,11 @@ class Overview extends Component {
             <Typography variant="h6" gutterBottom>
               {product.slogan}
             </Typography>
-            <Box>{product.description}</Box>
+            <Typography variant="body1" gutterBottom>
+              {product.description}
+            </Typography>
           </Grid>
+          <Features features={product.features} />
         </Grid>
       </Box>
     );

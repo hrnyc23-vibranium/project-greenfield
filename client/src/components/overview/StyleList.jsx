@@ -10,7 +10,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 // React Components
 import Selectors from './Selectors.jsx';
-import CartButton from './CartButton.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,36 +34,55 @@ const useStyles = makeStyles(theme => ({
   progress: {
     margin: theme.spacing(1),
   },
+  sale: {
+    color: 'red',
+    marginRight: theme.spacing(1),
+  },
 }));
 
 const StyleList = props => {
   const classes = useStyles();
 
-  // const [currentStyle, changeStyle] = useState(
-  //   props.styles.results ? props.styles.results[0].name : ''
-  // );
   const [currentStyle, setStyle] = useState('Forest Green & Black');
   const [originalPrice, setPrice] = useState('140');
   const [skus, setSkus] = useState({ XS: 8, S: 16, M: 17, L: 10, XL: 15 });
+  const [salePrice, setSalePrice] = useState('0');
+  const [currPrice, setCurrPrice] = useState('140');
 
-  // const [originalPrice, changePrice] = useState(
-  //   props.styles.results ? props.styles.results[0].original_price : ''
-  // );
+  const renderPrice = () => {
+    if (salePrice !== '0') {
+      return (
+        <div>
+          <Grid container direction="row">
+            <Typography variant="subtitle2" className={classes.sale}>
+              <strike>{`$${originalPrice}`}</strike>
+            </Typography>
+            <Typography variant="subtitle2">{`$${salePrice}`}</Typography>
+          </Grid>
+        </div>
+      );
+    } else {
+      return (
+        <Grid container direction="row">
+          <Typography variant="subtitle2" gutterBottom>
+            {`$${originalPrice}`}
+          </Typography>
+        </Grid>
+      );
+    }
+  };
 
-  // console.log('currentStyle', currentStyle);
-
-  // useEffect(() => {
-  //   if (props.styles.results) {
-  //     changeStyle(props.styles.results[0].name);
-  //     changePrice(props.styles.results[0].original_price);
-  //   }
-  // }, []);
+  const changeCurrPrice = (price, sale) => {
+    if (sale === '0') {
+      setCurrPrice(price);
+    } else {
+      setCurrPrice(sale);
+    }
+  };
 
   return (
     <div>
-      <Typography
-        variant="subtitle2"
-        gutterBottom>{`$${originalPrice}`}</Typography>
+      {renderPrice()}
       <Typography variant="overline" gutterBottom>
         <strong>Style > </strong>
         {currentStyle}
@@ -80,6 +98,8 @@ const StyleList = props => {
                   setStyle(style.name);
                   setPrice(style.original_price);
                   setSkus(style.skus);
+                  setSalePrice(style.sale_price);
+                  changeCurrPrice(style.original_price, style.sale_price);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
                   <Avatar
@@ -98,8 +118,12 @@ const StyleList = props => {
         </GridList>
       </div>
       <Grid item xs={12}>
-        <Selectors style={currentStyle} skus={skus} />
-        <CartButton />
+        <Selectors
+          product={props.product}
+          style={currentStyle}
+          price={currPrice}
+          skus={skus}
+        />
       </Grid>
     </div>
   );

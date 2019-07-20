@@ -6,6 +6,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import OutlinedInput from '@material-ui/core/OutlinedInput';
+// React Components
+import CartButton from './CartButton.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,6 +32,7 @@ const Selectors = props => {
   const [currQuant, setQuantity] = useState('');
   const [quant, setQuant] = useState(true);
   const [cartQuant, setCartQuant] = useState('');
+  const [cartStatus, setCartStatus] = useState(true);
 
   const handleChange = event => {
     setSize(event.target.value);
@@ -39,6 +42,7 @@ const Selectors = props => {
 
   const handleQuantChange = event => {
     setCartQuant(event.target.value);
+    setCartStatus(false);
   };
 
   const renderItem = quantity => {
@@ -93,6 +97,14 @@ const Selectors = props => {
           </Select>
         </FormControl>
       </form>
+      <CartButton
+        product={props.product}
+        style={props.style}
+        size={currSize}
+        quantity={cartQuant}
+        status={cartStatus}
+        price={props.price}
+      />
     </Fragment>
   );
 };
