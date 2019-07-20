@@ -17,6 +17,7 @@ import ReviewSummary from './formComponents/ReviewSummary.jsx';
 import ReviewBody from './formComponents/ReviewBody.jsx';
 import Nickname from './formComponents/Nickname.jsx';
 import Email from './formComponents/Email.jsx';
+import Images from './formComponents/Images.jsx';
 
 const defaultForm = {
   rating: 0,
@@ -26,7 +27,9 @@ const defaultForm = {
   Length: '',
   Quality: '',
   summary: '',
-  body: ''
+  body: '',
+  nickname: '',
+  images: ''
 };
 
 const WriteReview = props => {
@@ -56,6 +59,7 @@ const WriteReview = props => {
         <ReviewBody form={form} setForm={setForm} />
 
         <h4>Upload your photos</h4>
+        <Images form={form} setForm={setForm} />
 
         <h4>What is your nickname*</h4>
         <Nickname form={form} setForm={setForm} />
