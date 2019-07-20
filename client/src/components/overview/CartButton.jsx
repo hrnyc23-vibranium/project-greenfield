@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
@@ -9,10 +10,16 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
+import Divider from '@material-ui/core/Divider';
+// React Components
+import ShareButton from './ShareButton.jsx';
 
 const useStyles = makeStyles(theme => ({
   size: {
     marginTop: theme.spacing(2),
+  },
+  cart: {
+    marginBottom: theme.spacing(2),
   },
   button: {
     borderRadius: 0,
@@ -68,42 +75,44 @@ const CartButton = props => {
           {'Confirm Cart Selection'}
         </DialogTitle>
         <DialogContent id="cart-description">
-          <Grid container direction="row">
-            <Grid item xs={12} sm={3}>
-              <Box className={classes.imageBox}>
-                <img
-                  src={props.image}
-                  alt={props.product.name}
-                  className={classes.img}
-                />
-              </Box>
-            </Grid>
-            <Grid item xs={12} sm={9}>
-              <Grid
-                container
-                direction="column"
-                justify="space-around"
-                alignContent="space-around">
-                <Typography variant="body1" gutterBottom>
-                  <strong>Item: </strong>
-                  {props.product.name}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  <strong>Style: </strong>
-                  {props.style}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  <strong>Size: </strong>
-                  {props.size}
-                </Typography>
-                <Typography variant="body1" gutterBottom>
-                  <strong>Quantity: </strong>
-                  {props.quantity}
-                </Typography>
+          <div className={classes.cart}>
+            <Grid container direction="row">
+              <Grid item xs={12} sm={3}>
+                <Box className={classes.imageBox}>
+                  <img
+                    src={props.image}
+                    alt={props.product.name}
+                    className={classes.img}
+                  />
+                </Box>
+              </Grid>
+              <Grid item xs={12} sm={9}>
+                <Grid
+                  container
+                  direction="column"
+                  justify="space-around"
+                  alignContent="space-around">
+                  <Typography variant="body1" gutterBottom>
+                    <strong>Item: </strong>
+                    {props.product.name}
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    <strong>Style: </strong>
+                    {props.style}
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    <strong>Size: </strong>
+                    {props.size}
+                  </Typography>
+                  <Typography variant="body1" gutterBottom>
+                    <strong>Quantity: </strong>
+                    {props.quantity}
+                  </Typography>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <hr />
+          </div>
+          <Divider />
           <Grid container direction="row" className={classes.price}>
             <Typography variant="h5" gutterBottom>
               <strong>Price: </strong>
@@ -118,6 +127,7 @@ const CartButton = props => {
           </Button>
         </DialogActions>
       </Dialog>
+      <ShareButton />
     </ButtonGroup>
   );
 };

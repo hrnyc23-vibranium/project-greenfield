@@ -52,7 +52,7 @@ class Overview extends Component {
               justify="space-around"
               alignContent="space-around">
               <Link
-                href={'dud'}
+                href={'#'}
                 color="inherit"
                 variant="body2"
                 underline="always">
