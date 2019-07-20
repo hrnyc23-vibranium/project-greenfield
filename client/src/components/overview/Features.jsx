@@ -15,8 +15,11 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(2),
   },
   margin: {
+    marginRight: theme.spacing(1),
+  },
+  checkmark: {
     marginLeft: theme.spacing(2),
-    // marginRight: theme.spacing(1),
+    marginRight: theme.spacing(2),
   },
 }));
 
@@ -43,7 +46,7 @@ const Features = props => {
             {props.features
               ? props.features.map(feature => (
                   <Grid container direction="row" key={feature.feature}>
-                    <Checkmark className={classes.margin} />
+                    <Checkmark className={classes.checkmark} />
                     <Typography variant="subtitle1" className={classes.margin}>
                       <strong>{`${feature.feature}:`}</strong>
                     </Typography>

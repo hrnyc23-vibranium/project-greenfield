@@ -56,6 +56,7 @@ const Selectors = props => {
     return quantArr;
   };
 
+  console.log('props', props);
   return (
     <Fragment>
       <Grid container direction="row" justify="space-between">
@@ -109,6 +110,7 @@ const Selectors = props => {
         quantity={cartQuant}
         status={cartStatus}
         price={props.price}
+        image={props.cartImage}
       />
     </Fragment>
   );

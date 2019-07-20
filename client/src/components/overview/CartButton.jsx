@@ -8,6 +8,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   size: {
@@ -19,6 +20,24 @@ const useStyles = makeStyles(theme => ({
   },
   confirm: {
     color: 'green',
+  },
+  price: {
+    marginTop: theme.spacing(2),
+  },
+  imageBox: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    width: '100%',
+    height: 'auto',
+    marginTop: theme.spacing(1),
+  },
+  img: {
+    display: 'flex',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    objectFit: 'cover',
   },
 }));
 
@@ -50,14 +69,16 @@ const CartButton = props => {
         </DialogTitle>
         <DialogContent id="cart-description">
           <Grid container direction="row">
-            <Grid item xs={12} sm={2}>
-              Your cart:
-              <Typography variant="body1" gutterBottom>
-                <strong>Price: </strong>
-                {`$${props.price}`}
-              </Typography>
+            <Grid item xs={12} sm={3}>
+              <Box className={classes.imageBox}>
+                <img
+                  src={props.image}
+                  alt={props.product.name}
+                  className={classes.img}
+                />
+              </Box>
             </Grid>
-            <Grid item xs={12} sm={10}>
+            <Grid item xs={12} sm={9}>
               <Grid
                 container
                 direction="column"
@@ -82,11 +103,17 @@ const CartButton = props => {
               </Grid>
             </Grid>
           </Grid>
+          <Grid container direction="row" className={classes.price}>
+            <Typography variant="h5" gutterBottom>
+              <strong>Price: </strong>
+              {`$${props.price}`}
+            </Typography>
+          </Grid>
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Go Back</Button>
           <Button onClick={handleClose} className={classes.confirm}>
-            Confirm
+            Add
           </Button>
         </DialogActions>
       </Dialog>

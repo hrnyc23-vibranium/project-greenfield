@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
   sale: {
     color: 'red',
-    marginRight: theme.spacing(1),
+    marginLeft: theme.spacing(1),
   },
 }));
 
@@ -48,16 +48,21 @@ const StyleList = props => {
   const [skus, setSkus] = useState({ XS: 8, S: 16, M: 17, L: 10, XL: 15 });
   const [salePrice, setSalePrice] = useState('0');
   const [currPrice, setCurrPrice] = useState('140');
+  const [cartImage, setCartImage] = useState(
+    'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
+  );
 
   const renderPrice = () => {
     if (salePrice !== '0') {
       return (
         <div>
           <Grid container direction="row">
-            <Typography variant="subtitle2" className={classes.sale}>
+            <Typography variant="subtitle2">
               <strike>{`$${originalPrice}`}</strike>
             </Typography>
-            <Typography variant="subtitle2">{`$${salePrice}`}</Typography>
+            <Typography
+              variant="subtitle2"
+              className={classes.sale}>{`$${salePrice}`}</Typography>
           </Grid>
         </div>
       );
@@ -99,6 +104,7 @@ const StyleList = props => {
                   setPrice(style.original_price);
                   setSkus(style.skus);
                   setSalePrice(style.sale_price);
+                  setCartImage(style.photos[0].thumbnail_url);
                   changeCurrPrice(style.original_price, style.sale_price);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
@@ -123,6 +129,7 @@ const StyleList = props => {
           style={currentStyle}
           price={currPrice}
           skus={skus}
+          cartImage={cartImage}
         />
       </Grid>
     </div>
