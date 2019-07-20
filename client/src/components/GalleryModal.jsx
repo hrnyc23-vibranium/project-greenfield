@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { nextImage, prevImage } from '../actions/galleryActions';
 
 const Gallery = ({ images, current, clickNext, clickPrev }) => {
-  console.log(images);
   return (
     <div id="gallery">
       <button

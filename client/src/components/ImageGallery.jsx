@@ -1,10 +1,10 @@
 //Dev Dependencies
 import React from 'react';
 import { connect } from 'react-redux';
-import { buildGallery } from '../../actions/galleryActions';
+import { buildGallery } from '../actions/galleryActions';
 
 //React Componenets
-import Gallery from '../Gallery';
+import Gallery from './GalleryModal';
 
 //Material Components
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,13 +30,12 @@ const useStyles = makeStyles(theme => ({
     width: 800,
     height: 600,
     backgroundColor: theme.palette.background.paper,
-    // border: '2px solid #000',
     boxShadow: theme.shadows[5],
     outline: 'none',
   },
 }));
 
-const AnswerImages = ({ photos, launchGallery }) => {
+const ImageGallery = ({ photos, launchGallery }) => {
   const classes = useStyles();
   const [modalStyle] = React.useState(getModalStyle);
   const [open, setOpen] = React.useState(false);
@@ -101,4 +100,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   null,
   mapDispatchToProps
-)(AnswerImages);
+)(ImageGallery);
