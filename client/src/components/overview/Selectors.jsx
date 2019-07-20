@@ -56,11 +56,10 @@ const Selectors = props => {
     return quantArr;
   };
 
-  console.log('props', props);
   return (
     <Fragment>
       <Grid container direction="row" justify="space-between">
-        <Grid item md={12} lg={8}>
+        <Grid item xs={12} md={12} lg={8}>
           <FormControl variant="outlined" className={classes.sizeControl}>
             <InputLabel htmlFor="outlined-size">Size</InputLabel>
             <Select
@@ -77,7 +76,7 @@ const Selectors = props => {
             </Select>
           </FormControl>
         </Grid>
-        <Grid item md={12} lg={3}>
+        <Grid item xs={12} md={12} lg={3}>
           <FormControl
             variant="outlined"
             className={classes.quantControl}

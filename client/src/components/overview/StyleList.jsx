@@ -8,7 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
+import Box from '@material-ui/core/Box';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 // React Components
 import Selectors from './Selectors.jsx';
@@ -43,8 +43,8 @@ const useStyles = makeStyles(theme => ({
   checkmark: {
     color: 'green',
     position: 'absolute',
-    top: 16,
-    right: 13,
+    top: 7,
+    right: 20,
   },
 }));
 
@@ -59,7 +59,7 @@ const StyleList = props => {
   const [cartImage, setCartImage] = useState(
     'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
   );
-  const [selected, setSelected] = useState(true);
+  const [selected, setSelected] = useState('none');
 
   const renderPrice = () => {
     if (salePrice !== '0') {
@@ -94,6 +94,21 @@ const StyleList = props => {
     }
   };
 
+  const changeSelected = (selectedName, stateName) => {
+    console.log('selectedName', selectedName);
+    console.log('stateName', stateName);
+    if (selectedName === stateName) {
+      setSelected('inline');
+      console.log('return');
+      return 'returning';
+      // <Box display={selected}>
+      //   <CheckCircle className={classes.checkmark} />
+      // </Box>
+    } else {
+      setSelected('none');
+    }
+  };
+
   return (
     <div>
       {renderPrice()}
@@ -115,20 +130,14 @@ const StyleList = props => {
                   setSalePrice(style.sale_price);
                   setCartImage(style.photos[0].thumbnail_url);
                   changeCurrPrice(style.original_price, style.sale_price);
-                  setSelected(false);
+                  changeSelected(style.name, currentStyle);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
-                  <Badge
-                    invisible={selected}
-                    badgeContent={
-                      <CheckCircle className={classes.checkmark} />
-                    }>
-                    <Avatar
-                      alt={style.name}
-                      src={style.photos[0].thumbnail_url}
-                      className={classes.avatar}
-                    />
-                  </Badge>
+                  <Avatar
+                    alt={style.name}
+                    src={style.photos[0].thumbnail_url}
+                    className={classes.avatar}
+                  />
                 </Tooltip>
               </GridListTile>
             ))
