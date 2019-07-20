@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions/Reviews/getData.js';
 
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+
+import * as actions from '../../actions/Reviews/getData.js';
 import BorderLinearProgress from './RatingBar.jsx';
+import Ratings from '../Ratings.jsx';
 
 class RatingFilter extends Component {
   componentDidUpdate(prevProps) {
@@ -62,19 +64,25 @@ class RatingFilter extends Component {
 
   renderAvgRating() {
     const { ratings, totalReviews } = this.props;
-    let totalStars = 0;
-    for (let stars in ratings) {
-      let reviews = ratings[stars];
-      totalStars += stars * reviews;
+    if (ratings && totalReviews) {
+      let totalStars = 0;
+      for (let stars in ratings) {
+        let reviews = ratings[stars];
+        totalStars += stars * reviews;
+      }
+      return totalStars / totalReviews.length;
     }
-    return totalStars / totalReviews;
   }
 
   render() {
-    const { recommended } = this.props;
-    return recommended ? (
+    const { recommended, totalReviews } = this.props;
+    const rating = this.renderAvgRating();
+    return recommended && totalReviews ? (
       <div>
-        <span>{this.renderAvgRating()} stars</span>
+        <Grid container direction="row">
+          <span style={{ fontSize: 30 }}>{rating}</span>
+          <Ratings rating={rating} />
+        </Grid>
         {this.renderRecommended()}
         {this.renderRatings()}
         <br />
@@ -89,7 +97,7 @@ let mapStateToProps = state => ({
   productId: state.productId,
   ratings: state.metaInfo.ratings,
   recommended: state.metaInfo.recommended,
-  totalReviews: state.reviewList.count
+  totalReviews: state.reviewList.count,
 });
 
 export default connect(
