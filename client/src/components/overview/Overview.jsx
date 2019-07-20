@@ -32,10 +32,10 @@ class Overview extends Component {
       <Box>
         <Header />
         <Grid container direction="row">
-          <Grid item sm={12} md={8}>
+          <Grid item md={12} lg={8}>
             <Carousel styles={styles} />
           </Grid>
-          <Grid item sm={12} md={4}>
+          <Grid item md={12} lg={4}>
             <Grid
               container
               direction="column"
@@ -53,15 +53,11 @@ class Overview extends Component {
           </Grid>
         </Grid>
         <Grid container direction="row">
-          <Grid item sm={12} md={8}>
-            <Typography variant="h6" gutterBottom>
-              {product.slogan}
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              {product.description}
-            </Typography>
-          </Grid>
-          <Features features={product.features} />
+          <Features
+            slogan={product.slogan}
+            description={product.description}
+            features={product.features}
+          />
         </Grid>
       </Box>
     );

@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     overflow: 'hidden',
     width: '95%',
     height: '750px',
-    backgroundColor: '#bababa',
+    backgroundColor: '#E0E0E0',
     marginTop: theme.spacing(1),
   },
   img: {

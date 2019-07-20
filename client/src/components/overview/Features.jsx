@@ -7,6 +7,9 @@ import Typography from '@material-ui/core/Typography';
 import Checkmark from '@material-ui/icons/Check';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    marginTop: theme.spacing(2),
+  },
   margin: {
     marginRight: theme.spacing(1),
   },
@@ -14,9 +17,18 @@ const useStyles = makeStyles(theme => ({
 
 const Features = props => {
   const classes = useStyles();
+
   return (
     <Fragment>
-      <Grid item sm={12} md={4}>
+      <Grid item md={12} lg={8} className={classes.root}>
+        <Typography variant="h6" gutterBottom>
+          {props.slogan}
+        </Typography>
+        <Typography variant="body1" gutterBottom>
+          {props.description}
+        </Typography>
+      </Grid>
+      <Grid item md={12} lg={4} className={classes.root}>
         <Grid
           container
           direction="column"
