@@ -39,7 +39,12 @@ class Reviews extends Component {
             >
               ADD A REVIEW +
             </Button>
-            <Dialog open={this.props.open} onClose={this.handleClose}>
+            <Dialog
+              open={this.props.open}
+              onClose={this.handleClose}
+              fullWidth={true}
+              maxWidth="md"
+            >
               <WriteReview handleClose={this.handleClose.bind(this)} />
             </Dialog>
           </Grid>

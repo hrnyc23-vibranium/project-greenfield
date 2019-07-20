@@ -1,5 +1,6 @@
-import { SET_FORM_RATING } from './types.js';
+import { SET_FORM } from './types.js';
 
-export const setRating = rating => dispatch => {
-  dispatch({ type: SET_FORM_RATING, payload: { rating } });
-};
+export const setForm = form => ({
+  type: SET_FORM,
+  payload: form
+});

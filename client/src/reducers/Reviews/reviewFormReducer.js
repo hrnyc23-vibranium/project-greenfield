@@ -1,13 +1,8 @@
-import { SET_FORM_RATING } from '../../actions/Reviews/types.js';
+import { SET_FORM } from '../../actions/Reviews/types.js';
 
-const defaultForm = {
-  rating: 0,
-  isHelpful: ''
-};
-
-const formRatingReducer = (state = defaultForm, { type, payload }) => {
+const formRatingReducer = (state = {}, { type, payload }) => {
   switch (type) {
-    case SET_FORM_RATING:
+    case SET_FORM:
       return Object.assign({}, state, payload);
     default:
       return state;

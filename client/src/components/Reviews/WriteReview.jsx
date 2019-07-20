@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -12,67 +10,52 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import * as actions from '../../actions/Reviews/setForm.js';
+import Recommend from './formComponents/Recommend.jsx';
+import OverallRating from './formComponents/OverallRating.jsx';
+import Characteristics from './formComponents/Characteristics.jsx';
+import ReviewSummary from './formComponents/ReviewSummary.jsx';
+import ReviewBody from './formComponents/ReviewBody.jsx';
+
+const defaultForm = {
+  rating: 0,
+  helpful: '',
+  Comfort: '',
+  Fit: '',
+  Length: '',
+  Quality: '',
+  summary: '',
+  body: ''
+};
 
 const WriteReview = props => {
-  //render meaning depending on the rating selected
-  const renderMeaning = rating => {
-    let ratings = {
-      '1': 'Poor',
-      '2': 'Fair',
-      '3': 'Average',
-      '4': 'Good',
-      '5': 'Great'
-    };
-    return <div> {ratings[rating]} </div>;
-  };
+  const [form, setForm] = useState(defaultForm);
 
-  //selecting rating changes the stars displayed
-  const renderRating = () => {
-    return (
-      <Grid container direction="row">
-        <Rating
-          name="rating"
-          value={props.form.rating}
-          onChange={(e, newValue) => {
-            props.setRating(newValue);
-          }}
-          precision={1}
-        />
-        {renderMeaning(props.form.rating)}
-      </Grid>
-    );
-  };
+  console.log(form);
 
-  const renderEmail = () => {
-    return (
-      <React.Fragment>
-        <TextField
-          autoFocus
-          margin="dense"
-          id="name"
-          label="Email Address"
-          type="email"
-          fullWidth
-        />
-      </React.Fragment>
-    );
-  };
-
-  return props.form ? (
-    <div>
+  return form ? (
+    <React.Fragment>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
       <DialogContent>
         <DialogContentText>About the Product Name</DialogContentText>
+
         <h4>Overall Rating*</h4>
-        {renderRating()}
+        <OverallRating form={form} setForm={setForm.bind(this)} />
+
         <h4>Do you recommend this product?*</h4>
+        <Recommend form={form} setForm={setForm.bind(this)} />
+
         <h4>Characteristics*</h4>
+        <Characteristics form={form} setForm={setForm} />
+
         <h4>Review Summary</h4>
+        <ReviewSummary form={form} setForm={setForm} />
+
         <h4>Review Body*</h4>
+        <ReviewBody form={form} setForm={setForm} />
+
         <h4>Upload your photos</h4>
         <h4>What is your nickname*</h4>
         <h4>Your email*</h4>
-        {renderEmail()}
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
@@ -82,14 +65,14 @@ const WriteReview = props => {
           Submit review
         </Button>
       </DialogActions>
-    </div>
+    </React.Fragment>
   ) : (
     <div>Loading...</div>
   );
 };
 
 let mapStateToProps = state => ({
-  form: state.reviewForm
+  // form: state.reviewForm
 });
 
 export default connect(
