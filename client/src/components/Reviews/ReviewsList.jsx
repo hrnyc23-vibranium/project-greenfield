@@ -15,7 +15,6 @@ class ReviewsList extends Component {
 
   render() {
     const { reviewList } = this.props;
-    console.log(reviewList);
     return reviewList.results ? (
       <div>
         <div>{reviewList.results.length} reviews, sorted by </div>
