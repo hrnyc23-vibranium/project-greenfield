@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Rating from '@material-ui/lab/Rating';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import Grid from '@material-ui/core/Grid';
 
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -11,6 +12,17 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import * as actions from '../../actions/Reviews/setFormRating.js';
+
+const renderRating = rating => {
+  let ratings = {
+    '1': 'Poor',
+    '2': 'Fair',
+    '3': 'Average',
+    '4': 'Good',
+    '5': 'Great'
+  };
+  return <div> {ratings[rating]} </div>;
+};
 
 const WriteReview = props => {
   const [rating, setFormRating] = React.useState(0);
@@ -21,14 +33,17 @@ const WriteReview = props => {
       <DialogContent>
         <DialogContentText>About the Product Name</DialogContentText>
         <h4>Overall Rating*</h4>
-        <Rating
-          name="rating"
-          value={rating}
-          onChange={(e, newValue) => {
-            setFormRating(newValue);
-          }}
-          precision={1}
-        />
+        <Grid container direction="row">
+          <Rating
+            name="rating"
+            value={rating}
+            onChange={(e, newValue) => {
+              setFormRating(newValue);
+            }}
+            precision={1}
+          />
+          {renderRating(rating)}
+        </Grid>
         <TextField
           autoFocus
           margin="dense"
