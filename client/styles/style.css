@@ -65,11 +65,12 @@
   max-height: 100%;
   margin: auto;
 }
-#gallery button {
+.gallerybutton {
   position: absolute;
   top: 50%;
   right: 10px;
+  cursor: pointer;
 }
-#gallery button:first-child {
+.gallerybutton.prev {
   left: 10px;
 }

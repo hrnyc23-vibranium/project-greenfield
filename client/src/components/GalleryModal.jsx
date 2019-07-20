@@ -2,26 +2,29 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { nextImage, prevImage } from '../actions/galleryActions';
 
+//Material Componenets
+import { ArrowBack, ArrowForward } from '@material-ui/icons';
+
 const Gallery = ({ images, current, clickNext, clickPrev }) => {
   return (
     <div id="gallery">
-      <button
-        id="prev"
+      <ArrowBack
+        className="gallerybutton prev"
         onClick={() => {
           clickPrev();
         }}>
         prev
-      </button>
+      </ArrowBack>
       <div>
         <img src={images[current].url} />
       </div>
-      <button
-        id="next"
+      <ArrowForward
+        className="gallerybutton forward"
         onClick={() => {
           clickNext();
         }}>
         next
-      </button>
+      </ArrowForward>
     </div>
   );
 };
