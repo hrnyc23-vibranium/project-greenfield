@@ -17,6 +17,9 @@ class RatingFilter extends Component {
 
   //calculate percent of current rating out of total reviews
   normalizeRating(curr, total) {
+    if (total === 0) {
+      return 0;
+    }
     return (curr / total) * 100;
   }
 
@@ -52,6 +55,9 @@ class RatingFilter extends Component {
 
   //calculate percent recommended out of total reviews
   normalizeRecommended(curr, total) {
+    if (total === 0) {
+      return 0;
+    }
     return (curr / total) * 100;
   }
 
@@ -65,26 +71,28 @@ class RatingFilter extends Component {
     return <div>{normalized}% of reviews recommend this product</div>;
   }
 
+  //render out star rating
   renderAvgRating() {
     const { ratings, totalReviews } = this.props;
-    if (ratings && totalReviews) {
+    if (ratings && totalReviews.length > 0) {
       let totalStars = 0;
       for (let stars in ratings) {
         let reviews = ratings[stars];
         totalStars += stars * reviews;
       }
-      return totalStars / totalReviews.length;
+      let avgRating = totalStars / totalReviews.length;
+      return Number(avgRating.toFixed(2));
     }
+    return 0;
   }
 
   render() {
     const { recommended, totalReviews } = this.props;
-    const rating = this.renderAvgRating();
     return recommended && totalReviews ? (
       <div>
         <Grid container direction="row">
-          <span style={{ fontSize: 30 }}>{rating}</span>
-          <Ratings rating={rating} />
+          <span style={{ fontSize: 30 }}>{this.renderAvgRating()}</span>
+          <Ratings rating={this.renderAvgRating()} />
         </Grid>
         {this.renderRecommended()}
         {this.renderRatings()}
