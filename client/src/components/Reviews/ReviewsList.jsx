@@ -17,32 +17,38 @@ class ReviewsList extends Component {
     }
   }
   //if there are rating filters, show reviews with that rating
-  renderList(review, filter) {
-    if (Object.keys(filter).length > 0) {
-      if (filter[review.rating]) {
+  renderList(reviews, filter) {
+    let reviewList = reviews.results;
+
+    return reviewList.map(review => {
+      if (Object.keys(filter).length > 0) {
+        if (filter[review.rating]) {
+          return <ReviewsEntry key={review.review_id} review={review} />;
+        }
+      } else {
         return <ReviewsEntry key={review.review_id} review={review} />;
       }
-    } else {
-      return <ReviewsEntry key={review.review_id} review={review} />;
-    }
+    });
   }
 
   render() {
-    const { reviewList, filter } = this.props;
-    return reviewList.results ? (
+    const { reviews, filter } = this.props;
+    return reviews.results ? (
       <div>
         <div>
           <span className="sortTitle">
-            {reviewList.results.length} reviews, sorted by
+            {reviews.results.length} reviews, sorted by
           </span>
           <span className="sortSelect">
             <ReviewSort />
           </span>
         </div>
         <div>
-          {reviewList.results.map(review => {
+          {this.renderList(reviews, filter)}
+
+          {/* {reviewList.results.map(review => {
             return this.renderList(review, filter);
-          })}
+          })} */}
         </div>
       </div>
     ) : (
@@ -53,7 +59,7 @@ class ReviewsList extends Component {
 
 const mapStateToProps = state => ({
   productId: state.productId,
-  reviewList: state.reviewList,
+  reviews: state.reviewList,
   metaInfo: state.metaInfo,
   filter: state.reviewFilter,
 });

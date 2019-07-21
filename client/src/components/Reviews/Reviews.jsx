@@ -29,6 +29,7 @@ class Reviews extends Component {
           </Grid>
           <Grid item sm={12} md={9}>
             <ReviewsList />
+            {/* only show if reviewlist length is greater than 2 */}
             <Button size="large" variant="outlined">
               MORE REVIEWS
             </Button>
@@ -55,7 +56,7 @@ class Reviews extends Component {
 }
 
 let mapStateToProps = state => ({
-  open: state.open
+  open: state.open,
 });
 
 export default connect(

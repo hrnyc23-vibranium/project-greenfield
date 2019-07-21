@@ -25,39 +25,50 @@ class RatingFilter extends Component {
   }
 
   //render out recommended percentage
-  renderRecommended() {
-    const { recommended, totalReviews } = this.props;
-    let normalized = this.normalizeRecommended(
-      recommended[0],
-      totalReviews.length
-    );
+  renderRecommended(totalReviews) {
+    const { recommended } = this.props;
+
+    let normalized = this.normalizeRecommended(recommended[0], totalReviews);
     return <div>{normalized}% of reviews recommend this product</div>;
   }
 
   //render out star rating
-  renderAvgRating() {
-    const { ratings, totalReviews } = this.props;
-    if (ratings && totalReviews.length > 0) {
+  renderAvgRating(totalReviews) {
+    const { ratings } = this.props;
+    if (ratings && totalReviews > 0) {
       let totalStars = 0;
       for (let stars in ratings) {
         let reviews = ratings[stars];
         totalStars += stars * reviews;
       }
-      let avgRating = totalStars / totalReviews.length;
+      let avgRating = totalStars / totalReviews;
       return Number(avgRating.toFixed(1));
     }
     return 0;
   }
 
+  addTotal(ratings = {}) {
+    if (Object.keys(ratings).length > 0) {
+      let totalReviews = Object.values(ratings).reduce((sum, num) => {
+        return sum + num;
+      });
+      return totalReviews;
+    }
+    return 0;
+  }
+
   render() {
-    const { recommended, totalReviews, ratings } = this.props;
-    return recommended && totalReviews && ratings ? (
+    const { recommended, ratings } = this.props;
+    const totalReviews = this.addTotal(ratings);
+    const avgRating = this.renderAvgRating(totalReviews);
+
+    return recommended && ratings ? (
       <div>
         <Grid container direction="row">
-          <span style={{ fontSize: 30 }}>{this.renderAvgRating()}</span>
-          <Ratings rating={this.renderAvgRating()} />
+          <span style={{ fontSize: 30 }}>{avgRating}</span>
+          <Ratings rating={avgRating} />
         </Grid>
-        {this.renderRecommended()}
+        {this.renderRecommended(totalReviews)}
         <RatingBar ratings={ratings} totalReviews={totalReviews} />
         <RatingFilterToggles />
         <br />
@@ -72,7 +83,6 @@ let mapStateToProps = state => ({
   productId: state.productId,
   ratings: state.metaInfo.ratings,
   recommended: state.metaInfo.recommended,
-  totalReviews: state.reviewList.results,
   filters: state.reviewFilter,
 });
 
