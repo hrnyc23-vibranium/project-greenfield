@@ -11,9 +11,6 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
-  homeButton: {
-    marginRight: theme.spacing(2),
-  },
   list: {
     width: 250,
   },
