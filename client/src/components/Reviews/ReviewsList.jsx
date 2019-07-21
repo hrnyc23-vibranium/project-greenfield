@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -16,10 +16,19 @@ class ReviewsList extends Component {
       getMeta(productId);
     }
   }
+  //if there are rating filters, show reviews with that rating
+  renderList(review, filter) {
+    if (Object.keys(filter).length > 0) {
+      if (filter[review.rating]) {
+        return <ReviewsEntry key={review.review_id} review={review} />;
+      }
+    } else {
+      return <ReviewsEntry key={review.review_id} review={review} />;
+    }
+  }
 
   render() {
-    const { reviewList } = this.props;
-
+    const { reviewList, filter } = this.props;
     return reviewList.results ? (
       <div>
         <div>
@@ -32,7 +41,7 @@ class ReviewsList extends Component {
         </div>
         <div>
           {reviewList.results.map(review => {
-            return <ReviewsEntry key={review.review_id} review={review} />;
+            return this.renderList(review, filter);
           })}
         </div>
       </div>
@@ -46,6 +55,7 @@ const mapStateToProps = state => ({
   productId: state.productId,
   reviewList: state.reviewList,
   metaInfo: state.metaInfo,
+  filter: state.reviewFilter,
 });
 
 export default connect(

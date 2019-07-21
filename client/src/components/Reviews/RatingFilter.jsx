@@ -50,7 +50,7 @@ class RatingFilter extends Component {
 
   render() {
     const { recommended, totalReviews, ratings } = this.props;
-    return recommended && totalReviews ? (
+    return recommended && totalReviews && ratings ? (
       <div>
         <Grid container direction="row">
           <span style={{ fontSize: 30 }}>{this.renderAvgRating()}</span>
@@ -58,7 +58,6 @@ class RatingFilter extends Component {
         </Grid>
         {this.renderRecommended()}
         <RatingBar ratings={ratings} totalReviews={totalReviews} />
-        {/* {this.renderRatings(ratings, totalReviews)} */}
         <br />
       </div>
     ) : (
