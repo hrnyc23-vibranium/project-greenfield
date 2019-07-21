@@ -1,9 +1,9 @@
 import { SET_LIMIT } from '../../actions/Reviews/types.js';
 
-const listLimitReducer = (state = 2, { type }) => {
+const listLimitReducer = (state = 2, { type, payload }) => {
   switch (type) {
     case SET_LIMIT:
-      return (state += 2);
+      return state + payload;
     default:
       return state;
   }

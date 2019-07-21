@@ -9,14 +9,18 @@ import Dialog from '@material-ui/core/Dialog';
 import Meta from './Meta.jsx';
 import ReviewsList from './ReviewsList.jsx';
 import WriteReview from './WriteReview.jsx';
-import * as actions from '../../actions/Reviews/setOpen.js';
-
+import { setOpen } from '../../actions/Reviews/setOpen.js';
+import { setLimit } from '../../actions/Reviews/setListLimit.js';
 class Reviews extends Component {
   handleOpen() {
     this.props.setOpen(true);
   }
   handleClose() {
     this.props.setOpen(false);
+  }
+
+  handleLimit() {
+    this.props.setLimit();
   }
 
   render() {
@@ -30,7 +34,11 @@ class Reviews extends Component {
           <Grid item sm={12} md={9}>
             <ReviewsList />
             {/* only show if reviewlist length is greater than 2 */}
-            <Button size="large" variant="outlined">
+            <Button
+              size="large"
+              variant="outlined"
+              onClick={this.handleLimit.bind(this)}
+            >
               MORE REVIEWS
             </Button>
             <Button
@@ -59,7 +67,16 @@ let mapStateToProps = state => ({
   open: state.open,
 });
 
+let mapDispatchToProps = dispatch => ({
+  setOpen: boolean => {
+    dispatch(setOpen(boolean));
+  },
+  setLimit: () => {
+    dispatch(setLimit());
+  },
+});
+
 export default connect(
   mapStateToProps,
-  actions
+  mapDispatchToProps
 )(Reviews);

@@ -16,11 +16,12 @@ class ReviewsList extends Component {
       getMeta(productId);
     }
   }
-  //if there are rating filters, filter the list then render those entries
+  //if there are rating filters, filter the reviews then only render those reviews
   renderList() {
     const { reviews, filter, listLimit } = this.props;
 
     let filteredList = reviews.results;
+    //if filters are selected, filter the list
     if (Object.keys(filter).length > 0) {
       filteredList = filteredList.filter(review => {
         return filter[review.rating];
@@ -31,11 +32,12 @@ class ReviewsList extends Component {
       return <ReviewsEntry key={review.review_id} review={review} />;
     });
 
+    //display amount of reviews depending on limit set
     return reviewsList.slice(0, listLimit);
   }
 
   render() {
-    const { reviews, filter } = this.props;
+    const { reviews } = this.props;
     return reviews.results ? (
       <div>
         <div>
