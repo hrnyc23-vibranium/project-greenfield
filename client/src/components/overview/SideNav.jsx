@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -31,6 +31,21 @@ const ShieldIcon = props => {
 
 const SideNav = () => {
   const classes = useStyles();
+
+  const [state, setState] = useState({ left: false });
+
+  const toggleDrawer = (side, open) => event => {
+    if (
+      event.type === 'keydown' &&
+      (event.key === 'Tab' || event.key === 'Shift')
+    ) {
+      return;
+    }
+    setState({ ...state, [side]: open });
+  };
+
+  const sideList = side => {};
+
   return (
     <Fragment>
       <IconButton edge="start" color="inherit" aria-label="Open drawer">
