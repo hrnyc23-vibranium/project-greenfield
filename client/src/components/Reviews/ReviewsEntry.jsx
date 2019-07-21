@@ -1,35 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
+import * as actions from '../../actions/Reviews/updateHelpful.js';
 import Ratings from '../Ratings.jsx';
 
-const renderPhotos = photos => {
-  if (photos.length > 0) {
-    return (
-      <div>
-        {photos.map(photo => {
-          return (
-            <img
-              key={photo.id}
-              src={photo.url}
-              style={{ width: '150px', height: 'auto' }}
-            />
-          );
-        })}
-      </div>
-    );
-  }
-};
+const ReviewsEntry = ({ review, updateHelpful }) => {
+  const renderPhotos = photos => {
+    if (photos.length > 0) {
+      return (
+        <div>
+          {photos.map(photo => {
+            return (
+              <img
+                key={photo.id}
+                src={photo.url}
+                style={{ width: '150px', height: 'auto' }}
+              />
+            );
+          })}
+        </div>
+      );
+    }
+  };
 
-const renderResponse = response => {
-  return response ? (
-    <span>
-      Response: <br /> {response}
-    </span>
-  ) : (
-    ''
-  );
-};
-const ReviewsEntry = ({ review }) => {
+  const renderResponse = response => {
+    return response ? (
+      <span>
+        Response: <br /> {response}
+      </span>
+    ) : (
+      ''
+    );
+  };
+
+  const handleHelpful = reviewId => {
+    updateHelpful(reviewId);
+  };
+
   return (
     <div style={{ borderBottom: '2px solid black' }}>
       <Ratings rating={review.rating} />
@@ -44,7 +51,9 @@ const ReviewsEntry = ({ review }) => {
       {renderPhotos(review.photos)}
       <span>
         <span>Helpful?</span>
-        <button>Yes({review.helpfulness})</button>
+        <button onClick={handleHelpful.bind(this, review.review_id)}>
+          Yes({review.helpfulness})
+        </button>
         <button>Report</button>
       </span>
       <br />
@@ -52,4 +61,7 @@ const ReviewsEntry = ({ review }) => {
   );
 };
 
-export default ReviewsEntry;
+export default connect(
+  null,
+  actions
+)(ReviewsEntry);
