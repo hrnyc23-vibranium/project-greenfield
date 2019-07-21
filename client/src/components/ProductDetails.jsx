@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions/setCurrentId.js';
 // React components
 import Overview from './overview/Overview.jsx';
+import Product from './overview/Product.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import Questions from './QandA/QuestionAndAnswers';
 

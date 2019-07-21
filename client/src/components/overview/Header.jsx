@@ -1,4 +1,5 @@
 import React from 'react';
+// Material UI Components
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -7,6 +8,8 @@ import { fade, makeStyles } from '@material-ui/core/styles';
 import SvgIcon from '@material-ui/core/SvgIcon';
 import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
+// React Components
+import SideNav from './SideNav.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -89,13 +92,7 @@ const Header = () => {
     <div className={classes.root}>
       <AppBar position="static" className={classes.navbar}>
         <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.homeButton}
-            color="inherit"
-            aria-label="Open drawer">
-            <ShieldIcon />
-          </IconButton>
+          <SideNav />
           <Typography className={classes.title} variant="h6" noWrap>
             Vibranium
           </Typography>

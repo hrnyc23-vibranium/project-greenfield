@@ -1,35 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 // Material UI Components
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 // React Components
-import Header from './Header.jsx';
 import Carousel from './Carousel.jsx';
 import StyleList from './StyleList.jsx';
-import Features from './Features.jsx';
 
-const Product = () => {
-  const [product, setProduct] = useState();
-  const [styles, setStyles] = useState();
-  const [id, setId] = useState();
-
+const Product = props => {
   return (
-    <Box>
-      <Header />
-      <Grid container direction="row" justify="center" alignItems="center">
-        <Typography variant="overline" gutterBottom>
-          <em>Select Styles on Sale!</em> - Camo Onesie -{' '}
-          <strong>30% off</strong> -{' '}
-          <Link href={'1'} color="inherit" underline="always">
-            Buy Now!
-          </Link>
-        </Typography>
-      </Grid>
+    <Fragment>
       <Grid container direction="row">
         <Grid item md={12} lg={8}>
-          <Carousel />
+          <Carousel styles={props.styles} />
         </Grid>
         <Grid item md={12} lg={4} style={{ marginTop: 5 }}>
           <Grid
@@ -41,19 +24,20 @@ const Product = () => {
               Read All 26 Reviews
             </Link>
             <Typography variant="overline" gutterBottom>
-              Category
+              {props.product.category}
             </Typography>
             <Typography variant="h3" gutterBottom>
-              Name
+              {props.product.name}
             </Typography>
-            <StyleList />
+            <StyleList
+              product={props.product}
+              styles={props.styles}
+              id={props.id}
+            />
           </Grid>
         </Grid>
       </Grid>
-      <Grid container direction="row" justify="space-between">
-        <Features />
-      </Grid>
-    </Box>
+    </Fragment>
   );
 };
 
