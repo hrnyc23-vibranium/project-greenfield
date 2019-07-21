@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 
 import * as actions from '../../actions/Reviews/setSort.js';
 
+//update list based on selected sort
 const ReviewSort = props => {
   const handleChange = e => {
     const { setSort } = props;
@@ -30,7 +31,6 @@ const ReviewSort = props => {
 };
 
 let mapStateToProps = state => ({
-  // productId: state.productId,
   sort: state.reviewSort,
 });
 
