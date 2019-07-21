@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import * as actions from '../../actions/Reviews/getData.js';
 import RatingBar from './RatingBar.jsx';
 import Ratings from '../Ratings.jsx';
+import RatingFilterToggles from './RatingFilterToggles.jsx';
 
 class RatingFilter extends Component {
   componentDidUpdate(prevProps) {
@@ -58,6 +59,7 @@ class RatingFilter extends Component {
         </Grid>
         {this.renderRecommended()}
         <RatingBar ratings={ratings} totalReviews={totalReviews} />
+        <RatingFilterToggles />
         <br />
       </div>
     ) : (
@@ -71,6 +73,7 @@ let mapStateToProps = state => ({
   ratings: state.metaInfo.ratings,
   recommended: state.metaInfo.recommended,
   totalReviews: state.reviewList.results,
+  filters: state.reviewFilter,
 });
 
 export default connect(
