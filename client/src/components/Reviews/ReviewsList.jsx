@@ -33,6 +33,7 @@ class ReviewsList extends Component {
       return <ReviewsEntry key={review.review_id} review={review} />;
     });
 
+    //update amount of reviews displayed
     setShown(reviewsList.length);
 
     //display amount of reviews depending on limit set
