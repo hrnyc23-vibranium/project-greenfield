@@ -1,3 +1,4 @@
+/* =======================PRODUCT BREAKDOWN==================== */
 .slider {
   -webkit-appearance: none;
   width: 100%;
@@ -17,7 +18,6 @@
   background-size: 20px;
   vertical-align: top;
   background-repeat: no-repeat;
-  /* margin-top: 9px; */
 }
 
 .slider::-moz-range-thumb {
@@ -30,6 +30,15 @@
   background-repeat: no-repeat;
   margin-top: 9px;
 }
+
+/* =======================REVIEWSLIST==================== */
+.sortTitle {
+  display: inline-block;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+/* =======================QUESTIONS==================== */
 
 #questionbuttons button:first-child {
   margin-left: 0 !important;
