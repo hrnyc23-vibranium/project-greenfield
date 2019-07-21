@@ -23,6 +23,22 @@ class Reviews extends Component {
     this.props.setLimit();
   }
 
+  renderMoreButton() {
+    const { listShown, listLimit } = this.props;
+
+    if (listShown - listLimit > 0) {
+      return (
+        <Button
+          size="large"
+          variant="outlined"
+          onClick={this.handleLimit.bind(this)}
+        >
+          MORE REVIEWS
+        </Button>
+      );
+    }
+  }
+
   render() {
     return (
       <div>
@@ -33,14 +49,7 @@ class Reviews extends Component {
           </Grid>
           <Grid item sm={12} md={9}>
             <ReviewsList />
-            {/* only show if reviewlist length is greater than 2 */}
-            <Button
-              size="large"
-              variant="outlined"
-              onClick={this.handleLimit.bind(this)}
-            >
-              MORE REVIEWS
-            </Button>
+            {this.renderMoreButton()}
             <Button
               size="large"
               variant="outlined"
@@ -65,6 +74,8 @@ class Reviews extends Component {
 
 let mapStateToProps = state => ({
   open: state.open,
+  listShown: state.listShown,
+  listLimit: state.listLimit,
 });
 
 let mapDispatchToProps = dispatch => ({

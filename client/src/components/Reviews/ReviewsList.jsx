@@ -4,7 +4,8 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 
 // React Components
-import * as actions from '../../actions/Reviews/getData.js';
+import { getList, getMeta } from '../../actions/Reviews/getData.js';
+import { setShown } from '../../actions/Reviews/setShown.js';
 import ReviewsEntry from './ReviewsEntry.jsx';
 import ReviewSort from '../Reviews/ReviewSort.jsx';
 
@@ -18,7 +19,7 @@ class ReviewsList extends Component {
   }
   //if there are rating filters, filter the reviews then only render those reviews
   renderList() {
-    const { reviews, filter, listLimit } = this.props;
+    const { reviews, filter, listLimit, setShown } = this.props;
 
     let filteredList = reviews.results;
     //if filters are selected, filter the list
@@ -31,6 +32,8 @@ class ReviewsList extends Component {
     let reviewsList = filteredList.map(review => {
       return <ReviewsEntry key={review.review_id} review={review} />;
     });
+
+    setShown(reviewsList.length);
 
     //display amount of reviews depending on limit set
     return reviewsList.slice(0, listLimit);
@@ -64,7 +67,19 @@ const mapStateToProps = state => ({
   listLimit: state.listLimit,
 });
 
+const mapDispatchToprops = dispatch => ({
+  setShown: length => {
+    dispatch(setShown(length));
+  },
+  getList: (productId, sort) => {
+    dispatch(getList(productId, sort));
+  },
+  getMeta: productId => {
+    dispatch(getMeta(productId));
+  },
+});
+
 export default connect(
   mapStateToProps,
-  actions
+  mapDispatchToprops
 )(ReviewsList);

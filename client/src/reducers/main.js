@@ -13,6 +13,7 @@ import reviewFormReducer from './Reviews/reviewFormReducer.js';
 import sortReducer from './Reviews/sortReducer.js';
 import filterReducer from './Reviews/filterReducer.js';
 import listLimitReducer from './Reviews/listLimitReducer.js';
+import listShownReducer from './Reviews/listShownReducer.js';
 
 const rootReducer = combineReducers({
   productId: IdReducer,
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
   reviewSort: sortReducer,
   reviewFilter: filterReducer,
   listLimit: listLimitReducer,
+  listShown: listShownReducer,
 });
 
 export default rootReducer;

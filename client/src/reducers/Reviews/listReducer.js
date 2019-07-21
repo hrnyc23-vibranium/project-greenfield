@@ -1,6 +1,6 @@
-import { GET_LIST, GET_META } from '../../actions/Reviews/types.js';
+import { GET_LIST } from '../../actions/Reviews/types.js';
 
-const listReducer = (state = [], { type, payload }) => {
+const listReducer = (state = {}, { type, payload }) => {
   switch (type) {
     case GET_LIST:
       return payload;
