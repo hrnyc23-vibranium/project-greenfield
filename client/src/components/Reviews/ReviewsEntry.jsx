@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
-
+import Button from '@material-ui/core/Button';
 //React Components
 import * as actions from '../../actions/Reviews/updateHelpful.js';
 import Ratings from '../Ratings.jsx';
@@ -43,6 +43,19 @@ const useStyles = makeStyles(theme => ({
   },
   helpful: {
     marginBottom: theme.spacing(1),
+    fontSize: 15,
+  },
+  helpfulTitle: {
+    marginRight: theme.spacing(1),
+  },
+  button: {
+    display: 'inline',
+    marginRight: theme.spacing(1),
+    padding: theme.spacing(0),
+    fontSize: 15,
+    textDecoration: 'underline',
+    textTransform: 'none',
+    fontWeight: 'normal',
   },
 }));
 
@@ -100,11 +113,17 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
       {renderResponse(review.response)}
 
       <Box className={classes.helpful}>
-        <span>Helpful?</span>
-        <button onClick={handleHelpful.bind(this, review.review_id)}>
-          Yes({review.helpfulness})
-        </button>
-        <button>Report</button>
+        <span className={classes.helpfulTitle}>Helpful?</span>
+        <Button
+          component="span"
+          className={classes.button}
+          onClick={handleHelpful.bind(this, review.review_id)}
+        >
+          Yes ({review.helpfulness})
+        </Button>
+        <Button component="span" className={classes.button}>
+          Report
+        </Button>
       </Box>
       <br />
     </Box>

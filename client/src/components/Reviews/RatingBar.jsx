@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0),
     fontSize: 10,
     textDecoration: 'underline',
+    textTransform: 'none',
   },
 }));
 
