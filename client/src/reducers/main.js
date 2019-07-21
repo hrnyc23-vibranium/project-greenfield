@@ -12,6 +12,7 @@ import openReducer from './Reviews/openReducer.js';
 import reviewFormReducer from './Reviews/reviewFormReducer.js';
 import sortReducer from './Reviews/sortReducer.js';
 import filterReducer from './Reviews/filterReducer.js';
+import listLimitReducer from './Reviews/listLimitReducer.js';
 
 const rootReducer = combineReducers({
   productId: IdReducer,
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
   reviewForm: reviewFormReducer,
   reviewSort: sortReducer,
   reviewFilter: filterReducer,
+  listLimit: listLimitReducer,
 });
 
 export default rootReducer;

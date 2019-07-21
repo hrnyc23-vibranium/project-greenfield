@@ -6,3 +6,4 @@ export const SET_SORT = 'SET_SORT';
 export const ADD_FILTER = 'ADD_FILTER';
 export const DELETE_FILTER = 'DELETE_FILTER';
 export const RESET_FILTER = 'RESET_FILTER';
+export const SET_LIMIT = 'SET_LIMIT';

@@ -16,19 +16,22 @@ class ReviewsList extends Component {
       getMeta(productId);
     }
   }
-  //if there are rating filters, show reviews with that rating
-  renderList(reviews, filter) {
-    let reviewList = reviews.results;
+  //if there are rating filters, filter the list then render those entries
+  renderList() {
+    const { reviews, filter, listLimit } = this.props;
 
-    return reviewList.map(review => {
-      if (Object.keys(filter).length > 0) {
-        if (filter[review.rating]) {
-          return <ReviewsEntry key={review.review_id} review={review} />;
-        }
-      } else {
-        return <ReviewsEntry key={review.review_id} review={review} />;
-      }
+    let filteredList = reviews.results;
+    if (Object.keys(filter).length > 0) {
+      filteredList = filteredList.filter(review => {
+        return filter[review.rating];
+      });
+    }
+
+    let reviewsList = filteredList.map(review => {
+      return <ReviewsEntry key={review.review_id} review={review} />;
     });
+
+    return reviewsList.slice(0, listLimit);
   }
 
   render() {
@@ -43,13 +46,7 @@ class ReviewsList extends Component {
             <ReviewSort />
           </span>
         </div>
-        <div>
-          {this.renderList(reviews, filter)}
-
-          {/* {reviewList.results.map(review => {
-            return this.renderList(review, filter);
-          })} */}
-        </div>
+        <div>{this.renderList()}</div>
       </div>
     ) : (
       <div>Loading...</div>
@@ -62,6 +59,7 @@ const mapStateToProps = state => ({
   reviews: state.reviewList,
   metaInfo: state.metaInfo,
   filter: state.reviewFilter,
+  listLimit: state.listLimit,
 });
 
 export default connect(
