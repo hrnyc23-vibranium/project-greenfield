@@ -1,7 +1,9 @@
 import React, { Component, useState } from 'react';
 import { connect } from 'react-redux';
 
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
 
 // React Components
 import { getList, getMeta } from '../../actions/Reviews/getData.js';
@@ -43,17 +45,17 @@ class ReviewsList extends Component {
   render() {
     const { reviews } = this.props;
     return reviews.results ? (
-      <div>
-        <div>
+      <React.Fragment>
+        <Box>
           <span className="sortTitle">
             {reviews.results.length} reviews, sorted by
           </span>
           <span className="sortSelect">
             <ReviewSort />
           </span>
-        </div>
-        <div>{this.renderList()}</div>
-      </div>
+        </Box>
+        {this.renderList()}
+      </React.Fragment>
     ) : (
       <div>Loading...</div>
     );

@@ -1,10 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// Material UI Components
+import { makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+
+//React Components
 import * as actions from '../../actions/Reviews/updateHelpful.js';
 import Ratings from '../Ratings.jsx';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    borderBottom: '1px solid gray',
+    marginTop: theme.spacing(5),
+  },
+}));
+
 const ReviewsEntry = ({ review, updateHelpful }) => {
+  const classes = useStyles();
+
   const renderPhotos = photos => {
     if (photos.length > 0) {
       return (
@@ -38,7 +52,7 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
   };
 
   return (
-    <div style={{ borderBottom: '2px solid black' }}>
+    <Box className={classes.root}>
       <Ratings rating={review.rating} />
       <span>
         {review.reviewer_name}, {review.date}
@@ -57,7 +71,7 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
         <button>Report</button>
       </span>
       <br />
-    </div>
+    </Box>
   );
 };
 

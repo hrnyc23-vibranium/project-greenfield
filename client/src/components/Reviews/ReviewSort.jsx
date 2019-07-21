@@ -1,14 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import * as actions from '../../actions/Reviews/setSort.js';
+
+import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 
-import * as actions from '../../actions/Reviews/setSort.js';
+const useStyles = makeStyles(theme => ({
+  selected: {
+    padding: theme.spacing(0),
+  },
+}));
 
 //update list based on selected sort
 const ReviewSort = props => {
+  const classes = useStyles();
+
   const handleChange = e => {
     const { setSort } = props;
     setSort(e.target.value);
@@ -21,6 +30,7 @@ const ReviewSort = props => {
         name="sort"
         displayEmpty
         onChange={handleChange}
+        className={classes.selected}
       >
         <MenuItem value="relevant">relevance</MenuItem>
         <MenuItem value="newest">newest</MenuItem>

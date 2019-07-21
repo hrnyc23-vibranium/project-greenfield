@@ -11,66 +11,65 @@ import ReviewsList from './ReviewsList.jsx';
 import WriteReview from './WriteReview.jsx';
 import { setOpen } from '../../actions/Reviews/setOpen.js';
 import { setLimit } from '../../actions/Reviews/setListLimit.js';
-class Reviews extends Component {
-  handleOpen() {
-    this.props.setOpen(true);
-  }
-  handleClose() {
-    this.props.setOpen(false);
-  }
 
-  handleLimit() {
-    this.props.setLimit();
-  }
+const Reviews = props => {
+  const handleOpen = () => {
+    props.setOpen(true);
+  };
+  const handleClose = () => {
+    props.setOpen(false);
+  };
 
-  renderMoreButton() {
-    const { listShown, listLimit } = this.props;
+  const handleLimit = () => {
+    props.setLimit();
+  };
+
+  const renderMoreButton = () => {
+    const { listShown, listLimit } = props;
 
     if (listShown - listLimit > 0) {
       return (
         <Button
           size="large"
           variant="outlined"
-          onClick={this.handleLimit.bind(this)}
+          onClick={handleLimit.bind(this)}
         >
           MORE REVIEWS
         </Button>
       );
     }
-  }
+  };
 
-  render() {
-    return (
-      <div>
-        RATINGS & REVIEWS
-        <Grid container direction="row" justify="space-between">
-          <Grid item sm={12} md={3}>
-            <Meta />
-          </Grid>
-          <Grid item sm={12} md={9}>
-            <ReviewsList />
-            {this.renderMoreButton()}
-            <Button
-              size="large"
-              variant="outlined"
-              onClick={this.handleOpen.bind(this)}
-            >
-              ADD A REVIEW +
-            </Button>
-            <Dialog
-              open={this.props.open}
-              onClose={this.handleClose}
-              fullWidth={true}
-              maxWidth="md"
-            >
-              <WriteReview handleClose={this.handleClose.bind(this)} />
-            </Dialog>
-          </Grid>
+  return (
+    <div>
+      RATINGS & REVIEWS
+      <Grid container direction="row" justify="space-between">
+        <Grid item sm={12} md={3}>
+          <Meta />
         </Grid>
-      </div>
-    );
-  }
-}
+        <Grid item sm={12} md={9}>
+          <ReviewsList />
+          {renderMoreButton()}
+          <Button
+            size="large"
+            variant="outlined"
+            onClick={handleOpen.bind(this)}
+          >
+            ADD A REVIEW +
+          </Button>
+          <Dialog
+            open={props.open}
+            onClose={handleClose}
+            fullWidth={true}
+            maxWidth="md"
+          >
+            <WriteReview handleClose={handleClose.bind(this)} />
+          </Dialog>
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
 
 let mapStateToProps = state => ({
   open: state.open,
