@@ -10,6 +10,7 @@ import listReducer from './Reviews/listReducer.js';
 import metaReducer from './Reviews/metaReducer.js';
 import openReducer from './Reviews/openReducer.js';
 import reviewFormReducer from './Reviews/reviewFormReducer.js';
+import sortReducer from './Reviews/sortReducer.js';
 
 const rootReducer = combineReducers({
   productId: IdReducer,
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   gallery: galleryReducer,
   open: openReducer,
   reviewForm: reviewFormReducer,
+  reviewSort: sortReducer,
 });
 
 export default rootReducer;
