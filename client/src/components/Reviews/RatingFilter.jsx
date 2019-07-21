@@ -81,7 +81,7 @@ class RatingFilter extends Component {
         totalStars += stars * reviews;
       }
       let avgRating = totalStars / totalReviews.length;
-      return Number(avgRating.toFixed(2));
+      return Number(avgRating.toFixed(1));
     }
     return 0;
   }
