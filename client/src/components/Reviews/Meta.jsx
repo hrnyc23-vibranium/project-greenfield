@@ -7,10 +7,10 @@ class Meta extends Component {
   render() {
     return (
       <Grid container direction="column">
-        <Grid item md={9}>
+        <Grid item md={10}>
           <RatingFilter />
         </Grid>
-        <Grid item md={9}>
+        <Grid item md={10}>
           <ProductBreakdown />
         </Grid>
       </Grid>

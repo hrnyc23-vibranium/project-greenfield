@@ -6,7 +6,6 @@ import Grid from '@material-ui/core/Grid';
 import * as actions from '../../actions/Reviews/getData.js';
 import RatingBar from './RatingBar.jsx';
 import Ratings from '../Ratings.jsx';
-import RatingFilterToggles from './RatingFilterToggles.jsx';
 
 class RatingFilter extends Component {
   componentDidUpdate(prevProps) {
@@ -65,13 +64,15 @@ class RatingFilter extends Component {
     return recommended && ratings ? (
       <div>
         <Grid container direction="row">
-          <span style={{ fontSize: 30 }}>{avgRating}</span>
+          <span
+            style={{ fontSize: 30, fontWeight: 'bold', marginRight: '15px' }}
+          >
+            {avgRating}
+          </span>
           <Ratings rating={avgRating} />
         </Grid>
         {this.renderRecommended(totalReviews)}
         <RatingBar ratings={ratings} totalReviews={totalReviews} />
-        <RatingFilterToggles />
-        <br />
       </div>
     ) : (
       <div>Loading...</div>

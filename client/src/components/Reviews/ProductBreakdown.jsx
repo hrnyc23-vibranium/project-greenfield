@@ -32,7 +32,6 @@ class ProductBreakdown extends Component {
       let number = Number(breakdown[category]) * 10;
       return (
         <div key={category}>
-          <br />
           {category}
           <div>
             <input
@@ -54,10 +53,7 @@ class ProductBreakdown extends Component {
   render() {
     const { breakdown } = this.props;
     return breakdown ? (
-      <React.Fragment>
-        ProductBreakdown
-        {this.renderBreakdown(breakdown)}
-      </React.Fragment>
+      <React.Fragment>{this.renderBreakdown(breakdown)}</React.Fragment>
     ) : (
       <div>Loading...</div>
     );
@@ -65,7 +61,7 @@ class ProductBreakdown extends Component {
 }
 
 let mapStateToProps = state => ({
-  breakdown: state.metaInfo.characteristics
+  breakdown: state.metaInfo.characteristics,
 });
 
 export default connect(

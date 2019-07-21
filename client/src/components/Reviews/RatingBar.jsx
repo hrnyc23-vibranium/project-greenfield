@@ -7,12 +7,13 @@ import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 import * as actions from '../../actions/Reviews/setFilter.js';
+import RatingFilterToggles from './RatingFilterToggles.jsx';
 
 const BorderLinearProgress = withStyles({
   root: {
     height: 12,
     backgroundColor: '#cfcfcf',
-    marginTop: '4px',
+    marginTop: '9px',
   },
   bar: {
     backgroundColor: '#000042',
@@ -20,13 +21,20 @@ const BorderLinearProgress = withStyles({
 })(LinearProgress);
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    margin: theme.spacing(3, 0, 5, 0),
+  },
   button: {
     display: 'inline',
     marginRight: theme.spacing(1),
     padding: theme.spacing(0),
-    fontSize: 10,
+    fontSize: 15,
     textDecoration: 'underline',
     textTransform: 'none',
+    fontWeight: 'normal',
+  },
+  toggles: {
+    height: 20,
   },
 }));
 
@@ -48,7 +56,7 @@ const RatingBar = props => {
   };
 
   return (
-    <Grid container direction="column">
+    <Grid container direction="column" className={classes.root}>
       {[1, 2, 3, 4, 5].map(rating => {
         let normalized = normalizeRating(ratings[rating], totalReviews);
         return (
@@ -70,6 +78,9 @@ const RatingBar = props => {
           </Grid>
         );
       })}
+      <span className={classes.filters}>
+        <RatingFilterToggles />
+      </span>
     </Grid>
   );
 };
