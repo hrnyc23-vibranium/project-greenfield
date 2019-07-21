@@ -15,6 +15,9 @@ import { setOpen } from '../../actions/Reviews/setOpen.js';
 import { setLimit } from '../../actions/Reviews/setListLimit.js';
 
 const useStyles = makeStyles(theme => ({
+  title: {
+    margin: theme.spacing(2, 0),
+  },
   buttons: {
     margin: theme.spacing(5, 0),
   },
@@ -71,8 +74,8 @@ const Reviews = props => {
   };
 
   return (
-    <div>
-      RATINGS & REVIEWS
+    <Box>
+      <Box className={classes.title}>RATINGS & REVIEWS</Box>
       <Grid container direction="row" justify="space-between">
         <Grid item sm={12} md={3}>
           <Meta />
@@ -92,7 +95,7 @@ const Reviews = props => {
           </Box>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 };
 

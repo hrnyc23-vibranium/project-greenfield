@@ -64,7 +64,7 @@ class RatingFilter extends Component {
 
     return recommended && ratings ? (
       <Box>
-        <Grid container direction="row">
+        <Grid container direction="row" style={{ marginBottom: 13 }}>
           <span
             style={{ fontSize: 30, fontWeight: 'bold', marginRight: '15px' }}
           >
