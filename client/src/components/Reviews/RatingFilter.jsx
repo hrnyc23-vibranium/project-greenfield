@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 
 import * as actions from '../../actions/Reviews/getData.js';
 import RatingBar from './RatingBar.jsx';
@@ -62,7 +63,7 @@ class RatingFilter extends Component {
     const avgRating = this.renderAvgRating(totalReviews);
 
     return recommended && ratings ? (
-      <div>
+      <Box>
         <Grid container direction="row">
           <span
             style={{ fontSize: 30, fontWeight: 'bold', marginRight: '15px' }}
@@ -73,7 +74,7 @@ class RatingFilter extends Component {
         </Grid>
         {this.renderRecommended(totalReviews)}
         <RatingBar ratings={ratings} totalReviews={totalReviews} />
-      </div>
+      </Box>
     ) : (
       <div>Loading...</div>
     );
