@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 
 import * as actions from '../../actions/Reviews/getData.js';
-import BorderLinearProgress from './RatingBar.jsx';
+import RatingBar from './RatingBar.jsx';
 import Ratings from '../Ratings.jsx';
 
 class RatingFilter extends Component {
@@ -13,44 +13,6 @@ class RatingFilter extends Component {
     if (productId !== prevProps.productId) {
       getMeta(productId);
     }
-  }
-
-  //calculate percent of current rating out of total reviews
-  normalizeRating(curr, total) {
-    if (total === 0) {
-      return 0;
-    }
-    return (curr / total) * 100;
-  }
-
-  //render out rating breakdown with rating bars
-  renderRatings() {
-    const { ratings, totalReviews } = this.props;
-    return ratings ? (
-      <Grid container direction="column">
-        {[1, 2, 3, 4, 5].map(num => {
-          let normalized = this.normalizeRating(
-            ratings[num] || 0,
-            totalReviews.length
-          );
-          return (
-            <Grid container direction="row" key={num}>
-              <Grid item sm={12} md={2}>
-                <span>{num} Star</span>
-              </Grid>
-              <Grid item sm={12} md={10}>
-                <BorderLinearProgress
-                  variant="determinate"
-                  value={normalized}
-                />
-              </Grid>
-            </Grid>
-          );
-        })}
-      </Grid>
-    ) : (
-      <div>Loading...</div>
-    );
   }
 
   //calculate percent recommended out of total reviews
@@ -87,7 +49,7 @@ class RatingFilter extends Component {
   }
 
   render() {
-    const { recommended, totalReviews } = this.props;
+    const { recommended, totalReviews, ratings } = this.props;
     return recommended && totalReviews ? (
       <div>
         <Grid container direction="row">
@@ -95,7 +57,8 @@ class RatingFilter extends Component {
           <Ratings rating={this.renderAvgRating()} />
         </Grid>
         {this.renderRecommended()}
-        {this.renderRatings()}
+        <RatingBar ratings={ratings} totalReviews={totalReviews} />
+        {/* {this.renderRatings(ratings, totalReviews)} */}
         <br />
       </div>
     ) : (
