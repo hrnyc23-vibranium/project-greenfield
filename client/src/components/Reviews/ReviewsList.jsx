@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions/Reviews/getData.js';
+
+import { makeStyles } from '@material-ui/core/styles';
+
 // React Components
+import * as actions from '../../actions/Reviews/getData.js';
 import ReviewsEntry from './ReviewsEntry.jsx';
-import { withRouter } from 'react-router-dom';
+import ReviewSort from '../Reviews/ReviewSort.jsx';
+
 class ReviewsList extends Component {
   componentDidUpdate(prevProps) {
     const { getList, productId, getMeta } = this.props;
@@ -15,9 +19,17 @@ class ReviewsList extends Component {
 
   render() {
     const { reviewList } = this.props;
+
     return reviewList.results ? (
       <div>
-        <div>{reviewList.results.length} reviews, sorted by </div>
+        <div>
+          <span className="sortTitle">
+            {reviewList.results.length} reviews, sorted by
+          </span>
+          <span className="sortSelect">
+            <ReviewSort />
+          </span>
+        </div>
         <div>
           {reviewList.results.map(review => {
             return <ReviewsEntry key={review.review_id} review={review} />;
@@ -36,9 +48,7 @@ const mapStateToProps = state => ({
   metaInfo: state.metaInfo,
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    actions
-  )(ReviewsList)
-);
+export default connect(
+  mapStateToProps,
+  actions
+)(ReviewsList);
