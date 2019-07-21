@@ -33,10 +33,7 @@ const Carousel = props => {
   return (
     <Box className={classes.root}>
       {props.styles.results ? (
-        <img
-          src={props.styles.results[0].photos[0].url}
-          className={classes.img}
-        />
+        <img src={props.img} className={classes.img} />
       ) : (
         <CircularProgress className={classes.progress} />
       )}
