@@ -58,6 +58,7 @@ const useStyles = makeStyles(theme => ({
 const RebuiltCarousel = props => {
   const classes = useStyles();
 
+  console.log('props', props);
   const [images, setImages] = useState();
 
   useEffect(() => {

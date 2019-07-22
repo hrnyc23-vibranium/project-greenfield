@@ -27,6 +27,8 @@ const Product = props => {
     setStyleColumns(style);
   };
 
+  console.log('props', props);
+
   return (
     <Fragment>
       <Grid container direction="row">

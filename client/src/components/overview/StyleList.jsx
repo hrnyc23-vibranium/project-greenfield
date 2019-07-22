@@ -117,7 +117,7 @@ const StyleList = props => {
       <div className={classes.root}>
         <GridList cellHeight={100} cols={4}>
           {props.styles.results ? (
-            props.styles.results.map(style => (
+            props.styles.results.map((style, i) => (
               <GridListTile
                 key={style.style_id}
                 cols={1}
@@ -129,7 +129,7 @@ const StyleList = props => {
                   setCartImage(style.photos[0].thumbnail_url);
                   changeCurrPrice(style.original_price, style.sale_price);
                   changeSelected(style.name, currentStyle);
-                  props.changeStyle(style.style_id - 1);
+                  props.changeStyle(i);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
                   <Avatar
