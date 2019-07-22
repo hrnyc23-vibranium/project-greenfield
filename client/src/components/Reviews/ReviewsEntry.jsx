@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   responseTitle: {
     fontWeight: 'bold',
     margin: theme.spacing(0),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   },
   responseBody: {
     margin: theme.spacing(0),
@@ -83,7 +83,7 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
 
   const renderRecommend = recommend => {
     return recommend ? (
-      <Box className={classes.recommend} component="span">
+      <Box className={classes.recommend}>
         <span className={classes.check}>&#10003;</span>
         <span className={classes.recommendBody}>I recommend this product</span>
       </Box>
