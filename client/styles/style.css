@@ -49,6 +49,9 @@
   padding: 20px 0;
   max-width: 960px;
 }
+.seller {
+  font-weight: 700;
+}
 .fade {
   background-color: darkgray;
   padding-top: 30px;

@@ -3,6 +3,7 @@ import React from 'react';
 
 //React Component
 import ImageGallery from '../ImageGallery.jsx';
+import { formatDate } from '../formatDate.js';
 
 //Material Componenets
 import Typography from '@material-ui/core/Typography';
@@ -22,8 +23,12 @@ const Answer = props => {
 
       <Grid container direction="row" justify="flex-start" alignItems="center">
         <Typography variant="caption">
-          by {props.answer.answerer_name}, {props.answer.date.substring(0, 10)}{' '}
-          | Helpful?
+          by{' '}
+          <span
+            className={props.answer.answerer_name == 'seller' ? 'seller' : ''}>
+            {props.answer.answerer_name}
+          </span>
+          , {formatDate(props.answer.date)} | Helpful?
         </Typography>
         <Button size="small">Yes ({+props.answer.helpfulness})</Button>
         <Typography component="h4"> | </Typography>
