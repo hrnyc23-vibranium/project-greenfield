@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import { makeStyles } from '@material-ui/core/styles';
 import * as actions from '../../actions/Reviews/setFilter.js';
 
@@ -16,6 +17,10 @@ const useStyles = makeStyles(theme => ({
     fontSize: 14,
     textDecoration: 'underline',
     textTransform: 'none',
+  },
+  chip: {
+    marginRight: theme.spacing(1),
+    marginTop: theme.spacing(0.5),
   },
 }));
 
@@ -37,14 +42,14 @@ const RatingFilterToggles = props => {
   const renderFilters = () => {
     return Object.keys(filters).map(filter => {
       return (
-        <Button
-          component="span"
-          className={classes.button}
+        <Chip
+          size="small"
+          className={classes.chip}
           key={filter}
           onClick={handleRemove.bind(this, filter)}
-        >
-          {filter} stars
-        </Button>
+          label={filter + ' stars'}
+          clickable
+        />
       );
     });
   };
@@ -52,13 +57,13 @@ const RatingFilterToggles = props => {
   if (Object.keys(filters).length > 0) {
     return (
       <div className={classes.root}>
-        <Button
-          component="span"
-          className={classes.button}
+        <Chip
+          size="small"
+          className={classes.chip}
           onClick={handleReset.bind(this)}
-        >
-          Remove all filters
-        </Button>
+          label="Remove all filters"
+          clickable
+        />
         {renderFilters()}
       </div>
     );
