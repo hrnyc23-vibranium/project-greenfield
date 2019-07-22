@@ -50,6 +50,7 @@ const MySnackbarContentWrapper = props => {
           {message}
         </span>
       }
+      //handle close icon and functionality
       action={[
         <IconButton
           key="close"
