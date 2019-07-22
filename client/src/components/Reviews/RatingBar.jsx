@@ -57,7 +57,7 @@ const RatingBar = props => {
 
   return (
     <Grid container direction="column" className={classes.root}>
-      {[1, 2, 3, 4, 5].map(rating => {
+      {[5, 4, 3, 2, 1].map(rating => {
         let normalized = normalizeRating(ratings[rating], totalReviews);
         return (
           <Grid container direction="row" key={rating}>
