@@ -12,6 +12,8 @@ export const validate = (form, component) => {
 
     if (!form.name) errors.push('a nickname');
 
+    if (!form.name) errors.push('a review summary');
+
     if (form.body.length < 50) errors.push('a review body over 50 characters');
 
     if (!emailIsValid(form.email)) errors.push('a valid email address');

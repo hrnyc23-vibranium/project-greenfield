@@ -10,7 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import * as actions from '../../actions/Reviews/setForm.js';
+import * as actions from '../../actions/Reviews/submitForm.js';
 import Recommend from './formComponents/Recommend.jsx';
 import OverallRating from './formComponents/OverallRating.jsx';
 import Characteristics from './formComponents/Characteristics.jsx';
@@ -26,7 +26,6 @@ const defaultForm = {
   rating: 0,
   recommend: '',
   characteristics: {},
-  summary: '',
   body: '',
   email: '',
   name: '',
@@ -63,9 +62,8 @@ const WriteReview = props => {
     let errorList = validate(form, 'reviews');
     setErrors(errorList);
 
-    if (!errors) {
-      console.log('no errors');
-      //call action that makes post request
+    if (!errorList) {
+      props.submitForm(form);
     }
 
     //show snackbar

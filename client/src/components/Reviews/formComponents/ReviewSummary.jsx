@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 
 import { useStyles } from './inputStyle.js';
 
-const ReviewSummary = ({ summary, handleChange }) => {
+const ReviewSummary = ({ summary = '', handleChange }) => {
   const classes = useStyles();
   return (
     <Box>
