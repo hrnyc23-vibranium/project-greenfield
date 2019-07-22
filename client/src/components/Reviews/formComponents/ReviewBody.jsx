@@ -5,20 +5,13 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    width: 500
-  }
+    width: 500,
+  },
 }));
 
-const ReviewBody = ({ form, setForm }) => {
-  const handleChange = e => {
-    e.persist();
-    setForm(prevState => {
-      return { ...prevState, body: e.target.value };
-    });
-  };
-
+const ReviewBody = ({ body, handleChange }) => {
   const minReqChars = () => {
-    let remainingChars = 50 - form.body.length;
+    let remainingChars = 50 - body.length;
     return remainingChars > 0
       ? `Minimum required characters left: ${remainingChars}`
       : 'Minimum reached';
@@ -34,7 +27,8 @@ const ReviewBody = ({ form, setForm }) => {
         onChange={handleChange}
         placeholder="Why did you like the product or not"
         required={true}
-        value={form.body}
+        value={body}
+        name="body"
       />
       <span>{minReqChars()}</span>
     </React.Fragment>

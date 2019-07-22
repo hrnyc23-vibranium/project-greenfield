@@ -25,12 +25,21 @@ const defaultForm = {
   summary: '',
   body: '',
   email: '',
-  name: ''
+  name: '',
 };
 
 const WriteReview = props => {
   const [form, setForm] = useState(defaultForm);
 
+  const handleChange = e => {
+    e.persist();
+    console.log(e.target.value);
+    setForm(prevState => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+  };
+
+  console.log(form);
   return form ? (
     <React.Fragment>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
@@ -47,19 +56,22 @@ const WriteReview = props => {
         <Characteristics form={form} setForm={setForm} />
 
         <h4>Review Summary</h4>
-        <ReviewSummary form={form} setForm={setForm} />
+        <ReviewSummary
+          summary={form.summary}
+          handleChange={handleChange.bind(this)}
+        />
 
         <h4>Review Body*</h4>
-        <ReviewBody form={form} setForm={setForm} />
+        <ReviewBody body={form.body} handleChange={handleChange.bind(this)} />
 
         <h4>Upload your photos</h4>
         <Images form={form} setForm={setForm} />
 
         <h4>What is your nickname*</h4>
-        <Nickname form={form} setForm={setForm} />
+        <Nickname name={form.name} handleChange={handleChange.bind(this)} />
 
         <h4>Your email*</h4>
-        <Email form={form} setForm={setForm} />
+        <Email email={form.email} handleChange={handleChange.bind(this)} />
       </DialogContent>
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">

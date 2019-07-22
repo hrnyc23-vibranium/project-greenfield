@@ -5,19 +5,12 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    width: 400
-  }
+    width: 400,
+  },
 }));
 
-const Nickname = ({ form, setForm }) => {
+const Nickname = ({ name, handleChange }) => {
   const classes = useStyles();
-
-  const handleChange = e => {
-    e.persist();
-    setForm(prevState => {
-      return { ...prevState, name: e.target.value };
-    });
-  };
 
   return (
     <React.Fragment>
@@ -28,7 +21,8 @@ const Nickname = ({ form, setForm }) => {
         onChange={handleChange}
         placeholder="Example: Captain America"
         required={true}
-        value={form.name}
+        value={name}
+        name="name"
       />
       <span>
         For privacy reasons, do not use your full name or email address

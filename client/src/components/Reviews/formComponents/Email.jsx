@@ -5,19 +5,12 @@ import TextField from '@material-ui/core/TextField';
 
 const useStyles = makeStyles(theme => ({
   textField: {
-    width: 400
-  }
+    width: 400,
+  },
 }));
 
-const Email = ({ form, setForm }) => {
+const Email = ({ email, handleChange }) => {
   const classes = useStyles();
-
-  const handleChange = e => {
-    e.persist();
-    setForm(prevState => {
-      return { ...prevState, email: e.target.value };
-    });
-  };
 
   return (
     <React.Fragment>
@@ -27,6 +20,8 @@ const Email = ({ form, setForm }) => {
         onChange={handleChange}
         placeholder="Why did you like the product or not"
         required
+        name="email"
+        value={email}
       />
       <span>For authentication reasons, you will not be emailed</span>
     </React.Fragment>
