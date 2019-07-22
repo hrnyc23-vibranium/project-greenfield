@@ -40,13 +40,29 @@ const Carousel = props => {
   console.log('props', props);
 
   const [index, setIndex] = useState(0);
+  const [previous, setPrevious] = useState(true);
+
+  const changePrevious = index => {
+    if (index === 0) {
+      setPrevious(true);
+    }
+  };
+  const [next, setNext] = useState(false);
+
+  const changeNext = index => {
+    if (index === 4) {
+      setNext(true);
+    }
+  };
 
   return (
     <Box className={classes.root}>
       <Box className={classes.arrow}>
         <IconButton
+          disabled={previous}
           onClick={() => {
             setIndex(Math.max(index - 1, 0));
+            changePrevious(index);
           }}>
           <BackArrow />
         </IconButton>
@@ -63,8 +79,10 @@ const Carousel = props => {
       </Slide>
       <Box className={classes.arrow}>
         <IconButton
+          disabled={next}
           onClick={() => {
             setIndex(Math.min(index + 1, 5));
+            changeNext(index);
           }}>
           <NextArrow />
         </IconButton>
