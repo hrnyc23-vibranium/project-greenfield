@@ -37,19 +37,21 @@ const useStyles = makeStyles(theme => ({
 
 const Carousel = props => {
   const classes = useStyles();
-  console.log('props', props);
 
   const [index, setIndex] = useState(0);
   const [previous, setPrevious] = useState(true);
 
   const changePrevious = index => {
-    if (index === 0) {
+    if (index <= 1) {
       setPrevious(true);
     }
   };
   const [next, setNext] = useState(false);
 
   const changeNext = index => {
+    if (index >= 0) {
+      setPrevious(false);
+    }
     if (index === 4) {
       setNext(true);
     }

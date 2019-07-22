@@ -4,7 +4,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
-import CircularProgress from '@material-ui/core/CircularProgress';
 // React Components
 import Carousel from './Carousel.jsx';
 import StyleList from './StyleList.jsx';
