@@ -43,6 +43,15 @@ class RatingFilter extends Component {
     return 0;
   }
 
+  //if avg rating doesn't have a decimal, add one
+  padAvgRating(avgRating) {
+    let stringified = avgRating.toString();
+    if (stringified.indexOf('.') < 0) {
+      return stringified + '.0';
+    }
+    return stringified;
+  }
+
   addTotal(ratings = {}) {
     if (Object.keys(ratings).length > 0) {
       let totalReviews = Object.values(ratings).reduce((sum, num) => {
@@ -64,7 +73,7 @@ class RatingFilter extends Component {
           <span
             style={{ fontSize: 30, fontWeight: 'bold', marginRight: '15px' }}
           >
-            {avgRating}
+            {this.padAvgRating(avgRating)}
           </span>
           <Ratings rating={avgRating} />
         </Grid>
