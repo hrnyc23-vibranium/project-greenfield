@@ -45,6 +45,9 @@ const Carousel = props => {
     if (index <= 1) {
       setPrevious(true);
     }
+    if (index <= 5) {
+      setNext(false);
+    }
   };
   const [next, setNext] = useState(false);
 
