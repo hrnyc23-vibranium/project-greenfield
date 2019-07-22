@@ -19,17 +19,6 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: '#E0E0E0',
     marginTop: theme.spacing(1),
   },
-  expandedRoot: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
-    position: 'absolute',
-    width: '95%',
-    height: '750px',
-    backgroundColor: '#E0E0E0',
-    marginTop: theme.spacing(1),
-  },
   imgBox: {
     display: 'flex',
     flexWrap: 'nowrap',
