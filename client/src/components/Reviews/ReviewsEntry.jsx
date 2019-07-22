@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 //React Components
 import * as actions from '../../actions/Reviews/updateHelpful.js';
+import { formatDate } from '../formatDate.js';
 import Ratings from '../Ratings.jsx';
 
 const useStyles = makeStyles(theme => ({
@@ -114,7 +115,7 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
       <Grid container direct="row" justify="space-between">
         <Ratings rating={review.rating} />
         <Box>
-          {review.reviewer_name}, {review.date}
+          {review.reviewer_name}, {formatDate(review.date)}
         </Box>
       </Grid>
       <h3 className={classes.summary}>{review.summary}</h3>
