@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
+
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
@@ -8,7 +9,23 @@ import * as actions from '../../actions/Reviews/getData.js';
 import RatingBar from './RatingBar.jsx';
 import Ratings from '../Ratings.jsx';
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    marginBottom: '13px',
+  },
+  avgRating: {
+    fontSize: 50,
+    fontWeight: 900,
+    marginRight: '15px',
+  },
+  ratings: {
+    marginTop: theme.spacing(1.5),
+  },
+}));
+
 const RatingFilter = props => {
+  const { recommended, ratings } = props;
+  const classes = useStyles();
   //calculate percent recommended out of total reviews
   const normalizeRecommended = (curr, total) => {
     if (total === 0) {
@@ -59,17 +76,15 @@ const RatingFilter = props => {
     return 0;
   };
 
-  const { recommended, ratings } = props;
   const totalReviews = addTotal(ratings);
   const avgRating = renderAvgRating(totalReviews);
-
   return recommended && ratings ? (
     <Box>
-      <Grid container direction="row" style={{ marginBottom: 13 }}>
-        <span style={{ fontSize: 30, fontWeight: 'bold', marginRight: '15px' }}>
-          {padAvgRating(avgRating)}
+      <Grid container direction="row" className={classes.root}>
+        <span className={classes.avgRating}>{padAvgRating(avgRating)}</span>
+        <span className={classes.ratings}>
+          <Ratings rating={avgRating} />
         </span>
-        <Ratings rating={avgRating} />
       </Grid>
       {renderRecommended(totalReviews)}
       <RatingBar ratings={ratings} totalReviews={totalReviews} />
