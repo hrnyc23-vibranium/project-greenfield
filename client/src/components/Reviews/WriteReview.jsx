@@ -24,6 +24,7 @@ import { classes } from 'istanbul-lib-coverage';
 const defaultForm = {
   rating: 0,
   recommend: '',
+  characteristics: {},
   summary: '',
   body: '',
   email: '',
@@ -42,11 +43,16 @@ const WriteReview = props => {
     });
   };
 
+  const handleSubmit = e => {
+    //validate form
+    console.log(form);
+  };
+
   return form ? (
     <React.Fragment>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
       <DialogContent className={classes.content}>
-        <DialogContentText>About the Product Name</DialogContentText>
+        <DialogContentText>About {props.product.name}</DialogContentText>
 
         <OverallRating form={form} setForm={setForm.bind(this)} />
 
@@ -73,7 +79,7 @@ const WriteReview = props => {
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
-        <Button onClick={props.handleClose} color="primary">
+        <Button onClick={handleSubmit} color="primary">
           Submit review
         </Button>
       </DialogActions>
@@ -84,6 +90,7 @@ const WriteReview = props => {
 };
 
 let mapStateToProps = state => ({
+  product: state.product,
   // form: state.reviewForm
 });
 

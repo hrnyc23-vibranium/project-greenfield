@@ -66,7 +66,8 @@ const useStyles = makeStyles(theme => ({
 const Characteristics = ({ form, setForm, characteristics }) => {
   const handleChange = e => {
     setForm(prevState => {
-      return { ...prevState, [e.target.name]: e.target.value };
+      prevState.characteristics[e.target.name] = e.target.value;
+      return { ...prevState };
     });
   };
   //for each characteristic, render out all 5 characteristics and it's corresponding label
@@ -78,12 +79,12 @@ const Characteristics = ({ form, setForm, characteristics }) => {
         let description = descriptions[character];
         return (
           <FormControl component="fieldset" key={character}>
-            <FormLabel className={classes.category} required asterick>
-              {character}: {form[character] || 'None selected:'}
+            <FormLabel className={classes.category} asterick="true" required>
+              {character}: {form.characteristics[character] || 'None selected:'}
             </FormLabel>
             <RadioGroup
               name={character}
-              value={form[character] || ''}
+              value={form.characteristics[character] || ''}
               onChange={handleChange}
               row
               className={classes.group}
