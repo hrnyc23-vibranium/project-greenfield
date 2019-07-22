@@ -7,6 +7,8 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import NextArrow from '@material-ui/icons/KeyboardArrowRightRounded';
 import BackArrow from '@material-ui/icons/KeyboardArrowLeftRounded';
+import clsx from 'clsx';
+import { style } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -30,6 +32,13 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
     objectFit: 'cover',
+  },
+  imgZoomed: {
+    display: 'flex',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    objectFit: 'cover',
+    transform: 'scale(1.2)',
   },
   progress: {
     margin: theme.spacing(1),
@@ -76,6 +85,29 @@ const Carousel = props => {
     }
   };
 
+  const [id, setId] = useState(classes.img);
+
+  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
+  const [offset, setOffset] = useState({ x: 0, y: 0 });
+
+  const renderZoom = event => {
+    setCoordinates({ x: event.screenX, y: event.screenY });
+  };
+
+  const renderOffset = event => {
+    setOffset({ x: -event.nativeEvent.offsetX, y: -event.nativeEvent.offsetY });
+  };
+
+  const [style, setStyle] = useState({
+    backgroundPositionX: 0,
+    backgroundPositionY: 0,
+  });
+
+  const renderStyle = () => {
+    setId(classes.imgZoomed);
+    setStyle({ backgroundPositionX: offset.x, backgroundPositionY: offset.y });
+  };
+
   return (
     <div>
       <Box className={classes.root}>
@@ -94,15 +126,27 @@ const Carousel = props => {
               <BackArrow />
             </IconButton>
           </Box>
-          <Box className={classes.imgBox}>
+          <Box
+            className={classes.imgBox}
+            style={style}
+            onMouseMove={e => {
+              renderOffset(e);
+              renderStyle();
+            }}
+            onMouseOut={() => {
+              setId(classes.img);
+            }}>
             {props.styles.results ? (
               <img
                 src={props.styles.results[props.index].photos[index].url}
-                className={classes.img}
+                className={id}
                 onClick={() => {
                   setClick(!click);
                   changeColumns();
                   props.changeSize(imgColumns, styleColumns);
+                }}
+                onMouseMove={e => {
+                  renderStyle();
                 }}
               />
             ) : (
