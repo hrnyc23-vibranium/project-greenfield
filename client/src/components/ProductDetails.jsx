@@ -16,7 +16,7 @@ class ProductDetails extends Component {
       <Fragment>
         <Overview />
         {/* <Questions /> */}
-        <Reviews />
+        {/* <Reviews /> */}
       </Fragment>
     );
   }

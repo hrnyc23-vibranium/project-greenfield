@@ -19,13 +19,25 @@ const Product = props => {
     setCurrStyleIndex(index);
   };
 
+  const [imgColumns, setImgColumns] = useState(8);
+  const [styleColumns, setStyleColumns] = useState(4);
+
+  const changeGridSize = (img, style) => {
+    setImgColumns(img);
+    setStyleColumns(style);
+  };
+
   return (
     <Fragment>
       <Grid container direction="row">
-        <Grid item md={12} lg={8}>
-          <Carousel styles={styles} index={currStyleIndex} />
+        <Grid item md={12} lg={imgColumns}>
+          <Carousel
+            styles={styles}
+            index={currStyleIndex}
+            changeSize={changeGridSize}
+          />
         </Grid>
-        <Grid item md={12} lg={4} style={{ marginTop: 5 }}>
+        <Grid item md={12} lg={styleColumns} style={{ marginTop: 5 }}>
           <Grid
             container
             direction="column"

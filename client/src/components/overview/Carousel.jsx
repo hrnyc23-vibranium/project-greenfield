@@ -14,6 +14,17 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'nowrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
+    width: '99%',
+    height: '750px',
+    backgroundColor: '#E0E0E0',
+    marginTop: theme.spacing(1),
+  },
+  expandedRoot: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    position: 'absolute',
     width: '95%',
     height: '750px',
     backgroundColor: '#E0E0E0',
@@ -61,6 +72,21 @@ const Carousel = props => {
     }
   };
 
+  const [click, setClick] = useState(false);
+
+  const [imgColumns, setImgColumns] = useState(8);
+  const [styleColumns, setStyleColumns] = useState(4);
+
+  const changeColumns = () => {
+    if (click === true) {
+      setImgColumns(8);
+      setStyleColumns(4);
+    } else {
+      setImgColumns(12);
+      setStyleColumns(0);
+    }
+  };
+
   return (
     <div>
       <Box className={classes.root}>
@@ -84,6 +110,11 @@ const Carousel = props => {
               <img
                 src={props.styles.results[props.index].photos[index].url}
                 className={classes.img}
+                onClick={() => {
+                  setClick(!click);
+                  changeColumns();
+                  props.changeSize(imgColumns, styleColumns);
+                }}
               />
             ) : (
               <CircularProgress className={classes.progress} />
