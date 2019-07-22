@@ -1,19 +1,16 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
-  textField: {
-    width: 400,
-  },
-}));
+import { useStyles } from './inputStyle.js';
 
 const Nickname = ({ name, handleChange }) => {
   const classes = useStyles();
 
   return (
-    <React.Fragment>
+    <Box>
+      <h4>What is your nickname*</h4>
       <TextField
         className={classes.textField}
         required={true}
@@ -24,10 +21,10 @@ const Nickname = ({ name, handleChange }) => {
         value={name}
         name="name"
       />
-      <span>
+      <Box className={classes.description}>
         For privacy reasons, do not use your full name or email address
-      </span>
-    </React.Fragment>
+      </Box>
+    </Box>
   );
 };
 

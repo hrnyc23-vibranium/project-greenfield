@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
-import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Box from '@material-ui/core/Box';
 
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -18,6 +19,7 @@ import ReviewBody from './formComponents/ReviewBody.jsx';
 import Nickname from './formComponents/Nickname.jsx';
 import Email from './formComponents/Email.jsx';
 import Images from './formComponents/Images.jsx';
+import { classes } from 'istanbul-lib-coverage';
 
 const defaultForm = {
   rating: 0,
@@ -28,51 +30,45 @@ const defaultForm = {
   name: '',
 };
 
+const useStyles = makeStyles(theme => ({}));
+
 const WriteReview = props => {
   const [form, setForm] = useState(defaultForm);
 
   const handleChange = e => {
     e.persist();
-    console.log(e.target.value);
     setForm(prevState => {
       return { ...prevState, [e.target.name]: e.target.value };
     });
   };
 
-  console.log(form);
   return form ? (
     <React.Fragment>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
-      <DialogContent>
+      <DialogContent className={classes.content}>
         <DialogContentText>About the Product Name</DialogContentText>
 
-        <h4>Overall Rating*</h4>
         <OverallRating form={form} setForm={setForm.bind(this)} />
 
-        <h4>Do you recommend this product?*</h4>
         <Recommend form={form} setForm={setForm.bind(this)} />
 
-        <h4>Characteristics*</h4>
         <Characteristics form={form} setForm={setForm} />
 
-        <h4>Review Summary</h4>
         <ReviewSummary
           summary={form.summary}
           handleChange={handleChange.bind(this)}
         />
 
-        <h4>Review Body*</h4>
         <ReviewBody body={form.body} handleChange={handleChange.bind(this)} />
 
-        <h4>Upload your photos</h4>
         <Images form={form} setForm={setForm} />
 
-        <h4>What is your nickname*</h4>
         <Nickname name={form.name} handleChange={handleChange.bind(this)} />
 
-        <h4>Your email*</h4>
         <Email email={form.email} handleChange={handleChange.bind(this)} />
       </DialogContent>
+
+      {/* Buttons */}
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
           Cancel

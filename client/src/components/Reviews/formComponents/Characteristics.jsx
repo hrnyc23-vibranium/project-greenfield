@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Box from '@material-ui/core/Box';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -41,18 +43,23 @@ const descriptions = {
 };
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
-  formControl: {
+  category: {
     margin: theme.spacing(0),
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   group: {
-    margin: theme.spacing(2, 0),
+    margin: theme.spacing(1, 0),
+    marginBottom: theme.spacing(4),
   },
   col: {
     margin: theme.spacing(0),
-    width: 120,
+    width: 80,
+    alignContent: 'center',
+  },
+  label: {
+    fontSize: 13,
+    textAlign: 'center',
   },
 }));
 
@@ -65,17 +72,14 @@ const Characteristics = ({ form, setForm, characteristics }) => {
   //for each characteristic, render out all 5 characteristics and it's corresponding label
   const classes = useStyles();
   return (
-    <div>
+    <Box>
+      <h4>Characteristics*</h4>
       {Object.keys(characteristics).map(character => {
         let description = descriptions[character];
         return (
-          <FormControl
-            component="fieldset"
-            key={character}
-            className={classes.formControl}
-          >
-            <FormLabel component="legend">
-              {character}: {form[character]}
+          <FormControl component="fieldset" key={character}>
+            <FormLabel className={classes.category} required asterick>
+              {character}: {form[character] || 'None selected:'}
             </FormLabel>
             <RadioGroup
               name={character}
@@ -89,7 +93,11 @@ const Characteristics = ({ form, setForm, characteristics }) => {
                   <FormControlLabel
                     value={description[num]}
                     control={<Radio color="primary" />}
-                    label={num === 1 || num === 3 ? '' : description[num]}
+                    label={
+                      <Typography className={classes.label}>
+                        {num === 1 || num === 3 ? '' : description[num]}
+                      </Typography>
+                    }
                     labelPlacement="bottom"
                     key={num}
                     className={classes.col}
@@ -100,7 +108,7 @@ const Characteristics = ({ form, setForm, characteristics }) => {
           </FormControl>
         );
       })}
-    </div>
+    </Box>
   );
 };
 

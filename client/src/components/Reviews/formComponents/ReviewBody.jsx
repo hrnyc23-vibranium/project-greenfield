@@ -1,13 +1,9 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
-  textField: {
-    width: 500,
-  },
-}));
+import { useStyles } from './inputStyle.js';
 
 const ReviewBody = ({ body, handleChange }) => {
   const minReqChars = () => {
@@ -19,7 +15,8 @@ const ReviewBody = ({ body, handleChange }) => {
 
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <Box>
+      <h4>Review Body*</h4>
       <TextField
         className={classes.textField}
         inputProps={{ maxLength: 1000 }}
@@ -30,8 +27,8 @@ const ReviewBody = ({ body, handleChange }) => {
         value={body}
         name="body"
       />
-      <span>{minReqChars()}</span>
-    </React.Fragment>
+      <Box className={classes.description}>{minReqChars()}</Box>
+    </Box>
   );
 };
 

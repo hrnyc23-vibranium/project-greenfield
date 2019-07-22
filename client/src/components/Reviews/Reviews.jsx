@@ -88,7 +88,7 @@ const Reviews = props => {
               open={props.open}
               onClose={handleClose}
               fullWidth={true}
-              maxWidth="md"
+              maxWidth="sm"
             >
               <WriteReview handleClose={handleClose.bind(this)} />
             </Dialog>
