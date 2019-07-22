@@ -9,13 +9,6 @@ import RatingBar from './RatingBar.jsx';
 import Ratings from '../Ratings.jsx';
 
 class RatingFilter extends Component {
-  componentDidUpdate(prevProps) {
-    const { productId, getMeta } = this.props;
-    if (productId !== prevProps.productId) {
-      getMeta(productId);
-    }
-  }
-
   //calculate percent recommended out of total reviews
   normalizeRecommended(curr, total) {
     if (total === 0) {

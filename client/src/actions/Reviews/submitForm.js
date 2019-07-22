@@ -1,5 +1,5 @@
 import { SUBMIT_FORM } from './types.js';
-import { getList } from './getData.js';
+import { getList, getMeta } from './getData.js';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
 
@@ -19,6 +19,7 @@ export const submitForm = form => (dispatch, getState) => {
     })
     .then(() => {
       dispatch(getList(productId, sort));
+      dispatch(getMeta(productId));
     })
     .catch(err => {
       console.log(err);
