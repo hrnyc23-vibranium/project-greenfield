@@ -68,7 +68,7 @@ const RatingBar = props => {
                   className={classes.button}
                   onClick={handleClick.bind(this, rating)}
                 >
-                  {rating} stars
+                  {rating} {rating === 1 ? 'star' : 'stars'}
                 </Button>
               </div>
             </Grid>
