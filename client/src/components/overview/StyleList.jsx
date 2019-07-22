@@ -129,6 +129,7 @@ const StyleList = props => {
                   setCartImage(style.photos[0].thumbnail_url);
                   changeCurrPrice(style.original_price, style.sale_price);
                   changeSelected(style.name, currentStyle);
+                  props.changeStyle(style.style_id - 1);
                 }}>
                 <Tooltip title={style.name} placement="bottom">
                   <Avatar

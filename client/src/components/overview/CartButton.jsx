@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import clsx from 'clsx';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -11,6 +12,12 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
+import Snackbar from '@material-ui/core/Snackbar';
+import SnackbarContent from '@material-ui/core/SnackbarContent';
+import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+import { green } from '@material-ui/core/colors';
+import IconButton from '@material-ui/core/IconButton';
+import CloseIcon from '@material-ui/icons/Close';
 // React Components
 import ShareButton from './ShareButton.jsx';
 
@@ -46,7 +53,55 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '100%',
     objectFit: 'cover',
   },
+  success: {
+    backgroundColor: green[600],
+  },
+  icon: {
+    fontSize: 20,
+  },
+  iconVariant: {
+    opacity: 0.9,
+    marginRight: theme.spacing(1),
+  },
+  message: {
+    display: 'flex',
+    alignItems: 'center',
+  },
 }));
+
+const variantIcon = {
+  success: CheckCircleIcon,
+};
+
+const SnackBarContentWrapper = props => {
+  const classes = useStyles();
+
+  const { className, message, onClose, variant, ...other } = props;
+  const Icon = variantIcon[variant];
+
+  return (
+    <SnackbarContent
+      className={clsx(classes[variant], className)}
+      aria-describedby="client-snackbar"
+      message={
+        <span id="client-snackbar" className={classes.message}>
+          <Icon className={clsx(classes.icon, classes.iconVariant)} />
+          {message}
+        </span>
+      }
+      action={[
+        <IconButton
+          key="close"
+          aria-label="Close"
+          color="inherit"
+          onClick={onClose}>
+          <CloseIcon className={classes.icon} />
+        </IconButton>,
+      ]}
+      {...other}
+    />
+  );
+};
 
 const CartButton = props => {
   const classes = useStyles();
@@ -59,6 +114,19 @@ const CartButton = props => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const [snackOPen, setSnackOpen] = useState(false);
+
+  const handleSnackClick = () => {
+    setSnackOpen(true);
+  };
+
+  const handleSnackClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackOpen(false);
   };
 
   return (
@@ -122,9 +190,23 @@ const CartButton = props => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Go Back</Button>
-          <Button onClick={handleClose} className={classes.confirm}>
-            Add
+          <Button onClick={handleSnackClick} className={classes.confirm}>
+            Add to Cart
           </Button>
+          <Snackbar
+            anchorOrigin={{
+              vertical: 'bottom',
+              horizontal: 'right',
+            }}
+            open={snackOPen}
+            autoHideDuration={6000}
+            onClose={handleSnackClose}>
+            <SnackBarContentWrapper
+              onClose={handleSnackClose}
+              variant="success"
+              message="Successfully added to cart!"
+            />
+          </Snackbar>
         </DialogActions>
       </Dialog>
       <ShareButton />
