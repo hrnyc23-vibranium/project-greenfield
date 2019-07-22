@@ -1,24 +1,13 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
-  textField: {
-    width: 500
-  }
-}));
+import { useStyles } from './inputStyle.js';
 
-const ReviewBody = ({ form, setForm }) => {
-  const handleChange = e => {
-    e.persist();
-    setForm(prevState => {
-      return { ...prevState, body: e.target.value };
-    });
-  };
-
+const ReviewBody = ({ body, handleChange }) => {
   const minReqChars = () => {
-    let remainingChars = 50 - form.body.length;
+    let remainingChars = 50 - body.length;
     return remainingChars > 0
       ? `Minimum required characters left: ${remainingChars}`
       : 'Minimum reached';
@@ -26,7 +15,8 @@ const ReviewBody = ({ form, setForm }) => {
 
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <Box>
+      <h4>Review Body*</h4>
       <TextField
         className={classes.textField}
         inputProps={{ maxLength: 1000 }}
@@ -34,10 +24,11 @@ const ReviewBody = ({ form, setForm }) => {
         onChange={handleChange}
         placeholder="Why did you like the product or not"
         required={true}
-        value={form.body}
+        value={body}
+        name="body"
       />
-      <span>{minReqChars()}</span>
-    </React.Fragment>
+      <Box className={classes.description}>{minReqChars()}</Box>
+    </Box>
   );
 };
 

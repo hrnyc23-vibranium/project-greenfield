@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
+import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -16,72 +17,74 @@ const descriptions = {
     '1/2 a size too small',
     'Perfect',
     '1/2 a size too big',
-    'A size too wide'
+    'A size too wide',
   ],
   Length: [
     'Too narrow',
     'Slightly narrow',
     'Perfect',
     'Slightly wide',
-    'Too wide'
+    'Too wide',
   ],
   Comfort: [
     'Uncomfortable',
     'Slightly uncomfortable',
     'Ok',
     'Comfortable',
-    'Perfect'
+    'Perfect',
   ],
   Quality: [
     'Poor',
     'Below average',
     'What I expected',
     'Pretty great',
-    'Perfect'
-  ]
+    'Perfect',
+  ],
 };
 
 const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex'
-  },
-  formControl: {
-    margin: theme.spacing(0)
+  category: {
+    margin: theme.spacing(0),
+    fontSize: 15,
+    fontWeight: 'bold',
   },
   group: {
-    margin: theme.spacing(2, 0)
+    margin: theme.spacing(1, 0),
+    marginBottom: theme.spacing(4),
   },
   col: {
     margin: theme.spacing(0),
-    width: 120
-  }
+    width: 80,
+    alignContent: 'center',
+  },
+  label: {
+    fontSize: 13,
+    textAlign: 'center',
+  },
 }));
 
 const Characteristics = ({ form, setForm, characteristics }) => {
-  // console.log(characteristics);
   const handleChange = e => {
     setForm(prevState => {
-      return { ...prevState, [e.target.name]: e.target.value };
+      prevState.characteristics[e.target.name] = e.target.value;
+      return { ...prevState };
     });
   };
   //for each characteristic, render out all 5 characteristics and it's corresponding label
   const classes = useStyles();
   return (
-    <div>
+    <Box>
+      <h4>Characteristics*</h4>
       {Object.keys(characteristics).map(character => {
         let description = descriptions[character];
         return (
-          <FormControl
-            component="fieldset"
-            key={character}
-            className={classes.formControl}
-          >
-            <FormLabel component="legend">
-              {character}: {form[character]}
+          <FormControl component="fieldset" key={character}>
+            <FormLabel className={classes.category} asterick="true" required>
+              {character}: {form.characteristics[character] || 'None selected:'}
             </FormLabel>
             <RadioGroup
               name={character}
-              value={form[character] || ''}
+              value={form.characteristics[character] || ''}
               onChange={handleChange}
               row
               className={classes.group}
@@ -91,7 +94,11 @@ const Characteristics = ({ form, setForm, characteristics }) => {
                   <FormControlLabel
                     value={description[num]}
                     control={<Radio color="primary" />}
-                    label={num === 1 || num === 3 ? '' : description[num]}
+                    label={
+                      <Typography className={classes.label}>
+                        {num === 1 || num === 3 ? '' : description[num]}
+                      </Typography>
+                    }
                     labelPlacement="bottom"
                     key={num}
                     className={classes.col}
@@ -102,12 +109,12 @@ const Characteristics = ({ form, setForm, characteristics }) => {
           </FormControl>
         );
       })}
-    </div>
+    </Box>
   );
 };
 
 let mapStateToProps = state => ({
-  characteristics: state.metaInfo.characteristics
+  characteristics: state.metaInfo.characteristics,
 });
 
 export default connect(

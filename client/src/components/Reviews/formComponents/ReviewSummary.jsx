@@ -1,32 +1,24 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
-  textField: {
-    width: 400
-  }
-}));
-const ReviewSummary = ({ form, setForm }) => {
-  const handleChange = e => {
-    e.persist();
-    setForm(prevState => {
-      return { ...prevState, summary: e.target.value };
-    });
-  };
+import { useStyles } from './inputStyle.js';
 
+const ReviewSummary = ({ summary, handleChange }) => {
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <Box>
+      <h4>Review Summary</h4>
       <TextField
         placeholder="Example: Best purchase ever!"
         className={classes.textField}
-        value={form.summary}
+        value={summary}
         onChange={handleChange}
         inputProps={{ maxLength: 60 }}
+        name="summary"
       />
-    </React.Fragment>
+    </Box>
   );
 };
 

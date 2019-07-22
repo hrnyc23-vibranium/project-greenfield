@@ -1,35 +1,29 @@
 import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 
-const useStyles = makeStyles(theme => ({
-  textField: {
-    width: 400
-  }
-}));
+import { useStyles } from './inputStyle.js';
 
-const Email = ({ form, setForm }) => {
+const Email = ({ email, handleChange }) => {
   const classes = useStyles();
 
-  const handleChange = e => {
-    e.persist();
-    setForm(prevState => {
-      return { ...prevState, email: e.target.value };
-    });
-  };
-
   return (
-    <React.Fragment>
+    <Box>
+      <h4>Your email*</h4>
       <TextField
         className={classes.textField}
         inputProps={{ maxLength: 60 }}
         onChange={handleChange}
         placeholder="Why did you like the product or not"
         required
+        name="email"
+        value={email}
       />
-      <span>For authentication reasons, you will not be emailed</span>
-    </React.Fragment>
+      <Box className={classes.description}>
+        For authentication reasons, you will not be emailed
+      </Box>
+    </Box>
   );
 };
 

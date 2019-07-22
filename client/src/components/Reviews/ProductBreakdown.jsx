@@ -1,11 +1,25 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
+
+//Material UI Components
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
+//React Components
 import * as actions from '../../actions/Reviews/getData.js';
-class ProductBreakdown extends Component {
-  renderLabel(category) {
+
+const useStyles = makeStyles(theme => ({
+  category: {
+    marginBottom: theme.spacing(2),
+  },
+}));
+
+const ProductBreakdown = props => {
+  const { breakdown } = props;
+  const classes = useStyles();
+
+  const renderLabel = category => {
     if (category === 'Fit' || category === 'Length') {
       return (
         <label htmlFor="tickmarks">
@@ -25,47 +39,40 @@ class ProductBreakdown extends Component {
         </Grid>
       </label>
     );
-  }
+  };
 
-  renderBreakdown(breakdown) {
-    return Object.keys(breakdown).map(category => {
-      let number = Number(breakdown[category]) * 10;
-      return (
-        <div key={category}>
-          <br />
-          {category}
-          <div>
-            <input
-              type="range"
-              min="0"
-              max="50"
-              readOnly
-              className="slider"
-              list="tickmarks"
-              value={number}
-            />
-            {this.renderLabel(category)}
-          </div>
-        </div>
-      );
-    });
-  }
+  return breakdown ? (
+    <Box>
+      {Object.keys(breakdown).map(category => {
+        let number = Number(breakdown[category]) * 10;
+        return (
+          <Box key={category} className={classes.category}>
+            <span>{category}</span>
 
-  render() {
-    const { breakdown } = this.props;
-    return breakdown ? (
-      <React.Fragment>
-        ProductBreakdown
-        {this.renderBreakdown(breakdown)}
-      </React.Fragment>
-    ) : (
-      <div>Loading...</div>
-    );
-  }
-}
+            <Box>
+              <input
+                type="range"
+                min="0"
+                max="50"
+                readOnly
+                className="slider"
+                list="tickmarks"
+                value={number}
+              />
+
+              {renderLabel(category)}
+            </Box>
+          </Box>
+        );
+      })}
+    </Box>
+  ) : (
+    <div>Loading...</div>
+  );
+};
 
 let mapStateToProps = state => ({
-  breakdown: state.metaInfo.characteristics
+  breakdown: state.metaInfo.characteristics,
 });
 
 export default connect(
