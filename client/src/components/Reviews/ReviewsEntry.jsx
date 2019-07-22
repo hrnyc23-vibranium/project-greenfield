@@ -27,6 +27,13 @@ const useStyles = makeStyles(theme => ({
     width: 100,
     height: 100,
   },
+  recommend: {
+    marginBottom: theme.spacing(3),
+  },
+  check: {
+    fontSize: 20,
+    marginRight: theme.spacing(1),
+  },
   response: {
     display: 'block',
     background: '#D9D9D9',
@@ -77,7 +84,14 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
   };
 
   const renderRecommend = recommend => {
-    return recommend ? <span>I recommend this product</span> : '';
+    return recommend ? (
+      <Box className={classes.recommend} component="span">
+        <span className={classes.check}>&#10003;</span>
+        <span className={classes.recommendBody}>I recommend this product</span>
+      </Box>
+    ) : (
+      ''
+    );
   };
 
   const renderResponse = response => {
