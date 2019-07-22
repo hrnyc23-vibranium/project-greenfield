@@ -12,11 +12,6 @@ import Product from './Product.jsx';
 import Features from './Features.jsx';
 
 class Overview extends Component {
-  // componentDidMount() {
-  //   this.props.getProduct(this.props.id);
-  //   this.props.getProductStyles(this.props.id);
-  // }
-
   componentDidUpdate(prevProps) {
     if (this.props.id !== prevProps.id) {
       this.props.getProduct(this.props.id);
@@ -25,9 +20,7 @@ class Overview extends Component {
   }
 
   render() {
-    const product = this.props.product;
-    const styles = this.props.styles;
-    const id = this.props.id;
+    const { product, styles, id, ratings, totalReviews } = this.props;
     return (
       <Box>
         <Header />
@@ -40,7 +33,13 @@ class Overview extends Component {
             </Link>
           </Typography>
         </Grid>
-        <Product styles={styles} product={product} id={id} />
+        <Product
+          styles={styles}
+          product={product}
+          id={id}
+          ratings={ratings}
+          totalReviews={totalReviews}
+        />
         <Grid container direction="row" justify="space-between">
           <Features
             slogan={product.slogan}

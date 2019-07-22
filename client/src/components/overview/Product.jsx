@@ -1,22 +1,13 @@
 import React, { useState, useEffect, Fragment } from 'react';
 // Material UI Components
-import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
 // React Components
 import Carousel from './Carousel.jsx';
 import StyleList from './StyleList.jsx';
-
-const useStyles = makeStyles(theme => ({
-  progress: {
-    margin: theme.spacing(1),
-  },
-}));
+import StarRating from './StarRating.jsx';
 
 const Product = props => {
-  const classes = useStyles();
-
   const [styles, setStyles] = useState(props.styles);
   const [currStyleIndex, setCurrStyleIndex] = useState(0);
 
@@ -40,9 +31,7 @@ const Product = props => {
             direction="column"
             justify="space-around"
             alignContent="space-around">
-            <Link href={'#'} color="inherit" variant="body2" underline="always">
-              Read All 26 Reviews
-            </Link>
+            <StarRating />
             <Typography variant="overline" gutterBottom>
               {props.product.category}
             </Typography>
