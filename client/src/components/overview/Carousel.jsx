@@ -7,8 +7,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import IconButton from '@material-ui/core/IconButton';
 import NextArrow from '@material-ui/icons/KeyboardArrowRightRounded';
 import BackArrow from '@material-ui/icons/KeyboardArrowLeftRounded';
-import clsx from 'clsx';
-import { style } from '@material-ui/system';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     width: '99%',
-    height: '750px',
+    height: '75vh',
     backgroundColor: '#E0E0E0',
     marginTop: theme.spacing(1),
   },
@@ -87,25 +85,14 @@ const Carousel = props => {
 
   const [id, setId] = useState(classes.img);
 
-  const [coordinates, setCoordinates] = useState({ x: 0, y: 0 });
-  const [offset, setOffset] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ backgroundPosition: '0% 0%' });
 
-  const renderZoom = event => {
-    setCoordinates({ x: event.screenX, y: event.screenY });
-  };
-
-  const renderOffset = event => {
-    setOffset({ x: -event.nativeEvent.offsetX, y: -event.nativeEvent.offsetY });
-  };
-
-  const [style, setStyle] = useState({
-    backgroundPositionX: 0,
-    backgroundPositionY: 0,
-  });
-
-  const renderStyle = () => {
+  const handleMouseMove = e => {
     setId(classes.imgZoomed);
-    setStyle({ backgroundPositionX: offset.x, backgroundPositionY: offset.y });
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setPosition({ backgroundPosition: `${x}% ${y}%` });
   };
 
   return (
@@ -128,11 +115,8 @@ const Carousel = props => {
           </Box>
           <Box
             className={classes.imgBox}
-            style={style}
-            onMouseMove={e => {
-              renderOffset(e);
-              renderStyle();
-            }}
+            onMouseMove={handleMouseMove}
+            style={position}
             onMouseOut={() => {
               setId(classes.img);
             }}>
@@ -144,9 +128,6 @@ const Carousel = props => {
                   setClick(!click);
                   changeColumns();
                   props.changeSize(imgColumns, styleColumns);
-                }}
-                onMouseMove={e => {
-                  renderStyle();
                 }}
               />
             ) : (
