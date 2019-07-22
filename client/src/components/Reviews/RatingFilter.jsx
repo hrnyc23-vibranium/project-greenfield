@@ -21,7 +21,10 @@ class RatingFilter extends Component {
   renderRecommended(totalReviews) {
     const { recommended } = this.props;
 
-    let normalized = this.normalizeRecommended(recommended[0], totalReviews);
+    let normalized = this.normalizeRecommended(
+      recommended[1] || 0,
+      totalReviews
+    );
     return <div>{normalized}% of reviews recommend this product</div>;
   }
 

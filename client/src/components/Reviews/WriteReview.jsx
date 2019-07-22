@@ -64,6 +64,7 @@ const WriteReview = props => {
 
     if (!errorList) {
       props.submitForm(form);
+      setOpen(false);
     }
 
     //show snackbar
