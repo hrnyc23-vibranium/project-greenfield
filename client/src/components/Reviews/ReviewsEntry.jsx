@@ -10,6 +10,7 @@ import Button from '@material-ui/core/Button';
 import * as actions from '../../actions/Reviews/updateHelpful.js';
 import { formatDate } from '../formatDate.js';
 import Ratings from '../Ratings.jsx';
+import ImageGallery from '../ImageGallery.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -74,11 +75,7 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
     if (photos.length > 0) {
       return (
         <Box className={classes.images}>
-          {photos.map(photo => {
-            return (
-              <img key={photo.id} src={photo.url} className={classes.image} />
-            );
-          })}
+          <ImageGallery photos={photos} />
         </Box>
       );
     }
