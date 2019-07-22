@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import NextArrow from '@material-ui/icons/KeyboardArrowRightRounded';
 import BackArrow from '@material-ui/icons/KeyboardArrowLeftRounded';
+import Slide from '@material-ui/core/Slide';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -50,14 +51,16 @@ const Carousel = props => {
           <BackArrow />
         </IconButton>
       </Box>
-      {props.styles.results ? (
-        <img
-          src={props.styles.results[0].photos[index].url}
-          className={classes.img}
-        />
-      ) : (
-        <CircularProgress className={classes.progress} />
-      )}
+      <Slide direction="left" in={true} mountOnEnter unmountOnExit>
+        {props.styles.results ? (
+          <img
+            src={props.styles.results[props.index].photos[index].url}
+            className={classes.img}
+          />
+        ) : (
+          <CircularProgress className={classes.progress} />
+        )}
+      </Slide>
       <Box className={classes.arrow}>
         <IconButton
           onClick={() => {

@@ -19,23 +19,21 @@ const Product = props => {
   const classes = useStyles();
 
   const [styles, setStyles] = useState(props.styles);
-  const [currStyle, setCurrStyle] = useState(
-    'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=668&q=80'
-  );
+  const [currStyleIndex, setCurrStyleIndex] = useState(0);
 
   useEffect(() => {
     setStyles(props.styles);
   });
 
-  const changeCurrStyle = style => {
-    setCurrStyle(style);
+  const changeCurrStyle = index => {
+    setCurrStyleIndex(index);
   };
 
   return (
     <Fragment>
       <Grid container direction="row">
         <Grid item md={12} lg={8}>
-          <Carousel styles={styles} img={currStyle} />
+          <Carousel styles={styles} index={currStyleIndex} />
         </Grid>
         <Grid item md={12} lg={4} style={{ marginTop: 5 }}>
           <Grid
