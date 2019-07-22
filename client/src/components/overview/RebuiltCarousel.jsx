@@ -11,11 +11,18 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Image from './Image.jsx';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    display: 'flex',
+    flexWrap: 'nowrap',
+    width: '99%',
+    height: '75vh',
+    backgroundColor: '#E0E0E0',
+  },
   slider: {
     position: 'relative',
     width: 500,
     margin: '0 auto',
-    height: 500,
+    height: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
   },
@@ -55,11 +62,9 @@ const RebuiltCarousel = props => {
 
   useEffect(() => {
     if (props.styles.results) {
-      setImages(props.styles.results[0].photos);
+      setImages(props.styles.results[props.index].photos);
     }
   });
-
-  console.log('images', images);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -84,34 +89,55 @@ const RebuiltCarousel = props => {
   };
 
   const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-400').clientWidth;
+    return document.querySelector('.makeStyles-slide-401').clientWidth;
+  };
+
+  const [click, setClick] = useState(false);
+
+  const [imgColumns, setImgColumns] = useState(8);
+  const [styleColumns, setStyleColumns] = useState(4);
+
+  const changeColumns = () => {
+    if (click === true) {
+      setImgColumns(8);
+      setStyleColumns(4);
+    } else {
+      setImgColumns(12);
+      setStyleColumns(0);
+    }
   };
 
   return (
-    <div className={classes.slider}>
-      <IconButton
-        className={clsx(classes.arrow, classes.backArrow)}
-        onClick={goToPreviousSlide}>
-        <BackArrow />
-      </IconButton>
-      <div
-        className={classes.sliderWrapper}
-        style={{
-          transform: `translateX(${translateValue}px)`,
-          transition: 'transform ease-out 0.45s',
-        }}>
-        {images ? (
-          images.map((image, i) => <Image key={i} image={image.url} />)
-        ) : (
-          <CircularProgress className={classes.progress} />
-        )}
+    <div className={classes.root}>
+      <div className={classes.slider}>
+        <IconButton
+          className={clsx(classes.arrow, classes.backArrow)}
+          onClick={goToPreviousSlide}>
+          <BackArrow />
+        </IconButton>
+        <div
+          className={classes.sliderWrapper}
+          style={{
+            transform: `translateX(${translateValue}px)`,
+            transition: 'transform ease-out 0.45s',
+          }}
+          onClick={() => {
+            setClick(!click);
+            changeColumns();
+            props.changeSize(imgColumns, styleColumns);
+          }}>
+          {images ? (
+            images.map((image, i) => <Image key={i} image={image.url} />)
+          ) : (
+            <CircularProgress className={classes.progress} />
+          )}
+        </div>
+        <IconButton
+          className={clsx(classes.arrow, classes.nextArrow)}
+          onClick={goToNextSlide}>
+          <NextArrow />
+        </IconButton>
       </div>
-      <IconButton
-        className={clsx(classes.arrow, classes.nextArrow)}
-        onClick={goToNextSlide}>
-        <NextArrow />
-      </IconButton>
-      <h1>render something</h1>
     </div>
   );
 };

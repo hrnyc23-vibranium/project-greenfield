@@ -3,8 +3,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 // React Components
-import Carousel from './Carousel.jsx';
-import Carousel2 from './RebuiltCarousel.jsx';
+import Carousel from './RebuiltCarousel.jsx';
 import StyleList from './StyleList.jsx';
 import StarRating from './StarRating.jsx';
 
@@ -32,12 +31,11 @@ const Product = props => {
     <Fragment>
       <Grid container direction="row">
         <Grid item md={12} lg={imgColumns}>
-          {/* <Carousel
+          <Carousel
             styles={styles}
             index={currStyleIndex}
             changeSize={changeGridSize}
-          /> */}
-          <Carousel2 styles={styles} index={currStyleIndex} />
+          />
         </Grid>
         <Grid item md={12} lg={styleColumns} style={{ marginTop: 5 }}>
           <Grid
