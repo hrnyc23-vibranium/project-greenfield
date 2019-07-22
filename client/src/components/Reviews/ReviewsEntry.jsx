@@ -68,7 +68,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ReviewsEntry = ({ review, updateHelpful }) => {
+const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
   const classes = useStyles();
 
   const renderPhotos = photos => {
@@ -107,6 +107,10 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
     updateHelpful(reviewId);
   };
 
+  const handleReport = reviewId => {
+    updateReport(reviewId);
+  };
+
   return (
     <Box className={classes.root}>
       <Grid container direct="row" justify="space-between">
@@ -133,7 +137,11 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
         >
           Yes ({review.helpfulness})
         </Button>
-        <Button component="span" className={classes.button}>
+        <Button
+          component="span"
+          className={classes.button}
+          onClick={handleReport.bind(this, review.review_id)}
+        >
           Report
         </Button>
       </Box>
