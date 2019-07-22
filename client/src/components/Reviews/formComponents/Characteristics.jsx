@@ -72,7 +72,7 @@ const Characteristics = ({ form, setForm, characteristics }) => {
   };
   //for each characteristic, render out all 5 characteristics and it's corresponding label
   const classes = useStyles();
-  return (
+  return Object.values(characteristics)[0] ? (
     <Box>
       <h4>Characteristics*</h4>
       {Object.keys(characteristics).map(character => {
@@ -110,6 +110,8 @@ const Characteristics = ({ form, setForm, characteristics }) => {
         );
       })}
     </Box>
+  ) : (
+    ''
   );
 };
 
