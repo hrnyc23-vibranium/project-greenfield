@@ -51,7 +51,10 @@ const Carousel = props => {
         </IconButton>
       </Box>
       {props.styles.results ? (
-        <img src={props.img} className={classes.img} />
+        <img
+          src={props.styles.results[0].photos[index].url}
+          className={classes.img}
+        />
       ) : (
         <CircularProgress className={classes.progress} />
       )}
