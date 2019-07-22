@@ -91,7 +91,6 @@ const WriteReview = props => {
 
 let mapStateToProps = state => ({
   product: state.product,
-  // form: state.reviewForm
 });
 
 export default connect(

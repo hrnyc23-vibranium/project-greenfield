@@ -9,9 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles(theme => ({
-  selected: {
-    padding: theme.spacing(0),
-  },
+  selected: {},
 }));
 
 //update list based on selected sort
