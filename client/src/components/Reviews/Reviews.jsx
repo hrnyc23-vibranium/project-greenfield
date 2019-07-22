@@ -6,7 +6,8 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-
+import SvgIcon from '@material-ui/core/SvgIcon';
+import Add from '@material-ui/icons/Add';
 // React Components
 import Meta from './Meta.jsx';
 import ReviewsList from './ReviewsList.jsx';
@@ -20,9 +21,20 @@ const useStyles = makeStyles(theme => ({
   },
   buttons: {
     margin: theme.spacing(5, 0),
+    fontSize: 25,
   },
   moreButton: {
     marginRight: theme.spacing(2),
+    fontSize: 20,
+  },
+  addButton: {
+    fontSize: 20,
+  },
+  plus: {
+    marginLeft: theme.spacing(2),
+    marginTop: theme.spacing(1),
+    width: 25,
+    height: 25,
   },
 }));
 
@@ -56,8 +68,16 @@ const Reviews = props => {
     );
 
     let addButton = (
-      <Button size="large" variant="outlined" onClick={handleOpen.bind(this)}>
-        ADD A REVIEW +
+      <Button
+        size="large"
+        variant="outlined"
+        onClick={handleOpen.bind(this)}
+        className={classes.addButton}
+      >
+        ADD A REVIEW
+        <span>
+          <Add className={classes.plus} />
+        </span>
       </Button>
     );
 
@@ -84,6 +104,7 @@ const Reviews = props => {
           <ReviewsList />
           <Box className={classes.buttons}>
             {renderButtons()}
+
             <Dialog
               open={props.open}
               onClose={handleClose}
