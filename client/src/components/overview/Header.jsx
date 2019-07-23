@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 // Material UI Components
 import List from '@material-ui/core/List';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import AppBar from '@material-ui/core/AppBar';
@@ -44,6 +45,9 @@ const useStyles = makeStyles(theme => ({
     ...theme.mixins.toolbar,
     justifyContent: 'flex-end',
   },
+  menuItems: {
+    marginLeft: theme.spacing(1.5),
+  },
   title: {
     flexGrow: 1,
     display: 'none',
@@ -65,6 +69,7 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
     },
   },
+
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -172,35 +177,69 @@ const Header = () => {
         </div>
         <Divider />
         <List>
+          <ListSubheader>Jackets</ListSubheader>
           <ListItemLink href={'1'}>
-            <ListItemText primary="Camo Onesie" />
+            <ListItemText className={classes.menuItems} primary="Camo Onesie" />
           </ListItemLink>
-          <ListItemLink href={'2'}>
-            <ListItemText primary="Bright Future Sunglasses" />
-          </ListItemLink>
+          <ListSubheader>Pants</ListSubheader>
           <ListItemLink href={'3'}>
-            <ListItemText primary="Morning Joggers" />
+            <ListItemText
+              className={classes.menuItems}
+              primary="Morning Joggers"
+            />
           </ListItemLink>
           <ListItemLink href={'4'}>
-            <ListItemText primary="Slacker's Slacks" />
+            <ListItemText
+              className={classes.menuItems}
+              primary="Slacker's Slacks"
+            />
           </ListItemLink>
+          <ListSubheader>Shoes</ListSubheader>
           <ListItemLink href={'5'}>
-            <ListItemText primary="Heir Force Ones" />
+            <ListItemText
+              className={classes.menuItems}
+              primary="Heir Force Ones"
+            />
           </ListItemLink>
           <ListItemLink href={'6'}>
-            <ListItemText primary="Pumped Up Kicks" />
+            <ListItemText
+              className={classes.menuItems}
+              primary="Pumped Up Kicks"
+            />
           </ListItemLink>
           <ListItemLink href={'7'}>
-            <ListItemText primary="Blues Suede Shoes" />
+            <ListItemText
+              className={classes.menuItems}
+              primary="Blues Suede Shoes"
+            />
           </ListItemLink>
           <ListItemLink href={'8'}>
-            <ListItemText primary="YEasy 350" />
+            <ListItemText className={classes.menuItems} primary="YEasy 350" />
           </ListItemLink>
           <ListItemLink href={'9'}>
-            <ListItemText primary="Summer Shoes" />
+            <ListItemText
+              className={classes.menuItems}
+              primary="Summer Shoes"
+            />
+          </ListItemLink>
+          <ListItemLink href={'11'}>
+            <ListItemText
+              className={classes.menuItems}
+              primary="Air Minis 250"
+            />
+          </ListItemLink>
+          <ListSubheader>Accessories</ListSubheader>
+          <ListItemLink href={'2'}>
+            <ListItemText
+              className={classes.menuItems}
+              primary="Bright Future Sunglasses"
+            />
           </ListItemLink>
           <ListItemLink href={'10'}>
-            <ListItemText primary="Infinity Stone" />
+            <ListItemText
+              className={classes.menuItems}
+              primary="Infinity Stone"
+            />
           </ListItemLink>
         </List>
       </Drawer>
