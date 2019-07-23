@@ -5,7 +5,7 @@ import Box from '@material-ui/core/Box';
 
 import { useStyles } from './inputStyle.js';
 
-const ReviewBody = ({ body, handleChange }) => {
+const ReviewBody = ({ body, handleChange, error }) => {
   const minReqChars = () => {
     let remainingChars = 50 - body.length;
     return remainingChars > 0
@@ -16,7 +16,9 @@ const ReviewBody = ({ body, handleChange }) => {
   const classes = useStyles();
   return (
     <Box>
-      <h4>Review Body*</h4>
+      <h4 className={error ? classes.titleError : classes.title}>
+        Review Body*
+      </h4>
       <TextField
         className={classes.textField}
         inputProps={{ maxLength: 1000 }}
@@ -26,6 +28,7 @@ const ReviewBody = ({ body, handleChange }) => {
         required={true}
         value={body}
         name="body"
+        error={error}
       />
       <Box className={classes.description}>{minReqChars()}</Box>
     </Box>
