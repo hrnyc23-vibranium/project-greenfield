@@ -8,9 +8,9 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box';
 import CheckCircle from '@material-ui/icons/CheckCircle';
+import { green } from '@material-ui/core/colors';
 // React Components
 import Selectors from './Selectors.jsx';
 
@@ -21,31 +21,26 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
   },
-  image: {
-    position: 'relative',
-    width: 100,
-    height: 'auto',
-    overflow: 'hidden',
-  },
   avatar: {
     marginRight: theme.spacing(1),
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(5),
     width: 80,
     height: 80,
+    cursor: 'pointer',
   },
   progress: {
     margin: theme.spacing(1),
   },
   sale: {
-    color: 'red',
+    color: theme.palette.error.dark,
     marginLeft: theme.spacing(1),
   },
   checkmark: {
-    color: 'green',
+    color: green[600],
     position: 'absolute',
-    top: 7,
-    right: 20,
+    top: 4,
+    right: 44,
   },
 }));
 
@@ -60,7 +55,6 @@ const StyleList = props => {
   const [cartImage, setCartImage] = useState(
     'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
   );
-  const [selected, setSelected] = useState('none');
 
   const renderPrice = () => {
     if (salePrice !== '0') {
@@ -95,17 +89,8 @@ const StyleList = props => {
     }
   };
 
-  const changeSelected = (selectedName, stateName) => {
-    if (selectedName === stateName) {
-      setSelected('inline');
-      console.log('return');
-      return 'returning';
-      // <Box display={selected}>
-      //   <CheckCircle className={classes.checkmark} />
-      // </Box>
-    } else {
-      setSelected('none');
-    }
+  const styles = {
+    boxShadow: '2px 2px 5px rgb(0, 0, 66)',
   };
 
   return (
@@ -122,27 +107,28 @@ const StyleList = props => {
               <GridListTile
                 key={style.style_id}
                 cols={1}
-                onClick={() => {
+                onClick={e => {
                   setStyle(style.name);
                   setPrice(style.original_price);
                   setSkus(style.skus);
                   setSalePrice(style.sale_price);
                   setCartImage(style.photos[0].thumbnail_url);
                   changeCurrPrice(style.original_price, style.sale_price);
-                  changeSelected(style.name, currentStyle);
                   props.changeStyle(i);
                 }}>
                 <Box>
-                  <Box display="none">
-                    <CheckCircle className={classes.checkmark} />
-                  </Box>
                   <Tooltip title={style.name} placement="bottom">
                     <Avatar
                       alt={style.name}
                       src={style.photos[0].thumbnail_url}
                       className={classes.avatar}
+                      // style={currentStyle === style.name ? styles : null}
                     />
                   </Tooltip>
+                  <Box
+                    display={currentStyle === style.name ? 'inline' : 'none'}>
+                    <CheckCircle className={classes.checkmark} />
+                  </Box>
                 </Box>
               </GridListTile>
             ))
