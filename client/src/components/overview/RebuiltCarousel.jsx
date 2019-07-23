@@ -4,8 +4,8 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
-import BackArrow from '@material-ui/icons/KeyboardArrowLeftRounded';
-import NextArrow from '@material-ui/icons/KeyboardArrowRightRounded';
+import BackArrow from '@material-ui/icons/ArrowBack';
+import NextArrow from '@material-ui/icons/ArrowForward';
 import CircularProgress from '@material-ui/core/CircularProgress';
 // React Components
 import Image from './Image.jsx';
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   slider: {
     position: 'relative',
-    width: 750,
+    width: '75%',
     margin: '0 auto',
     height: 'auto',
     overflow: 'hidden',

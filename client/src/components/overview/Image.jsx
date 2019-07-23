@@ -1,5 +1,4 @@
-import React, { Fragment, useState } from 'react';
-import Grid from '@material-ui/core/Grid';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -12,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     height: '100%',
     width: '100%',
-    transform: 'scale(1.8)',
+    transform: 'scale(2.5)',
   },
 }));
 
@@ -42,11 +41,10 @@ const Image = ({ image }) => {
       className={zoom}
       style={styles}
       onMouseMove={handleMouseMove}
-      onMouseEnter={() => {
+      onMouseOver={() => {
         setZoom(classes.slideZoomed);
-        setOpacity(classes.imgHover);
       }}
-      onMouseLeave={() => {
+      onMouseOut={() => {
         setZoom(classes.slide);
       }}
     />
