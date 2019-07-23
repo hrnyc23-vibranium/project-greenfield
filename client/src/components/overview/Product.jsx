@@ -3,7 +3,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 // React Components
-import Carousel from './Carousel.jsx';
+import Carousel from './RebuiltCarousel.jsx';
 import StyleList from './StyleList.jsx';
 import StarRating from './StarRating.jsx';
 
