@@ -13,12 +13,12 @@ class Answers extends React.Component {
     this.getAnswers();
   }
 
-  getAnswers(page = 1, count = 2) {
+  getAnswers(page = 1, count = 2, keyword = null) {
     axios
       .get(
         `http://18.222.40.124/qa/${
           this.props.questionId
-        }/answers?page=${page}&count=${count}`
+        }/answers?page=${page}&count=${count}&body=${keyword}`
       )
       .then(res => {
         this.setState({ answers: res.data.results });

@@ -49,6 +49,9 @@
   padding: 20px 0;
   max-width: 960px;
 }
+.seller {
+  font-weight: 700;
+}
 .fade {
   background-color: darkgray;
   padding-top: 30px;
@@ -59,6 +62,19 @@
   display: relative;
 }
 
+.MuiButton-sizeSmall {
+  margin-top: -4px !important;
+  /* padding-top: 0 !important; */
+  background: none;
+  text-transform: capitalize !important;
+  text-decoration: underline !important;
+}
+.MuiButton-sizeSmall:hover {
+  background: none !important;
+  text-decoration: underline !important;
+}
+
+/* =======================Image Gallery and Uploader==================== */
 #gallery {
   width: 800px;
   height: 600px;
@@ -84,14 +100,6 @@
   left: 10px;
 }
 
-.MuiButton-sizeSmall {
-  margin-top: -4px !important;
-  /* padding-top: 0 !important; */
-  background: none;
-  text-transform: capitalize !important;
-  text-decoration: underline !important;
-}
-.MuiButton-sizeSmall:hover {
-  background: none !important;
-  text-decoration: underline !important;
+#ImageUploader {
+  padding-top: 10px;
 }

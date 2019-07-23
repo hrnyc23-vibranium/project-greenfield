@@ -3,6 +3,8 @@ import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 
 //React Components
+import UploadImage from '../UploadImage';
+//import * as filestack from 'filestack-js';
 
 //Material Componenet
 import {
@@ -25,11 +27,9 @@ const AnswerForm = ({ product, question, answer }) => {
   function handleClickOpen() {
     setOpen(true);
   }
-
   function handleClose() {
     setOpen(false);
   }
-
   return (
     <Fragment>
       <Button size="small" onClick={handleClickOpen}>
@@ -74,16 +74,15 @@ const AnswerForm = ({ product, question, answer }) => {
               placeholder="Why did you like the product or not"
               helperText="For authentication reasons, you will not be emailed"
             />
+            <UploadImage />
           </form>
         </DialogContent>
         <DialogActions>
           <Grid container justify="flex-end">
-            <Button onClick={handleClose} variant="contained" color="secondary">
+            <Button onClick={handleClose} color="secondary">
               cancel
             </Button>
-            <Button onClick={handleClose} variant="contained">
-              Submit
-            </Button>
+            <Button onClick={handleClose}>Submit</Button>
           </Grid>
         </DialogActions>
       </Dialog>
