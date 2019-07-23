@@ -2,7 +2,7 @@ const emailIsValid = email => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };
 
-export const validate = (form, component) => {
+export const validate = (form, component, categories) => {
   let errors = {};
 
   if (component === 'reviews') {
@@ -18,8 +18,14 @@ export const validate = (form, component) => {
 
     if (!emailIsValid(form.email)) errors.email = 'a valid email address';
 
+    //if given characteristics is not equal to product characteristics, add error
+    if (
+      Object.keys(form.characteristics).length !==
+      Object.keys(categories).length
+    )
+      errors.characteristics = 'valid characteristic(s)';
+
     //check if characteristics exist
-    //check if images are valid
   } else {
     if (!form.question) errors.question = 'a question';
 
@@ -27,6 +33,5 @@ export const validate = (form, component) => {
 
     if (!emailIsValid(form.email)) errors.email = 'a valid email address';
   }
-  console.log(Object.keys(errors));
   return Object.keys(errors).length ? errors : false;
 };

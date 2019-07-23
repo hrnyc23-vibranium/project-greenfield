@@ -58,7 +58,7 @@ const descriptions = {
 
 const useStyles = makeStyles(theme => ({
   titleError: {
-    color: 'red',
+    color: theme.palette.error.dark,
   },
   category: {
     margin: theme.spacing(0),
@@ -102,7 +102,7 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
 
         return (
           <FormControl component="fieldset" key={character}>
-            <FormLabel className={classes.category} asterick="true" required>
+            <FormLabel className={classes.category}>
               {character}: {form.characteristics[character] || 'None selected:'}
             </FormLabel>
             <RadioGroup

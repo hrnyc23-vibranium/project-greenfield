@@ -61,14 +61,13 @@ const WriteReview = props => {
   //set errors, if there are no errors make post request. Show snackbar depending on success/error
   const handleSubmit = e => {
     //returns an arr or errors or false
-    let errorList = validate(form, 'reviews');
+    let errorList = validate(form, 'reviews', props.metaInfo.characteristics);
     setErrors(errorList);
 
     if (!errorList) {
       props.submitForm(form);
       props.handleClose();
     }
-
     //show snackbar
     setOpen(true);
   };
@@ -174,6 +173,7 @@ const WriteReview = props => {
 
 let mapStateToProps = state => ({
   product: state.product,
+  metaInfo: state.metaInfo,
 });
 
 export default connect(
