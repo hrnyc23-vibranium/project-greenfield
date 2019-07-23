@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-around',
     overflow: 'hidden',
     width: '99%',
-    height: '750px',
+    height: '75vh',
     backgroundColor: '#E0E0E0',
     marginTop: theme.spacing(1),
   },
@@ -30,6 +30,13 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
     objectFit: 'cover',
+  },
+  imgZoomed: {
+    display: 'flex',
+    maxWidth: '100%',
+    maxHeight: '100%',
+    objectFit: 'cover',
+    transform: 'scale(1.2)',
   },
   progress: {
     margin: theme.spacing(1),
@@ -76,6 +83,18 @@ const Carousel = props => {
     }
   };
 
+  const [id, setId] = useState(classes.img);
+
+  const [position, setPosition] = useState({ backgroundPosition: '0% 0%' });
+
+  const handleMouseMove = e => {
+    setId(classes.imgZoomed);
+    const { left, top, width, height } = e.target.getBoundingClientRect();
+    const x = ((e.pageX - left) / width) * 100;
+    const y = ((e.pageY - top) / height) * 100;
+    setPosition({ backgroundPosition: `${x}% ${y}%` });
+  };
+
   return (
     <div>
       <Box className={classes.root}>
@@ -94,11 +113,17 @@ const Carousel = props => {
               <BackArrow />
             </IconButton>
           </Box>
-          <Box className={classes.imgBox}>
+          <Box
+            className={classes.imgBox}
+            onMouseMove={handleMouseMove}
+            style={position}
+            onMouseOut={() => {
+              setId(classes.img);
+            }}>
             {props.styles.results ? (
               <img
                 src={props.styles.results[props.index].photos[index].url}
-                className={classes.img}
+                className={id}
                 onClick={() => {
                   setClick(!click);
                   changeColumns();

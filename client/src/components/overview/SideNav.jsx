@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -12,10 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
   list: {
-    width: 250,
-  },
-  fullList: {
-    length: 'auto',
+    width: 500,
   },
 }));
 
@@ -44,14 +42,70 @@ const SideNav = () => {
     setState({ ...state, [side]: open });
   };
 
-  const sideList = side => {};
+  const ListItemLink = props => {
+    return <ListItem button component="a" {...props} />;
+  };
+
+  const sideList = side => {
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}>
+      <List>
+        <ListItem button>
+          <ListItemText primary="Hi" />
+        </ListItem>
+        {/* <ListItemLink href={'1'}>
+          <ListItemText primary="Camo Onesie" />
+        </ListItemLink>
+        <ListItemLink href={'2'}>
+          <ListItemText primary="Bright Future Sunglasses" />
+        </ListItemLink>
+        <ListItemLink href={'3'}>
+          <ListItemText primary="Morning Joggers" />
+        </ListItemLink>
+        <ListItemLink href={'4'}>
+          <ListItemText primary="Slacker's Slacks" />
+        </ListItemLink>
+        <ListItemLink href={'5'}>
+          <ListItemText primary="Heir Force Ones" />
+        </ListItemLink>
+        <ListItemLink href={'6'}>
+          <ListItemText primary="Pumped Up Kicks" />
+        </ListItemLink>
+        <ListItemLink href={'7'}>
+          <ListItemText primary="Blues Suede Shoes" />
+        </ListItemLink>
+        <ListItemLink href={'8'}>
+          <ListItemText primary="YEasy 350" />
+        </ListItemLink>
+        <ListItemLink href={'9'}>
+          <ListItemText primary="Summer Shoes" />
+        </ListItemLink>
+        <ListItemLink href={'10'}>
+          <ListItemText primary="Infinity Stone" />
+        </ListItemLink> */}
+      </List>
+    </div>;
+  };
 
   return (
-    <Fragment>
-      <IconButton edge="start" color="inherit" aria-label="Open drawer">
+    <div>
+      <IconButton
+        edge="start"
+        color="inherit"
+        aria-label="Open drawer"
+        onClick={toggleDrawer('left', true)}>
         <ShieldIcon />
       </IconButton>
-    </Fragment>
+      <SwipeableDrawer
+        open={state.left}
+        onClose={toggleDrawer('left', false)}
+        onOpen={toggleDrawer('left', true)}>
+        {sideList('left')}
+      </SwipeableDrawer>
+    </div>
   );
 };
 
