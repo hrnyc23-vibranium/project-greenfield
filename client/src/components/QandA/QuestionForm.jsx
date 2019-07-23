@@ -29,6 +29,15 @@ class QuestionsForm extends React.Component {
       email: '',
     };
   }
+  handleSubmit() {
+    this.props.postQuestion(
+      Object.assign({}, this.state, {
+        productId: this.props.productId,
+        productName: this.props.productName,
+      })
+    );
+    //TODO handle async submittion
+  }
   render() {
     return (
       <Container>
@@ -82,12 +91,6 @@ class QuestionsForm extends React.Component {
               variant="contained"
               onClick={e => {
                 event.preventDefault();
-                this.props.postQuestion(
-                  Object.assign({}, this.state, {
-                    productId: this.props.productId,
-                    productName: this.props.productName,
-                  })
-                );
               }}>
               submit
             </Button>
