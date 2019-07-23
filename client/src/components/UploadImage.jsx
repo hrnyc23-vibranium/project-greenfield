@@ -1,7 +1,7 @@
 //Dev Dependencies
 import React from 'react';
 import * as filestack from 'filestack-js';
-import { FileUploader_API_KEY } from '../config/config';
+import { FileUploader_API_KEY } from '../../../config/config.js';
 
 //React Componenets
 import ImageGallery from './ImageGallery';
@@ -45,7 +45,8 @@ class FileUpload extends React.Component {
                 color="default"
                 onClick={() => {
                   client.picker(pickerOptions).open();
-                }}>
+                }}
+              >
                 Upload
                 <CloudUploadIcon />
               </Button>
