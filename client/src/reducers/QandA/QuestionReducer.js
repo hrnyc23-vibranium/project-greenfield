@@ -16,7 +16,6 @@ const init = {
           answerer_name: 'Seller',
           helpfulness: 4,
           photos: [],
-          // ...
         },
       },
     },
@@ -51,6 +50,8 @@ const init = {
 
 const QuestionReducer = (state = init, { type, payload }) => {
   switch (type) {
+    case 'SEARCH':
+      return payload;
     case 'GET_QUESTIONS':
       return Object.assign({}, state, payload);
     case 'POST_QUESTION':

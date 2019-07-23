@@ -1,5 +1,7 @@
 //Dev Dependencies
 import React from 'react';
+import { connect } from 'react-redux';
+import setSearch from '../../actions/QandA/setSearch';
 
 //Material Componenets
 import { makeStyles } from '@material-ui/core/styles';
