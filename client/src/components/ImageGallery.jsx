@@ -61,7 +61,8 @@ const ImageGallery = ({ photos, launchGallery }) => {
         className={classes.gridList}
         cellHeight={60}
         spacing={15}
-        cols={6}>
+        cols={6}
+      >
         {photos.map((tile, index) => (
           <GridListTile key={tile.id} cols={1}>
             <img
@@ -79,7 +80,8 @@ const ImageGallery = ({ photos, launchGallery }) => {
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
-        onClose={handleClose}>
+        onClose={handleClose}
+      >
         <div style={modalStyle} className={classes.paper}>
           <Gallery />
         </div>

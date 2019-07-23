@@ -26,6 +26,7 @@ const defaultForm = {
   rating: 0,
   recommend: '',
   characteristics: {},
+  summary: '',
   body: '',
   email: '',
   name: '',
@@ -33,7 +34,7 @@ const defaultForm = {
 
 const useStyles = makeStyles(theme => ({
   errors: {
-    color: 'red',
+    color: theme.palette.error.dark,
     padding: theme.spacing(0),
   },
   error: {
@@ -63,7 +64,7 @@ const WriteReview = props => {
     setErrors(errorList);
 
     if (!errorList) {
-      // props.submitForm(form);
+      props.submitForm(form);
       props.handleClose();
     }
 
@@ -85,7 +86,7 @@ const WriteReview = props => {
     return (
       <ul className={classes.errors}>
         You must enter the following:
-        {errors.map(err => {
+        {Object.values(errors).map(err => {
           return (
             <li className={classes.error} key={err}>
               {err}
@@ -96,6 +97,10 @@ const WriteReview = props => {
     );
   };
 
+  const checkErrors = input => {
+    return errors.hasOwnProperty(input);
+  };
+
   return form ? (
     <React.Fragment>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
@@ -103,24 +108,49 @@ const WriteReview = props => {
         <DialogContentText>About {props.product.name}</DialogContentText>
 
         {renderErrors()}
-        <OverallRating form={form} setForm={setForm.bind(this)} />
+        <OverallRating
+          form={form}
+          setForm={setForm.bind(this)}
+          error={checkErrors('rating')}
+        />
 
-        <Recommend form={form} setForm={setForm.bind(this)} />
+        <Recommend
+          form={form}
+          setForm={setForm.bind(this)}
+          error={checkErrors('recommend')}
+        />
 
-        <Characteristics form={form} setForm={setForm} />
+        <Characteristics
+          form={form}
+          setForm={setForm}
+          error={checkErrors('characteristics')}
+        />
 
         <ReviewSummary
           summary={form.summary}
           handleChange={handleChange.bind(this)}
+          error={checkErrors('summary')}
         />
 
-        <ReviewBody body={form.body} handleChange={handleChange.bind(this)} />
+        <ReviewBody
+          body={form.body}
+          handleChange={handleChange.bind(this)}
+          error={checkErrors('body')}
+        />
 
-        <Images form={form} setForm={setForm} />
+        <Images form={form} setForm={setForm.bind(this)} />
 
-        <Nickname name={form.name} handleChange={handleChange.bind(this)} />
+        <Nickname
+          name={form.name}
+          handleChange={handleChange.bind(this)}
+          error={checkErrors('name')}
+        />
 
-        <Email email={form.email} handleChange={handleChange.bind(this)} />
+        <Email
+          email={form.email}
+          handleChange={handleChange.bind(this)}
+          error={checkErrors('email')}
+        />
       </DialogContent>
       {/* Buttons */}
       <DialogActions>

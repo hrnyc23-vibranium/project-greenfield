@@ -4,7 +4,11 @@ import Grid from '@material-ui/core/Grid';
 import Rating from '@material-ui/lab/Rating';
 import Box from '@material-ui/core/Box';
 
-const OverallRating = ({ form, setForm }) => {
+import { useStyles } from './inputStyle.js';
+
+const OverallRating = ({ form, setForm, error }) => {
+  const classes = useStyles();
+
   const renderMeaning = rating => {
     let ratings = {
       '1': 'Poor',
@@ -24,7 +28,9 @@ const OverallRating = ({ form, setForm }) => {
 
   return (
     <Box>
-      <h4>Overall Rating*</h4>
+      <h4 className={error ? classes.titleError : classes.title}>
+        Overall Rating*
+      </h4>
       <Grid container direction="row">
         <Rating
           name="rating"

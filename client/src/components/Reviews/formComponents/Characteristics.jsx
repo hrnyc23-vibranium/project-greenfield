@@ -57,6 +57,9 @@ const descriptions = {
 };
 
 const useStyles = makeStyles(theme => ({
+  titleError: {
+    color: 'red',
+  },
   category: {
     margin: theme.spacing(0),
     fontSize: 15,
@@ -77,7 +80,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Characteristics = ({ form, setForm, characteristics }) => {
+const Characteristics = ({ form, setForm, error, characteristics }) => {
+  const classes = useStyles();
   const handleChange = e => {
     setForm(prevState => {
       prevState.characteristics[e.target.name] = e.target.value;
@@ -85,10 +89,11 @@ const Characteristics = ({ form, setForm, characteristics }) => {
     });
   };
   //for each characteristic, render out all 5 characteristics and it's corresponding label
-  const classes = useStyles();
   return Object.values(characteristics)[0] ? (
     <Box>
-      <h4>Characteristics*</h4>
+      <h4 className={error ? classes.titleError : classes.title}>
+        Characteristics*
+      </h4>
       {Object.keys(characteristics).map(character => {
         let description = descriptions[character];
         if (!description) {

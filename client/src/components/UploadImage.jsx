@@ -25,7 +25,11 @@ class FileUpload extends React.Component {
     let imageSet = this.state.images.slice(0);
     imageSet.push({ url: url, id: id });
     this.setState({ images: imageSet }, () => {
-      this.props.handleUpload(this.state.images);
+      this.props.handleUpload(
+        this.state.images.map(image => {
+          return image.url;
+        })
+      );
     });
   }
   render() {
@@ -42,7 +46,7 @@ class FileUpload extends React.Component {
             <InputLabel>Upload your photos</InputLabel>
           </Grid>
           <Grid item>
-            {this.state.images.length < 1 ? (
+            {this.state.images.length < 5 ? (
               <Button
                 variant="outlined"
                 color="default"
