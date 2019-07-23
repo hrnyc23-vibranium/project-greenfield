@@ -10,8 +10,20 @@ import { getList, getMeta } from '../../actions/Reviews/getData.js';
 import { setShown } from '../../actions/Reviews/setShown.js';
 import ReviewsEntry from './ReviewsEntry.jsx';
 import ReviewSort from '../Reviews/ReviewSort.jsx';
+
+const useStyles = makeStyles(theme => ({
+  title: {
+    display: 'inline-block',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginTop: '5px',
+    marginRight: '5px',
+  },
+}));
+
 const ReviewsList = props => {
-  const { getList, productId, getMeta, reviews } = props;
+  const { getList, getMeta, productId, reviews } = props;
+  const classes = useStyles();
 
   //only update when productId changes
   useEffect(() => {
@@ -21,7 +33,7 @@ const ReviewsList = props => {
 
   //if there are rating filters, filter the reviews then only render those reviews
   const renderList = () => {
-    const { reviews, filter, listLimit, setShown } = props;
+    const { filter, listLimit, setShown } = props;
 
     let filteredList = reviews.results;
     //if filters are selected, filter the list
@@ -45,7 +57,7 @@ const ReviewsList = props => {
   return reviews.results ? (
     <React.Fragment>
       <Box>
-        <span className="sortTitle">
+        <span className={classes.title}>
           {reviews.results.length} reviews, sorted by
         </span>
         <span className="sortSelect">
