@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 
 // Material UI Components
@@ -55,7 +55,7 @@ const ReviewsList = props => {
   };
 
   return reviews.results ? (
-    <React.Fragment>
+    <Fragment>
       <Box>
         <span className={classes.title}>
           {reviews.results.length} reviews, sorted by
@@ -65,7 +65,7 @@ const ReviewsList = props => {
         </span>
       </Box>
       {renderList()}
-    </React.Fragment>
+    </Fragment>
   ) : (
     <div>Loading...</div>
   );
