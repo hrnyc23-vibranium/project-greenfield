@@ -7,7 +7,6 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 // React Components
-import Header from './Header.jsx';
 import Product from './Product.jsx';
 import Features from './Features.jsx';
 
@@ -23,7 +22,6 @@ class Overview extends Component {
     const { product, styles, id, ratings, totalReviews } = this.props;
     return (
       <Box>
-        <Header />
         <Grid container direction="row" justify="center" alignItems="center">
           <Typography variant="overline" gutterBottom>
             <em>Select Styles on Sale!</em> - Camo Onesie -{' '}
