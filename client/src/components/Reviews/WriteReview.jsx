@@ -30,6 +30,7 @@ const defaultForm = {
   body: '',
   email: '',
   name: '',
+  photos: [],
 };
 
 const useStyles = makeStyles(theme => ({

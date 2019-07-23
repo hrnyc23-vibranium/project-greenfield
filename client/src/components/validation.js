@@ -27,6 +27,6 @@ export const validate = (form, component) => {
 
     if (!emailIsValid(form.email)) errors.email = 'a valid email address';
   }
-
-  return Object.keys(errors).length > 0 ? errors : false;
+  console.log(Object.keys(errors));
+  return Object.keys(errors).length ? errors : false;
 };
