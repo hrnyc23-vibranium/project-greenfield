@@ -16,16 +16,25 @@ import Grid from '@material-ui/core/Grid';
 class Questions extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.productId !== prevProps.productId) {
-      this.props.getQuestions(this.props.productId, 1, 4);
+      this.props.getQuestions(
+        this.props.productId,
+        1,
+        4,
+        this.props.searchTerm
+      );
     }
   }
 
   render() {
-    if (this.props.questions.results) {
+    if (this.props.questions.results.length > 0) {
       return (
         <div>
           {this.props.questions.results.map(question => {
-            return <Question question={question} key={question.question_id} />;
+            if (question.answers !== undefined) {
+              return (
+                <Question question={question} key={question.question_id} />
+              );
+            }
           })}
         </div>
       );
@@ -38,6 +47,7 @@ class Questions extends React.Component {
 const mapStateToProps = state => {
   return {
     productId: state.productId,
+    searchTerm: state.searchTerm,
     questions: state.questions,
   };
 };
