@@ -1,4 +1,5 @@
 import React, { useState, Fragment } from 'react';
+import clsx from 'clsx';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,8 +13,14 @@ import SvgIcon from '@material-ui/core/SvgIcon';
 import IconButton from '@material-ui/core/IconButton';
 
 const useStyles = makeStyles(theme => ({
-  list: {
-    width: 500,
+  menuButton: {
+    marginRight: theme.spacing(1),
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: 240,
   },
 }));
 
@@ -30,64 +37,15 @@ const ShieldIcon = props => {
 const SideNav = () => {
   const classes = useStyles();
 
-  const [state, setState] = useState({ left: false });
-
-  const toggleDrawer = (side, open) => event => {
-    if (
-      event.type === 'keydown' &&
-      (event.key === 'Tab' || event.key === 'Shift')
-    ) {
-      return;
-    }
-    setState({ ...state, [side]: open });
-  };
-
-  const ListItemLink = props => {
-    return <ListItem button component="a" {...props} />;
-  };
+  const [open, setOpen] = useState(false);
 
   const sideList = side => {
     <div
       className={classes.list}
       role="presentation"
       onClick={toggleDrawer(side, false)}
-      onKeyDown={toggleDrawer(side, false)}>
-      <List>
-        <ListItem button>
-          <ListItemText primary="Hi" />
-        </ListItem>
-        {/* <ListItemLink href={'1'}>
-          <ListItemText primary="Camo Onesie" />
-        </ListItemLink>
-        <ListItemLink href={'2'}>
-          <ListItemText primary="Bright Future Sunglasses" />
-        </ListItemLink>
-        <ListItemLink href={'3'}>
-          <ListItemText primary="Morning Joggers" />
-        </ListItemLink>
-        <ListItemLink href={'4'}>
-          <ListItemText primary="Slacker's Slacks" />
-        </ListItemLink>
-        <ListItemLink href={'5'}>
-          <ListItemText primary="Heir Force Ones" />
-        </ListItemLink>
-        <ListItemLink href={'6'}>
-          <ListItemText primary="Pumped Up Kicks" />
-        </ListItemLink>
-        <ListItemLink href={'7'}>
-          <ListItemText primary="Blues Suede Shoes" />
-        </ListItemLink>
-        <ListItemLink href={'8'}>
-          <ListItemText primary="YEasy 350" />
-        </ListItemLink>
-        <ListItemLink href={'9'}>
-          <ListItemText primary="Summer Shoes" />
-        </ListItemLink>
-        <ListItemLink href={'10'}>
-          <ListItemText primary="Infinity Stone" />
-        </ListItemLink> */}
-      </List>
-    </div>;
+      onKeyDown={toggleDrawer(side, false)}
+    />;
   };
 
   return (
@@ -96,15 +54,10 @@ const SideNav = () => {
         edge="start"
         color="inherit"
         aria-label="Open drawer"
-        onClick={toggleDrawer('left', true)}>
+        className={clsx(classes.menuButton, open && classes.hide)}
+        onClick={handleDrawerOpen}>
         <ShieldIcon />
       </IconButton>
-      <SwipeableDrawer
-        open={state.left}
-        onClose={toggleDrawer('left', false)}
-        onOpen={toggleDrawer('left', true)}>
-        {sideList('left')}
-      </SwipeableDrawer>
     </div>
   );
 };
