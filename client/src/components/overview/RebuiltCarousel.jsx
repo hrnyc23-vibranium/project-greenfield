@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   slider: {
     position: 'relative',
-    width: 500,
+    width: 750,
     margin: '0 auto',
     height: 'auto',
     overflow: 'hidden',
@@ -89,7 +89,7 @@ const RebuiltCarousel = props => {
   };
 
   const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-401').clientWidth;
+    return document.querySelector('.makeStyles-slide-404').clientWidth;
   };
 
   const [click, setClick] = useState(false);
@@ -108,18 +108,18 @@ const RebuiltCarousel = props => {
   };
 
   return (
-    <div className={classes.root}>
-      <div className={classes.slider}>
+    <Box className={classes.root}>
+      <Box className={classes.slider}>
         <IconButton
           className={clsx(classes.arrow, classes.backArrow)}
           onClick={goToPreviousSlide}>
           <BackArrow />
         </IconButton>
-        <div
+        <Box
           className={classes.sliderWrapper}
           style={{
             transform: `translateX(${translateValue}px)`,
-            transition: 'transform ease-out 0.45s',
+            transition: 'transform ease-out 0.5s',
           }}
           onClick={() => {
             setClick(!click);
@@ -131,14 +131,14 @@ const RebuiltCarousel = props => {
           ) : (
             <CircularProgress className={classes.progress} />
           )}
-        </div>
+        </Box>
         <IconButton
           className={clsx(classes.arrow, classes.nextArrow)}
           onClick={goToNextSlide}>
           <NextArrow />
         </IconButton>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
