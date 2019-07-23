@@ -1,7 +1,7 @@
 //Dev Dependencies
 import React from 'react';
 import { connect } from 'react-redux';
-import setSearch from '../../actions/QandA/setSearch';
+import { setSearch } from '../../actions/QandA/setSearch';
 
 //Material Componenets
 import { makeStyles } from '@material-ui/core/styles';
@@ -26,7 +26,7 @@ const useStyles = makeStyles({
   },
 });
 
-const SearchQuestion = () => {
+const SearchQuestion = ({ keyword, setKeyword }) => {
   const classes = useStyles();
 
   return (
@@ -37,6 +37,10 @@ const SearchQuestion = () => {
         label="Search"
         placeholder="Have a question? Search for answers"
         inputProps={{ 'aria-label': 'Have a question? Search for answers' }}
+        value={keyword}
+        onChange={e => {
+          setKeyword(e.target.value);
+        }}
       />
       <IconButton className={classes.iconButton} aria-label="Search">
         <SearchIcon />
@@ -45,4 +49,18 @@ const SearchQuestion = () => {
   );
 };
 
-export default SearchQuestion;
+const mapStateToProps = state => {
+  return {
+    keyword: state.searchKeyword,
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    setKeyword: searchTerm => dispatch(setSearch(searchTerm)),
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SearchQuestion);
