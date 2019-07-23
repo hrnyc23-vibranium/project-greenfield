@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -8,6 +8,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Avatar from '@material-ui/core/Avatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
 import Box from '@material-ui/core/Box';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 // React Components
@@ -131,13 +132,18 @@ const StyleList = props => {
                   changeSelected(style.name, currentStyle);
                   props.changeStyle(i);
                 }}>
-                <Tooltip title={style.name} placement="bottom">
-                  <Avatar
-                    alt={style.name}
-                    src={style.photos[0].thumbnail_url}
-                    className={classes.avatar}
-                  />
-                </Tooltip>
+                <Box>
+                  <Box display="none">
+                    <CheckCircle className={classes.checkmark} />
+                  </Box>
+                  <Tooltip title={style.name} placement="bottom">
+                    <Avatar
+                      alt={style.name}
+                      src={style.photos[0].thumbnail_url}
+                      className={classes.avatar}
+                    />
+                  </Tooltip>
+                </Box>
               </GridListTile>
             ))
           ) : (
