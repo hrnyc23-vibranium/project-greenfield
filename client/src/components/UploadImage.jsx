@@ -20,10 +20,17 @@ class FileUpload extends React.Component {
     };
     this.handleUpload = this.handleUpload.bind(this);
   }
+
   handleUpload(url, id) {
     let imageSet = this.state.images.slice(0);
     imageSet.push({ url: url, id: id });
-    this.setState({ images: imageSet });
+    this.setState({ images: imageSet }, () => {
+      this.props.handleUpload(
+        this.state.images.map(image => {
+          return image.url;
+        })
+      );
+    });
   }
   render() {
     const pickerOptions = {
@@ -39,7 +46,7 @@ class FileUpload extends React.Component {
             <InputLabel>Upload your photos</InputLabel>
           </Grid>
           <Grid item>
-            {this.state.images.length < 1 ? (
+            {this.state.images.length < 5 ? (
               <Button
                 variant="outlined"
                 color="default"
@@ -51,7 +58,9 @@ class FileUpload extends React.Component {
                 <CloudUploadIcon />
               </Button>
             ) : (
-              <Typography variant="h9">5 photos have been uploaded</Typography>
+              <Typography variant="body1">
+                5 photos have been uploaded
+              </Typography>
             )}
           </Grid>
         </Grid>

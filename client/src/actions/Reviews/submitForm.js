@@ -12,6 +12,7 @@ export const submitForm = form => (dispatch, getState) => {
       recommend: form.recommend === 'true',
       name: form.name,
       email: form.email,
+      photos: form.photos.length > 0 || [],
     })
     .then(() => {
       dispatch(getList(productId, sort));
