@@ -31,14 +31,14 @@ const RatingFilter = props => {
     if (total === 0) {
       return 0;
     }
-    return (curr / total) * 100;
+    return ((curr / total) * 100).toFixed(2);
   };
 
   //render out recommended percentage
   const renderRecommended = totalReviews => {
     const { recommended } = props;
-
-    let normalized = normalizeRecommended(recommended[1] || 0, totalReviews);
+    let hasRecommended = recommended[1];
+    let normalized = normalizeRecommended(hasRecommended || 0, totalReviews);
     return <div>{normalized}% of reviews recommend this product</div>;
   };
 

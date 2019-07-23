@@ -63,8 +63,8 @@ const WriteReview = props => {
     setErrors(errorList);
 
     if (!errorList) {
-      props.submitForm(form);
-      setOpen(false);
+      // props.submitForm(form);
+      props.handleClose();
     }
 
     //show snackbar
@@ -72,7 +72,7 @@ const WriteReview = props => {
   };
 
   //close snackbar
-  const handleClose = e => {
+  const handleClose = (e, reason) => {
     setOpen(false);
   };
 
