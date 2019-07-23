@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 //React Components
 import * as actions from '../../actions/Reviews/updateHelpful.js';
 import { formatDate } from '../formatDate.js';
@@ -55,6 +56,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 15,
   },
   helpfulTitle: {
+    marginTop: theme.spacing(0.3),
     marginRight: theme.spacing(1),
   },
   button: {
@@ -131,8 +133,8 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
 
       {renderResponse(review.response)}
 
-      <Box className={classes.helpful}>
-        <span className={classes.helpfulTitle}>Helpful?</span>
+      <Grid container className={classes.helpful} direction="row">
+        <Typography className={classes.helpfulTitle}>Helpful?</Typography>
         <Button
           component="span"
           className={classes.button}
@@ -147,7 +149,7 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
         >
           Report
         </Button>
-      </Box>
+      </Grid>
       <br />
     </Box>
   );
