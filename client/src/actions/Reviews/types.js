@@ -9,3 +9,4 @@ export const RESET_FILTER = 'RESET_FILTER';
 export const SET_LIMIT = 'SET_LIMIT';
 export const SET_SHOWN = 'SET_SHOWN';
 export const UPDATE_HELPFUL = 'UPDATE_HELPFUL';
+export const SUBMIT_FORM = 'SUBMIT_FORM';

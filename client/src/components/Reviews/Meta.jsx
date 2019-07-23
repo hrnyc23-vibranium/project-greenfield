@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Grid from '@material-ui/core/Grid';
 //components
 import RatingFilter from './RatingFilter.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
+import * as actions from '../../actions/Reviews/getData.js';
 class Meta extends Component {
+  componentDidUpdate(prevProps) {
+    getMeta(productId);
+    const { productId, getMeta } = this.props;
+    if (productId !== prevProps.productId) {
+      getMeta(productId);
+    }
+  }
   render() {
     return (
       <Grid container direction="column">
@@ -18,4 +27,7 @@ class Meta extends Component {
   }
 }
 
-export default Meta;
+export default connect(
+  null,
+  actions
+)(Meta);

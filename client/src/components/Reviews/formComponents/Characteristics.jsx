@@ -19,7 +19,21 @@ const descriptions = {
     '1/2 a size too big',
     'A size too wide',
   ],
+  Size: [
+    'A size too small',
+    '1/2 a size too small',
+    'Perfect',
+    '1/2 a size too big',
+    'A size too wide',
+  ],
   Length: [
+    'Too narrow',
+    'Slightly narrow',
+    'Perfect',
+    'Slightly wide',
+    'Too wide',
+  ],
+  Width: [
     'Too narrow',
     'Slightly narrow',
     'Perfect',
@@ -72,11 +86,15 @@ const Characteristics = ({ form, setForm, characteristics }) => {
   };
   //for each characteristic, render out all 5 characteristics and it's corresponding label
   const classes = useStyles();
-  return (
+  return Object.values(characteristics)[0] ? (
     <Box>
       <h4>Characteristics*</h4>
       {Object.keys(characteristics).map(character => {
         let description = descriptions[character];
+        if (!description) {
+          console.log(character);
+        }
+
         return (
           <FormControl component="fieldset" key={character}>
             <FormLabel className={classes.category} asterick="true" required>
@@ -110,6 +128,8 @@ const Characteristics = ({ form, setForm, characteristics }) => {
         );
       })}
     </Box>
+  ) : (
+    ''
   );
 };
 

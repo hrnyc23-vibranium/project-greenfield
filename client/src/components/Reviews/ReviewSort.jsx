@@ -9,7 +9,10 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 
 const useStyles = makeStyles(theme => ({
-  selected: {},
+  selected: {
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
 }));
 
 //update list based on selected sort

@@ -8,3 +8,10 @@ export const updateHelpful = reviewId => (dispatch, getState) => {
     dispatch(getList(productId, sort));
   });
 };
+
+export const updateReport = reviewId => (dispatch, getState) => {
+  const { productId, sort } = getState();
+  axios.put(`http://18.222.40.124/reviews/report/${reviewId}`).then(() => {
+    dispatch(getList(productId, sort));
+  });
+};

@@ -10,7 +10,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import * as actions from '../../actions/Reviews/setForm.js';
+import * as actions from '../../actions/Reviews/submitForm.js';
 import Recommend from './formComponents/Recommend.jsx';
 import OverallRating from './formComponents/OverallRating.jsx';
 import Characteristics from './formComponents/Characteristics.jsx';
@@ -19,23 +19,36 @@ import ReviewBody from './formComponents/ReviewBody.jsx';
 import Nickname from './formComponents/Nickname.jsx';
 import Email from './formComponents/Email.jsx';
 import Images from './formComponents/Images.jsx';
-import { classes } from 'istanbul-lib-coverage';
+import { validate } from '../validation.js';
+import { FormSnackbar } from '../SnackBar.jsx';
 
 const defaultForm = {
   rating: 0,
   recommend: '',
   characteristics: {},
-  summary: '',
   body: '',
   email: '',
   name: '',
 };
 
-const useStyles = makeStyles(theme => ({}));
+const useStyles = makeStyles(theme => ({
+  errors: {
+    color: 'red',
+    padding: theme.spacing(0),
+  },
+  error: {
+    marginLeft: theme.spacing(2),
+  },
+}));
 
 const WriteReview = props => {
   const [form, setForm] = useState(defaultForm);
+  const [errors, setErrors] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
+  const classes = useStyles();
+
+  //add inputs to form
   const handleChange = e => {
     e.persist();
     setForm(prevState => {
@@ -43,9 +56,44 @@ const WriteReview = props => {
     });
   };
 
+  //set errors, if there are no errors make post request. Show snackbar depending on success/error
   const handleSubmit = e => {
-    //validate form
-    console.log(form);
+    //returns an arr or errors or false
+    let errorList = validate(form, 'reviews');
+    setErrors(errorList);
+
+    if (!errorList) {
+      // props.submitForm(form);
+      props.handleClose();
+    }
+
+    //show snackbar
+    setOpen(true);
+  };
+
+  //close snackbar
+  const handleClose = (e, reason) => {
+    setOpen(false);
+  };
+
+  //show all errors in a list
+  const renderErrors = () => {
+    if (!errors) {
+      return;
+    }
+
+    return (
+      <ul className={classes.errors}>
+        You must enter the following:
+        {errors.map(err => {
+          return (
+            <li className={classes.error} key={err}>
+              {err}
+            </li>
+          );
+        })}
+      </ul>
+    );
   };
 
   return form ? (
@@ -54,6 +102,7 @@ const WriteReview = props => {
       <DialogContent className={classes.content}>
         <DialogContentText>About {props.product.name}</DialogContentText>
 
+        {renderErrors()}
         <OverallRating form={form} setForm={setForm.bind(this)} />
 
         <Recommend form={form} setForm={setForm.bind(this)} />
@@ -73,15 +122,18 @@ const WriteReview = props => {
 
         <Email email={form.email} handleChange={handleChange.bind(this)} />
       </DialogContent>
-
       {/* Buttons */}
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
           Cancel
         </Button>
+
         <Button onClick={handleSubmit} color="primary">
           Submit review
         </Button>
+
+        {/* Snackbar */}
+        <FormSnackbar open={open} handleClose={handleClose} errors={errors} />
       </DialogActions>
     </React.Fragment>
   ) : (

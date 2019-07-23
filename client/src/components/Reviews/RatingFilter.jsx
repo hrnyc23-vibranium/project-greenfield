@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
 import { connect } from 'react-redux';
+
+import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 
@@ -8,33 +9,42 @@ import * as actions from '../../actions/Reviews/getData.js';
 import RatingBar from './RatingBar.jsx';
 import Ratings from '../Ratings.jsx';
 
-class RatingFilter extends Component {
-  componentDidUpdate(prevProps) {
-    const { productId, getMeta } = this.props;
-    if (productId !== prevProps.productId) {
-      getMeta(productId);
-    }
-  }
+const useStyles = makeStyles(theme => ({
+  root: {
+    marginBottom: '13px',
+  },
+  avgRating: {
+    fontSize: 50,
+    fontWeight: 900,
+    marginRight: '15px',
+  },
+  ratings: {
+    marginTop: theme.spacing(1.5),
+  },
+}));
 
+const RatingFilter = props => {
+  const { recommended, ratings } = props;
+  const classes = useStyles();
   //calculate percent recommended out of total reviews
-  normalizeRecommended(curr, total) {
+  const normalizeRecommended = (curr, total) => {
     if (total === 0) {
       return 0;
     }
-    return (curr / total) * 100;
-  }
+    return ((curr / total) * 100).toFixed(2);
+  };
 
   //render out recommended percentage
-  renderRecommended(totalReviews) {
-    const { recommended } = this.props;
-
-    let normalized = this.normalizeRecommended(recommended[0], totalReviews);
+  const renderRecommended = totalReviews => {
+    const { recommended } = props;
+    let hasRecommended = recommended[1];
+    let normalized = normalizeRecommended(hasRecommended || 0, totalReviews);
     return <div>{normalized}% of reviews recommend this product</div>;
-  }
+  };
 
   //render out star rating
-  renderAvgRating(totalReviews) {
-    const { ratings } = this.props;
+  const renderAvgRating = totalReviews => {
+    const { ratings } = props;
     if (ratings && totalReviews > 0) {
       let totalStars = 0;
       for (let stars in ratings) {
@@ -45,9 +55,18 @@ class RatingFilter extends Component {
       return Number(avgRating.toFixed(1));
     }
     return 0;
-  }
+  };
 
-  addTotal(ratings = {}) {
+  //if avg rating doesn't have a decimal, add one
+  const padAvgRating = avgRating => {
+    let stringified = avgRating.toString();
+    if (stringified.indexOf('.') < 0) {
+      return stringified + '.0';
+    }
+    return stringified;
+  };
+
+  const addTotal = (ratings = {}) => {
     if (Object.keys(ratings).length > 0) {
       let totalReviews = Object.values(ratings).reduce((sum, num) => {
         return sum + num;
@@ -55,31 +74,25 @@ class RatingFilter extends Component {
       return totalReviews;
     }
     return 0;
-  }
+  };
 
-  render() {
-    const { recommended, ratings } = this.props;
-    const totalReviews = this.addTotal(ratings);
-    const avgRating = this.renderAvgRating(totalReviews);
-
-    return recommended && ratings ? (
-      <Box>
-        <Grid container direction="row" style={{ marginBottom: 13 }}>
-          <span
-            style={{ fontSize: 30, fontWeight: 'bold', marginRight: '15px' }}
-          >
-            {avgRating}
-          </span>
+  const totalReviews = addTotal(ratings);
+  const avgRating = renderAvgRating(totalReviews);
+  return recommended && ratings ? (
+    <Box>
+      <Grid container direction="row" className={classes.root}>
+        <span className={classes.avgRating}>{padAvgRating(avgRating)}</span>
+        <span className={classes.ratings}>
           <Ratings rating={avgRating} />
-        </Grid>
-        {this.renderRecommended(totalReviews)}
-        <RatingBar ratings={ratings} totalReviews={totalReviews} />
-      </Box>
-    ) : (
-      <div>Loading...</div>
-    );
-  }
-}
+        </span>
+      </Grid>
+      {renderRecommended(totalReviews)}
+      <RatingBar ratings={ratings} totalReviews={totalReviews} />
+    </Box>
+  ) : (
+    <div>Loading...</div>
+  );
+};
 
 let mapStateToProps = state => ({
   productId: state.productId,

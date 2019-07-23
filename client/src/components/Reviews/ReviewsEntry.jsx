@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 //React Components
 import * as actions from '../../actions/Reviews/updateHelpful.js';
 import { formatDate } from '../formatDate.js';
@@ -45,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   responseTitle: {
     fontWeight: 'bold',
     margin: theme.spacing(0),
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(3),
   },
   responseBody: {
     margin: theme.spacing(0),
@@ -55,6 +56,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 15,
   },
   helpfulTitle: {
+    marginTop: theme.spacing(0.3),
     marginRight: theme.spacing(1),
   },
   button: {
@@ -68,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ReviewsEntry = ({ review, updateHelpful }) => {
+const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
   const classes = useStyles();
 
   const renderPhotos = photos => {
@@ -83,7 +85,7 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
 
   const renderRecommend = recommend => {
     return recommend ? (
-      <Box className={classes.recommend} component="span">
+      <Box className={classes.recommend}>
         <span className={classes.check}>&#10003;</span>
         <span className={classes.recommendBody}>I recommend this product</span>
       </Box>
@@ -104,7 +106,14 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
   };
 
   const handleHelpful = reviewId => {
-    updateHelpful(reviewId);
+    if (!localStorage.getItem(reviewId)) {
+      updateHelpful(reviewId);
+      localStorage.setItem(reviewId, true);
+    }
+  };
+
+  const handleReport = reviewId => {
+    updateReport(reviewId);
   };
 
   return (
@@ -124,8 +133,8 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
 
       {renderResponse(review.response)}
 
-      <Box className={classes.helpful}>
-        <span className={classes.helpfulTitle}>Helpful?</span>
+      <Grid container className={classes.helpful} direction="row">
+        <Typography className={classes.helpfulTitle}>Helpful?</Typography>
         <Button
           component="span"
           className={classes.button}
@@ -133,10 +142,14 @@ const ReviewsEntry = ({ review, updateHelpful }) => {
         >
           Yes ({review.helpfulness})
         </Button>
-        <Button component="span" className={classes.button}>
+        <Button
+          component="span"
+          className={classes.button}
+          onClick={handleReport.bind(this, review.review_id)}
+        >
           Report
         </Button>
-      </Box>
+      </Grid>
       <br />
     </Box>
   );
