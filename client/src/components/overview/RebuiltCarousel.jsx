@@ -21,8 +21,8 @@ const useStyles = makeStyles(theme => ({
   },
   slider: {
     position: 'relative',
-    width: 750,
     margin: '0 auto',
+    width: 750,
     height: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
@@ -99,7 +99,7 @@ const RebuiltCarousel = props => {
   };
 
   const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-421').clientWidth;
+    return document.querySelector('.makeStyles-slide-457').clientWidth;
   };
 
   const [click, setClick] = useState(false);
@@ -116,6 +116,9 @@ const RebuiltCarousel = props => {
       setStyleColumns(0);
     }
   };
+
+  //FIXME: Implement expanding the carousel width when the div is expanded
+  // const [sliderWidth, setSliderWidth] = useState({ width: 750 });
 
   return (
     <Box className={classes.root}>
@@ -154,6 +157,7 @@ const RebuiltCarousel = props => {
         className={classes.zoomIcon}
         onClick={() => {
           setClick(!click);
+
           changeColumns();
           props.changeSize(imgColumns, styleColumns);
         }}>
