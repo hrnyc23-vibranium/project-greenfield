@@ -104,7 +104,10 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
   };
 
   const handleHelpful = reviewId => {
-    updateHelpful(reviewId);
+    if (!localStorage.getItem(reviewId)) {
+      updateHelpful(reviewId);
+      localStorage.setItem(reviewId, true);
+    }
   };
 
   const handleReport = reviewId => {

@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // Material UI Components
@@ -10,18 +10,18 @@ import { getList, getMeta } from '../../actions/Reviews/getData.js';
 import { setShown } from '../../actions/Reviews/setShown.js';
 import ReviewsEntry from './ReviewsEntry.jsx';
 import ReviewSort from '../Reviews/ReviewSort.jsx';
+const ReviewsList = props => {
+  const { getList, productId, getMeta, reviews } = props;
 
-class ReviewsList extends Component {
-  componentDidUpdate(prevProps) {
-    const { getList, productId, getMeta } = this.props;
-    if (this.props.productId !== prevProps.productId) {
-      getList(productId, 'relevant');
-      getMeta(productId);
-    }
-  }
+  //only update when productId changes
+  useEffect(() => {
+    getList(productId, 'relevant');
+    getMeta(productId);
+  }, [productId]);
+
   //if there are rating filters, filter the reviews then only render those reviews
-  renderList() {
-    const { reviews, filter, listLimit, setShown } = this.props;
+  const renderList = () => {
+    const { reviews, filter, listLimit, setShown } = props;
 
     let filteredList = reviews.results;
     //if filters are selected, filter the list
@@ -40,27 +40,24 @@ class ReviewsList extends Component {
 
     //display amount of reviews depending on limit set
     return reviewsList.slice(0, listLimit);
-  }
+  };
 
-  render() {
-    const { reviews } = this.props;
-    return reviews.results ? (
-      <React.Fragment>
-        <Box>
-          <span className="sortTitle">
-            {reviews.results.length} reviews, sorted by
-          </span>
-          <span className="sortSelect">
-            <ReviewSort />
-          </span>
-        </Box>
-        {this.renderList()}
-      </React.Fragment>
-    ) : (
-      <div>Loading...</div>
-    );
-  }
-}
+  return reviews.results ? (
+    <React.Fragment>
+      <Box>
+        <span className="sortTitle">
+          {reviews.results.length} reviews, sorted by
+        </span>
+        <span className="sortSelect">
+          <ReviewSort />
+        </span>
+      </Box>
+      {renderList()}
+    </React.Fragment>
+  ) : (
+    <div>Loading...</div>
+  );
+};
 
 const mapStateToProps = state => ({
   productId: state.productId,

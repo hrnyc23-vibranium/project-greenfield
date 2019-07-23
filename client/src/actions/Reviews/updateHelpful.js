@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { getList, getMeta } from './getData.js';
+import { getList } from './getData.js';
 
 export const updateHelpful = reviewId => (dispatch, getState) => {
   const { productId, sort } = getState();
