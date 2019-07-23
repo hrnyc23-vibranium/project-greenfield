@@ -7,6 +7,7 @@ import IconButton from '@material-ui/core/IconButton';
 import BackArrow from '@material-ui/icons/ArrowBack';
 import NextArrow from '@material-ui/icons/ArrowForward';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import ZoomIcon from '@material-ui/icons/CropFreeSharp';
 // React Components
 import Image from './Image.jsx';
 
@@ -20,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   },
   slider: {
     position: 'relative',
-    width: '75%',
+    width: 750,
     margin: '0 auto',
     height: 'auto',
     overflow: 'hidden',
@@ -50,6 +51,13 @@ const useStyles = makeStyles(theme => ({
     left: 25,
     zIndex: 999,
   },
+  zoomIcon: {
+    position: 'relative',
+    width: 24,
+    height: 24,
+    top: theme.spacing(1),
+    right: theme.spacing(1),
+  },
   progress: {
     margin: theme.spacing(1),
   },
@@ -71,7 +79,9 @@ const RebuiltCarousel = props => {
   const [translateValue, setTranslateValue] = useState(0);
 
   const goToPreviousSlide = () => {
-    if (currentIndex === 0) return;
+    if (currentIndex === 0) {
+      return;
+    }
 
     setCurrentIndex(currentIndex - 1);
     setTranslateValue(translateValue + slideWidth());
@@ -89,7 +99,7 @@ const RebuiltCarousel = props => {
   };
 
   const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-404').clientWidth;
+    return document.querySelector('.makeStyles-slide-405').clientWidth;
   };
 
   const [click, setClick] = useState(false);
@@ -120,14 +130,11 @@ const RebuiltCarousel = props => {
           style={{
             transform: `translateX(${translateValue}px)`,
             transition: 'transform ease-out 0.5s',
-          }}
-          onClick={() => {
-            setClick(!click);
-            changeColumns();
-            props.changeSize(imgColumns, styleColumns);
           }}>
           {images ? (
-            images.map((image, i) => <Image key={i} image={image.url} />)
+            images.map((image, i) => (
+              <Image key={i} image={image.url} clicked={click} />
+            ))
           ) : (
             <CircularProgress className={classes.progress} />
           )}
@@ -138,6 +145,15 @@ const RebuiltCarousel = props => {
           <NextArrow />
         </IconButton>
       </Box>
+      <IconButton
+        className={classes.zoomIcon}
+        onClick={() => {
+          setClick(!click);
+          changeColumns();
+          props.changeSize(imgColumns, styleColumns);
+        }}>
+        <ZoomIcon />
+      </IconButton>
     </Box>
   );
 };

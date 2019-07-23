@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Image = ({ image }) => {
+const Image = ({ image, clicked }) => {
   const classes = useStyles();
 
   const [position, setPosition] = useState({ backgroundPosition: '0% 0%' });
@@ -29,6 +29,25 @@ const Image = ({ image }) => {
 
   const [zoom, setZoom] = useState(classes.slide);
 
+  const renderClick = () => {
+    if (clicked === false) {
+      return (
+        <div
+          className={zoom}
+          style={styles}
+          onMouseMove={handleMouseMove}
+          onMouseOver={() => {
+            setZoom(classes.slideZoomed);
+          }}
+          onMouseOut={() => {
+            setZoom(classes.slide);
+          }}
+        />
+      );
+    } else {
+      return <div className={zoom} style={styles} />;
+    }
+  };
   const styles = {
     backgroundImage: `url(${image})`,
     backgroundSize: 'cover',
@@ -36,19 +55,7 @@ const Image = ({ image }) => {
     backgroundPosition: position.backgroundPosition,
   };
 
-  return (
-    <div
-      className={zoom}
-      style={styles}
-      onMouseMove={handleMouseMove}
-      onMouseOver={() => {
-        setZoom(classes.slideZoomed);
-      }}
-      onMouseOut={() => {
-        setZoom(classes.slide);
-      }}
-    />
-  );
+  return <Fragment>{renderClick()}</Fragment>;
 };
 
 export default Image;
