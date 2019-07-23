@@ -6,11 +6,13 @@ const useStyles = makeStyles(theme => ({
     display: 'inline-block',
     height: '100%',
     width: '100%',
+    cursor: 'zoom-in',
   },
   slideZoomed: {
     display: 'inline-block',
     height: '100%',
     width: '100%',
+    cursor: 'crosshair',
     transform: 'scale(2.5)',
   },
 }));

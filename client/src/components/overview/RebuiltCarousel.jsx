@@ -99,7 +99,7 @@ const RebuiltCarousel = props => {
   };
 
   const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-405').clientWidth;
+    return document.querySelector('.makeStyles-slide-421').clientWidth;
   };
 
   const [click, setClick] = useState(false);
@@ -130,6 +130,11 @@ const RebuiltCarousel = props => {
           style={{
             transform: `translateX(${translateValue}px)`,
             transition: 'transform ease-out 0.5s',
+          }}
+          onClick={() => {
+            setClick(!click);
+            changeColumns();
+            props.changeSize(imgColumns, styleColumns);
           }}>
           {images ? (
             images.map((image, i) => (
