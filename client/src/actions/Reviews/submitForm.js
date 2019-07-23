@@ -5,7 +5,7 @@ export const submitForm = form => (dispatch, getState) => {
   const { productId, sort } = getState();
 
   axios
-    .post(`http://18.222.40.124/reviews/${productId}`, {
+    .post(`http://18.222.40.124/reviews/${payload.productId}`, {
       rating: String(form.rating),
       summary: form.summary,
       body: form.body,

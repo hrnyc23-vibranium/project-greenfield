@@ -1,7 +1,7 @@
 //Dev Dependencies
 import React from 'react';
 import { connect } from 'react-redux';
-import { postQuestions } from '../../actions/QandA/getQuestions';
+import { postQuestion } from '../../actions/QandA/postQuestion';
 
 //React Components
 import Question from './Question';
@@ -25,11 +25,8 @@ class QuestionsForm extends React.Component {
     super(props);
     this.state = {
       question: '',
-      nickname: '',
+      name: '',
       email: '',
-      productname: 'placeholder',
-      productid: '',
-      helpertext: 'helper for question body',
     };
   }
   render() {
@@ -37,7 +34,7 @@ class QuestionsForm extends React.Component {
       <Container>
         <Typography variant="h5">Ask Your Question</Typography>
         <Typography variant="subtitle1">
-          About the {this.state.productname}
+          About the {this.props.productName}
         </Typography>
         <form>
           <TextField
@@ -50,6 +47,9 @@ class QuestionsForm extends React.Component {
             helperText="place your question here"
             fullWidth
             value={this.state.question}
+            onChange={e => {
+              this.setState({ question: e.target.value });
+            }}
           />
           <TextField
             id="nickename"
@@ -60,6 +60,9 @@ class QuestionsForm extends React.Component {
             placeholder="Example: jackson11!"
             helperText="For privacy reason, do not use your full name or email address"
             inputProps={{ maxLength: 60 }}
+            onChange={e => {
+              this.setState({ name: e.target.value });
+            }}
           />
           <TextField
             id="questionEmail"
@@ -70,12 +73,21 @@ class QuestionsForm extends React.Component {
             placeholder="Why did you like the product or not?"
             helperText="For authentication reasons, you will not be emailed"
             inputProps={{ maxLength: 60 }}
+            onChange={e => {
+              this.setState({ email: e.target.value });
+            }}
           />
           <Grid container justify="flex-end">
             <Button
               variant="contained"
               onClick={e => {
                 event.preventDefault();
+                this.props.postQuestion(
+                  Object.assign({}, this.state, {
+                    productId: this.props.productId,
+                    productName: this.props.productName,
+                  })
+                );
               }}>
               submit
             </Button>
@@ -86,4 +98,21 @@ class QuestionsForm extends React.Component {
   }
 }
 
-export default QuestionsForm;
+const mapStateToProps = state => {
+  return {
+    productId: state.productId,
+    productName: state.product.name,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    postQuestion: question => {
+      dispatch(postQuestion(question));
+    },
+  };
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(QuestionsForm);
