@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { postQuestion } from '../../actions/QandA/postQuestion';
+import { validate } from '../validation';
 
 //React Components
 import Question from './Question';
@@ -20,6 +21,26 @@ import Grid from '@material-ui/core/Grid';
 import FormControl from '@material-ui/core/FormControl';
 import Typography from '@material-ui/core/Typography';
 
+//helper function for validation
+//show all errors in a list
+const renderErrors = errorList => {
+  if (!errorList) {
+    return;
+  }
+  return (
+    <ul className="error">
+      You must enter the following:
+      {Object.values(errorList).map(err => {
+        return (
+          <li className="error" key={err}>
+            {err}
+          </li>
+        );
+      })}
+    </ul>
+  );
+};
+
 class QuestionsForm extends React.Component {
   constructor(props) {
     super(props);
@@ -27,15 +48,37 @@ class QuestionsForm extends React.Component {
       question: '',
       name: '',
       email: '',
+      errorList: [],
     };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange() {
+    let errorList = validate(this.state, 'question', null);
+    if (errorList) {
+      this.setState({
+        errorList: errorList,
+      });
+    }
+  }
+
   handleSubmit() {
-    this.props.postQuestion(
-      Object.assign({}, this.state, {
+    console.log(this.state);
+    let errorList = validate(this.state, 'question', null);
+    console.log(errorList);
+    if (errorList) {
+      this.setState({
+        errorList: errorList,
+      });
+    } else {
+      console.log('no error');
+      let payload = Object.assign({}, this.state, {
         productId: this.props.productId,
         productName: this.props.productName,
-      })
-    );
+      });
+      this.props.postQuestion(payload);
+    }
     //TODO handle async submittion
   }
   render() {
@@ -45,6 +88,7 @@ class QuestionsForm extends React.Component {
         <Typography variant="subtitle1">
           About the {this.props.productName}
         </Typography>
+        {this.state.errorList ? renderErrors(this.state.errorList) : <div />}
         <form>
           <TextField
             id="questionarea"
@@ -58,7 +102,9 @@ class QuestionsForm extends React.Component {
             value={this.state.question}
             onChange={e => {
               this.setState({ question: e.target.value });
+              this.handleChange();
             }}
+            error={this.state.errorList.question ? true : false}
           />
           <TextField
             id="nickename"
@@ -71,7 +117,9 @@ class QuestionsForm extends React.Component {
             inputProps={{ maxLength: 60 }}
             onChange={e => {
               this.setState({ name: e.target.value });
+              this.handleChange();
             }}
+            error={this.state.errorList.name ? true : false}
           />
           <TextField
             id="questionEmail"
@@ -84,13 +132,16 @@ class QuestionsForm extends React.Component {
             inputProps={{ maxLength: 60 }}
             onChange={e => {
               this.setState({ email: e.target.value });
+              this.handleChange();
             }}
+            error={this.state.errorList.email ? true : false}
           />
           <Grid container justify="flex-end">
             <Button
               variant="contained"
               onClick={e => {
                 event.preventDefault();
+                this.handleSubmit();
               }}>
               submit
             </Button>
