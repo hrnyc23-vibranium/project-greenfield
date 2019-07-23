@@ -62,12 +62,14 @@ const WriteReview = props => {
   const handleSubmit = e => {
     //returns an arr or errors or false
     let errorList = validate(form, 'reviews', props.metaInfo.characteristics);
+
     setErrors(errorList);
 
     if (!errorList) {
       props.submitForm(form);
       props.handleClose();
     }
+
     //show snackbar
     setOpen(true);
   };
