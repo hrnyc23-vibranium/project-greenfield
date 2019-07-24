@@ -24,8 +24,10 @@ const useStyles = makeStyles(theme => ({
   moreButton: {
     marginRight: theme.spacing(2),
     padding: '15px',
+    borderRadius: 0,
   },
   addButton: {
+    borderRadius: 0,
     padding: '15px',
   },
 }));
@@ -50,7 +52,7 @@ const Reviews = props => {
 
     let moreButton = (
       <Button
-        size="large"
+        // size="large"
         variant="outlined"
         onClick={handleLimit.bind(this)}
         className={classes.moreButton}
@@ -61,7 +63,6 @@ const Reviews = props => {
 
     let addButton = (
       <Button
-        size="large"
         variant="outlined"
         onClick={handleOpen.bind(this)}
         className={classes.addButton}
@@ -84,7 +85,9 @@ const Reviews = props => {
 
   return (
     <Box>
-      <Box className={classes.title}>RATINGS & REVIEWS</Box>
+      <Box id="reviews" className={classes.title}>
+        RATINGS & REVIEWS
+      </Box>
       <Grid container direction="row" justify="space-between">
         <Grid item sm={12} md={3}>
           <Meta />
