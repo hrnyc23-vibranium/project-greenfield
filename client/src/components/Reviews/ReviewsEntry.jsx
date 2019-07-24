@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
+const ReviewsEntry = ({ review, updateHelpful, updateReport, search }) => {
   const classes = useStyles();
 
   const renderPhotos = photos => {
@@ -126,13 +126,9 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
       </Grid>
       <h3 className={classes.summary}>{review.summary}</h3>
       <p className={classes.body}>{review.body}</p>
-
       {renderPhotos(review.photos)}
-
       {renderRecommend(review.recommend)}
-
       {renderResponse(review.response)}
-
       <Grid container className={classes.helpful} direction="row">
         <Typography className={classes.helpfulTitle}>Helpful?</Typography>
         <Button
@@ -155,7 +151,11 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
   );
 };
 
+let mapStateToProps = state => ({
+  search: state.reviewSearch,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(ReviewsEntry);
