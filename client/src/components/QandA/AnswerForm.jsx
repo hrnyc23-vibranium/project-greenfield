@@ -36,9 +36,6 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
   const [form, setForm] = React.useState(defaultForm);
   const [error, setErrors] = React.useState(false);
 
-  // setForm({
-  //   questionId: questionId,
-  // });
   //add inputs to form
   const handleChange = e => {
     e.persist();
