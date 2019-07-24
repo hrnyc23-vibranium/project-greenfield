@@ -1,5 +1,5 @@
 //Dev Dependencies
-import React from 'react';
+import React, { useState } from 'react';
 
 //React Component
 import ImageGallery from '../ImageGallery.jsx';
@@ -12,6 +12,7 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 
 const Answer = props => {
+  const [disabled, setDisabled] = useState(false);
   return (
     <Box>
       <Typography variant="body2">{props.answer.body} </Typography>
@@ -36,8 +37,10 @@ const Answer = props => {
         </Typography>
         <Button
           size="small"
+          disabled={disabled}
           onClick={() => {
             props.voteAnswer(props.answer.answer_id);
+            setDisabled(!disabled);
           }}>
           Yes ({+props.answer.helpfulness})
         </Button>
