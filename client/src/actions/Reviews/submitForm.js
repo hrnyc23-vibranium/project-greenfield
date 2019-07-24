@@ -3,10 +3,10 @@ import axios from 'axios';
 
 export const submitForm = form => (dispatch, getState) => {
   const { productId, sort } = getState();
-  console.log(form);
+
   axios
     .post(`http://18.222.40.124/reviews/${productId}`, {
-      rating: String(form.rating),
+      rating: form.rating,
       summary: form.summary,
       body: form.body,
       recommend: form.recommend === 'true',
@@ -20,6 +20,8 @@ export const submitForm = form => (dispatch, getState) => {
       dispatch(getMeta(productId));
     })
     .catch(err => {
+      dispatch(getList(productId, sort));
+      dispatch(getMeta(productId));
       console.log(err);
     });
 };
