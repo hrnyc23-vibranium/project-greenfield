@@ -28,6 +28,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     marginLeft: theme.spacing(1),
+    cursor: 'pointer',
   },
   thumbnailSelected: {
     display: 'block',
@@ -35,6 +36,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     marginLeft: theme.spacing(1),
+    cursor: 'pointer',
     boxShadow: '5px 5px 5px rgb(143, 117, 0)',
   },
   arrow: {
