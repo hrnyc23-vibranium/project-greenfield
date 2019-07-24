@@ -36,11 +36,20 @@ export const getQuestions = (
     `http://18.222.40.124/qa/${productId}?page=${page}&count=${count}`
   );
   let questions = res.data.results;
+  let answeredQuestions = [];
+  questions.map(question => {
+    if (question.answers !== undefined) {
+      answeredQuestions.push(question);
+    }
+  });
   if (searchKeyword.length >= 3) {
-    questions = filterAnswers(questions, searchKeyword.toLowerCase());
+    answeredQuestions = filterAnswers(
+      answeredQuestions,
+      searchKeyword.toLowerCase()
+    );
   }
   dispatch({
     type: 'GET_QUESTIONS',
-    payload: { results: questions },
+    payload: { results: answeredQuestions },
   });
 };

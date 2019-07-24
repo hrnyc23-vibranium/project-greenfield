@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
@@ -44,17 +44,27 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const StyleList = props => {
+const StyleList = ({ styles, product, changeStyle }) => {
   const classes = useStyles();
 
-  const [currentStyle, setStyle] = useState('Forest Green & Black');
-  const [originalPrice, setPrice] = useState('140');
-  const [skus, setSkus] = useState({ XS: 8, S: 16, M: 17, L: 10, XL: 15 });
-  const [salePrice, setSalePrice] = useState('0');
-  const [currPrice, setCurrPrice] = useState('140');
-  const [cartImage, setCartImage] = useState(
-    'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
-  );
+  const [currentStyle, setStyle] = useState();
+  const [originalPrice, setPrice] = useState('');
+  const [skus, setSkus] = useState();
+  const [salePrice, setSalePrice] = useState('');
+  const [currPrice, setCurrPrice] = useState('');
+  const [cartImage, setCartImage] = useState();
+
+  useEffect(() => {
+    if (!currentStyle && styles.results) {
+      let init = styles.results[0];
+      setStyle(init.name);
+      setPrice(init.original_price);
+      setSkus(init.skus);
+      setSalePrice(init.sale_price);
+      setCurrPrice(init.original_price);
+      setCartImage(init.photos[0].thumbnail_url);
+    }
+  });
 
   const renderPrice = () => {
     if (salePrice !== '0') {
@@ -98,8 +108,8 @@ const StyleList = props => {
       </Typography>
       <div className={classes.root}>
         <GridList cellHeight={100} cols={4}>
-          {props.styles.results ? (
-            props.styles.results.map((style, i) => (
+          {styles.results ? (
+            styles.results.map((style, i) => (
               <GridListTile
                 key={style.style_id}
                 cols={1}
@@ -110,7 +120,7 @@ const StyleList = props => {
                   setSalePrice(style.sale_price);
                   setCartImage(style.photos[0].thumbnail_url);
                   changeCurrPrice(style.original_price, style.sale_price);
-                  props.changeStyle(i);
+                  changeStyle(i);
                 }}>
                 <Box>
                   <Tooltip title={style.name} placement="bottom">
@@ -136,7 +146,7 @@ const StyleList = props => {
       </div>
       <Grid item xs={12}>
         <Selectors
-          product={props.product}
+          product={product}
           style={currentStyle}
           price={currPrice}
           skus={skus}

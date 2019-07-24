@@ -146,7 +146,11 @@ const Header = props => {
             onClick={handleDrawerOpen}>
             <ShieldIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" noWrap>
+          <Typography
+            className={classes.title}
+            variant="h4"
+            noWrap
+            style={{ fontFamily: 'Cinzel', fontWeight: 700 }}>
             Vibranium
           </Typography>
           <div className={classes.search}>

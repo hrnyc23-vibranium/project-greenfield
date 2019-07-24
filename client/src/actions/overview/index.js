@@ -18,15 +18,3 @@ export const getProductStyles = productId => async dispatch => {
   );
   dispatch({ type: GET_PRODUCT_STYLES, payload: res.data });
 };
-
-export const getCart = () => async dispatch => {
-  const res = await axios.get('http://18.222.40.124/cart/1234');
-
-  dispatch({ type: GET_CART, payload: res.data });
-};
-
-export const getAllProducts = () => async dispatch => {
-  const res = await axios.get('http://18.222.40.124/products/list?count=11');
-
-  dispatch({ type: GET_ALL_PRODUCTS, payload: res.data });
-};
