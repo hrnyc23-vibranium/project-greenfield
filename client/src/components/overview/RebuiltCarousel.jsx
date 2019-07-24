@@ -7,9 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 import BackArrow from '@material-ui/icons/ArrowBack';
 import NextArrow from '@material-ui/icons/ArrowForward';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import ZoomIcon from '@material-ui/icons/CropFreeSharp';
+import ZoomIcon from '@material-ui/icons/Fullscreen';
+import { grey } from '@material-ui/core/colors';
 // React Components
 import Image from './Image.jsx';
+import Thumbnails from './Thumbnails.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'nowrap',
     width: '99%',
     height: '75vh',
-    backgroundColor: '#E0E0E0',
+    backgroundColor: grey[200],
   },
   slider: {
     position: 'relative',
@@ -99,7 +101,7 @@ const RebuiltCarousel = props => {
   };
 
   const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-457').clientWidth;
+    return document.querySelector('.makeStyles-slide-465').clientWidth;
   };
 
   const [click, setClick] = useState(false);
@@ -122,6 +124,7 @@ const RebuiltCarousel = props => {
 
   return (
     <Box className={classes.root}>
+      <Thumbnails thumbnails={images} />
       <Box className={classes.slider}>
         <IconButton
           className={clsx(classes.arrow, classes.backArrow)}
