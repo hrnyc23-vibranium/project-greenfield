@@ -7,9 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 import BackArrow from '@material-ui/icons/ArrowBack';
 import NextArrow from '@material-ui/icons/ArrowForward';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import ZoomIcon from '@material-ui/icons/CropFreeSharp';
+import ZoomIcon from '@material-ui/icons/Fullscreen';
+import { grey } from '@material-ui/core/colors';
 // React Components
 import Image from './Image.jsx';
+import Thumbnails from './Thumbnails.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,12 +19,12 @@ const useStyles = makeStyles(theme => ({
     flexWrap: 'nowrap',
     width: '99%',
     height: '75vh',
-    backgroundColor: '#E0E0E0',
+    backgroundColor: grey[200],
   },
   slider: {
     position: 'relative',
-    width: 750,
     margin: '0 auto',
+    width: 750,
     height: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
@@ -78,13 +80,15 @@ const RebuiltCarousel = props => {
 
   const [translateValue, setTranslateValue] = useState(0);
 
+  const slideWidth = 750;
+
   const goToPreviousSlide = () => {
     if (currentIndex === 0) {
       return;
     }
 
     setCurrentIndex(currentIndex - 1);
-    setTranslateValue(translateValue + slideWidth());
+    setTranslateValue(translateValue + slideWidth);
   };
 
   const goToNextSlide = () => {
@@ -95,30 +99,33 @@ const RebuiltCarousel = props => {
     }
 
     setCurrentIndex(currentIndex + 1);
-    setTranslateValue(translateValue + -slideWidth());
+    setTranslateValue(translateValue + -slideWidth);
   };
 
-  const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-421').clientWidth;
-  };
+  //FIXME: Client Width doesn't always work because class changes
+  // const slideWidth = () => {
+  //   return document.querySelector('.makeStyles-slide-471').clientWidth;
+  // };
 
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(true);
 
   const [imgColumns, setImgColumns] = useState(8);
   const [styleColumns, setStyleColumns] = useState(4);
 
-  const changeColumns = () => {
-    if (click === true) {
-      setImgColumns(8);
-      setStyleColumns(4);
-    } else {
-      setImgColumns(12);
-      setStyleColumns(0);
-    }
+  const handleThumbnailClick = index => {
+    setTranslateValue(index * -slideWidth);
   };
+
+  //FIXME: Implement expanding the carousel width when the div is expanded
+  // const [sliderWidth, setSliderWidth] = useState({ width: 750 });
 
   return (
     <Box className={classes.root}>
+      <Thumbnails
+        thumbnails={images}
+        clicked={click}
+        handleThumbnailClick={handleThumbnailClick}
+      />
       <Box className={classes.slider}>
         <IconButton
           className={clsx(classes.arrow, classes.backArrow)}
@@ -132,9 +139,11 @@ const RebuiltCarousel = props => {
             transition: 'transform ease-out 0.5s',
           }}
           onClick={() => {
-            setClick(!click);
-            changeColumns();
+            click
+              ? (setImgColumns(8), setStyleColumns(4))
+              : (setImgColumns(12), setStyleColumns(12));
             props.changeSize(imgColumns, styleColumns);
+            setClick(!click);
           }}>
           {images ? (
             images.map((image, i) => (
@@ -154,7 +163,9 @@ const RebuiltCarousel = props => {
         className={classes.zoomIcon}
         onClick={() => {
           setClick(!click);
-          changeColumns();
+          click
+            ? (setImgColumns(8), setStyleColumns(4))
+            : (setImgColumns(12), setStyleColumns(12));
           props.changeSize(imgColumns, styleColumns);
         }}>
         <ZoomIcon />
