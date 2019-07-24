@@ -4,12 +4,8 @@ import { connect } from 'react-redux';
 import { postQuestion } from '../../actions/QandA/postQuestion';
 import { validate } from '../validation';
 
-//React Components
-import Question from './Question';
-
 //Material Componenets
 import { makeStyles } from '@material-ui/core/styles';
-import clsx from 'clsx';
 import {
   Container,
   Box,
