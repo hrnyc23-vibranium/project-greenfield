@@ -10,7 +10,8 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
-//maake the arrays an object
+
+//property corresponds to a value,
 const descriptions = {
   Fit: {
     '1': 'Runs tight',
@@ -89,38 +90,45 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
       return { ...prevState };
     });
   };
-  //for each characteristic, render out all 5 characteristics and it's corresponding label
-  return Object.values(characteristics) ? (
+
+  //for each character that exists, display radio buttons in a group,
+  //where each group corresponds to a character and contains multiple radio buttons
+  //where radio buttons correspond to a character description
+
+  return (
     <Box>
       <h4 className={error ? classes.titleError : classes.title}>
         Characteristics*
       </h4>
       {Object.keys(characteristics).map(character => {
         let id = characteristics[character].id; //id corresponding to character
-        let description = descriptions[character]; //descriptions  corresponding to character
-        let selected = form.characteristics[id]; //selected radio button value
+        let descriptionList = descriptions[character]; //description list corresponding to character
+        let selectedValue = form.characteristics[id]; //selected radio button value for current character
+        let selectedDescription = descriptionList[selectedValue]; //selected description obtained by selected value
         return (
           <FormControl component="fieldset" key={character}>
             <FormLabel className={classes.category}>
-              {character}:{description[selected] || 'None selected:'}
+              {character}:{selectedDescription || 'None selected:'}
             </FormLabel>
             <RadioGroup
               name={character}
-              value={String(selected) || ''}
+              value={String(selectedValue) || ''}
               onChange={handleChange}
               row
               className={classes.group}
             >
+              {/* Display possible values used to find selected description and send to database */}
               {['1', '2', '3', '4', '5'].map(value => {
                 return (
                   <FormControlLabel
-                    value={value} //value has to be a string
+                    value={value}
                     control={<Radio color="primary" />}
                     label={
                       <Typography className={classes.label}>
                         {value === '2' || value === '4'
                           ? ''
-                          : description[value]}
+                          : descriptionList[value]}
+                        {/* {descriptionList[value]} */}
                       </Typography>
                     }
                     labelPlacement="bottom"
@@ -134,8 +142,6 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
         );
       })}
     </Box>
-  ) : (
-    ''
   );
 };
 
