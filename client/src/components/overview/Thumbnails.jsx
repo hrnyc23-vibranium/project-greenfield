@@ -55,9 +55,15 @@ const useStyles = makeStyles(theme => ({
 const Thumbnails = props => {
   const classes = useStyles();
 
-  const [currentStyle, setCurrentStyle] = useState(
-    'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
-  );
+  console.log('props', props);
+
+  const [currentStyle, setCurrentStyle] = useState();
+
+  useEffect(() => {
+    if (!currentStyle && props.thumbnails) {
+      setCurrentStyle(props.thumbnails[0].thumbnail_url);
+    }
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
