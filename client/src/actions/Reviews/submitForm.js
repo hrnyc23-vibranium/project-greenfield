@@ -3,7 +3,6 @@ import axios from 'axios';
 
 export const submitForm = form => (dispatch, getState) => {
   const { productId, sort } = getState();
-
   axios
     .post(`http://18.222.40.124/reviews/${productId}`, {
       rating: form.rating,
@@ -13,7 +12,7 @@ export const submitForm = form => (dispatch, getState) => {
       characteristics: form.characteristics,
       name: form.name,
       email: form.email,
-      photos: form.photos.length > 0 || [],
+      photos: form.photos || [],
     })
     .then(() => {
       dispatch(getList(productId, sort));
@@ -22,6 +21,5 @@ export const submitForm = form => (dispatch, getState) => {
     .catch(err => {
       dispatch(getList(productId, sort));
       dispatch(getMeta(productId));
-      console.log(err);
     });
 };

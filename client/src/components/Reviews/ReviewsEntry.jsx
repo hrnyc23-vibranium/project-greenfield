@@ -12,6 +12,7 @@ import * as actions from '../../actions/Reviews/updateHelpful.js';
 import { formatDate } from '../formatDate.js';
 import Ratings from '../Ratings.jsx';
 import ImageGallery from '../ImageGallery.jsx';
+import { markdown } from '../search.js';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
+const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
   const classes = useStyles();
 
   const renderPhotos = photos => {
@@ -124,15 +125,12 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
           {review.reviewer_name}, {formatDate(review.date)}
         </Box>
       </Grid>
-      <h3 className={classes.summary}>{review.summary}</h3>
-      <p className={classes.body}>{review.body}</p>
+      <h3 className={classes.summary}>{markdown(review.summary, query)}</h3>
+      <p className={classes.body}>{markdown(review.body, query)}</p>
 
       {renderPhotos(review.photos)}
-
       {renderRecommend(review.recommend)}
-
       {renderResponse(review.response)}
-
       <Grid container className={classes.helpful} direction="row">
         <Typography className={classes.helpfulTitle}>Helpful?</Typography>
         <Button
@@ -155,7 +153,11 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport }) => {
   );
 };
 
+let mapStateToProps = state => ({
+  query: state.reviewSearch,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(ReviewsEntry);

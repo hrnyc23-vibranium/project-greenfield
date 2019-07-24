@@ -31,7 +31,7 @@ const RatingFilter = props => {
     if (total === 0) {
       return 0;
     }
-    return ((curr / total) * 100).toFixed(2);
+    return ((curr / total) * 100).toFixed(0);
   };
 
   //render out recommended percentage
