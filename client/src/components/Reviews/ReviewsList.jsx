@@ -32,20 +32,32 @@ const ReviewsList = props => {
     getMeta(productId);
   }, [productId]);
 
-  //if there are rating filters, filter the reviews then only render those reviews
+  //if there is a search, filter reviews by checking if content includes search. if there are rating filters, filter the reviews then only render those reviews
   const renderList = () => {
     const { search, filter, listLimit, setShown } = props;
 
-    if (search.length > 3) {
-      reviews.results.filter(review => {
-        let bodyContains = review.body.toLowerCase().includes(search);
-        let nameContains = review.body.toLowerCase().includes(search);
-        let summaryContains = review.body.toLowerCase().includes(search);
-        //if review.body contains search or if review.reviewer_name contains search or if review.summary contains search
+    let searchedList = reviews.results;
+    if (search.length > 2) {
+      searchedList = reviews.results.filter(review => {
+        let bodyContains = review.body
+          .toLowerCase()
+          .includes(search.toLowerCase());
+        let nameContains = review.reviewer_name
+          .toLowerCase()
+          .includes(search.toLowerCase());
+        let summaryContains = review.summary
+          .toLowerCase()
+          .includes(search.toLowerCase());
+        let responseContains = review.response
+          .toLowerCase()
+          .includes(search.toLowerCase());
+        return (
+          bodyContains || nameContains || summaryContains || responseContains
+        );
       });
     }
 
-    let filteredList = reviews.results;
+    let filteredList = searchedList;
     //if filters are selected, filter the list
     if (Object.keys(filter).length > 0) {
       filteredList = filteredList.filter(review => {
