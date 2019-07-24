@@ -6,7 +6,6 @@ import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UpArrow from '@material-ui/icons/ExpandLess';
 import DownArrow from '@material-ui/icons/ExpandMore';
-import { green } from '@material-ui/core/colors';
 
 const useStyles = makeStyles(theme => ({
   thumbnailSlider: {
@@ -55,9 +54,13 @@ const useStyles = makeStyles(theme => ({
 const Thumbnails = props => {
   const classes = useStyles();
 
-  const [currentStyle, setCurrentStyle] = useState(
-    'https://images.unsplash.com/photo-1501088430049-71c79fa3283e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=300&q=80'
-  );
+  const [currentStyle, setCurrentStyle] = useState();
+
+  useEffect(() => {
+    if (!currentStyle && props.thumbnails) {
+      setCurrentStyle(props.thumbnails[0].thumbnail_url);
+    }
+  });
 
   const [currentIndex, setCurrentIndex] = useState(0);
 
