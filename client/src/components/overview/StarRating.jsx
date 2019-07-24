@@ -14,28 +14,33 @@ class StarRating extends Component {
     }
   }
 
-  getAvgRating() {
-    const { ratings, totalReviews } = this.props;
-    if (ratings && totalReviews) {
+  renderAvgRating(totalReviews) {
+    const { ratings } = this.props;
+    if (ratings && totalReviews > 0) {
       let totalStars = 0;
       for (let stars in ratings) {
         let reviews = ratings[stars];
         totalStars += stars * reviews;
       }
-      return totalStars / totalReviews.length;
+      let avgRating = totalStars / totalReviews;
+      return Number(avgRating.toFixed(1));
     }
+    return 0;
   }
 
-  getNumReviews() {
-    const { totalReviews } = this.props;
-    if (totalReviews) {
-      return totalReviews.length;
+  getNumReviews(ratings = {}) {
+    if (Object.keys(ratings).length > 0) {
+      let totalReviews = Object.values(ratings).reduce((sum, num) => {
+        return sum + num;
+      });
+      return totalReviews;
     }
+    return 0;
   }
 
   render() {
-    const rating = this.getAvgRating();
-    const numReviews = this.getNumReviews();
+    const numReviews = this.getNumReviews(this.props.ratings);
+    const rating = this.renderAvgRating(numReviews);
     return (
       <Fragment>
         {numReviews ? (
@@ -56,7 +61,6 @@ class StarRating extends Component {
 const mapStateToProps = state => ({
   id: state.productId,
   ratings: state.metaInfo.ratings,
-  totalReviews: state.reviewList.results,
 });
 
 export default connect(
