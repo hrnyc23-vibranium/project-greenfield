@@ -112,25 +112,13 @@ const RebuiltCarousel = props => {
   const [imgColumns, setImgColumns] = useState(8);
   const [styleColumns, setStyleColumns] = useState(4);
 
-  // const changeColumns = () => {
-  //   if (click === true) {
-  //     setImgColumns(8);
-  //     setStyleColumns(4);
-  //   } else {
-  //     setImgColumns(12);
-  //     setStyleColumns(0);
-  //   }
-  // };
-
   const handleThumbnailClick = index => {
-    const newTranslateValue = index * -slideWidth;
-    setTranslateValue(newTranslateValue);
+    setTranslateValue(index * -slideWidth);
   };
 
   //FIXME: Implement expanding the carousel width when the div is expanded
   // const [sliderWidth, setSliderWidth] = useState({ width: 750 });
 
-  console.log('click', click);
   return (
     <Box className={classes.root}>
       <Thumbnails
@@ -154,7 +142,7 @@ const RebuiltCarousel = props => {
           onClick={() => {
             click
               ? (setImgColumns(8), setStyleColumns(4))
-              : (setImgColumns(12), setStyleColumns(0));
+              : (setImgColumns(12), setStyleColumns(12));
             props.changeSize(imgColumns, styleColumns);
             setClick(!click);
           }}>

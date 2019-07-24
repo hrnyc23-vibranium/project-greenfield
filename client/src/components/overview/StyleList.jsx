@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
   },
   checkmark: {
-    color: green[600],
+    color: 'rgb(143, 117, 0)',
     position: 'absolute',
     top: 4,
     right: 44,
@@ -89,10 +89,6 @@ const StyleList = props => {
     }
   };
 
-  const styles = {
-    boxShadow: '2px 2px 5px rgb(0, 0, 66)',
-  };
-
   return (
     <div>
       {renderPrice()}
@@ -122,7 +118,6 @@ const StyleList = props => {
                       alt={style.name}
                       src={style.photos[0].thumbnail_url}
                       className={classes.avatar}
-                      // style={currentStyle === style.name ? styles : null}
                     />
                   </Tooltip>
                   <Box
