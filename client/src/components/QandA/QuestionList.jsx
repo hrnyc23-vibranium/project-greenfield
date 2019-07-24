@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getQuestions } from '../../actions/QandA/getQuestions';
+import axios from 'axios';
 // import postQuestion from '../../actions/QandA/postQuestion';
 // import voteQuestion from '../../actions/QandA/voteQuestion';
 // import reportQuestion from '../../actions/QandA/reportQuestion';
@@ -20,6 +21,7 @@ class Questions extends React.Component {
     this.state = {
       load: 4,
     };
+    this.voteQuestion = this.voteQuestion.bind(this);
   }
   loadMore() {
     if (this.state.load < this.props.questions.results.length)
@@ -33,6 +35,21 @@ class Questions extends React.Component {
     });
   }
 
+  voteQuestion(questionId) {
+    axios
+      .put(`http://18.222.40.124/qa/question/${questionId}/helpful`)
+      .then(res => {
+        this.props.getQuestions(
+          this.props.productId,
+          1,
+          50,
+          this.props.searchKeyword
+        );
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   componentDidUpdate(prevProps) {
     if (
       this.props.productId !== prevProps.productId ||
@@ -58,6 +75,7 @@ class Questions extends React.Component {
                   question={question}
                   key={question.question_id}
                   product={this.props.productName}
+                  voteQuestion={this.voteQuestion}
                 />
               );
             }

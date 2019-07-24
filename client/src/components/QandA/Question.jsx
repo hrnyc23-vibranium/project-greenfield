@@ -58,7 +58,11 @@ const Question = props => {
             direction="row"
             justify="flex-end"
             alignItems="flex-start">
-            <Button size="small">
+            <Button
+              size="small"
+              onClick={() => {
+                props.voteQuestion(props.question.question_id);
+              }}>
               Helpful? ({props.question.question_helpfulness})
             </Button>
             <Typography component="h4"> | </Typography>
