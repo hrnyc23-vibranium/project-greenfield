@@ -16,6 +16,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import InputBase from '@material-ui/core/InputBase';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import Divider from '@material-ui/core/Divider';
+import Badge from '@material-ui/core/Badge';
 
 const drawerWidth = 240;
 
@@ -69,7 +70,6 @@ const useStyles = makeStyles(theme => ({
       width: 'auto',
     },
   },
-
   searchIcon: {
     width: theme.spacing(7),
     height: '100%',
@@ -93,6 +93,9 @@ const useStyles = makeStyles(theme => ({
       },
     },
   },
+  badge: {
+    margin: theme.spacing(2),
+  },
 }));
 
 const ShieldIcon = props => {
@@ -114,7 +117,7 @@ const CartIcon = props => {
   );
 };
 
-const Header = () => {
+const Header = props => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
@@ -160,7 +163,12 @@ const Header = () => {
             />
           </div>
           <IconButton color="inherit">
-            <CartIcon />
+            <Badge
+              className={classes.badge}
+              badgeContent={props.cart.length}
+              color="secondary">
+              <CartIcon />
+            </Badge>
           </IconButton>
         </Toolbar>
       </AppBar>
