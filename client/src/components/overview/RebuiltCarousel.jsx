@@ -128,7 +128,6 @@ const RebuiltCarousel = props => {
       />
       <Box className={classes.slider}>
         <IconButton
-          disabled={currentIndex === 0 ? true : false}
           className={clsx(classes.arrow, classes.backArrow)}
           onClick={goToPreviousSlide}>
           <BackArrow />
