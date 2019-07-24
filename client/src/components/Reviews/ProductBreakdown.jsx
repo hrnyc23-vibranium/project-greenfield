@@ -10,9 +10,9 @@ import Box from '@material-ui/core/Box';
 import * as actions from '../../actions/Reviews/getData.js';
 
 const descriptions = {
-  Fit: ['Too small', 'Perfect', 'Too wide'],
+  Fit: ['Runs tight', 'Perfect', 'Runs long'],
   Size: ['Too small', 'Perfect', 'Too wide'],
-  Length: ['Too short', 'Perfect', 'Too Long'],
+  Length: ['Runs Short', 'Perfect', 'Runs long'],
   Width: ['Too narrow', 'Perfect', 'Too wide'],
   Comfort: ['Poor', '', 'Perfect'],
   Quality: ['Poor', '', 'Perfect'],

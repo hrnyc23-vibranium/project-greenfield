@@ -13,11 +13,11 @@ import { makeStyles } from '@material-ui/core/styles';
 //maake the arrays an object
 const descriptions = {
   Fit: {
-    '1': 'A size too small',
-    '2': '1/2 a size too small',
+    '1': 'Runs tight',
+    '2': 'Runs slightly tight',
     '3': 'Perfect',
-    '4': '1/2 a size too big',
-    '5': 'A size too wide',
+    '4': 'Runs slightly long',
+    '5': 'Runs long',
   },
   Size: {
     '1': 'A size too small',
@@ -27,11 +27,11 @@ const descriptions = {
     '5': 'A size too wide',
   },
   Length: {
-    '1': 'Too narrow',
-    '2': 'Slightly narrow',
+    '1': 'Runs Short',
+    '2': 'Runs slightly short',
     '3': 'Perfect',
-    '4': 'Slightly wide',
-    '5': 'Too wide',
+    '4': 'Runs slightly long',
+    '5': 'Runs long',
   },
   Width: {
     '1': 'Too narrow',
