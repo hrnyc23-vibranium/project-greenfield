@@ -104,7 +104,7 @@ class Answers extends React.Component {
         </div>
       );
     } else {
-      return <div>There's not answer for this question yet</div>;
+      return <div>There's no answer for this question yet</div>;
     }
   }
 }
