@@ -10,9 +10,9 @@ import Box from '@material-ui/core/Box';
 import * as actions from '../../actions/Reviews/getData.js';
 
 const descriptions = {
-  Fit: ['Too small', 'Perfect', 'Too wide'],
+  Fit: ['Runs tight', 'Perfect', 'Runs long'],
   Size: ['Too small', 'Perfect', 'Too wide'],
-  Length: ['Too short', 'Perfect', 'Too Long'],
+  Length: ['Runs Short', 'Perfect', 'Runs long'],
   Width: ['Too narrow', 'Perfect', 'Too wide'],
   Comfort: ['Poor', '', 'Perfect'],
   Quality: ['Poor', '', 'Perfect'],
@@ -44,7 +44,7 @@ const ProductBreakdown = props => {
   return breakdown ? (
     <Box>
       {Object.keys(breakdown).map(category => {
-        let number = Number(breakdown[category]) * 10;
+        let number = Number(breakdown[category].value) * 10;
         return (
           <Box key={category} className={classes.category}>
             <span>{category}</span>

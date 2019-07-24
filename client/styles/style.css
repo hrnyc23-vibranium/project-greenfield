@@ -20,7 +20,7 @@
   background-repeat: no-repeat;
 }
 
-.slider::-moz-range-thumb {
+/* .slider::-moz-range-thumb {
   background: url('thumb.svg');
   width: 20px;
   height: 20px;
@@ -29,7 +29,7 @@
   vertical-align: top;
   background-repeat: no-repeat;
   margin-top: 9px;
-}
+} */
 
 /* =======================QUESTIONS==================== */
 

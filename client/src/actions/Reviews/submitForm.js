@@ -6,10 +6,11 @@ export const submitForm = form => (dispatch, getState) => {
 
   axios
     .post(`http://18.222.40.124/reviews/${productId}`, {
-      rating: String(form.rating),
+      rating: form.rating,
       summary: form.summary,
       body: form.body,
       recommend: form.recommend === 'true',
+      characteristics: form.characteristics,
       name: form.name,
       email: form.email,
       photos: form.photos.length > 0 || [],
@@ -19,6 +20,8 @@ export const submitForm = form => (dispatch, getState) => {
       dispatch(getMeta(productId));
     })
     .catch(err => {
+      dispatch(getList(productId, sort));
+      dispatch(getMeta(productId));
       console.log(err);
     });
 };
