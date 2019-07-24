@@ -1,5 +1,6 @@
 import parse from 'html-react-parser';
 
+//add all matches to a set, iterate through all the words in the set, and use that word to find all matches and replace that word with marked html tags
 export const markdown = (text, query) => {
   if (query.length > 2) {
     let needToChange = new Set([]);
