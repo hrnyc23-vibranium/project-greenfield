@@ -1,5 +1,6 @@
 //Dev Dependencies
 import React, { Fragment } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import { validate } from '../validation';
 
@@ -30,11 +31,14 @@ const defaultForm = {
   photos: [],
 };
 
-const AnswerForm = ({ product, question, answer }) => {
+const AnswerForm = ({ product, question, questionId, answer }) => {
   const [open, setOpen] = React.useState(false);
   const [form, setForm] = React.useState(defaultForm);
   const [error, setErrors] = React.useState(false);
 
+  // setForm({
+  //   questionId: questionId,
+  // });
   //add inputs to form
   const handleChange = e => {
     e.persist();
@@ -43,15 +47,34 @@ const AnswerForm = ({ product, question, answer }) => {
     });
   };
 
+  const submitForm = (form, questionId) => {
+    axios({
+      method: 'post',
+      url: `http://18.222.40.124/qa/${questionId}/answers`,
+      data: {
+        body: form.answer,
+        name: form.name,
+        email: form.email,
+        photos: form.photos,
+      },
+    })
+      .then(data => {
+        alert('Answer has been submitted!');
+        handleClose();
+      })
+      .catch(err => {
+        console.log(err);
+        alert('Error occurred when submitting your answer');
+      });
+  };
+
   //set errors, if there are no errors make post request. Show snackbar depending on success/error
   const handleSubmit = e => {
     //returns an arr or errors or false
-    console.log(form);
     let errorList = validate(form, 'answer', null);
     setErrors(errorList);
-    console.log(error);
     if (!error) {
-      //submitForm(form);
+      submitForm(form, questionId);
       handleClose();
     }
     //show snackbar

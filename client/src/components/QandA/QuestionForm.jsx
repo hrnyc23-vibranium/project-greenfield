@@ -60,15 +60,12 @@ class QuestionsForm extends React.Component {
   }
 
   handleSubmit() {
-    console.log(this.state);
     let errorList = validate(this.state, 'question', null);
-    console.log(errorList);
     if (errorList) {
       this.setState({
         errorList: errorList,
       });
     } else {
-      console.log('no error');
       let payload = Object.assign({}, this.state, {
         productId: this.props.productId,
         productName: this.props.productName,

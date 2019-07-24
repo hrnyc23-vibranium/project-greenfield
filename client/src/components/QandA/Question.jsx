@@ -65,6 +65,7 @@ const Question = props => {
             <AnswerForm
               product={'something'}
               question={props.question.question_body}
+              questionId={props.question.question_id}
             />
           </Grid>
         </Grid>

@@ -8,7 +8,6 @@ const init = {
 };
 
 const QuestionReducer = (state = init, { type, payload }) => {
-  // console.log('state:', state, 'type', type);
   switch (type) {
     case 'POST_QUESTION':
       const body = {
@@ -19,7 +18,6 @@ const QuestionReducer = (state = init, { type, payload }) => {
       axios
         .post(`http://18.222.40.124/qa/${payload.productId}`, body)
         .then(res => {
-          console.log('res:', res);
           return state;
         })
         .catch(err => {
