@@ -28,11 +28,17 @@ export const validate = (form, component, categories) => {
 
     //check if characteristics exist
   } else {
-    if (!form.question) errors.question = 'a question';
+    if (component === 'question') {
+      if (!form.question || form.question === '')
+        errors.question = 'a question';
+    } else {
+      if (!form.answer || form.answer === '') errors.answer = 'a answer';
+    }
 
-    if (!form.name) errors.name = 'a nickname';
+    if (!form.name || form.name === '') errors.name = 'a nickname';
 
-    if (!emailIsValid(form.email)) errors.email = 'a valid email address';
+    if (!emailIsValid(form.email) || form.email === '')
+      errors.email = 'a valid email address';
   }
   return Object.keys(errors).length ? errors : false;
 };

@@ -6,14 +6,14 @@ import axios from 'axios';
 class Answers extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { answers: [] };
+    this.state = { answers: [], load: 2 };
     this.getAnswers = this.getAnswers.bind(this);
   }
   componentDidMount() {
     this.getAnswers();
   }
 
-  getAnswers(page = 1, count = 2, keyword = null) {
+  getAnswers(page = 1, count = 50, keyword = null) {
     axios
       .get(
         `http://18.222.40.124/qa/${
@@ -33,7 +33,9 @@ class Answers extends React.Component {
       return (
         <div className="answerContainer">
           {this.state.answers.map((answer, index) => {
-            return <Answer answer={answer} key={index} />;
+            if (index < this.state.load) {
+              return <Answer answer={answer} key={index} />;
+            }
           })}
         </div>
       );

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const filterAnswers = (questions, searchTerm) => {
+const filterAnswers = (questions, searchKeyword) => {
   const result = [];
   questions.map(question => {
     //create a question copy without answers
@@ -9,7 +9,11 @@ const filterAnswers = (questions, searchTerm) => {
     //search term for each answer
     let answerkeys = Object.keys(question.answers);
     for (let keys in answerkeys) {
-      if (question.answers[answerkeys[keys]].body.indexOf(searchTerm) > 0) {
+      if (
+        question.answers[answerkeys[keys]].body
+          .toLowerCase()
+          .indexOf(searchKeyword) > 0
+      ) {
         match = true;
         questionObj.answers[answerkeys[keys]] =
           question.answers[answerkeys[keys]];
@@ -26,14 +30,14 @@ export const getQuestions = (
   productId,
   page = 1,
   count = 4,
-  searchTerm = 'sh'
+  searchKeyword = ''
 ) => async dispatch => {
   const res = await axios.get(
     `http://18.222.40.124/qa/${productId}?page=${page}&count=${count}`
   );
   let questions = res.data.results;
-  if (searchTerm.length >= 3) {
-    questions = filterAnswers(questions, searchTerm);
+  if (searchKeyword.length >= 3) {
+    questions = filterAnswers(questions, searchKeyword.toLowerCase());
   }
   dispatch({
     type: 'GET_QUESTIONS',
