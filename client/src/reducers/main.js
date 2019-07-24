@@ -15,6 +15,7 @@ import filterReducer from './Reviews/filterReducer.js';
 import listLimitReducer from './Reviews/listLimitReducer.js';
 import listShownReducer from './Reviews/listShownReducer.js';
 import reviewSearchReducer from './Reviews/reviewSearchReducer.js';
+import cartReducer from './overview/cartReducer.js';
 
 const rootReducer = combineReducers({
   productId: IdReducer,
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   listLimit: listLimitReducer,
   listShown: listShownReducer,
   reviewSearch: reviewSearchReducer,
+  cart: cartReducer,
 });
 
 export default rootReducer;
