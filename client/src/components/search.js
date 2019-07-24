@@ -1,29 +1,21 @@
-// import parse from 'html-react-parser';
+import parse from 'html-react-parser';
 
-// export const markdown = (text, query) => {
-//   if (query.length > 2) {
-//     let regex = new RegExp(query, 'gi');
-
-//     let length = query.length
-//     for (let i = 0; i < text.length; i++) {
-//       let potMatch = text.substring(i, length)
-//       if (potMatch.toLowerCase() === query.toLowerCase()) {
-
-//         text.replace()
-//       }
-//     }
-
-//     let startMark = text.toLowerCase().indexOf(query.toLowerCase());
-//     let endMark = text
-//       .toLowerCase()
-//       .indexOf(query.toLowerCase()[query.length - 1]);
-
-//     let replacement = `<mark>${text.substring(startMark, endMark + 1)}</mark>`;
-
-//     let marked = parse(text.replace(regex, replacement));
-
-//     return marked;
-//   } else {
-//     return text;
-//   }
-// };
+export const markdown = (text, query) => {
+  if (query.length > 2) {
+    let needToChange = new Set([]);
+    let match; //potential matches
+    let length = query.length;
+    for (let i = 0; i <= text.length - length; i++) {
+      match = text.substring(i, length + i);
+      if (match.toLowerCase() === query.toLowerCase()) {
+        needToChange.add(match);
+      }
+    }
+    needToChange.forEach(word => {
+      let regex = new RegExp(word, 'g');
+      let replacement = `<mark>${word}</mark>`;
+      text = text.replace(regex, replacement);
+    });
+  }
+  return parse(text);
+};
