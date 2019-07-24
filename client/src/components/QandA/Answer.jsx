@@ -25,14 +25,30 @@ const Answer = props => {
         <Typography variant="caption">
           by{' '}
           <span
-            className={props.answer.answerer_name == 'seller' ? 'seller' : ''}>
+            className={
+              props.answer.answerer_name.toLowerCase() == 'seller'
+                ? 'seller'
+                : ''
+            }>
             {props.answer.answerer_name}
           </span>
           , {formatDate(props.answer.date)} | Helpful?
         </Typography>
-        <Button size="small">Yes ({+props.answer.helpfulness})</Button>
+        <Button
+          size="small"
+          onClick={() => {
+            props.voteAnswer(props.answer.answer_id);
+          }}>
+          Yes ({+props.answer.helpfulness})
+        </Button>
         <Typography component="h4"> | </Typography>
-        <Button size="small">Report</Button>
+        <Button
+          size="small"
+          onClick={() => {
+            props.reportAnswer(props.answer.answer_id);
+          }}>
+          Report
+        </Button>
       </Grid>
     </Box>
   );
