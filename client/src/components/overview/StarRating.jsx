@@ -45,7 +45,9 @@ class StarRating extends Component {
       <Fragment>
         {numReviews ? (
           <Box display="flex" flexWrap="nowrap">
-            <Ratings rating={rating} />
+            <Box component="span" style={{ marginRight: '5px' }}>
+              <Ratings rating={rating} />
+            </Box>
             <Link href={'#'} color="inherit" variant="body2" underline="always">
               {`Read All ${numReviews} Reviews`}
             </Link>
