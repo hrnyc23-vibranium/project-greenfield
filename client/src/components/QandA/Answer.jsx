@@ -25,7 +25,11 @@ const Answer = props => {
         <Typography variant="caption">
           by{' '}
           <span
-            className={props.answer.answerer_name == 'seller' ? 'seller' : ''}>
+            className={
+              props.answer.answerer_name.toLowerCase() == 'seller'
+                ? 'seller'
+                : ''
+            }>
             {props.answer.answerer_name}
           </span>
           , {formatDate(props.answer.date)} | Helpful?

@@ -12,6 +12,7 @@ class Answers extends React.Component {
     this.state = { answers: [], load: 2 };
     this.getAnswers = this.getAnswers.bind(this);
     this.loadMore = this.loadMore.bind(this);
+    this.collapesAnswers = this.collapesAnswers.bind(this);
   }
   componentDidMount() {
     this.getAnswers();
@@ -19,6 +20,11 @@ class Answers extends React.Component {
   loadMore() {
     this.setState({
       load: this.state.load + 2,
+    });
+  }
+  collapesAnswers() {
+    this.setState({
+      load: 2,
     });
   }
 
@@ -54,6 +60,14 @@ class Answers extends React.Component {
                 this.loadMore();
               }}>
               Load more answers
+            </Button>
+          ) : this.state.load > 2 ? (
+            <Button
+              variant="text"
+              onClick={() => {
+                this.collapesAnswers();
+              }}>
+              Collapse answers
             </Button>
           ) : (
             <div />
