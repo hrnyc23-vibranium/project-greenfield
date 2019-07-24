@@ -1,5 +1,3 @@
-import { object } from 'prop-types';
-
 const SearchReducer = (state = '', { type, payload }) => {
   switch (type) {
     case 'SEARCH':

@@ -35,7 +35,11 @@ class Questions extends React.Component {
           {this.props.questions.results.map(question => {
             if (question.answers !== undefined) {
               return (
-                <Question question={question} key={question.question_id} />
+                <Question
+                  question={question}
+                  key={question.question_id}
+                  product={this.props.productName}
+                />
               );
             }
           })}
@@ -52,6 +56,7 @@ const mapStateToProps = state => {
     productId: state.productId,
     searchKeyword: state.searchKeyword,
     questions: state.questions,
+    productName: state.product.name,
   };
 };
 

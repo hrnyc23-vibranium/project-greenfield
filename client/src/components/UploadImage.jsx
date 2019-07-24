@@ -52,8 +52,7 @@ class FileUpload extends React.Component {
                 color="default"
                 onClick={() => {
                   client.picker(pickerOptions).open();
-                }}
-              >
+                }}>
                 Upload
                 <CloudUploadIcon />
               </Button>

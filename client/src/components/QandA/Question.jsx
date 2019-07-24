@@ -63,8 +63,9 @@ const Question = props => {
             </Button>
             <Typography component="h4"> | </Typography>
             <AnswerForm
-              product={'something'}
+              product={props.product}
               question={props.question.question_body}
+              questionId={props.question.question_id}
             />
           </Grid>
         </Grid>

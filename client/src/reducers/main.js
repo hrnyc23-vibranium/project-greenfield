@@ -3,6 +3,7 @@ import IdReducer from './IdReducer.js';
 import productReducer from './overview/productReducer.js';
 import styleReducer from './overview/styleReducer.js';
 import questionReducer from './QandA/QuestionReducer.js';
+import questionFormReducer from './QandA/PostQuestionReducer.js';
 import searchReducer from './QandA/SearchReducer.js';
 import answerReducer from './QandA/AnswerReducer.js';
 import galleryReducer from './galleryReducer.js';
@@ -32,11 +33,9 @@ const rootReducer = combineReducers({
   reviewFilter: filterReducer,
   listLimit: listLimitReducer,
   listShown: listShownReducer,
-
   searchKeyword: searchReducer,
-
+  questionFormReducer: questionFormReducer,
   reviewSearch: reviewSearchReducer,
-
 });
 
 export default rootReducer;
