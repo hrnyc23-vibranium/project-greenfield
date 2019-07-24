@@ -13,6 +13,8 @@ class Answers extends React.Component {
     this.getAnswers = this.getAnswers.bind(this);
     this.loadMore = this.loadMore.bind(this);
     this.collapesAnswers = this.collapesAnswers.bind(this);
+    this.voteAnswer = this.voteAnswer.bind(this);
+    this.reportAnswer = this.reportAnswer.bind(this);
   }
   componentDidMount() {
     this.getAnswers();
@@ -28,15 +30,35 @@ class Answers extends React.Component {
     });
   }
 
-  getAnswers(page = 1, count = 50, keyword = null) {
+  getAnswers(page = 1, count = 50) {
     axios
       .get(
         `http://18.222.40.124/qa/${
           this.props.questionId
-        }/answers?page=${page}&count=${count}&body=${keyword}`
+        }/answers?page=${page}&count=${count}`
       )
       .then(res => {
         this.setState({ answers: res.data.results });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  voteAnswer(answerId) {
+    axios
+      .put(`http://18.222.40.124/qa/answer/${answerId}/helpful`)
+      .then(res => {
+        this.getAnswers();
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+  reportAnswer(answerId) {
+    axios
+      .put(`http://18.222.40.124/qa/answer/${answerId}/report`)
+      .then(res => {
+        this.getAnswers();
       })
       .catch(err => {
         console.log(err);
@@ -49,7 +71,14 @@ class Answers extends React.Component {
         <div className="answerContainer">
           {this.state.answers.map((answer, index) => {
             if (index < this.state.load) {
-              return <Answer answer={answer} key={index} />;
+              return (
+                <Answer
+                  answer={answer}
+                  key={index}
+                  voteAnswer={this.voteAnswer}
+                  reportAnswer={this.reportAnswer}
+                />
+              );
             }
           })}
 
