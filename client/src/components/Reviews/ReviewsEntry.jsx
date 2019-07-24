@@ -12,6 +12,7 @@ import * as actions from '../../actions/Reviews/updateHelpful.js';
 import { formatDate } from '../formatDate.js';
 import Ratings from '../Ratings.jsx';
 import ImageGallery from '../ImageGallery.jsx';
+import { markdown } from '../search.js';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -70,7 +71,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const ReviewsEntry = ({ review, updateHelpful, updateReport, search }) => {
+const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
   const classes = useStyles();
 
   const renderPhotos = photos => {
@@ -124,8 +125,9 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, search }) => {
           {review.reviewer_name}, {formatDate(review.date)}
         </Box>
       </Grid>
-      <h3 className={classes.summary}>{review.summary}</h3>
-      <p className={classes.body}>{review.body}</p>
+      <h3 className={classes.summary}>{markdown(review.summary, query)}</h3>
+      <p className={classes.body}>{markdown(review.body, query)}</p>
+
       {renderPhotos(review.photos)}
       {renderRecommend(review.recommend)}
       {renderResponse(review.response)}
@@ -152,7 +154,7 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, search }) => {
 };
 
 let mapStateToProps = state => ({
-  search: state.reviewSearch,
+  query: state.reviewSearch,
 });
 
 export default connect(
