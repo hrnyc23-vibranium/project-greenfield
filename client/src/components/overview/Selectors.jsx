@@ -28,11 +28,10 @@ const useStyles = makeStyles(theme => ({
 const Selectors = props => {
   const classes = useStyles();
 
-  const [currSize, setSize] = useState('');
-  const [currQuant, setQuantity] = useState('');
+  const [currSize, setSize] = useState('-');
+  const [currQuant, setQuantity] = useState();
   const [quant, setQuant] = useState(true);
-  const [cartQuant, setCartQuant] = useState('');
-  const [cartStatus, setCartStatus] = useState(true);
+  const [cartQuant, setCartQuant] = useState(1);
 
   const handleChange = event => {
     setSize(event.target.value);
@@ -107,7 +106,7 @@ const Selectors = props => {
         style={props.style}
         size={currSize}
         quantity={cartQuant}
-        status={cartStatus}
+        status={quant}
         price={props.price}
         image={props.cartImage}
       />
