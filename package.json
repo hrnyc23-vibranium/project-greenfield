@@ -34,6 +34,7 @@
     "concurrently": "^4.1.1",
     "express": "^4.17.1",
     "filestack-js": "^3.4.2",
+    "html-react-parser": "^0.9.1",
     "nodemon": "^1.19.1",
     "puppeteer": "^1.18.1",
     "react": "^16.8.6",

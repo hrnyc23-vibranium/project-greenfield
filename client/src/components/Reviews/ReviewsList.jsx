@@ -35,7 +35,6 @@ const ReviewsList = props => {
   //if there is a search, filter reviews by checking if content includes search. if there are rating filters, filter the reviews then only render those reviews
   const renderList = () => {
     const { search, filter, listLimit, setShown } = props;
-
     let searchedList = reviews.results;
     if (search.length > 2) {
       searchedList = reviews.results.filter(review => {
@@ -48,12 +47,7 @@ const ReviewsList = props => {
         let summaryContains = review.summary
           .toLowerCase()
           .includes(search.toLowerCase());
-        let responseContains = review.response
-          .toLowerCase()
-          .includes(search.toLowerCase());
-        return (
-          bodyContains || nameContains || summaryContains || responseContains
-        );
+        return bodyContains || nameContains || summaryContains;
       });
     }
 
