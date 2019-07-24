@@ -44,7 +44,7 @@ const ProductBreakdown = props => {
   return breakdown ? (
     <Box>
       {Object.keys(breakdown).map(category => {
-        let number = Number(breakdown[category]) * 10;
+        let number = Number(breakdown[category].value) * 10;
         return (
           <Box key={category} className={classes.category}>
             <span>{category}</span>

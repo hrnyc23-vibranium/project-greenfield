@@ -10,7 +10,7 @@ import FormLabel from '@material-ui/core/FormLabel';
 import Typography from '@material-ui/core/Typography';
 
 import { makeStyles } from '@material-ui/core/styles';
-
+//maake the arrays an object
 const descriptions = {
   Fit: [
     'A size too small',
@@ -84,42 +84,47 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
   const classes = useStyles();
   const handleChange = e => {
     setForm(prevState => {
-      prevState.characteristics[e.target.name] = e.target.value;
+      let id = characteristics[e.target.name].id;
+      prevState.characteristics[e.target.name] = {
+        id: id,
+        value: e.target.value,
+      };
       return { ...prevState };
     });
   };
   //for each characteristic, render out all 5 characteristics and it's corresponding label
-  return Object.values(characteristics)[0] ? (
+  return Object.values(characteristics) ? (
     <Box>
       <h4 className={error ? classes.titleError : classes.title}>
         Characteristics*
       </h4>
       {Object.keys(characteristics).map(character => {
         let description = descriptions[character];
-        if (!description) {
-          console.log(character);
-        }
-
+        let formCharacter = form.characteristics[character];
+        let formCharacterValue = formCharacter ? formCharacter.value : '';
         return (
           <FormControl component="fieldset" key={character}>
             <FormLabel className={classes.category}>
-              {character}: {form.characteristics[character] || 'None selected:'}
+              {character}:
+              {formCharacterValue
+                ? description[formCharacterValue - 1]
+                : 'None selected:'}
             </FormLabel>
             <RadioGroup
               name={character}
-              value={form.characteristics[character] || ''}
+              value={formCharacterValue}
               onChange={handleChange}
               row
               className={classes.group}
             >
-              {[0, 1, 2, 3, 4].map(num => {
+              {[1, 2, 3, 4, 5].map(num => {
                 return (
                   <FormControlLabel
-                    value={description[num]}
+                    value={String(num)} //value has to be a string
                     control={<Radio color="primary" />}
                     label={
                       <Typography className={classes.label}>
-                        {num === 1 || num === 3 ? '' : description[num]}
+                        {num === 2 || num === 4 ? '' : description[num - 1]}
                       </Typography>
                     }
                     labelPlacement="bottom"

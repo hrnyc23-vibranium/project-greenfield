@@ -103,6 +103,8 @@ const WriteReview = props => {
     return errors.hasOwnProperty(input);
   };
 
+  console.log(form);
+
   return form ? (
     <React.Fragment>
       <DialogTitle id="form-dialog-title">Write Your Review </DialogTitle>
