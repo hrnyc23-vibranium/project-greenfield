@@ -163,10 +163,7 @@ const Header = props => {
             />
           </div>
           <IconButton color="inherit">
-            <Badge
-              className={classes.badge}
-              badgeContent={props.cart.length}
-              color="secondary">
+            <Badge className={classes.badge} badgeContent={1} color="secondary">
               <CartIcon />
             </Badge>
           </IconButton>
