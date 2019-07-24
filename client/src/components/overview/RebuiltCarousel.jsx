@@ -80,13 +80,15 @@ const RebuiltCarousel = props => {
 
   const [translateValue, setTranslateValue] = useState(0);
 
+  const slideWidth = 750;
+
   const goToPreviousSlide = () => {
     if (currentIndex === 0) {
       return;
     }
 
     setCurrentIndex(currentIndex - 1);
-    setTranslateValue(translateValue + slideWidth());
+    setTranslateValue(translateValue + slideWidth);
   };
 
   const goToNextSlide = () => {
@@ -97,36 +99,48 @@ const RebuiltCarousel = props => {
     }
 
     setCurrentIndex(currentIndex + 1);
-    setTranslateValue(translateValue + -slideWidth());
+    setTranslateValue(translateValue + -slideWidth);
   };
 
-  const slideWidth = () => {
-    return document.querySelector('.makeStyles-slide-465').clientWidth;
-  };
+  //FIXME: Client Width doesn't always work because class changes
+  // const slideWidth = () => {
+  //   return document.querySelector('.makeStyles-slide-471').clientWidth;
+  // };
 
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(true);
 
   const [imgColumns, setImgColumns] = useState(8);
   const [styleColumns, setStyleColumns] = useState(4);
 
-  const changeColumns = () => {
-    if (click === true) {
-      setImgColumns(8);
-      setStyleColumns(4);
-    } else {
-      setImgColumns(12);
-      setStyleColumns(0);
-    }
+  // const changeColumns = () => {
+  //   if (click === true) {
+  //     setImgColumns(8);
+  //     setStyleColumns(4);
+  //   } else {
+  //     setImgColumns(12);
+  //     setStyleColumns(0);
+  //   }
+  // };
+
+  const handleThumbnailClick = index => {
+    const newTranslateValue = index * -slideWidth;
+    setTranslateValue(newTranslateValue);
   };
 
   //FIXME: Implement expanding the carousel width when the div is expanded
   // const [sliderWidth, setSliderWidth] = useState({ width: 750 });
 
+  console.log('click', click);
   return (
     <Box className={classes.root}>
-      <Thumbnails thumbnails={images} />
+      <Thumbnails
+        thumbnails={images}
+        clicked={click}
+        handleThumbnailClick={handleThumbnailClick}
+      />
       <Box className={classes.slider}>
         <IconButton
+          disabled={currentIndex === 0 ? true : false}
           className={clsx(classes.arrow, classes.backArrow)}
           onClick={goToPreviousSlide}>
           <BackArrow />
@@ -138,9 +152,11 @@ const RebuiltCarousel = props => {
             transition: 'transform ease-out 0.5s',
           }}
           onClick={() => {
-            setClick(!click);
-            changeColumns();
+            click
+              ? (setImgColumns(8), setStyleColumns(4))
+              : (setImgColumns(12), setStyleColumns(0));
             props.changeSize(imgColumns, styleColumns);
+            setClick(!click);
           }}>
           {images ? (
             images.map((image, i) => (
@@ -160,8 +176,9 @@ const RebuiltCarousel = props => {
         className={classes.zoomIcon}
         onClick={() => {
           setClick(!click);
-
-          changeColumns();
+          click
+            ? (setImgColumns(8), setStyleColumns(4))
+            : (setImgColumns(12), setStyleColumns(12));
           props.changeSize(imgColumns, styleColumns);
         }}>
         <ZoomIcon />

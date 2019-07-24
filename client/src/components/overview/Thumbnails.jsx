@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import IconButton from '@material-ui/core/IconButton';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import UpArrow from '@material-ui/icons/ExpandLess';
@@ -69,10 +67,9 @@ const Thumbnails = props => {
     setCurrentIndex(Math.min(currentIndex + 2, 5));
     setTranslateValue(translateValue + -108);
   };
-  console.log('currentIndex', currentIndex);
 
   return (
-    <div>
+    <Box display={props.clicked ? 'inline' : 'none'}>
       <IconButton
         className={classes.arrow}
         onClick={goToPreviousThumbnail}
@@ -91,6 +88,9 @@ const Thumbnails = props => {
               <div
                 className={classes.thumbnail}
                 key={i}
+                onClick={() => {
+                  props.handleThumbnailClick(i);
+                }}
                 style={{
                   backgroundImage: `url(${thumbnail.thumbnail_url})`,
                   backgroundSize: 'cover',
@@ -108,7 +108,7 @@ const Thumbnails = props => {
       <IconButton className={classes.arrow} onClick={goToNextThumbnail}>
         <DownArrow />
       </IconButton>
-    </div>
+    </Box>
   );
 };
 
