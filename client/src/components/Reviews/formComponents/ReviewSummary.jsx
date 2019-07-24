@@ -5,11 +5,13 @@ import Box from '@material-ui/core/Box';
 
 import { useStyles } from './inputStyle.js';
 
-const ReviewSummary = ({ summary = '', handleChange }) => {
+const ReviewSummary = ({ summary = '', handleChange, error }) => {
   const classes = useStyles();
   return (
     <Box>
-      <h4>Review Summary</h4>
+      <h4 className={error ? classes.titleError : classes.title}>
+        Review Summary*
+      </h4>
       <TextField
         placeholder="Example: Best purchase ever!"
         className={classes.textField}
@@ -17,6 +19,7 @@ const ReviewSummary = ({ summary = '', handleChange }) => {
         onChange={handleChange}
         inputProps={{ maxLength: 60 }}
         name="summary"
+        error={error}
       />
     </Box>
   );

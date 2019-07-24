@@ -6,7 +6,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import Box from '@material-ui/core/Box';
 
-const Recommend = ({ form, setForm }) => {
+import { useStyles } from './inputStyle.js';
+
+const Recommend = ({ form, setForm, error }) => {
+  const classes = useStyles();
   const handleChange = e => {
     setForm(prevState => {
       return { ...prevState, recommend: e.target.value };
@@ -15,7 +18,9 @@ const Recommend = ({ form, setForm }) => {
 
   return (
     <Box>
-      <h4>Do you recommend this product?*</h4>
+      <h4 className={error ? classes.titleError : classes.title}>
+        Do you recommend this product?*
+      </h4>
       <FormControl component="fieldset">
         <RadioGroup
           name="position"

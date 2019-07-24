@@ -10,6 +10,7 @@ import { getList, getMeta } from '../../actions/Reviews/getData.js';
 import { setShown } from '../../actions/Reviews/setShown.js';
 import ReviewsEntry from './ReviewsEntry.jsx';
 import ReviewSort from '../Reviews/ReviewSort.jsx';
+import ReviewSearch from './ReviewSearch.jsx';
 
 const useStyles = makeStyles(theme => ({
   title: {
@@ -33,7 +34,16 @@ const ReviewsList = props => {
 
   //if there are rating filters, filter the reviews then only render those reviews
   const renderList = () => {
-    const { filter, listLimit, setShown } = props;
+    const { search, filter, listLimit, setShown } = props;
+
+    if (search.length > 3) {
+      reviews.results.filter(review => {
+        let bodyContains = review.body.toLowerCase().includes(search);
+        let nameContains = review.body.toLowerCase().includes(search);
+        let summaryContains = review.body.toLowerCase().includes(search);
+        //if review.body contains search or if review.reviewer_name contains search or if review.summary contains search
+      });
+    }
 
     let filteredList = reviews.results;
     //if filters are selected, filter the list
@@ -64,6 +74,7 @@ const ReviewsList = props => {
           <ReviewSort />
         </span>
       </Box>
+      <ReviewSearch />
       {renderList()}
     </Fragment>
   ) : (
@@ -77,6 +88,7 @@ const mapStateToProps = state => ({
   metaInfo: state.metaInfo,
   filter: state.reviewFilter,
   listLimit: state.listLimit,
+  search: state.reviewSearch,
 });
 
 const mapDispatchToprops = dispatch => ({
