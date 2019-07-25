@@ -1,25 +1,22 @@
 import React, { Fragment, useState } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import SvgIcon from '@material-ui/core/SvgIcon';
-import IconButton from '@material-ui/core/IconButton';
+import {
+  Button,
+  SvgIcon,
+  Popover,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
 import ShareIcon from '@material-ui/icons/Share';
-import Popover from '@material-ui/core/Popover';
-import Typography from '@material-ui/core/Typography';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
 
 const useStyles = makeStyles(theme => ({
   button: {
     borderRadius: 0,
     padding: '15px',
     marginLeft: theme.spacing(2),
-  },
-  typography: {
-    padding: theme.spacing(2),
   },
 }));
 

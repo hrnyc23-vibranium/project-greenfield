@@ -104,7 +104,6 @@ const Selectors = props => {
           </FormControl>
         </Grid>
       </Grid>
-
       <CartButton
         product={props.product}
         style={props.style}

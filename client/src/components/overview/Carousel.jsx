@@ -2,13 +2,11 @@ import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import IconButton from '@material-ui/core/IconButton';
+import { Box, IconButton, CircularProgress } from '@material-ui/core';
+import { grey } from '@material-ui/core/colors';
 import BackArrow from '@material-ui/icons/ArrowBack';
 import NextArrow from '@material-ui/icons/ArrowForward';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import ZoomIcon from '@material-ui/icons/Fullscreen';
-import { grey } from '@material-ui/core/colors';
 // React Components
 import Image from './Image.jsx';
 import Thumbnails from './Thumbnails.jsx';
