@@ -21,7 +21,15 @@ export const addItem = item => {
   };
 };
 
-// export const removeItem = item => ({
-//   type: REMOVE_ITEM,
-//   payload: item,
-// });
+export const removeItem = itemId => {
+  return dispatch => {
+    axios
+      .delete(`http://localhost:5000/api/v1/cart/${itemId}`)
+      .then(res => {
+        dispatch({ type: REMOVE_ITEM, payload: res.data });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+};

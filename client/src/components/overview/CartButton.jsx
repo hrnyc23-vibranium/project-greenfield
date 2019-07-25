@@ -196,7 +196,6 @@ const CartButton = props => {
           <Button onClick={handleClose}>Go Back</Button>
           <Button
             onClick={() => {
-              handleSnackClick();
               handleClose();
               props.addItem({
                 product: props.product,
