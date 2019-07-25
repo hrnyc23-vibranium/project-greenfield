@@ -1,9 +1,6 @@
 import React from 'react';
 
-import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box';
-
-import { useStyles } from './inputStyle.js';
+//React Components
 import FileUpload from '../../UploadImage.jsx';
 
 const Images = ({ form, setForm }) => {

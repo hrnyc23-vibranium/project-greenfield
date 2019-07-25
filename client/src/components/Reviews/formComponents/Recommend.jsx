@@ -1,12 +1,14 @@
 import React from 'react';
 
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import Box from '@material-ui/core/Box';
-
+// Material UI Components
 import { useStyles } from './inputStyle.js';
+import {
+  Box,
+  FormControlLabel,
+  FormControl,
+  Radio,
+  RadioGroup,
+} from '@material-ui/core';
 
 const Recommend = ({ form, setForm, error }) => {
   const classes = useStyles();

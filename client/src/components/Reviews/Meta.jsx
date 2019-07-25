@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+// Material UI Components
 import Grid from '@material-ui/core/Grid';
-//components
+
+//React Components
 import RatingFilter from './RatingFilter.jsx';
 import ProductBreakdown from './ProductBreakdown.jsx';
 import * as actions from '../../actions/Reviews/getData.js';

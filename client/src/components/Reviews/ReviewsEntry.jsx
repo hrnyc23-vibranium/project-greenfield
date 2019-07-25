@@ -3,10 +3,8 @@ import { connect } from 'react-redux';
 
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import { Box, Grid, Button, Typography } from '@material-ui/core';
+
 //React Components
 import * as actions from '../../actions/Reviews/updateHelpful.js';
 import { formatDate, markdown } from '../helpers.js';

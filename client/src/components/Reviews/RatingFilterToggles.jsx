@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
+import { Box, Chip } from '@material-ui/core';
+
+//React Components
 import * as actions from '../../actions/Reviews/setFilter.js';
 
 const useStyles = makeStyles(theme => ({

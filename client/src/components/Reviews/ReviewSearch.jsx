@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import InputBase from '@material-ui/core/InputBase';
-import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
-import Box from '@material-ui/core/Box';
+import { Box, InputBase, IconButton } from '@material-ui/core';
 
+//React Components
 import * as actions from '../../actions/Reviews/setReviewSearch.js';
 
 const useStyles = makeStyles({
