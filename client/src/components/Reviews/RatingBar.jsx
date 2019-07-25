@@ -1,12 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+// Material UI Components
 import { withStyles, makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
-import LinearProgress from '@material-ui/core/LinearProgress';
-import Box from '@material-ui/core/Box';
+import { Box, Button, Grid, LinearProgress } from '@material-ui/core';
 
+//React Components
 import * as actions from '../../actions/Reviews/setFilter.js';
 import RatingFilterToggles from './RatingFilterToggles.jsx';
 

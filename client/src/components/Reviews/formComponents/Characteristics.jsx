@@ -1,15 +1,17 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 
-import Box from '@material-ui/core/Box';
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormLabel from '@material-ui/core/FormLabel';
-import Typography from '@material-ui/core/Typography';
-
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
+import {
+  Box,
+  Radio,
+  RadioGroup,
+  FormControlLabel,
+  FormControl,
+  FormLabel,
+  Typography,
+} from '@material-ui/core';
 
 //property corresponds to a value,
 const descriptions = {

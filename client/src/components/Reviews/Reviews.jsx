@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // Material UI Components
-import Grid from '@material-ui/core/Grid/';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Grid, Button, Dialog, Box } from '@material-ui/core';
+
 // React Components
+import { setOpen } from '../../actions/Reviews/setOpen.js';
+import { setLimit } from '../../actions/Reviews/setListLimit.js';
 import Meta from './Meta.jsx';
 import ReviewsList from './ReviewsList.jsx';
 import WriteReview from './WriteReview.jsx';
-import { setOpen } from '../../actions/Reviews/setOpen.js';
-import { setLimit } from '../../actions/Reviews/setListLimit.js';
 
 const useStyles = makeStyles(theme => ({
   title: {

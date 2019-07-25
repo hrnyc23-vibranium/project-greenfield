@@ -1,9 +1,7 @@
 import React from 'react';
-
-import TextField from '@material-ui/core/TextField';
-import Box from '@material-ui/core/Box';
-
+// Material UI Components
 import { useStyles } from './inputStyle.js';
+import { Box, TextField } from '@material-ui/core';
 
 const Email = ({ email, handleChange, error }) => {
   const classes = useStyles();

@@ -1,12 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import * as actions from '../../actions/Reviews/setSort.js';
-
+// Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
-import FormControl from '@material-ui/core/FormControl';
+import { Select, MenuItem, FormControl } from '@material-ui/core';
+
+//React Components
+import * as actions from '../../actions/Reviews/setSort.js';
 
 const useStyles = makeStyles(theme => ({
   selected: {
