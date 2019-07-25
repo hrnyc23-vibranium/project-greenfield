@@ -1,9 +1,8 @@
 import React, { useState, useEffect, Fragment } from 'react';
 // Material UI Components
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
+import { Grid, Typography } from '@material-ui/core';
 // React Components
-import Carousel from './RebuiltCarousel.jsx';
+import Carousel from './Carousel.jsx';
 import StyleList from './StyleList.jsx';
 import StarRating from './StarRating.jsx';
 

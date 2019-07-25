@@ -1,11 +1,8 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/overview';
 // Material UI Components
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import { Grid, Typography, Link } from '@material-ui/core';
 // React Components
 import Header from './Header.jsx';
 import Product from './Product.jsx';
@@ -22,7 +19,7 @@ class Overview extends Component {
   render() {
     const { product, styles, id, ratings, totalReviews, cart } = this.props;
     return (
-      <Box>
+      <Fragment>
         <Header cart={cart} />
         <Grid container direction="row" justify="center" alignItems="center">
           <Typography variant="overline" gutterBottom>
@@ -47,7 +44,7 @@ class Overview extends Component {
             features={product.features}
           />
         </Grid>
-      </Box>
+      </Fragment>
     );
   }
 }

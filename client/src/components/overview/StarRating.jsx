@@ -2,8 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/Reviews/getData.js';
 // Material UI Components
-import Link from '@material-ui/core/Link';
-import Box from '@material-ui/core/Box';
+import { Link, Box } from '@material-ui/core';
 // React Components
 import Ratings from '../Ratings.jsx';
 
@@ -52,8 +51,7 @@ class StarRating extends Component {
               href={'#reviews'}
               color="inherit"
               variant="body2"
-              underline="always"
-            >
+              underline="always">
               {`Read All ${numReviews} Reviews`}
             </Link>
           </Box>
