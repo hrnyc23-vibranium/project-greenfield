@@ -20,10 +20,10 @@ class Overview extends Component {
   }
 
   render() {
-    const { product, styles, id, ratings, totalReviews } = this.props;
+    const { product, styles, id, ratings, totalReviews, cart } = this.props;
     return (
       <Box>
-        <Header />
+        <Header cart={cart} />
         <Grid container direction="row" justify="center" alignItems="center">
           <Typography variant="overline" gutterBottom>
             <em>Select Styles on Sale!</em> - Camo Onesie -{' '}
@@ -56,6 +56,7 @@ const mapStateToProps = state => ({
   id: state.productId,
   product: state.product,
   styles: state.styles,
+  cart: state.cart,
 });
 
 export default connect(

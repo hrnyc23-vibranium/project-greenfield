@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/overview/setCart.js';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
@@ -190,7 +192,20 @@ const CartButton = props => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Go Back</Button>
-          <Button onClick={handleSnackClick} className={classes.confirm}>
+          <Button
+            onClick={() => {
+              handleSnackClick();
+              handleClose();
+              props.addItem({
+                product: props.product,
+                image: props.image,
+                price: props.price,
+                style: props.style,
+                size: props.size,
+                quantity: props.quantity,
+              });
+            }}
+            className={classes.confirm}>
             Add to Cart
           </Button>
           <Snackbar
@@ -214,4 +229,7 @@ const CartButton = props => {
   );
 };
 
-export default CartButton;
+export default connect(
+  null,
+  actions
+)(CartButton);

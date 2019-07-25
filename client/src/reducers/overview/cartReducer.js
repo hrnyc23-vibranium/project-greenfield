@@ -1,10 +1,14 @@
-import { GET_CART } from '../../actions/overview/types';
+import { ADD_ITEM, REMOVE_ITEM } from '../../actions/overview/types';
 
-export default function(state = {}, { type, payload }) {
+const cartReducer = (state = {}, { type, payload }) => {
   switch (type) {
-    case GET_CART:
-      return payload;
+    case ADD_ITEM:
+      return Object.assign({}, state, payload);
+    case REMOVE_ITEM:
+      return;
     default:
       return state;
   }
-}
+};
+
+export default cartReducer;

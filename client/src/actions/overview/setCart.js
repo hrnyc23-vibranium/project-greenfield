@@ -5,12 +5,12 @@ export const getCart = () => ({
   payload: {},
 });
 
-export const addItem = () => ({
+export const addItem = item => ({
   type: ADD_ITEM,
-  payload: {},
+  payload: item,
 });
 
-export const removeItem = () => ({
+export const removeItem = item => ({
   type: REMOVE_ITEM,
-  payload: {},
+  payload: item,
 });

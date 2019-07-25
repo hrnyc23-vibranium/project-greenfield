@@ -10,7 +10,6 @@ import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import CheckCircle from '@material-ui/icons/CheckCircle';
-import { green } from '@material-ui/core/colors';
 // React Components
 import Selectors from './Selectors.jsx';
 
@@ -39,8 +38,9 @@ const useStyles = makeStyles(theme => ({
   checkmark: {
     color: 'rgb(143, 117, 0)',
     position: 'absolute',
-    top: 4,
-    right: 44,
+    top: '1%',
+    left: '45%',
+    zIndex: 5,
   },
 }));
 
@@ -63,6 +63,7 @@ const StyleList = ({ styles, product, changeStyle }) => {
       setSalePrice(init.sale_price);
       setCurrPrice(init.original_price);
       setCartImage(init.photos[0].thumbnail_url);
+      changeCols();
     }
   });
 
@@ -99,6 +100,23 @@ const StyleList = ({ styles, product, changeStyle }) => {
     }
   };
 
+  const [col, setCol] = useState(1);
+
+  const changeCols = () => {
+    if (styles.results) {
+      switch (styles.results.length) {
+        case 1:
+          return setCol(4);
+        case 2:
+          return setCol(2);
+        case 3:
+          return setCol(1.3);
+        default:
+          return;
+      }
+    }
+  };
+
   return (
     <div>
       {renderPrice()}
@@ -112,8 +130,8 @@ const StyleList = ({ styles, product, changeStyle }) => {
             styles.results.map((style, i) => (
               <GridListTile
                 key={style.style_id}
-                cols={1}
-                onClick={e => {
+                cols={col}
+                onClick={() => {
                   setStyle(style.name);
                   setPrice(style.original_price);
                   setSkus(style.skus);
@@ -122,18 +140,15 @@ const StyleList = ({ styles, product, changeStyle }) => {
                   changeCurrPrice(style.original_price, style.sale_price);
                   changeStyle(i);
                 }}>
-                <Box>
-                  <Tooltip title={style.name} placement="bottom">
-                    <Avatar
-                      alt={style.name}
-                      src={style.photos[0].thumbnail_url}
-                      className={classes.avatar}
-                    />
-                  </Tooltip>
-                  <Box
-                    display={currentStyle === style.name ? 'inline' : 'none'}>
-                    <CheckCircle className={classes.checkmark} />
-                  </Box>
+                <Tooltip title={style.name} placement="bottom">
+                  <Avatar
+                    alt={style.name}
+                    src={style.photos[0].thumbnail_url}
+                    className={classes.avatar}
+                  />
+                </Tooltip>
+                <Box display={currentStyle === style.name ? 'inline' : 'none'}>
+                  <CheckCircle className={classes.checkmark} />
                 </Box>
               </GridListTile>
             ))

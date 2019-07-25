@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 // Material UI Components
-import List from '@material-ui/core/List';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Drawer from '@material-ui/core/Drawer';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import { fade, makeStyles } from '@material-ui/core/styles';
-import SvgIcon from '@material-ui/core/SvgIcon';
 import SearchIcon from '@material-ui/icons/Search';
-import InputBase from '@material-ui/core/InputBase';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import Divider from '@material-ui/core/Divider';
-import Badge from '@material-ui/core/Badge';
+import {
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemText,
+  AppBar,
+  Toolbar,
+  Drawer,
+  Typography,
+  IconButton,
+  SvgIcon,
+  InputBase,
+  Divider,
+  Badge,
+} from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -229,12 +231,6 @@ const Header = props => {
             <ListItemText
               className={classes.menuItems}
               primary="Summer Shoes"
-            />
-          </ListItemLink>
-          <ListItemLink href={'11'}>
-            <ListItemText
-              className={classes.menuItems}
-              primary="Air Minis 250"
             />
           </ListItemLink>
           <ListSubheader>Accessories</ListSubheader>

@@ -1,12 +1,14 @@
 import React, { Fragment, useState, useRef } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Select from '@material-ui/core/Select';
-import FormControl from '@material-ui/core/FormControl';
-import InputLabel from '@material-ui/core/InputLabel';
-import MenuItem from '@material-ui/core/MenuItem';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import Grid from '@material-ui/core/Grid';
+import {
+  Grid,
+  Select,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  OutlinedInput,
+} from '@material-ui/core';
 // React Components
 import CartButton from './CartButton.jsx';
 
@@ -28,11 +30,10 @@ const useStyles = makeStyles(theme => ({
 const Selectors = props => {
   const classes = useStyles();
 
-  const [currSize, setSize] = useState('');
-  const [currQuant, setQuantity] = useState('');
+  const [currSize, setSize] = useState('-');
+  const [currQuant, setQuantity] = useState();
   const [quant, setQuant] = useState(true);
-  const [cartQuant, setCartQuant] = useState('');
-  const [cartStatus, setCartStatus] = useState(true);
+  const [cartQuant, setCartQuant] = useState(1);
 
   const handleChange = event => {
     setSize(event.target.value);
@@ -68,11 +69,13 @@ const Selectors = props => {
               input={
                 <OutlinedInput labelWidth={30} name="size" id="outlined-size" />
               }>
-              <MenuItem value={'XS'}>XS</MenuItem>
-              <MenuItem value={'S'}>S</MenuItem>
-              <MenuItem value={'M'}>M</MenuItem>
-              <MenuItem value={'L'}>L</MenuItem>
-              <MenuItem value={'XL'}>XL</MenuItem>
+              {props.skus
+                ? Object.keys(props.skus).map(size => (
+                    <MenuItem key={size} value={size}>
+                      {size}
+                    </MenuItem>
+                  ))
+                : ''}
             </Select>
           </FormControl>
         </Grid>
@@ -107,7 +110,7 @@ const Selectors = props => {
         style={props.style}
         size={currSize}
         quantity={cartQuant}
-        status={cartStatus}
+        status={quant}
         price={props.price}
         image={props.cartImage}
       />
