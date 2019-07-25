@@ -18,7 +18,7 @@ const Nickname = ({ name, handleChange, error }) => {
         required={true}
         inputProps={{ maxLength: 60 }}
         onChange={handleChange}
-        placeholder="Example: Captain America"
+        placeholder="Example: jackson11!"
         required={true}
         value={name}
         name="name"

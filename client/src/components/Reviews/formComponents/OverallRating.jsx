@@ -17,7 +17,7 @@ const OverallRating = ({ form, setForm, error }) => {
       '4': 'Good',
       '5': 'Great',
     };
-    return <div> {ratings[rating]} </div>;
+    return <Box> {ratings[rating]} </Box>;
   };
 
   const handleChange = (e, newValue) => {

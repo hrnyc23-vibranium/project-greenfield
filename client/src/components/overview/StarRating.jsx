@@ -48,7 +48,12 @@ class StarRating extends Component {
             <Box component="span" style={{ marginRight: '5px' }}>
               <Ratings rating={rating} />
             </Box>
-            <Link href={'#'} color="inherit" variant="body2" underline="always">
+            <Link
+              href={'#reviews'}
+              color="inherit"
+              variant="body2"
+              underline="always"
+            >
               {`Read All ${numReviews} Reviews`}
             </Link>
           </Box>
