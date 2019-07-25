@@ -1,11 +1,11 @@
-import { ADD_ITEM, REMOVE_ITEM } from '../../actions/overview/types';
+import { GET_CART, ADD_ITEM } from '../../actions/overview/types';
 
 const cartReducer = (state = {}, { type, payload }) => {
   switch (type) {
+    case GET_CART:
+      return payload;
     case ADD_ITEM:
       return Object.assign({}, state, payload);
-    case REMOVE_ITEM:
-      return;
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/overview/setCart.js';
@@ -200,11 +200,11 @@ const CartButton = props => {
               handleClose();
               props.addItem({
                 product: props.product,
-                image: props.image,
-                price: props.price,
                 style: props.style,
                 size: props.size,
                 quantity: props.quantity,
+                price: props.price,
+                image: props.image,
               });
             }}
             className={classes.confirm}>
@@ -231,7 +231,11 @@ const CartButton = props => {
   );
 };
 
+const mapStateToProps = state => ({
+  cart: state.cart,
+});
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(CartButton);

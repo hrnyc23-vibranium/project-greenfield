@@ -1,16 +1,27 @@
-import { GET_CART, ADD_ITEM, REMOVE_ITEM } from './types';
+import { ADD_ITEM, REMOVE_ITEM } from './types';
+import axios from 'axios';
 
-export const getCart = () => ({
-  type: GET_CART,
-  payload: {},
-});
+export const addItem = item => {
+  return dispatch => {
+    axios
+      .post('http://localhost:5000/api/v1/cart', {
+        product: item.product,
+        style: item.style,
+        size: item.size,
+        quantity: item.quantity,
+        price: item.price,
+        image: item.image,
+      })
+      .then(res => {
+        dispatch({ type: ADD_ITEM, payload: res.data });
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  };
+};
 
-export const addItem = item => ({
-  type: ADD_ITEM,
-  payload: item,
-});
-
-export const removeItem = item => ({
-  type: REMOVE_ITEM,
-  payload: item,
-});
+// export const removeItem = item => ({
+//   type: REMOVE_ITEM,
+//   payload: item,
+// });

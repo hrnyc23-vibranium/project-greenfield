@@ -13,6 +13,7 @@ class Overview extends Component {
     if (this.props.id !== prevProps.id) {
       this.props.getProduct(this.props.id);
       this.props.getProductStyles(this.props.id);
+      this.props.getCart();
     }
   }
 
