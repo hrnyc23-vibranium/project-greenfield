@@ -80,7 +80,7 @@ const ReviewsList = props => {
     let box = e.target;
     //scrollHeight: total height of scrollable div
     //scrollTop: height scrolled from the top
-    //clientHeight: height that the div is set to
+    //clientHeight: height that the div
     if (box.scrollHeight - box.scrollTop - 1 === box.clientHeight) {
       setTimeout(() => {
         props.expandView();
