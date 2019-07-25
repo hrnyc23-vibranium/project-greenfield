@@ -6,10 +6,7 @@ import ImageGallery from '../ImageGallery.jsx';
 import { formatDate } from '../helpers.js';
 
 //Material Componenets
-import { Typography, Grid, Box, Button } from '@material-ui/core';
-// import Grid from '@material-ui/core/Grid';
-// import Box from '@material-ui/core/Box';
-// import Button from '@material-ui/core/Button';
+import { Typography, Grid, Button } from '@material-ui/core';
 
 const Answer = props => {
   const [disabled, setDisabled] = useState(false);
