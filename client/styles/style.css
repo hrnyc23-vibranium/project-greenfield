@@ -36,12 +36,12 @@
 #questionbuttons button:first-child {
   margin-left: 0 !important;
 }
-#QA {
-  /* margin: 20px, 0 !important; */
+/* #QA {
+  margin: 20px, 0 !important;
   margin: auto;
   padding: 20px 0;
   max-width: 960px;
-}
+} */
 .seller {
   font-weight: 700;
 }
