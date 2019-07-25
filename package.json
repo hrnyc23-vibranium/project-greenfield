@@ -12,7 +12,8 @@
     "build:watch": "npm run build -- --watch",
     "test": "jest",
     "test:watch": "npm test -- --watch",
-    "dev": "concurrently \"npm start\" \"npm run build:watch\""
+    "dev": "concurrently \"npm start\" \"npm run build:watch\"",
+    "production": "webpack --mode=production"
   },
   "repository": {
     "type": "git",
