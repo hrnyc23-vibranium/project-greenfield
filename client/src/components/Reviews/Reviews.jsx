@@ -52,7 +52,6 @@ const Reviews = props => {
 
     let moreButton = (
       <Button
-        // size="large"
         variant="outlined"
         onClick={handleLimit.bind(this)}
         className={classes.moreButton}
