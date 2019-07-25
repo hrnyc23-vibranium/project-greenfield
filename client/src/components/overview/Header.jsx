@@ -114,7 +114,6 @@ const Header = props => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
-  // const [cart, setCart] = useState();
 
   useEffect(() => {
     props.getCart();
@@ -132,7 +131,6 @@ const Header = props => {
     return <ListItem button component="a" {...props} />;
   };
 
-  console.log('cart', props.cart);
   return (
     <div className={classes.root}>
       <AppBar position="static" aria-label="nav-bar" className={classes.navbar}>
