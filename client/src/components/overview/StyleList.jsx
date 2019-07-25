@@ -38,8 +38,9 @@ const useStyles = makeStyles(theme => ({
   checkmark: {
     color: 'rgb(143, 117, 0)',
     position: 'absolute',
-    top: 4,
-    right: 44,
+    top: '1%',
+    left: '45%',
+    zIndex: 5,
   },
 }));
 
@@ -130,7 +131,7 @@ const StyleList = ({ styles, product, changeStyle }) => {
               <GridListTile
                 key={style.style_id}
                 cols={col}
-                onClick={e => {
+                onClick={() => {
                   setStyle(style.name);
                   setPrice(style.original_price);
                   setSkus(style.skus);
@@ -139,18 +140,15 @@ const StyleList = ({ styles, product, changeStyle }) => {
                   changeCurrPrice(style.original_price, style.sale_price);
                   changeStyle(i);
                 }}>
-                <Box>
-                  <Tooltip title={style.name} placement="bottom">
-                    <Avatar
-                      alt={style.name}
-                      src={style.photos[0].thumbnail_url}
-                      className={classes.avatar}
-                    />
-                  </Tooltip>
-                  <Box
-                    display={currentStyle === style.name ? 'inline' : 'none'}>
-                    <CheckCircle className={classes.checkmark} />
-                  </Box>
+                <Tooltip title={style.name} placement="bottom">
+                  <Avatar
+                    alt={style.name}
+                    src={style.photos[0].thumbnail_url}
+                    className={classes.avatar}
+                  />
+                </Tooltip>
+                <Box display={currentStyle === style.name ? 'inline' : 'none'}>
+                  <CheckCircle className={classes.checkmark} />
                 </Box>
               </GridListTile>
             ))
