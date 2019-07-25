@@ -1,25 +1,25 @@
 //Dev Dependencies
-import React, { useState } from 'react';
+import React, { useState, Fragment } from 'react';
 
 //React Component
 import ImageGallery from '../ImageGallery.jsx';
 import { formatDate } from '../helpers.js';
 
 //Material Componenets
-import Typography from '@material-ui/core/Typography';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
+import { Typography, Grid, Box, Button } from '@material-ui/core';
+// import Grid from '@material-ui/core/Grid';
+// import Box from '@material-ui/core/Box';
+// import Button from '@material-ui/core/Button';
 
 const Answer = props => {
   const [disabled, setDisabled] = useState(false);
   return (
-    <Box>
+    <Fragment>
       <Typography variant="body2">{props.answer.body} </Typography>
       {props.answer.photos.length > 0 ? (
         <ImageGallery photos={props.answer.photos} />
       ) : (
-        <Box />
+        <Fragment />
       )}
 
       <Grid container direction="row" justify="flex-start" alignItems="center">
@@ -53,7 +53,7 @@ const Answer = props => {
           Report
         </Button>
       </Grid>
-    </Box>
+    </Fragment>
   );
 };
 

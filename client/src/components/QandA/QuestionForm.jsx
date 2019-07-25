@@ -5,17 +5,13 @@ import { postQuestion } from '../../actions/QandA/postQuestion';
 import { validate } from '../helpers';
 
 //Material Componenets
-import { makeStyles } from '@material-ui/core/styles';
 import {
   Container,
-  Box,
-  InputLabel,
   TextField,
   Button,
+  Grid,
+  Typography,
 } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
-import FormControl from '@material-ui/core/FormControl';
-import Typography from '@material-ui/core/Typography';
 
 //helper function for validation
 //show all errors in a list
@@ -135,8 +131,7 @@ class QuestionsForm extends React.Component {
               onClick={e => {
                 event.preventDefault();
                 this.handleSubmit();
-              }}
-            >
+              }}>
               submit
             </Button>
           </Grid>

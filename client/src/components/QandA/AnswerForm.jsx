@@ -1,12 +1,10 @@
 //Dev Dependencies
 import React, { Fragment } from 'react';
 import axios from 'axios';
-import { connect } from 'react-redux';
 import { validate } from '../helpers';
 
 //React Components
 import UploadImage from '../UploadImage';
-//import * as filestack from 'filestack-js';
 
 //Material Componenet
 import {
@@ -20,6 +18,7 @@ import {
   Button,
   Slide,
 } from '@material-ui/core';
+
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -99,8 +98,7 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
         TransitionComponent={Transition}
         open={open}
         onClose={handleClose}
-        aria-labelledby="form-dialog-title"
-      >
+        aria-labelledby="form-dialog-title">
         <DialogTitle>Submit your Answer</DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -157,8 +155,7 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
               onClick={e => {
                 event.preventDefault();
                 handleSubmit();
-              }}
-            >
+              }}>
               Submit
             </Button>
           </Grid>
