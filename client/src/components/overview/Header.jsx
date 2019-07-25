@@ -231,12 +231,6 @@ const Header = props => {
               primary="Summer Shoes"
             />
           </ListItemLink>
-          <ListItemLink href={'11'}>
-            <ListItemText
-              className={classes.menuItems}
-              primary="Air Minis 250"
-            />
-          </ListItemLink>
           <ListSubheader>Accessories</ListSubheader>
           <ListItemLink href={'2'}>
             <ListItemText

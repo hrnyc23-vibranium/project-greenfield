@@ -67,11 +67,13 @@ const Selectors = props => {
               input={
                 <OutlinedInput labelWidth={30} name="size" id="outlined-size" />
               }>
-              <MenuItem value={'XS'}>XS</MenuItem>
-              <MenuItem value={'S'}>S</MenuItem>
-              <MenuItem value={'M'}>M</MenuItem>
-              <MenuItem value={'L'}>L</MenuItem>
-              <MenuItem value={'XL'}>XL</MenuItem>
+              {props.skus
+                ? Object.keys(props.skus).map(size => (
+                    <MenuItem key={size} value={size}>
+                      {size}
+                    </MenuItem>
+                  ))
+                : ''}
             </Select>
           </FormControl>
         </Grid>

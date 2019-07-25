@@ -42,7 +42,7 @@ const Product = props => {
             container
             direction="column"
             justify="space-around"
-            alignContent="space-around">
+            alignItems="stretch">
             <StarRating />
             <Typography variant="overline" gutterBottom>
               {props.product.category}
