@@ -10,6 +10,8 @@ import {
   Typography,
   Grid,
   Box,
+  ButtonGroup,
+  Button,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
@@ -30,6 +32,17 @@ const useStyles = makeStyles(theme => ({
     display: 'block',
     maxWidth: '100%',
     maxHeight: '100%',
+  },
+  buttonGroup: {
+    marginTop: theme.spacing(2),
+  },
+  backButton: {
+    borderRadius: 0,
+    padding: '15px',
+  },
+  checkout: {
+    borderRadius: 0,
+    padding: '15px',
   },
 }));
 
@@ -53,6 +66,27 @@ const CartPopover = props => {
 
   const handleClose = () => {
     setAnchorEl(null);
+  };
+
+  const getTotalPrice = () => {
+    if (props.cart.cart) {
+      let sum = 0;
+      props.cart.cart.forEach(item => {
+        sum += parseInt(item.price, 10);
+      });
+      return <Typography variant="h6">{`$${sum}`}</Typography>;
+    }
+  };
+
+  const getTotalItems = () => {
+    if (props.cart.cart) {
+      let total = props.cart.cart.length;
+      if (total === 1) {
+        return <Typography variant="h6">{`Total: 1 item`}</Typography>;
+      } else {
+        return <Typography variant="h6">{`Total: ${total} items`}</Typography>;
+      }
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -129,6 +163,27 @@ const CartPopover = props => {
               </Paper>
             ))
           : ''}
+        <Paper className={classes.cart}>
+          <Grid container direction="row" justify="space-between">
+            <Grid item>{getTotalItems()}</Grid>
+            <Grid item>{getTotalPrice()}</Grid>
+          </Grid>
+          <Grid container>
+            <Grid item xs={12}>
+              <ButtonGroup fullWidth className={classes.buttonGroup}>
+                <Button
+                  variant="outlined"
+                  className={classes.backButton}
+                  onClick={handleClose}>
+                  Back
+                </Button>
+                <Button variant="outlined" className={classes.checkout}>
+                  Checkout
+                </Button>
+              </ButtonGroup>
+            </Grid>
+          </Grid>
+        </Paper>
       </Popover>
     </Fragment>
   );
