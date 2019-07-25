@@ -128,7 +128,6 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
                         {value === '2' || value === '4'
                           ? ''
                           : descriptionList[value]}
-                        {/* {descriptionList[value]} */}
                       </Typography>
                     }
                     labelPlacement="bottom"

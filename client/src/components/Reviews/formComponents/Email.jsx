@@ -17,7 +17,7 @@ const Email = ({ email, handleChange, error }) => {
         className={classes.textField}
         inputProps={{ maxLength: 60 }}
         onChange={handleChange}
-        placeholder="Why did you like the product or not"
+        placeholder="Example: jackson11@email.com"
         required
         name="email"
         value={email}

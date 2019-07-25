@@ -1,3 +1,53 @@
+import parse from 'html-react-parser';
+
+let months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+export const formatDate = date => {
+  let year = date.slice(0, 4);
+  let month = Number(date.slice(5, 7));
+  let day = date.slice(8, 10);
+
+  return `${months[month - 1]} ${day}, ${year}`;
+};
+
+//MARKDOWN PARSER
+
+//add all matches to a set, iterate through all the words in the set, and use that word to find all matches and replace that word with marked html tags
+export const markdown = (text, query) => {
+  if (query.length > 2) {
+    let needToChange = new Set([]);
+    let match; //potential matches
+    let length = query.length;
+    for (let i = 0; i <= text.length - length; i++) {
+      match = text.substring(i, length + i);
+      if (match.toLowerCase() === query.toLowerCase()) {
+        needToChange.add(match);
+      }
+    }
+    needToChange.forEach(word => {
+      let regex = new RegExp(word, 'g');
+      let replacement = `<mark>${word}</mark>`;
+      text = text.replace(regex, replacement);
+    });
+  }
+  return parse(text);
+};
+
+//VALIDATION
+
 const emailIsValid = email => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 };

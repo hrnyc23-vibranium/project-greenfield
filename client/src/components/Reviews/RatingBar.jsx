@@ -5,6 +5,7 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import Box from '@material-ui/core/Box';
 
 import * as actions from '../../actions/Reviews/setFilter.js';
 import RatingFilterToggles from './RatingFilterToggles.jsx';
@@ -62,7 +63,7 @@ const RatingBar = props => {
         return (
           <Grid container direction="row" key={rating}>
             <Grid item sm={12} md={3}>
-              <div>
+              <Box>
                 <Button
                   component="span"
                   className={classes.button}
@@ -70,7 +71,7 @@ const RatingBar = props => {
                 >
                   {rating} {rating === 1 ? 'star' : 'stars'}
                 </Button>
-              </div>
+              </Box>
             </Grid>
             <Grid item sm={12} md={9}>
               <BorderLinearProgress variant="determinate" value={normalized} />
