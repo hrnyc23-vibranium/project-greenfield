@@ -15,13 +15,13 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'block',
     borderBottom: '1px solid gray',
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(3),
   },
   body: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   images: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   image: {
     marginRight: theme.spacing(1),
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     height: 100,
   },
   recommend: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   check: {
     fontSize: 20,
@@ -38,13 +38,13 @@ const useStyles = makeStyles(theme => ({
   response: {
     display: 'block',
     background: '#D9D9D9',
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(3, 2),
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(2, 1),
   },
   responseTitle: {
     fontWeight: 'bold',
     margin: theme.spacing(0),
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   responseBody: {
     margin: theme.spacing(0),

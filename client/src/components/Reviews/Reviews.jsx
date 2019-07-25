@@ -36,14 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 const Reviews = props => {
   const classes = useStyles();
-  const [scroll, setScroll] = useState(false);
-
-  useEffect(() => {
-    console.log('effect');
-    if (scroll) {
-      window.onscroll;
-    }
-  }, []);
+  const [expanded, setExpanded] = useState(false);
 
   const handleOpen = () => {
     props.setOpen(true);
@@ -53,21 +46,8 @@ const Reviews = props => {
   };
 
   const handleLimit = () => {
-    setScroll(true);
-    props.setLimit();
-  };
-
-  window.onscroll = function() {
-    var d = document.documentElement;
-    var offset = d.scrollTop + window.innerHeight;
-    var height = d.offsetHeight;
-
-    if (offset === height && scroll) {
-      console.log('bottom');
-      setTimeout(() => {
-        props.setLimit();
-      }, 300);
-    }
+    setExpanded(true);
+    props.expandView();
   };
 
   //show buttons
@@ -94,7 +74,7 @@ const Reviews = props => {
       </Button>
     );
 
-    if (listShown - listLimit > 0) {
+    if (listShown - listLimit > 0 && !expanded) {
       return (
         <React.Fragment>
           {moreButton}
@@ -117,6 +97,7 @@ const Reviews = props => {
         </Grid>
         <Grid item sm={12} md={8}>
           <ReviewsList />
+
           <Box className={classes.buttons}>
             {renderButtons()}
 
@@ -145,7 +126,7 @@ let mapDispatchToProps = dispatch => ({
   setOpen: boolean => {
     dispatch(setOpen(boolean));
   },
-  setLimit: () => {
+  expandView: () => {
     dispatch(setLimit());
   },
 });
