@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/overview/setCart.js';
 // Material UI Components
 import { fade, makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
@@ -112,6 +114,11 @@ const Header = props => {
   const classes = useStyles();
 
   const [open, setOpen] = useState(false);
+  // const [cart, setCart] = useState();
+
+  useEffect(() => {
+    props.getCart();
+  }, []);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -125,6 +132,7 @@ const Header = props => {
     return <ListItem button component="a" {...props} />;
   };
 
+  console.log('cart', props.cart);
   return (
     <div className={classes.root}>
       <AppBar position="static" aria-label="nav-bar" className={classes.navbar}>
@@ -237,4 +245,11 @@ const Header = props => {
   );
 };
 
-export default Header;
+const mapStateToProps = state => ({
+  cart: state.cart,
+});
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Header);

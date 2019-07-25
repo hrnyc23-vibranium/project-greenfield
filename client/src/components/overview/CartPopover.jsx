@@ -1,11 +1,35 @@
 import React, { useState, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Badge, SvgIcon, Popover } from '@material-ui/core';
+import {
+  IconButton,
+  Badge,
+  SvgIcon,
+  Popover,
+  Paper,
+  Typography,
+  Grid,
+  Box,
+} from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   badge: {
     margin: theme.spacing(2),
+  },
+  cart: {
+    padding: theme.spacing(2),
+    margin: 'auto',
+    maxWidth: 400,
+  },
+  cartImage: {
+    width: 128,
+    height: 128,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '100%',
+    maxHeight: '100%',
   },
 }));
 
@@ -61,7 +85,50 @@ const CartPopover = props => {
           vertical: 'top',
           horizontal: 'right',
         }}>
-        <div>This is the cart</div>
+        {props.cart.cart
+          ? props.cart.cart.map(item => (
+              <Paper className={classes.cart} key={item.id}>
+                <Grid container spacing={2}>
+                  <Grid item>
+                    <Box className={classes.cartImage}>
+                      <img
+                        className={classes.img}
+                        alt={item.style}
+                        src={item.image}
+                      />
+                    </Box>
+                  </Grid>
+                  <Grid item xs={12} sm container>
+                    <Grid item xs container direction="column" spacing={2}>
+                      <Grid item xs>
+                        <Typography variant="subtitle1" gutterBottom>
+                          {item.product.name}
+                        </Typography>
+                        <Typography variant="body2" gutterBottom>{`Style: ${
+                          item.style
+                        }`}</Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          gutterBottom>{`Size: ${item.size}`}</Typography>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          gutterBottom>{`Quantity: ${
+                          item.quantity
+                        }`}</Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle1">{`Price: $${
+                        item.price
+                      }`}</Typography>
+                    </Grid>
+                  </Grid>
+                </Grid>
+              </Paper>
+            ))
+          : ''}
       </Popover>
     </Fragment>
   );

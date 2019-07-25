@@ -13,7 +13,6 @@ class Overview extends Component {
     if (this.props.id !== prevProps.id) {
       this.props.getProduct(this.props.id);
       this.props.getProductStyles(this.props.id);
-      this.props.getCart();
     }
   }
 
@@ -21,7 +20,7 @@ class Overview extends Component {
     const { product, styles, id, ratings, totalReviews, cart } = this.props;
     return (
       <Fragment>
-        <Header cart={cart} />
+        <Header />
         <Grid container direction="row" justify="center" alignItems="center">
           <Typography variant="overline" gutterBottom>
             <em>Select Styles on Sale!</em> - Camo Onesie -{' '}
@@ -54,7 +53,6 @@ const mapStateToProps = state => ({
   id: state.productId,
   product: state.product,
   styles: state.styles,
-  cart: state.cart,
 });
 
 export default connect(

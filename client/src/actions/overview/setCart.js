@@ -1,5 +1,11 @@
-import { ADD_ITEM, REMOVE_ITEM } from './types';
+import { GET_CART, ADD_ITEM, REMOVE_ITEM } from './types';
 import axios from 'axios';
+
+export const getCart = () => async dispatch => {
+  const res = await axios.get(`http://localhost:5000/api/v1/cart`);
+
+  dispatch({ type: GET_CART, payload: res.data });
+};
 
 export const addItem = item => {
   return dispatch => {
@@ -14,6 +20,7 @@ export const addItem = item => {
       })
       .then(res => {
         dispatch({ type: ADD_ITEM, payload: res.data });
+        dispatch(getCart());
       })
       .catch(err => {
         console.error(err);
@@ -27,6 +34,7 @@ export const removeItem = itemId => {
       .delete(`http://localhost:5000/api/v1/cart/${itemId}`)
       .then(res => {
         dispatch({ type: REMOVE_ITEM, payload: res.data });
+        dispatch(getCart());
       })
       .catch(err => {
         console.error(err);
