@@ -1,10 +1,5 @@
 import axios from 'axios';
-import {
-  GET_PRODUCT_STYLES,
-  GET_PRODUCT,
-  GET_CART,
-  GET_ALL_PRODUCTS,
-} from './types';
+import { GET_PRODUCT_STYLES, GET_PRODUCT } from './types';
 
 export const getProduct = productId => async dispatch => {
   const res = await axios.get(`http://18.222.40.124/products/${productId}`);
