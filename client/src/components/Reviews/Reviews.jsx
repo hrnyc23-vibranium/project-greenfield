@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,6 +12,10 @@ import ReviewsList from './ReviewsList.jsx';
 import WriteReview from './WriteReview.jsx';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    margin: 'auto',
+    maxWidth: '1100px',
+  },
   title: {
     margin: theme.spacing(2, 0),
   },
@@ -32,6 +36,14 @@ const useStyles = makeStyles(theme => ({
 
 const Reviews = props => {
   const classes = useStyles();
+  const [scroll, setScroll] = useState(false);
+
+  useEffect(() => {
+    console.log('effect');
+    if (scroll) {
+      window.onscroll;
+    }
+  }, []);
 
   const handleOpen = () => {
     props.setOpen(true);
@@ -41,7 +53,21 @@ const Reviews = props => {
   };
 
   const handleLimit = () => {
+    setScroll(true);
     props.setLimit();
+  };
+
+  window.onscroll = function() {
+    var d = document.documentElement;
+    var offset = d.scrollTop + window.innerHeight;
+    var height = d.offsetHeight;
+
+    if (offset === height && scroll) {
+      console.log('bottom');
+      setTimeout(() => {
+        props.setLimit();
+      }, 300);
+    }
   };
 
   //show buttons
@@ -86,10 +112,10 @@ const Reviews = props => {
         RATINGS & REVIEWS
       </Box>
       <Grid container direction="row" justify="space-between">
-        <Grid item sm={12} md={3}>
+        <Grid item sm={12} md={4}>
           <Meta />
         </Grid>
-        <Grid item sm={12} md={9}>
+        <Grid item sm={12} md={8}>
           <ReviewsList />
           <Box className={classes.buttons}>
             {renderButtons()}
