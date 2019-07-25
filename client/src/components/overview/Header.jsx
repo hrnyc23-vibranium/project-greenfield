@@ -134,7 +134,6 @@ const Header = props => {
     return <ListItem button component="a" {...props} />;
   };
 
-  console.log('props.cart', props.cart);
   return (
     <div className={classes.root}>
       <AppBar position="static" aria-label="nav-bar" className={classes.navbar}>
