@@ -29,6 +29,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Question = props => {
+  const [disabled, setDisabled] = React.useState(false);
   return (
     <div>
       <Grid container justify="space-between" alignItems="flex-start">
@@ -60,8 +61,10 @@ const Question = props => {
             alignItems="flex-start">
             <Button
               size="small"
+              disabled={disabled}
               onClick={() => {
                 props.voteQuestion(props.question.question_id);
+                setDisabled(!disabled);
               }}>
               Helpful? ({props.question.question_helpfulness})
             </Button>
