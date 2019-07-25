@@ -3,7 +3,7 @@ import React from 'react';
 
 //React Component
 import ImageGallery from '../ImageGallery.jsx';
-import { formatDate } from '../formatDate.js';
+import { formatDate } from '../helpers.js';
 
 //Material Componenets
 import Typography from '@material-ui/core/Typography';
@@ -29,7 +29,8 @@ const Answer = props => {
               props.answer.answerer_name.toLowerCase() == 'seller'
                 ? 'seller'
                 : ''
-            }>
+            }
+          >
             {props.answer.answerer_name}
           </span>
           , {formatDate(props.answer.date)} | Helpful?
@@ -38,7 +39,8 @@ const Answer = props => {
           size="small"
           onClick={() => {
             props.voteAnswer(props.answer.answer_id);
-          }}>
+          }}
+        >
           Yes ({+props.answer.helpfulness})
         </Button>
         <Typography component="h4"> | </Typography>
@@ -46,7 +48,8 @@ const Answer = props => {
           size="small"
           onClick={() => {
             props.reportAnswer(props.answer.answer_id);
-          }}>
+          }}
+        >
           Report
         </Button>
       </Grid>

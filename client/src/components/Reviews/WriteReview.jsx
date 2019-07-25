@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import Dialog from '@material-ui/core/Dialog';
+import Box from '@material-ui/core/Box';
 
 import * as actions from '../../actions/Reviews/submitForm.js';
 import Recommend from './formComponents/Recommend.jsx';
@@ -21,7 +21,7 @@ import Nickname from './formComponents/Nickname.jsx';
 import Email from './formComponents/Email.jsx';
 import Images from './formComponents/Images.jsx';
 import Success from '../Success.jsx';
-import { validate } from '../validation.js';
+import { validate } from '../helpers.js';
 import { FormSnackbar } from '../SnackBar.jsx';
 
 const defaultForm = {
@@ -179,7 +179,7 @@ const WriteReview = props => {
       </DialogActions>
     </React.Fragment>
   ) : (
-    <div>Loading...</div>
+    <Box>Loading...</Box>
   );
 };
 

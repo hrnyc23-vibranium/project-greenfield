@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { postQuestion } from '../../actions/QandA/postQuestion';
-import { validate } from '../validation';
+import { validate } from '../helpers';
 
 //Material Componenets
 import { makeStyles } from '@material-ui/core/styles';
@@ -135,7 +135,8 @@ class QuestionsForm extends React.Component {
               onClick={e => {
                 event.preventDefault();
                 this.handleSubmit();
-              }}>
+              }}
+            >
               submit
             </Button>
           </Grid>

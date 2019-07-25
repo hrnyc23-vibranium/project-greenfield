@@ -9,10 +9,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 //React Components
 import * as actions from '../../actions/Reviews/updateHelpful.js';
-import { formatDate } from '../formatDate.js';
+import { formatDate, markdown } from '../helpers.js';
 import Ratings from '../Ratings.jsx';
 import ImageGallery from '../ImageGallery.jsx';
-import { markdown } from '../search.js';
 
 const useStyles = makeStyles(theme => ({
   root: {
