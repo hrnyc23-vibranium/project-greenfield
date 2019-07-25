@@ -103,10 +103,6 @@ const WriteReview = props => {
     );
   };
 
-  const checkErrors = input => {
-    return errors.hasOwnProperty(input);
-  };
-
   const closeSuccess = e => {
     props.handleClose(); //close form
     setSuccess(false);
