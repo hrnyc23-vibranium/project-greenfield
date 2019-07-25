@@ -39,7 +39,7 @@ const RatingFilter = props => {
     const { recommended } = props;
     let hasRecommended = recommended[1];
     let normalized = normalizeRecommended(hasRecommended || 0, totalReviews);
-    return <div>{normalized}% of reviews recommend this product</div>;
+    return <Box>{normalized}% of reviews recommend this product</Box>;
   };
 
   //render out star rating
@@ -90,7 +90,7 @@ const RatingFilter = props => {
       <RatingBar ratings={ratings} totalReviews={totalReviews} />
     </Box>
   ) : (
-    <div>Loading...</div>
+    <Box>Loading...</Box>
   );
 };
 

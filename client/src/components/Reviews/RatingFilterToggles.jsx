@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
 import { makeStyles } from '@material-ui/core/styles';
@@ -56,7 +57,7 @@ const RatingFilterToggles = props => {
 
   if (Object.keys(filters).length > 0) {
     return (
-      <div className={classes.root}>
+      <Box className={classes.root}>
         <Chip
           size="small"
           className={classes.chip}
@@ -65,7 +66,7 @@ const RatingFilterToggles = props => {
           clickable
         />
         {renderFilters()}
-      </div>
+      </Box>
     );
   } else {
     return '';

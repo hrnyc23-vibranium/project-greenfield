@@ -1,14 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 
 import { makeStyles } from '@material-ui/core/styles';
-import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
+import {
+  Button,
+  Box,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Dialog,
+} from '@material-ui/core';
 
 import * as actions from '../../actions/Reviews/submitForm.js';
 import Recommend from './formComponents/Recommend.jsx';
@@ -19,7 +22,8 @@ import ReviewBody from './formComponents/ReviewBody.jsx';
 import Nickname from './formComponents/Nickname.jsx';
 import Email from './formComponents/Email.jsx';
 import Images from './formComponents/Images.jsx';
-import { validate } from '../validation.js';
+import Success from '../Success.jsx';
+import { validate } from '../helpers.js';
 import { FormSnackbar } from '../SnackBar.jsx';
 
 const defaultForm = {
@@ -47,6 +51,7 @@ const WriteReview = props => {
   const [form, setForm] = useState(defaultForm);
   const [errors, setErrors] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
 
   const classes = useStyles();
 
@@ -66,17 +71,18 @@ const WriteReview = props => {
     setErrors(errorList);
 
     if (!errorList) {
+      setSuccess(true);
       props.submitForm(form);
-      props.handleClose();
+      setForm(defaultForm);
+    } else {
+      //show snackbar
+      setOpen(true);
     }
-
-    //show snackbar
-    setOpen(true);
   };
 
-  //close snackbar
+  //close form
   const handleClose = (e, reason) => {
-    setOpen(false);
+    setOpen(false); //close snackbr
   };
 
   //show all errors in a list
@@ -99,8 +105,9 @@ const WriteReview = props => {
     );
   };
 
-  const checkErrors = input => {
-    return errors.hasOwnProperty(input);
+  const closeSuccess = e => {
+    props.handleClose(); //close form
+    setSuccess(false);
   };
 
   return form ? (
@@ -113,31 +120,31 @@ const WriteReview = props => {
         <OverallRating
           form={form}
           setForm={setForm.bind(this)}
-          error={checkErrors('rating')}
+          error={errors.hasOwnProperty('rating')}
         />
 
         <Recommend
           form={form}
           setForm={setForm.bind(this)}
-          error={checkErrors('recommend')}
+          error={errors.hasOwnProperty('recommend')}
         />
 
         <Characteristics
           form={form}
           setForm={setForm}
-          error={checkErrors('characteristics')}
+          error={errors.hasOwnProperty('characteristics')}
         />
 
         <ReviewSummary
           summary={form.summary}
           handleChange={handleChange.bind(this)}
-          error={checkErrors('summary')}
+          error={errors.hasOwnProperty('summary')}
         />
 
         <ReviewBody
           body={form.body}
           handleChange={handleChange.bind(this)}
-          error={checkErrors('body')}
+          error={errors.hasOwnProperty('body')}
         />
 
         <Images form={form} setForm={setForm.bind(this)} />
@@ -145,15 +152,16 @@ const WriteReview = props => {
         <Nickname
           name={form.name}
           handleChange={handleChange.bind(this)}
-          error={checkErrors('name')}
+          error={errors.hasOwnProperty('name')}
         />
 
         <Email
           email={form.email}
           handleChange={handleChange.bind(this)}
-          error={checkErrors('email')}
+          error={errors.hasOwnProperty('email')}
         />
       </DialogContent>
+
       {/* Buttons */}
       <DialogActions>
         <Button onClick={props.handleClose} color="primary">
@@ -165,11 +173,15 @@ const WriteReview = props => {
         </Button>
 
         {/* Snackbar */}
-        <FormSnackbar open={open} handleClose={handleClose} errors={errors} />
+        <FormSnackbar open={open} handleClose={handleClose} />
+
+        <Dialog open={success} onClose={closeSuccess}>
+          <Success handleClose={closeSuccess} />
+        </Dialog>
       </DialogActions>
     </React.Fragment>
   ) : (
-    <div>Loading...</div>
+    <Box>Loading...</Box>
   );
 };
 

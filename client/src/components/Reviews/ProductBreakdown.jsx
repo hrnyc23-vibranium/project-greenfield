@@ -67,7 +67,7 @@ const ProductBreakdown = props => {
       })}
     </Box>
   ) : (
-    <div>Loading...</div>
+    <Box>Loading...</Box>
   );
 };
 

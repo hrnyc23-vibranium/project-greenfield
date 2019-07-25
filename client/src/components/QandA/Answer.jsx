@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 
 //React Component
 import ImageGallery from '../ImageGallery.jsx';
-import { formatDate } from '../formatDate.js';
+import { formatDate } from '../helpers.js';
 
 //Material Componenets
 import Typography from '@material-ui/core/Typography';
