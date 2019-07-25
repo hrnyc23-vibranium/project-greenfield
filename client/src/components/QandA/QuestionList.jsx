@@ -1,19 +1,14 @@
 //Dev Dependencies
-import React from 'react';
+import React, { Fragment } from 'react';
 import { connect } from 'react-redux';
 import { getQuestions } from '../../actions/QandA/getQuestions';
 import axios from 'axios';
-// import postQuestion from '../../actions/QandA/postQuestion';
-// import voteQuestion from '../../actions/QandA/voteQuestion';
-// import reportQuestion from '../../actions/QandA/reportQuestion';
 
 //React Components
 import Question from './Question';
 import QuestionButtons from './QuestionButtons';
 
 //Material Componenets
-import { Container } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 
 class Questions extends React.Component {
   constructor(props) {
@@ -67,7 +62,7 @@ class Questions extends React.Component {
   render() {
     if (this.props.questions.results.length > 0) {
       return (
-        <div>
+        <Fragment>
           {this.props.questions.results.map((question, index) => {
             if (index < this.state.load) {
               return (
@@ -86,7 +81,7 @@ class Questions extends React.Component {
             showCollapes={this.state.load > 4}
             showLoadMore={this.state.load < this.props.questions.results.length}
           />
-        </div>
+        </Fragment>
       );
     } else {
       return <QuestionButtons showLoadMore={false} showCollapes={false} />;

@@ -1,12 +1,11 @@
 //Dev Dependencies
-import React from 'react';
+import React, { Fragment } from 'react';
 
 //React Componenets
 import QuestionForm from './QuestionForm';
 
 //Material Components
-import { Container, Modal } from '@material-ui/core';
-import Button from '@material-ui/core/Button';
+import { Container, Modal, Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -71,7 +70,7 @@ const QuestionButtons = props => {
           Collapes Questions
         </Button>
       ) : (
-        <div />
+        <Fragment />
       )}
 
       <Button

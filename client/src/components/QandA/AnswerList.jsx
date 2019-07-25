@@ -1,5 +1,5 @@
 //Dev Dependencies
-import React from 'react';
+import React, { Fragment } from 'react';
 import Answer from './Answer';
 import axios from 'axios';
 
@@ -99,7 +99,7 @@ class Answers extends React.Component {
               Collapse answers
             </Button>
           ) : (
-            <div />
+            <Fragment />
           )}
         </div>
       );
