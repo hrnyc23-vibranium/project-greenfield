@@ -1,14 +1,16 @@
 import React, { useState, useEffect, Fragment } from 'react';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import Avatar from '@material-ui/core/Avatar';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
+import {
+  Grid,
+  GridList,
+  GridListTile,
+  CircularProgress,
+  Avatar,
+  Tooltip,
+  Typography,
+  Box,
+} from '@material-ui/core';
 import CheckCircle from '@material-ui/icons/CheckCircle';
 // React Components
 import Selectors from './Selectors.jsx';
@@ -118,7 +120,7 @@ const StyleList = ({ styles, product, changeStyle }) => {
   };
 
   return (
-    <div>
+    <Fragment>
       {renderPrice()}
       <Typography variant="overline" gutterBottom>
         <strong>Style > </strong>
@@ -168,7 +170,7 @@ const StyleList = ({ styles, product, changeStyle }) => {
           cartImage={cartImage}
         />
       </Grid>
-    </div>
+    </Fragment>
   );
 };
 

@@ -1,42 +1,62 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
-import Grid from '@material-ui/core/Grid';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import IconButton from '@material-ui/core/IconButton';
-import NextArrow from '@material-ui/icons/KeyboardArrowRightRounded';
-import BackArrow from '@material-ui/icons/KeyboardArrowLeftRounded';
+import { Box, IconButton, CircularProgress } from '@material-ui/core';
+import { grey } from '@material-ui/core/colors';
+import BackArrow from '@material-ui/icons/ArrowBack';
+import NextArrow from '@material-ui/icons/ArrowForward';
+import ZoomIcon from '@material-ui/icons/Fullscreen';
+// React Components
+import Image from './Image.jsx';
+import Thumbnails from './Thumbnails.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     flexWrap: 'nowrap',
-    justifyContent: 'space-around',
-    overflow: 'hidden',
     width: '99%',
     height: '75vh',
-    backgroundColor: '#E0E0E0',
-    marginTop: theme.spacing(1),
+    backgroundColor: grey[200],
   },
-  imgBox: {
-    display: 'flex',
-    flexWrap: 'nowrap',
-    maxWidth: '90%',
-    maxHeight: '100%',
+  slider: {
+    position: 'relative',
+    margin: '0 auto',
+    width: 750,
+    height: 'auto',
+    overflow: 'hidden',
+    whiteSpace: 'nowrap',
   },
-  img: {
-    display: 'flex',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    objectFit: 'cover',
+  sliderWrapper: {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
   },
-  imgZoomed: {
+  arrow: {
+    height: '50px',
+    width: '50px',
     display: 'flex',
-    maxWidth: '100%',
-    maxHeight: '100%',
-    objectFit: 'cover',
-    transform: 'scale(1.2)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  nextArrow: {
+    position: 'absolute',
+    top: '50%',
+    right: 25,
+    zIndex: 999,
+  },
+  backArrow: {
+    position: 'absolute',
+    top: '50%',
+    left: 25,
+    zIndex: 999,
+  },
+  zoomIcon: {
+    position: 'relative',
+    width: 24,
+    height: 24,
+    top: theme.spacing(1),
+    right: theme.spacing(1),
   },
   progress: {
     margin: theme.spacing(1),
@@ -46,107 +66,109 @@ const useStyles = makeStyles(theme => ({
 const Carousel = props => {
   const classes = useStyles();
 
-  const [index, setIndex] = useState(0);
-  const [previous, setPrevious] = useState(true);
+  const [images, setImages] = useState();
 
-  const changePrevious = index => {
-    if (index <= 1) {
-      setPrevious(true);
+  useEffect(() => {
+    if (props.styles.results) {
+      setImages(props.styles.results[props.index].photos);
     }
-    if (index <= 5) {
-      setNext(false);
+  });
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [translateValue, setTranslateValue] = useState(0);
+
+  const slideWidth = 750;
+
+  const goToPreviousSlide = () => {
+    if (currentIndex === 0) {
+      return;
     }
+
+    setCurrentIndex(currentIndex - 1);
+    setTranslateValue(translateValue + slideWidth);
   };
-  const [next, setNext] = useState(false);
 
-  const changeNext = index => {
-    if (index >= 0) {
-      setPrevious(false);
+  const goToNextSlide = () => {
+    if (images) {
+      if (currentIndex === images.length - 1) {
+        return setCurrentIndex(0), setTranslateValue(0);
+      }
     }
-    if (index === 4) {
-      setNext(true);
-    }
+
+    setCurrentIndex(currentIndex + 1);
+    setTranslateValue(translateValue + -slideWidth);
   };
 
-  const [click, setClick] = useState(false);
+  //FIXME: Client Width doesn't always work because class changes
+  // const slideWidth = () => {
+  //   return document.querySelector('.makeStyles-slide-471').clientWidth;
+  // };
+
+  const [click, setClick] = useState(true);
 
   const [imgColumns, setImgColumns] = useState(8);
   const [styleColumns, setStyleColumns] = useState(4);
 
-  const changeColumns = () => {
-    if (click === true) {
-      setImgColumns(8);
-      setStyleColumns(4);
-    } else {
-      setImgColumns(12);
-      setStyleColumns(0);
-    }
+  const handleThumbnailClick = index => {
+    setTranslateValue(index * -slideWidth);
   };
 
-  const [id, setId] = useState(classes.img);
-
-  const [position, setPosition] = useState({ backgroundPosition: '0% 0%' });
-
-  const handleMouseMove = e => {
-    setId(classes.imgZoomed);
-    const { left, top, width, height } = e.target.getBoundingClientRect();
-    const x = ((e.pageX - left) / width) * 100;
-    const y = ((e.pageY - top) / height) * 100;
-    setPosition({ backgroundPosition: `${x}% ${y}%` });
-  };
+  //FIXME: Implement expanding the carousel width when the div is expanded
+  // const [sliderWidth, setSliderWidth] = useState({ width: 750 });
 
   return (
-    <div>
-      <Box className={classes.root}>
-        <Grid
-          container
-          direction="row"
-          justify="space-between"
-          alignItems="center">
-          <Box className={classes.arrow}>
-            <IconButton
-              disabled={previous}
-              onClick={() => {
-                setIndex(Math.max(index - 1, 0));
-                changePrevious(index);
-              }}>
-              <BackArrow />
-            </IconButton>
-          </Box>
-          <Box
-            className={classes.imgBox}
-            onMouseMove={handleMouseMove}
-            style={position}
-            onMouseOut={() => {
-              setId(classes.img);
-            }}>
-            {props.styles.results ? (
-              <img
-                src={props.styles.results[props.index].photos[index].url}
-                className={id}
-                onClick={() => {
-                  setClick(!click);
-                  changeColumns();
-                  props.changeSize(imgColumns, styleColumns);
-                }}
-              />
-            ) : (
-              <CircularProgress className={classes.progress} />
-            )}
-          </Box>
-          <Box className={classes.arrow}>
-            <IconButton
-              disabled={next}
-              onClick={() => {
-                setIndex(Math.min(index + 1, 5));
-                changeNext(index);
-              }}>
-              <NextArrow />
-            </IconButton>
-          </Box>
-        </Grid>
+    <Box className={classes.root}>
+      <Thumbnails
+        thumbnails={images}
+        clicked={click}
+        handleThumbnailClick={handleThumbnailClick}
+      />
+      <Box className={classes.slider}>
+        <IconButton
+          className={clsx(classes.arrow, classes.backArrow)}
+          onClick={goToPreviousSlide}>
+          <BackArrow />
+        </IconButton>
+        <Box
+          className={classes.sliderWrapper}
+          style={{
+            transform: `translateX(${translateValue}px)`,
+            transition: 'transform ease-out 0.5s',
+          }}
+          onClick={() => {
+            click
+              ? (setImgColumns(8), setStyleColumns(4))
+              : (setImgColumns(12), setStyleColumns(12));
+            props.changeSize(imgColumns, styleColumns);
+            setClick(!click);
+          }}>
+          {images ? (
+            images.map((image, i) => (
+              <Image key={i} image={image.url} clicked={click} />
+            ))
+          ) : (
+            <CircularProgress className={classes.progress} />
+          )}
+        </Box>
+        <IconButton
+          className={clsx(classes.arrow, classes.nextArrow)}
+          onClick={goToNextSlide}>
+          <NextArrow />
+        </IconButton>
       </Box>
-    </div>
+      <IconButton
+        className={classes.zoomIcon}
+        onClick={() => {
+          setClick(!click);
+          click
+            ? (setImgColumns(8), setStyleColumns(4))
+            : (setImgColumns(12), setStyleColumns(12));
+          props.changeSize(imgColumns, styleColumns);
+        }}>
+        <ZoomIcon />
+      </IconButton>
+    </Box>
   );
 };
 
