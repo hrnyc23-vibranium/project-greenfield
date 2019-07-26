@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/overview/setCart.js';
 // Material UI Components
@@ -110,6 +111,15 @@ const ShieldIcon = props => {
   );
 };
 
+const HomeLink = forwardRef((props, ref) => (
+  <Link
+    innerRef={ref}
+    to="/shop/1"
+    style={{ textDecoration: 'none', color: 'white' }}
+    {...props}
+  />
+));
+
 const Header = props => {
   const classes = useStyles();
 
@@ -148,7 +158,7 @@ const Header = props => {
             variant="h4"
             noWrap
             style={{ fontFamily: 'Cinzel', fontWeight: 700 }}>
-            Vibranium
+            <HomeLink>Vibranium</HomeLink>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
@@ -180,58 +190,58 @@ const Header = props => {
         <Divider />
         <List>
           <ListSubheader>Jackets</ListSubheader>
-          <ListItemLink href={'1'}>
+          <ListItemLink href={'/shop/1'}>
             <ListItemText className={classes.menuItems} primary="Camo Onesie" />
           </ListItemLink>
           <ListSubheader>Pants</ListSubheader>
-          <ListItemLink href={'3'}>
+          <ListItemLink href={'/shop/3'}>
             <ListItemText
               className={classes.menuItems}
               primary="Morning Joggers"
             />
           </ListItemLink>
-          <ListItemLink href={'4'}>
+          <ListItemLink href={'/shop/4'}>
             <ListItemText
               className={classes.menuItems}
               primary="Slacker's Slacks"
             />
           </ListItemLink>
           <ListSubheader>Shoes</ListSubheader>
-          <ListItemLink href={'5'}>
+          <ListItemLink href={'/shop/5'}>
             <ListItemText
               className={classes.menuItems}
               primary="Heir Force Ones"
             />
           </ListItemLink>
-          <ListItemLink href={'6'}>
+          <ListItemLink href={'/shop/6'}>
             <ListItemText
               className={classes.menuItems}
               primary="Pumped Up Kicks"
             />
           </ListItemLink>
-          <ListItemLink href={'7'}>
+          <ListItemLink href={'/shop/7'}>
             <ListItemText
               className={classes.menuItems}
               primary="Blues Suede Shoes"
             />
           </ListItemLink>
-          <ListItemLink href={'8'}>
+          <ListItemLink href={'/shop/8'}>
             <ListItemText className={classes.menuItems} primary="YEasy 350" />
           </ListItemLink>
-          <ListItemLink href={'9'}>
+          <ListItemLink href={'/shop/9'}>
             <ListItemText
               className={classes.menuItems}
               primary="Summer Shoes"
             />
           </ListItemLink>
           <ListSubheader>Accessories</ListSubheader>
-          <ListItemLink href={'2'}>
+          <ListItemLink href={'/shop/2'}>
             <ListItemText
               className={classes.menuItems}
               primary="Bright Future Sunglasses"
             />
           </ListItemLink>
-          <ListItemLink href={'10'}>
+          <ListItemLink href={'/shop/10'}>
             <ListItemText
               className={classes.menuItems}
               primary="Infinity Stone"

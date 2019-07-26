@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, forwardRef } from 'react';
+import { Link } from 'react-router-dom';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
 import {
@@ -54,6 +55,10 @@ const CartIcon = props => {
     </SvgIcon>
   );
 };
+
+const CheckoutLink = forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} to="/cart" />
+));
 
 const CartPopover = props => {
   const classes = useStyles();
@@ -177,7 +182,10 @@ const CartPopover = props => {
                   onClick={handleClose}>
                   Back
                 </Button>
-                <Button variant="outlined" className={classes.checkout}>
+                <Button
+                  variant="outlined"
+                  className={classes.checkout}
+                  component={CheckoutLink}>
                   Checkout
                 </Button>
               </ButtonGroup>
