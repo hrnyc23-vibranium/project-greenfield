@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 //Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 
 //React Components
 import * as actions from '../../actions/Reviews/getData.js';
@@ -46,7 +46,7 @@ const ProductBreakdown = props => {
         let number = Number(breakdown[category].value) * 10;
         return (
           <Box key={category} className={classes.category}>
-            <span>{category}</span>
+            <Typography variant="caption">{category}</Typography>
 
             <Box>
               <input

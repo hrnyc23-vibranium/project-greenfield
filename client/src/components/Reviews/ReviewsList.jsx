@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import { Box, Typography } from '@material-ui/core';
 
 // React Components
 import { getList, getMeta } from '../../actions/Reviews/getData.js';
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     display: 'inline-block',
-    fontSize: 16,
+    // fontSize: 16,
     fontWeight: 'bold',
     marginTop: '5px',
     marginRight: '5px',
@@ -78,7 +78,6 @@ const ReviewsList = props => {
   //settimeout to make expanded view noticible
   const handleScroll = e => {
     let box = e.target;
-    console.log(box);
     //scrollHeight: total height of scrollable div
     //scrollTop: height scrolled from the top, distance scrolled
     //clientHeight: height that the div
@@ -92,9 +91,9 @@ const ReviewsList = props => {
   return reviews.results ? (
     <Fragment>
       <Box>
-        <span className={classes.title}>
+        <Typography variant="h6" className={classes.title}>
           {reviews.results.length} reviews, sorted by
-        </span>
+        </Typography>
         <span className="sortSelect">
           <ReviewSort />
         </span>

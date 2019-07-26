@@ -15,7 +15,7 @@ const galleryReducer = (
       return Object.assign({}, state, { current: next });
     case 'PREV_IMAGE':
       let prev = state.current;
-      if (state.current > 1) {
+      if (state.current > 0) {
         prev--;
       } else {
         prev = state.images.length - 1;
