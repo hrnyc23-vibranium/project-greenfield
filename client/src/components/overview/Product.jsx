@@ -43,7 +43,7 @@ const Product = props => {
             justify="space-around"
             alignItems="stretch">
             <StarRating />
-            <Typography variant="overline" gutterBottom>
+            <Typography variant="h5" gutterBottom>
               {props.product.category}
             </Typography>
             <Typography variant="h3" gutterBottom>
