@@ -14,14 +14,21 @@ import ImageGallery from '../ImageGallery.jsx';
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'block',
+    boxSizing: 'border-box',
     borderBottom: '1px solid gray',
     marginTop: theme.spacing(3),
   },
+  rating: {
+    marginBottom: theme.spacing(0.5),
+  },
+  summary: {
+    paddingBottom: theme.spacing(0.5),
+  },
   body: {
-    marginBottom: theme.spacing(1),
+    paddingBottom: theme.spacing(0.5),
   },
   images: {
-    marginBottom: theme.spacing(1),
+    paddingBottom: theme.spacing(2),
   },
   image: {
     marginRight: theme.spacing(1),
@@ -50,8 +57,7 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0),
   },
   helpful: {
-    marginBottom: theme.spacing(1),
-    // fontSize: 15,
+    marginBottom: theme.spacing(0.5),
   },
   helpfulTitle: {
     marginTop: theme.spacing(0.3),
@@ -109,6 +115,8 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
     );
   };
 
+  //check if local storage contains the reviewID, if not then increment review helpfulness by one and add reviewID to storage
+  //prevents user from incrementing review more than once
   const handleHelpful = reviewId => {
     if (!localStorage.getItem(reviewId)) {
       updateHelpful(reviewId);
@@ -122,30 +130,36 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
 
   return (
     <Box className={classes.root}>
-      <Grid container direct="row" justify="space-between">
+      <Grid
+        container
+        direct="row"
+        justify="space-between"
+        className={classes.rating}
+      >
         <Ratings rating={review.rating} />
         <Box>
           <Typography variant="caption">
-            {review.reviewer_name}, {formatDate(review.date)}
+            {markdown(review.reviewer_name, query)}, {formatDate(review.date)}
           </Typography>
         </Box>
       </Grid>
-      <Typography variant="h6" className={classes.summary}>
+
+      <Typography variant="h6" gutterBottom className={classes.summary}>
         {markdown(review.summary, query)}
       </Typography>
-      <Typography variant="body1" className={classes.body}>
+      <Typography variant="body1" gutterBottom className={classes.body}>
         {markdown(review.body, query)}
       </Typography>
 
       {renderPhotos(review.photos)}
       {renderRecommend(review.recommend)}
       {renderResponse(review.response)}
+
       <Grid container className={classes.helpful} direction="row">
         <Typography variant="subtitle2" className={classes.helpfulTitle}>
           Helpful?
         </Typography>
         <Button
-          component="span"
           className={classes.button}
           onClick={handleHelpful.bind(this, review.review_id)}
         >
@@ -153,7 +167,6 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
         </Button>
         <Typography>|</Typography>
         <Button
-          component="span"
           className={classes.button}
           onClick={handleReport.bind(this, review.review_id)}
         >

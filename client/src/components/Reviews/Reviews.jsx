@@ -2,7 +2,7 @@ import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Button, Dialog, Box } from '@material-ui/core';
+import { Grid, Button, Dialog, Box, Typography } from '@material-ui/core';
 
 // React Components
 import { setOpen } from '../../actions/Reviews/setOpen.js';
@@ -89,7 +89,7 @@ const Reviews = props => {
   return (
     <Box>
       <Box id="reviews" className={classes.title}>
-        RATINGS & REVIEWS
+        <Typography variant="h5">RATINGS & REVIEWS</Typography>
       </Box>
       <Grid container direction="row" justify="space-between">
         <Grid item sm={12} md={4}>

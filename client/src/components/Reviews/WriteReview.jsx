@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
 const WriteReview = props => {
   const [form, setForm] = useState(defaultForm);
   const [errors, setErrors] = useState(false);
-  const [snackbar, setSnackbar] = React.useState(false);
+  const [open, setOpen] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
 
   const classes = useStyles();
@@ -76,13 +76,13 @@ const WriteReview = props => {
       setForm(defaultForm);
     } else {
       //show snackbar
-      setSnackbar(true);
+      setOpen(true);
     }
   };
 
   //close form
-  const closeSnackbar = (e, reason) => {
-    setSnackbar(false); //close snackbr
+  const handleClose = (e, reason) => {
+    setOpen(false); //close snackbr
   };
 
   //show all errors in a list
@@ -173,7 +173,7 @@ const WriteReview = props => {
         </Button>
 
         {/* Snackbar */}
-        <FormSnackbar open={snackbar} handleClose={closeSnackbar} />
+        <FormSnackbar open={open} handleClose={handleClose} />
 
         <Dialog open={success} onClose={closeSuccess}>
           <Success handleClose={closeSuccess} />
