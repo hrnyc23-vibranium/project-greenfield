@@ -11,7 +11,9 @@ import * as actions from '../../actions/Reviews/setSort.js';
 const useStyles = makeStyles(theme => ({
   selected: {
     fontWeight: 'bold',
-    fontSize: 16,
+    letterSpacing: '0.0075em',
+    fontSize: '1.25rem',
+    lineHeight: '1.6',
   },
 }));
 

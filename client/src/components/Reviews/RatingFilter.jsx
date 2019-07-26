@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 
 //React Components
 import * as actions from '../../actions/Reviews/getData.js';
@@ -40,7 +40,11 @@ const RatingFilter = props => {
     const { recommended } = props;
     let hasRecommended = recommended[1];
     let normalized = normalizeRecommended(hasRecommended || 0, totalReviews);
-    return <Box>{normalized}% of reviews recommend this product</Box>;
+    return (
+      <Typography variant="subtitle1">
+        {normalized} % of reviews recommend this product
+      </Typography>
+    );
   };
 
   //render out star rating
