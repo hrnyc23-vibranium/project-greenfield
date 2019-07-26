@@ -55,7 +55,7 @@ const renderErrors = errorList => {
     return;
   } else {
     return (
-      <ul className="error">
+      <ul className="errors">
         You must enter the following:
         {Object.values(errorList).map(err => {
           return (
@@ -133,11 +133,11 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
 
   return (
     <Fragment>
-      <Button size="small" onClick={handleClickOpen}>
-        Add answer
-      </Button>
+      <Button onClick={handleClickOpen}>Add answer</Button>
       <Dialog
         TransitionComponent={Transition}
+        maxWidth="sm"
+        fullWidth={!success}
         open={open}
         onClose={handleClose}
         onClick={success ? handleClose : () => {}}

@@ -41,7 +41,7 @@ const Question = props => {
               </Typography>
             </Grid>
           </Grid>
-          <Grid container spacing={1}>
+          <Grid container spacing={1} alignItems="flex-start">
             <Grid item>
               <Typography variant="h6">A: </Typography>
             </Grid>
@@ -55,9 +55,9 @@ const Question = props => {
             container
             direction="row"
             justify="flex-end"
-            alignItems="flex-start">
+            alignItems="center">
             <Button
-              size="small"
+              // size="small"
               disabled={disabled}
               onClick={() => {
                 props.voteQuestion(props.question.question_id);
