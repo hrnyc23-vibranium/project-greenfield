@@ -29,14 +29,14 @@ const Product = props => {
   return (
     <Fragment>
       <Grid container direction="row">
-        <Grid item md={12} lg={imgColumns}>
+        <Grid item sm={12} md={imgColumns}>
           <Carousel
             styles={styles}
             index={currStyleIndex}
             changeSize={changeGridSize}
           />
         </Grid>
-        <Grid item md={12} lg={styleColumns} style={{ marginTop: 5 }}>
+        <Grid item sm={12} md={styleColumns} style={{ marginTop: 5 }}>
           <Grid
             container
             direction="column"
