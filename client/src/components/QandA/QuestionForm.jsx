@@ -16,16 +16,13 @@ import {
   Button,
   Slide,
   Box,
+  InputLabel,
+  Typography,
 } from '@material-ui/core';
 import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-  button: {
-    margin: theme.spacing(1),
-    'border-radius': 0,
-    padding: '15px',
-  },
   root: {
     textAlign: 'center',
   },
@@ -34,13 +31,13 @@ const useStyles = makeStyles(theme => ({
     height: 50,
     color: 'green',
   },
-  errors: {
-    color: theme.palette.error.dark,
-    padding: theme.spacing(0),
-  },
-  error: {
-    marginLeft: theme.spacing(2),
-  },
+  // errors: {
+  //   color: theme.palette.error.dark,
+  //   padding: theme.spacing(0),
+  // },
+  // error: {
+  //   marginLeft: theme.spacing(2),
+  // },
 }));
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -117,11 +114,13 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
     <Fragment>
       <Button
         variant="outlined"
-        className={classes.button}
+        // className={classes.button}
         onClick={handleClickOpen}>
         Add a question +
       </Button>
       <Dialog
+        maxWidth="sm"
+        fullWidth={!success}
         TransitionComponent={Transition}
         open={open}
         onClose={handleClose}
@@ -141,10 +140,17 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
               <DialogContentText>About the {productName}</DialogContentText>
               {renderErrors(error)}
               <form>
+                <InputLabel
+                  htmlFor="questionarea"
+                  required
+                  asterisk
+                  error={error.question ? true : false}>
+                  Your Question
+                </InputLabel>
                 <TextField
                   id="questionarea"
-                  label="Your Question"
-                  helperText="place your question here"
+                  // label="Your Question"
+                  placeholder="Place your question here"
                   multiline
                   required
                   inputProps={{ maxLength: 1000 }}
@@ -154,10 +160,17 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
                   error={error.question ? true : false}
                   name="question"
                 />
+                <InputLabel
+                  htmlFor="nickname"
+                  required
+                  asterisk
+                  error={error.name ? true : false}>
+                  What is your nickname
+                </InputLabel>
                 <TextField
                   id="nickname"
                   required
-                  label="What is your nickname"
+                  // label="What is your nickname"
                   placeholder="Example:jack543!"
                   fullWidth
                   required
@@ -167,11 +180,18 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
                   name="name"
                   error={error.name ? true : false}
                 />
+                <InputLabel
+                  htmlFor="email"
+                  required
+                  asterisk
+                  error={error.email ? true : false}>
+                  What is your nickname
+                </InputLabel>
                 <TextField
                   id="email"
                   required
                   fullWidth
-                  label="Your email"
+                  // label="Your email"
                   inputProps={{ maxLength: 60 }}
                   placeholder="Why did you like the product or not"
                   helperText="For authentication reasons, you will not be emailed"
@@ -184,10 +204,11 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
             </DialogContent>
             <DialogActions>
               <Grid container justify="flex-end">
-                <Button onClick={handleClose} color="secondary">
+                <Button color="secondary" onClick={handleClose}>
                   cancel
                 </Button>
                 <Button
+                  color="primary"
                   onClick={e => {
                     event.preventDefault();
                     handleSubmit();

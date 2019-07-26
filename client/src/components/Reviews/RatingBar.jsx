@@ -64,10 +64,10 @@ const RatingBar = props => {
             <Grid item sm={12} md={3}>
               <Box>
                 <Button
-                  component="span"
-                  className={classes.button}
-                  onClick={handleClick.bind(this, rating)}
-                >
+                  // component="span"
+                  className="rating"
+                  // className={classes.button}
+                  onClick={handleClick.bind(this, rating)}>
                   {rating} {rating === 1 ? 'star' : 'stars'}
                 </Button>
               </Box>
