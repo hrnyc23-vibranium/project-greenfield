@@ -46,6 +46,7 @@ const Question = props => {
               <Typography variant="h6">A: </Typography>
             </Grid>
             <Grid item>
+              {/* {console.log(props.question)} */}
               <AnswerList questionId={props.question.question_id} />
             </Grid>
           </Grid>
