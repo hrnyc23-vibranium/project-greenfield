@@ -190,7 +190,8 @@ const CartPopover = props => {
                 <Button
                   variant="outlined"
                   className={classes.checkout}
-                  component={CheckoutLink}>
+                  component={CheckoutLink}
+                  onClick={handleClose}>
                   Checkout
                 </Button>
               </ButtonGroup>
