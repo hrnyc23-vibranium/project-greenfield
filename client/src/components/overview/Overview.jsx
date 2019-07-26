@@ -4,7 +4,6 @@ import * as actions from '../../actions/overview';
 // Material UI Components
 import { Grid, Typography, Link } from '@material-ui/core';
 // React Components
-import Header from './Header.jsx';
 import Product from './Product.jsx';
 import Features from './Features.jsx';
 
@@ -17,10 +16,9 @@ class Overview extends Component {
   }
 
   render() {
-    const { product, styles, id, ratings, totalReviews, cart } = this.props;
+    const { product, styles, id, ratings, totalReviews } = this.props;
     return (
       <Fragment>
-        <Header />
         <Grid container direction="row" justify="center" alignItems="center">
           <Typography variant="overline" gutterBottom>
             <em>Select Styles on Sale!</em> - Camo Onesie -{' '}
