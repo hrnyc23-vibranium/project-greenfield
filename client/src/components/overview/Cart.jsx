@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Grid,
   Button,
-  ButtonGroup,
   Typography,
   Box,
   CircularProgress,
@@ -49,6 +48,8 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 0,
     padding: '15px',
     width: '25%',
+    borderWidth: 2,
+    borderColor: 'rgb(143, 117, 0)',
   },
   product: {
     fontSize: '1.3rem',
@@ -57,6 +58,14 @@ const useStyles = makeStyles(theme => ({
   details: {
     fontSize: '0.7rem',
     color: '#616161',
+  },
+  heading: {
+    color: 'rgb(143, 117, 0)',
+  },
+  remove: {
+    marginTop: theme.spacing(3),
+    padding: 0,
+    justifyContent: 'left',
   },
 }));
 
@@ -109,10 +118,16 @@ const Cart = props => {
       <Table className={classes.table}>
         <TableHead>
           <TableRow>
-            <TableCell>Product</TableCell>
-            <TableCell align="center">Quantity</TableCell>
-            <TableCell align="right">Price</TableCell>
-            <TableCell align="right">Total Price</TableCell>
+            <TableCell className={classes.heading}>PRODUCT</TableCell>
+            <TableCell align="center" className={classes.heading}>
+              QUANTITY
+            </TableCell>
+            <TableCell align="right" className={classes.heading}>
+              PRICE
+            </TableCell>
+            <TableCell align="right" className={classes.heading}>
+              TOTAL PRICE
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -154,6 +169,12 @@ const Cart = props => {
                             className={classes.details}>
                             {`Size: ${item.size}`}
                           </Typography>
+                          <Button
+                            color="secondary"
+                            className={classes.remove}
+                            onClick={props.removeItem(item.id)}>
+                            REMOVE
+                          </Button>
                         </Grid>
                       </Grid>
                     </Grid>
