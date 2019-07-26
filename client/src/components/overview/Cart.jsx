@@ -42,7 +42,6 @@ const useStyles = makeStyles(theme => ({
 const Cart = props => {
   const classes = useStyles();
 
-  console.log('props', props);
   return (
     <Fragment>
       <Typography variant="h5" gutterBottom className={classes.title}>
