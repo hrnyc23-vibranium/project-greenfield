@@ -143,9 +143,9 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
                 <InputLabel
                   htmlFor="questionarea"
                   required
-                  asterisk
+                  // asterisk
                   error={error.question ? true : false}>
-                  Your Question
+                  Your question
                 </InputLabel>
                 <TextField
                   id="questionarea"
@@ -163,7 +163,6 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
                 <InputLabel
                   htmlFor="nickname"
                   required
-                  asterisk
                   error={error.name ? true : false}>
                   What is your nickname
                 </InputLabel>
@@ -183,9 +182,8 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
                 <InputLabel
                   htmlFor="email"
                   required
-                  asterisk
                   error={error.email ? true : false}>
-                  What is your nickname
+                  Your email
                 </InputLabel>
                 <TextField
                   id="email"
@@ -193,7 +191,7 @@ const QuestionForm = ({ productName, productId, postQuestion }) => {
                   fullWidth
                   // label="Your email"
                   inputProps={{ maxLength: 60 }}
-                  placeholder="Why did you like the product or not"
+                  placeholder="email@email.com"
                   helperText="For authentication reasons, you will not be emailed"
                   onChange={handleChange.bind(this)}
                   value={form.email}

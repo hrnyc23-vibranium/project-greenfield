@@ -6,6 +6,8 @@ import Overview from './overview/Overview.jsx';
 import Reviews from './Reviews/Reviews.jsx';
 import Questions from './QandA/QuestionAndAnswers';
 
+import { Grid } from '@material-ui/core';
+
 class ProductDetails extends Component {
   componentDidMount() {
     const { setCurrentId, match } = this.props;
@@ -15,8 +17,10 @@ class ProductDetails extends Component {
     return (
       <Fragment>
         <Overview />
-        <Questions />
-        <Reviews />
+        <Grid>
+          <Questions />
+          <Reviews />
+        </Grid>
       </Fragment>
     );
   }
