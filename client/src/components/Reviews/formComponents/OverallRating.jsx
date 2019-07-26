@@ -30,10 +30,11 @@ const OverallRating = ({ form, setForm, error }) => {
       <InputLabel
         asterisk="true"
         className={error ? classes.titleError : classes.title}
+        error={error}
       >
         Overall Rating
       </InputLabel>
-      <Grid container direction="row">
+      <Grid container direction="row" style={{ marginTop: '5px' }}>
         <Rating
           label="Overall Rating*"
           name="rating"

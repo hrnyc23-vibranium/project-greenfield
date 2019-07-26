@@ -11,6 +11,7 @@ const Email = ({ email, handleChange, error }) => {
       <InputLabel
         asterisk="true"
         className={error ? classes.titleError : classes.title}
+        error={error}
       >
         Your email*
       </InputLabel>

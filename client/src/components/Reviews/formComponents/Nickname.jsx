@@ -12,6 +12,7 @@ const Nickname = ({ name, handleChange, error }) => {
       <InputLabel
         asterisk="true"
         className={error ? classes.titleError : classes.title}
+        error={error}
       >
         What is your nickname*
       </InputLabel>

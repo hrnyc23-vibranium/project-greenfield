@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
   selected: {
     fontWeight: 'bold',
     letterSpacing: '0.0075em',
-    fontSize: '1.25rem',
+    fontSize: '1.1rem',
     lineHeight: '1.6',
   },
 }));

@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     display: 'inline',
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(0),
     padding: theme.spacing(0),
     fontSize: 15,
     textDecoration: 'underline',
@@ -64,10 +64,11 @@ const RatingBar = props => {
             <Grid item sm={12} md={3}>
               <Box>
                 <Button
-                  // component="span"
+                  component="span"
                   className="rating"
-                  // className={classes.button}
-                  onClick={handleClick.bind(this, rating)}>
+                  className={classes.button}
+                  onClick={handleClick.bind(this, rating)}
+                >
                   {rating} {rating === 1 ? 'star' : 'stars'}
                 </Button>
               </Box>

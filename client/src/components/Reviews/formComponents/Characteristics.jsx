@@ -70,7 +70,7 @@ const useStyles = makeStyles(theme => ({
   },
   group: {
     margin: theme.spacing(1, 0),
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(0),
   },
   col: {
     margin: theme.spacing(0),
@@ -99,12 +99,13 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
 
   return (
     <Box>
-      <InputLabel
+      {/* <InputLabel
         asterisk="true"
         className={error ? classes.titleError : classes.title}
+        error={error}
       >
         Characteristics*
-      </InputLabel>
+      </InputLabel> */}
       {Object.keys(characteristics).map(character => {
         let id = characteristics[character].id; //id corresponding to character
         let descriptionList = descriptions[character]; //description list corresponding to character

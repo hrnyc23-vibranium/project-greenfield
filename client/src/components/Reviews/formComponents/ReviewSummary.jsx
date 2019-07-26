@@ -11,6 +11,7 @@ const ReviewSummary = ({ summary = '', handleChange, error }) => {
       <InputLabel
         asterisk="true"
         className={error ? classes.titleError : classes.title}
+        error={error}
       >
         Review Summary*
       </InputLabel>

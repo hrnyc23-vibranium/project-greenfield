@@ -18,6 +18,7 @@ const ReviewBody = ({ body, handleChange, error }) => {
       <InputLabel
         asterisk="true"
         className={error ? classes.titleError : classes.title}
+        error={error}
       >
         Review Body*
       </InputLabel>

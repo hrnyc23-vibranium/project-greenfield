@@ -20,10 +20,8 @@ const Recommend = ({ form, setForm, error }) => {
   };
 
   return (
-    <Box>
-      <h4 className={error ? classes.titleError : classes.title}>
-        Do you recommend this product?*
-      </h4>
+    <Box style={{ marginTop: '20px' }}>
+      <InputLabel error={error}>Do you recommend this product?*</InputLabel>
       <FormControl component="fieldset">
         <RadioGroup
           name="position"
