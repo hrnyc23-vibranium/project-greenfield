@@ -78,13 +78,14 @@ const ReviewsList = props => {
   //settimeout to make expanded view noticible
   const handleScroll = e => {
     let box = e.target;
+    console.log(box);
     //scrollHeight: total height of scrollable div
-    //scrollTop: height scrolled from the top
+    //scrollTop: height scrolled from the top, distance scrolled
     //clientHeight: height that the div
-    if (box.scrollHeight - box.scrollTop - 1 === box.clientHeight) {
+    if (box.scrollHeight - box.scrollTop <= box.clientHeight + 1) {
       setTimeout(() => {
         props.expandView();
-      }, 100);
+      }, 50);
     }
   };
 
