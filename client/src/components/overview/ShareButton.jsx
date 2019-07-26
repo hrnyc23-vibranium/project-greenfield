@@ -76,7 +76,7 @@ const ShareButton = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
 
-  const handleClick = event => {
+  const handleOpen = event => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -85,14 +85,14 @@ const ShareButton = () => {
   };
 
   const open = Boolean(anchorEl);
-  const id = open ? 'simple-popover' : undefined;
+  const id = open ? 'share-popover' : undefined;
 
   return (
     <Fragment>
       <Button
         variant="outlined"
         className={classes.button}
-        onClick={handleClick}>
+        onClick={handleOpen}>
         <ShareIcon />
       </Button>
       <Popover
