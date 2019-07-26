@@ -12,7 +12,7 @@ const filterAnswers = (questions, searchKeyword) => {
       if (
         question.answers[answerkeys[keys]].body
           .toLowerCase()
-          .indexOf(searchKeyword) > 0
+          .indexOf(searchKeyword) >= 0
       ) {
         match = true;
         questionObj.answers[answerkeys[keys]] =
