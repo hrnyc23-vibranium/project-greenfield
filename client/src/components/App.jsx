@@ -15,7 +15,7 @@ export default class App extends Component {
         <CssBaseline />
         <BrowserRouter>
           <Header />
-          <Route path="/" component={Cart} />
+          <Route exact path="/" component={Cart} />
           <Route exact path="/:id" component={ProductDetails} />
         </BrowserRouter>
       </Container>

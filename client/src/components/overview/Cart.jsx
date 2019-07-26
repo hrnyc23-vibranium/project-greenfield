@@ -17,6 +17,10 @@ import {
 } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
+  title: {
+    margin: theme.spacing(2),
+    fontWeight: 700,
+  },
   cartImage: {
     width: 128,
     height: 128,
@@ -41,7 +45,7 @@ const Cart = props => {
   console.log('props', props);
   return (
     <Fragment>
-      <Typography variant="h5" gutterBottom>
+      <Typography variant="h5" gutterBottom className={classes.title}>
         Shopping Cart
       </Typography>
 
@@ -97,10 +101,10 @@ const Cart = props => {
                   </Grid>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="body2">{item.price}</Typography>
+                  <Typography variant="body2">{`$${item.price}`}</Typography>
                 </TableCell>
                 <TableCell>
-                  <Typography variant="body2">{item.price}</Typography>
+                  <Typography variant="body2">{`$${item.price}`}</Typography>
                 </TableCell>
               </TableRow>
             ))
