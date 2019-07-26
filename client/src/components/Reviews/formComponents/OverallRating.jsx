@@ -3,9 +3,7 @@ import React from 'react';
 // Material UI Components
 import { useStyles } from './inputStyle.js';
 import { Box, Grid } from '@material-ui/core';
-
-//React Components
-import Rating from '../../Ratings.jsx';
+import Rating from '@material-ui/lab/Rating';
 
 const OverallRating = ({ form, setForm, error }) => {
   const classes = useStyles();

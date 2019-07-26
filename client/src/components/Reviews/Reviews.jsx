@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 // Material UI Components
 import { makeStyles } from '@material-ui/core/styles';
@@ -12,6 +12,10 @@ import ReviewsList from './ReviewsList.jsx';
 import WriteReview from './WriteReview.jsx';
 
 const useStyles = makeStyles(theme => ({
+  root: {
+    margin: 'auto',
+    maxWidth: '1100px',
+  },
   title: {
     margin: theme.spacing(2, 0),
   },
@@ -32,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 
 const Reviews = props => {
   const classes = useStyles();
+  const [expanded, setExpanded] = useState(false);
 
   const handleOpen = () => {
     props.setOpen(true);
@@ -41,7 +46,8 @@ const Reviews = props => {
   };
 
   const handleLimit = () => {
-    props.setLimit();
+    setExpanded(true);
+    props.expandView();
   };
 
   //show buttons
@@ -68,7 +74,7 @@ const Reviews = props => {
       </Button>
     );
 
-    if (listShown - listLimit > 0) {
+    if (listShown - listLimit > 0 && !expanded) {
       return (
         <React.Fragment>
           {moreButton}
@@ -86,11 +92,12 @@ const Reviews = props => {
         RATINGS & REVIEWS
       </Box>
       <Grid container direction="row" justify="space-between">
-        <Grid item sm={12} md={3}>
+        <Grid item sm={12} md={4}>
           <Meta />
         </Grid>
-        <Grid item sm={12} md={9}>
+        <Grid item sm={12} md={8}>
           <ReviewsList />
+
           <Box className={classes.buttons}>
             {renderButtons()}
 
@@ -119,7 +126,7 @@ let mapDispatchToProps = dispatch => ({
   setOpen: boolean => {
     dispatch(setOpen(boolean));
   },
-  setLimit: () => {
+  expandView: () => {
     dispatch(setLimit());
   },
 });
