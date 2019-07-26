@@ -17,6 +17,8 @@ class Questions extends React.Component {
       load: 4,
     };
     this.voteQuestion = this.voteQuestion.bind(this);
+    this.loadMore = this.loadMore.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
   loadMore() {
     if (this.state.load < this.props.questions.results.length)
@@ -59,22 +61,37 @@ class Questions extends React.Component {
     }
   }
 
+  handleScroll(e) {
+    let element = e.target;
+    if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+      // do something at end of scroll
+      this.loadMore();
+    }
+  }
   render() {
+    var QuestionContainer = {
+      maxHeight: window.innerHeight - 200,
+    };
     if (this.props.questions.results.length > 0) {
       return (
         <Fragment>
-          {this.props.questions.results.map((question, index) => {
-            if (index < this.state.load) {
-              return (
-                <Question
-                  question={question}
-                  key={question.question_id}
-                  product={this.props.productName}
-                  voteQuestion={this.voteQuestion}
-                />
-              );
-            }
-          })}
+          <div
+            style={QuestionContainer}
+            className="QuestionContainer"
+            onScroll={this.handleScroll}>
+            {this.props.questions.results.map((question, index) => {
+              if (index < this.state.load) {
+                return (
+                  <Question
+                    question={question}
+                    key={question.question_id}
+                    product={this.props.productName}
+                    voteQuestion={this.voteQuestion}
+                  />
+                );
+              }
+            })}
+          </div>
           <QuestionButtons
             loadMore={this.loadMore.bind(this)}
             collapesQuestions={this.collapesQuestions.bind(this)}

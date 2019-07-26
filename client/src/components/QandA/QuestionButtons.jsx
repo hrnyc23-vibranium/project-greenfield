@@ -73,21 +73,7 @@ const QuestionButtons = props => {
         <Fragment />
       )}
 
-      <Button
-        variant="outlined"
-        className={classes.button}
-        onClick={handleOpen}>
-        Add a question +
-      </Button>
-      <Modal
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        open={open}
-        onClose={handleClose}>
-        <div style={modalStyle} className={classes.paper}>
-          <QuestionForm />
-        </div>
-      </Modal>
+      <QuestionForm product={props.product} />
     </div>
   );
 };

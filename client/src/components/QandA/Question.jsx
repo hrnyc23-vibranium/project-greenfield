@@ -33,17 +33,17 @@ const Question = props => {
         <Grid item lg={9} md={9} sm={12}>
           <Grid container spacing={1}>
             <Grid item>
-              <Typography variant="subtitle2">Q: </Typography>
+              <Typography variant="h6">Q: </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle2">
+              <Typography variant="h6">
                 {props.question.question_body}
               </Typography>
             </Grid>
           </Grid>
           <Grid container spacing={1}>
             <Grid item>
-              <Typography variant="subtitle2">A: </Typography>
+              <Typography variant="h6">A: </Typography>
             </Grid>
             <Grid item>
               <AnswerList questionId={props.question.question_id} />

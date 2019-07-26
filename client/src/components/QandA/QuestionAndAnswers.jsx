@@ -11,9 +11,7 @@ import { Typography, Box } from '@material-ui/core';
 const QuestionAndAnswer = props => {
   return (
     <Box id="QA">
-      <Typography variant="h6" component="h2">
-        Question and Answers
-      </Typography>
+      <Typography variant="h5">Question and Answers</Typography>
       <Search />
       <QuestionList />
     </Box>

@@ -12,7 +12,7 @@ const Answer = props => {
   const [disabled, setDisabled] = useState(false);
   return (
     <Fragment>
-      <Typography variant="body2">{props.answer.body} </Typography>
+      <Typography variant="body1">{props.answer.body} </Typography>
       {props.answer.photos.length > 0 ? (
         <ImageGallery photos={props.answer.photos} />
       ) : (

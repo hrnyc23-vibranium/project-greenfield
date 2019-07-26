@@ -1,145 +1,207 @@
 //Dev Dependencies
-import React from 'react';
+import React, { Fragment } from 'react';
+import { validate } from '../helpers';
 import { connect } from 'react-redux';
 import { postQuestion } from '../../actions/QandA/postQuestion';
-import { validate } from '../helpers';
 
-//Material Componenets
+//Material Componenet
 import {
-  Container,
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  DialogActions,
+  DialogContentText,
   TextField,
-  Button,
   Grid,
-  Typography,
+  Button,
+  Slide,
+  Box,
 } from '@material-ui/core';
+import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+    'border-radius': 0,
+    padding: '15px',
+  },
+  root: {
+    textAlign: 'center',
+  },
+  checkMark: {
+    width: 50,
+    height: 50,
+    color: 'green',
+  },
+  errors: {
+    color: theme.palette.error.dark,
+    padding: theme.spacing(0),
+  },
+  error: {
+    marginLeft: theme.spacing(2),
+  },
+}));
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
+
+const defaultForm = {
+  question: '',
+  name: '',
+  email: '',
+};
 
 //helper function for validation
 //show all errors in a list
 const renderErrors = errorList => {
-  if (!errorList) {
+  if (!errorList || errorList.length === 0) {
     return;
-  }
-  return (
-    <ul className="error">
-      You must enter the following:
-      {Object.values(errorList).map(err => {
-        return (
-          <li className="error" key={err}>
-            {err}
-          </li>
-        );
-      })}
-    </ul>
-  );
-};
-
-class QuestionsForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      question: '',
-      name: '',
-      email: '',
-      errorList: [],
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-  }
-
-  handleChange() {
-    let errorList = validate(this.state, 'question', null);
-    if (errorList) {
-      this.setState({
-        errorList: errorList,
-      });
-    }
-  }
-
-  handleSubmit() {
-    let errorList = validate(this.state, 'question', null);
-    if (errorList) {
-      this.setState({
-        errorList: errorList,
-      });
-    } else {
-      let payload = Object.assign({}, this.state, {
-        productId: this.props.productId,
-        productName: this.props.productName,
-      });
-      this.props.postQuestion(payload);
-    }
-    //TODO handle async submittion
-  }
-  render() {
+  } else {
     return (
-      <Container>
-        <Typography variant="h5">Ask Your Question</Typography>
-        <Typography variant="subtitle1">
-          About the {this.props.productName}
-        </Typography>
-        {this.state.errorList ? renderErrors(this.state.errorList) : <div />}
-        <form>
-          <TextField
-            id="questionarea"
-            type="textarea"
-            multiline
-            required
-            inputProps={{ maxLength: 1000 }}
-            label="Your Question"
-            helperText="place your question here"
-            fullWidth
-            value={this.state.question}
-            onChange={e => {
-              this.setState({ question: e.target.value });
-              this.handleChange();
-            }}
-            error={this.state.errorList.question ? true : false}
-          />
-          <TextField
-            id="nickename"
-            type="input"
-            required
-            fullWidth
-            label="What is your nickname"
-            placeholder="Example: jackson11!"
-            helperText="For privacy reason, do not use your full name or email address"
-            inputProps={{ maxLength: 60 }}
-            onChange={e => {
-              this.setState({ name: e.target.value });
-              this.handleChange();
-            }}
-            error={this.state.errorList.name ? true : false}
-          />
-          <TextField
-            id="questionEmail"
-            type="input"
-            required
-            fullWidth
-            label="Your email"
-            placeholder="Why did you like the product or not?"
-            helperText="For authentication reasons, you will not be emailed"
-            inputProps={{ maxLength: 60 }}
-            onChange={e => {
-              this.setState({ email: e.target.value });
-              this.handleChange();
-            }}
-            error={this.state.errorList.email ? true : false}
-          />
-          <Grid container justify="flex-end">
-            <Button
-              variant="contained"
-              onClick={e => {
-                event.preventDefault();
-                this.handleSubmit();
-              }}>
-              submit
-            </Button>
-          </Grid>
-        </form>
-      </Container>
+      <ul className="errors">
+        You must enter the following:
+        {Object.values(errorList).map(err => {
+          return (
+            <li className="error" key={err}>
+              {err}
+            </li>
+          );
+        })}
+      </ul>
     );
   }
-}
+};
+
+const QuestionForm = ({ productName, productId, postQuestion }) => {
+  const [open, setOpen] = React.useState(false);
+  const [form, setForm] = React.useState(defaultForm);
+  const [error, setErrors] = React.useState(false);
+  const [success, setSeccess] = React.useState(false);
+  const classes = useStyles();
+  //add inputs to form
+  //helper function for validation
+  //show all errors in a list
+
+  const handleChange = e => {
+    e.persist();
+    setForm(prevState => {
+      return { ...prevState, [e.target.name]: e.target.value };
+    });
+  };
+
+  //set errors, if there are no errors make post request. Show snackbar depending on success/error
+  const handleSubmit = e => {
+    //returns an arr or errors or false
+    let errorList = validate(form, 'question', null);
+    setErrors(errorList);
+    if (!errorList) {
+      postQuestion(Object.assign(form, { productId: productId }));
+      setSeccess(true);
+    }
+  };
+
+  function handleClickOpen() {
+    setOpen(true);
+  }
+
+  function handleClose() {
+    setOpen(false);
+    setForm(defaultForm);
+    setErrors(false);
+    setSeccess(false);
+  }
+
+  return (
+    <Fragment>
+      <Button
+        variant="outlined"
+        className={classes.button}
+        onClick={handleClickOpen}>
+        Add a question +
+      </Button>
+      <Dialog
+        TransitionComponent={Transition}
+        open={open}
+        onClose={handleClose}
+        onClick={success ? handleClose : () => {}}
+        aria-labelledby="form-dialog-title">
+        {success ? (
+          <Fragment>
+            <DialogTitle>Success</DialogTitle>
+            <Box className={classes.root}>
+              <CheckCircleOutline className={classes.checkMark} />
+            </Box>
+          </Fragment>
+        ) : (
+          <Fragment>
+            <DialogTitle>Ask Your Question</DialogTitle>
+            <DialogContent>
+              <DialogContentText>About the {productName}</DialogContentText>
+              {renderErrors(error)}
+              <form>
+                <TextField
+                  id="questionarea"
+                  label="Your Question"
+                  helperText="place your question here"
+                  multiline
+                  required
+                  inputProps={{ maxLength: 1000 }}
+                  fullWidth
+                  onChange={handleChange.bind(this)}
+                  value={form.question}
+                  error={error.question ? true : false}
+                  name="question"
+                />
+                <TextField
+                  id="nickname"
+                  required
+                  label="What is your nickname"
+                  placeholder="Example:jack543!"
+                  fullWidth
+                  required
+                  helperText="For privacy reasons, do not use your full name or email address"
+                  onChange={handleChange.bind(this)}
+                  value={form.name}
+                  name="name"
+                  error={error.name ? true : false}
+                />
+                <TextField
+                  id="email"
+                  required
+                  fullWidth
+                  label="Your email"
+                  inputProps={{ maxLength: 60 }}
+                  placeholder="Why did you like the product or not"
+                  helperText="For authentication reasons, you will not be emailed"
+                  onChange={handleChange.bind(this)}
+                  value={form.email}
+                  error={error.email ? true : false}
+                  name="email"
+                />
+              </form>
+            </DialogContent>
+            <DialogActions>
+              <Grid container justify="flex-end">
+                <Button onClick={handleClose} color="secondary">
+                  cancel
+                </Button>
+                <Button
+                  onClick={e => {
+                    event.preventDefault();
+                    handleSubmit();
+                  }}>
+                  Submit
+                </Button>
+              </Grid>
+            </DialogActions>
+          </Fragment>
+        )}
+      </Dialog>
+    </Fragment>
+  );
+};
 
 const mapStateToProps = state => {
   return {
@@ -158,4 +220,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(QuestionsForm);
+)(QuestionForm);
