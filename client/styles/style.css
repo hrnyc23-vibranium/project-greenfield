@@ -36,12 +36,9 @@
 #questionbuttons button:first-child {
   margin-left: 0 !important;
 }
-<<<<<<< HEAD
 .QuestionContainer {
   overflow: scroll;
 }
-=======
->>>>>>> 398a766f64f4c23663928076caa25cf7007c39fa
 /* #QA {
   margin: 20px, 0 !important;
   margin: auto;
