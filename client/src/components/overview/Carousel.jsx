@@ -22,7 +22,6 @@ const useStyles = makeStyles(theme => ({
   slider: {
     position: 'relative',
     margin: '0 auto',
-    width: 750,
     height: 'auto',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
@@ -78,7 +77,8 @@ const Carousel = props => {
 
   const [translateValue, setTranslateValue] = useState(0);
 
-  const slideWidth = 750;
+  const [slideWidth, setSlideWidth] = useState(750);
+  const [sliderWidth, setSliderWidth] = useState({ width: 750 });
 
   const goToPreviousSlide = () => {
     if (currentIndex === 0) {
@@ -100,11 +100,6 @@ const Carousel = props => {
     setTranslateValue(translateValue + -slideWidth);
   };
 
-  //FIXME: Client Width doesn't always work because class changes
-  // const slideWidth = () => {
-  //   return document.querySelector('.makeStyles-slide-471').clientWidth;
-  // };
-
   const [click, setClick] = useState(true);
 
   const [imgColumns, setImgColumns] = useState(8);
@@ -114,17 +109,15 @@ const Carousel = props => {
     setTranslateValue(index * -slideWidth);
   };
 
-  //FIXME: Implement expanding the carousel width when the div is expanded
-  // const [sliderWidth, setSliderWidth] = useState({ width: 750 });
-
   return (
     <Box className={classes.root}>
       <Thumbnails
         thumbnails={images}
         clicked={click}
+        translate={translateValue}
         handleThumbnailClick={handleThumbnailClick}
       />
-      <Box className={classes.slider}>
+      <Box className={classes.slider} style={sliderWidth}>
         <IconButton
           className={clsx(classes.arrow, classes.backArrow)}
           onClick={goToPreviousSlide}>
@@ -162,8 +155,14 @@ const Carousel = props => {
         onClick={() => {
           setClick(!click);
           click
-            ? (setImgColumns(8), setStyleColumns(4))
-            : (setImgColumns(12), setStyleColumns(12));
+            ? (setImgColumns(8),
+              setStyleColumns(4),
+              setSliderWidth({ width: 1000 }),
+              setSlideWidth(1000))
+            : (setImgColumns(12),
+              setStyleColumns(12),
+              setSliderWidth({ width: 750 }),
+              setSlideWidth(750));
           props.changeSize(imgColumns, styleColumns);
         }}>
         <ZoomIcon />

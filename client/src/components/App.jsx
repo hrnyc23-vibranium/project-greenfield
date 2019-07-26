@@ -4,17 +4,21 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
 // React Components
+import Header from './overview/Header.jsx';
 import ProductDetails from './ProductDetails.jsx';
+import Cart from './overview/Cart.jsx';
 
 export default class App extends Component {
   render() {
     return (
-      <BrowserRouter>
+      <Container maxWidth={false}>
         <CssBaseline />
-        <Container maxWidth={false}>
-          <Route path="/:id" component={ProductDetails} />
-        </Container>
-      </BrowserRouter>
+        <BrowserRouter>
+          <Header />
+          <Route path="/" component={Cart} />
+          <Route exact path="/:id" component={ProductDetails} />
+        </BrowserRouter>
+      </Container>
     );
   }
 }

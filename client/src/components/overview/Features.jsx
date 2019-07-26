@@ -8,6 +8,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
     marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(5),
   },
   featureMargin: {
     marginLeft: theme.spacing(2),
