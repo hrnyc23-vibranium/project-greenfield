@@ -22,13 +22,13 @@ const BorderLinearProgress = withStyles({
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(2, 0, 5, 0),
+    margin: theme.spacing(2, 0, 3, 0),
   },
   button: {
     display: 'inline',
     marginRight: theme.spacing(0),
     padding: theme.spacing(0),
-    fontSize: 15,
+    fontSize: '1rem !important',
     textDecoration: 'underline',
     textTransform: 'none',
     fontWeight: 'normal',
