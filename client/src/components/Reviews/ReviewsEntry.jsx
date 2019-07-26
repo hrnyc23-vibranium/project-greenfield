@@ -115,6 +115,8 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
     );
   };
 
+  //check if local storage contains the reviewID, if not then increment review helpfulness by one and add reviewID to storage
+  //prevents user from incrementing review more than once
   const handleHelpful = reviewId => {
     if (!localStorage.getItem(reviewId)) {
       updateHelpful(reviewId);
@@ -137,7 +139,7 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
         <Ratings rating={review.rating} />
         <Box>
           <Typography variant="caption">
-            {review.reviewer_name}, {formatDate(review.date)}
+            {markdown(review.reviewer_name, query)}, {formatDate(review.date)}
           </Typography>
         </Box>
       </Grid>
