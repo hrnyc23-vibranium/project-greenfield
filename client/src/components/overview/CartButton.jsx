@@ -26,9 +26,6 @@ import CloseIcon from '@material-ui/icons/Close';
 import ShareButton from './ShareButton.jsx';
 
 const useStyles = makeStyles(theme => ({
-  size: {
-    marginTop: theme.spacing(2),
-  },
   cart: {
     marginBottom: theme.spacing(2),
   },
