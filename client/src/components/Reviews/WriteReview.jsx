@@ -92,11 +92,11 @@ const WriteReview = props => {
     }
 
     return (
-      <ul className={classes.errors}>
+      <ul className="errors">
         You must enter the following:
         {Object.values(errors).map(err => {
           return (
-            <li className={classes.error} key={err}>
+            <li className="error" key={err}>
               {err}
             </li>
           );

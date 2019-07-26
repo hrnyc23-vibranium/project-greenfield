@@ -10,16 +10,9 @@ import { Box, InputBase, IconButton } from '@material-ui/core';
 import * as actions from '../../actions/Reviews/setReviewSearch.js';
 
 const useStyles = makeStyles({
-  // root: {
-  //   margin: '10px 0',
-  //   padding: '10px',
-  //   display: 'flex',
-  //   alignItems: 'center',
-  //   border: '1px solid grey',
-  // },
   input: {
-    marginLeft: 8,
-    flex: 1,
+    // marginLeft: 8,
+    // flex: 1,
   },
   iconButton: {
     padding: 10,

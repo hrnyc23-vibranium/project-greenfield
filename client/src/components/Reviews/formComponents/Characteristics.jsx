@@ -11,6 +11,7 @@ import {
   FormControl,
   FormLabel,
   Typography,
+  InputLabel,
 } from '@material-ui/core';
 
 //property corresponds to a value,
@@ -66,11 +67,10 @@ const useStyles = makeStyles(theme => ({
   category: {
     margin: theme.spacing(0),
     fontSize: 15,
-    fontWeight: 'bold',
   },
   group: {
     margin: theme.spacing(1, 0),
-    marginBottom: theme.spacing(4),
+    marginBottom: theme.spacing(0),
   },
   col: {
     margin: theme.spacing(0),
@@ -99,9 +99,13 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
 
   return (
     <Box>
-      <h4 className={error ? classes.titleError : classes.title}>
+      {/* <InputLabel
+        asterisk="true"
+        className={error ? classes.titleError : classes.title}
+        error={error}
+      >
         Characteristics*
-      </h4>
+      </InputLabel> */}
       {Object.keys(characteristics).map(character => {
         let id = characteristics[character].id; //id corresponding to character
         let descriptionList = descriptions[character]; //description list corresponding to character
@@ -110,7 +114,7 @@ const Characteristics = ({ form, setForm, error, characteristics }) => {
         return (
           <FormControl component="fieldset" key={character}>
             <FormLabel className={classes.category}>
-              {character}:{selectedDescription || 'None selected:'}
+              {character}: {selectedDescription || 'None selected:'}
             </FormLabel>
             <RadioGroup
               name={character}
