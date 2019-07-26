@@ -74,11 +74,11 @@ const StyleList = ({ styles, product, changeStyle }) => {
       return (
         <div>
           <Grid container direction="row">
-            <Typography variant="subtitle2">
+            <Typography variant="h6" className={classes.price}>
               <strike>{`$${originalPrice}`}</strike>
             </Typography>
             <Typography
-              variant="subtitle2"
+              variant="h6"
               className={classes.sale}>{`$${salePrice}`}</Typography>
           </Grid>
         </div>
@@ -86,7 +86,7 @@ const StyleList = ({ styles, product, changeStyle }) => {
     } else {
       return (
         <Grid container direction="row">
-          <Typography variant="subtitle2" gutterBottom>
+          <Typography variant="h6" gutterBottom>
             {`$${originalPrice}`}
           </Typography>
         </Grid>

@@ -66,6 +66,7 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
     padding: 0,
     justifyContent: 'left',
+    textDecoration: 'none !important',
   },
 }));
 
@@ -172,6 +173,7 @@ const Cart = props => {
                           <Button
                             color="secondary"
                             className={classes.remove}
+                            style={{ textDecoration: 'none' }}
                             onClick={props.removeItem(item.id)}>
                             REMOVE
                           </Button>
