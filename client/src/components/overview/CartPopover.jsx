@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   cart: {
     padding: theme.spacing(2),
     margin: 'auto',
-    maxWidth: 400,
+    maxWidth: 500,
   },
   cartImage: {
     width: 128,
@@ -77,7 +77,7 @@ const CartPopover = props => {
     if (props.cart.cart) {
       let sum = 0;
       props.cart.cart.forEach(item => {
-        sum += parseInt(item.price, 10);
+        sum += parseInt(item.price, 10) * item.quantity;
       });
       return <Typography variant="h6">{`$${sum}`}</Typography>;
     }
@@ -85,7 +85,12 @@ const CartPopover = props => {
 
   const getTotalItems = () => {
     if (props.cart.cart) {
-      let total = props.cart.cart.length;
+      let total = 0;
+
+      props.cart.cart.forEach(item => {
+        total += item.quantity;
+      });
+
       if (total === 1) {
         return <Typography variant="h6">{`Total: 1 item`}</Typography>;
       } else {
