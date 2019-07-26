@@ -8,6 +8,7 @@ import {
   FormControl,
   Radio,
   RadioGroup,
+  InputLabel,
 } from '@material-ui/core';
 
 const Recommend = ({ form, setForm, error }) => {

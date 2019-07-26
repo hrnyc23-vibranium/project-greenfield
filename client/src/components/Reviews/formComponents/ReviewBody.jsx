@@ -2,7 +2,7 @@ import React from 'react';
 // Material UI Components
 
 import { useStyles } from './inputStyle.js';
-import { Box, TextField } from '@material-ui/core';
+import { Box, TextField, InputLabel } from '@material-ui/core';
 
 const ReviewBody = ({ body, handleChange, error }) => {
   const minReqChars = () => {
@@ -15,9 +15,12 @@ const ReviewBody = ({ body, handleChange, error }) => {
   const classes = useStyles();
   return (
     <Box>
-      <h4 className={error ? classes.titleError : classes.title}>
+      <InputLabel
+        asterisk="true"
+        className={error ? classes.titleError : classes.title}
+      >
         Review Body*
-      </h4>
+      </InputLabel>
       <TextField
         className={classes.textField}
         inputProps={{ maxLength: 1000 }}

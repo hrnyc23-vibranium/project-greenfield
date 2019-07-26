@@ -56,9 +56,9 @@ const Reviews = props => {
 
     let moreButton = (
       <Button
-        variant="outlined"
+        // variant="outlined"
         onClick={handleLimit.bind(this)}
-        className={classes.moreButton}
+        // className={classes.moreButton}
       >
         MORE REVIEWS
       </Button>
@@ -66,9 +66,9 @@ const Reviews = props => {
 
     let addButton = (
       <Button
-        variant="outlined"
+        // variant="outlined"
         onClick={handleOpen.bind(this)}
-        className={classes.addButton}
+        // className={classes.addButton}
       >
         ADD A REVIEW +
       </Button>

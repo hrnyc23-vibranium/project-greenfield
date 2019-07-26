@@ -58,19 +58,11 @@ const useStyles = makeStyles(theme => ({
   },
   helpful: {
     marginBottom: theme.spacing(0.5),
+    fontWeight: 'normal',
   },
   helpfulTitle: {
     marginTop: theme.spacing(0.3),
     marginRight: theme.spacing(1),
-  },
-  button: {
-    display: 'inline',
-    marginRight: theme.spacing(0.5),
-    padding: theme.spacing(0),
-    // fontSize: 15,
-    textDecoration: 'underline',
-    textTransform: 'none',
-    fontWeight: 'normal',
   },
 }));
 
@@ -155,19 +147,24 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
       {renderRecommend(review.recommend)}
       {renderResponse(review.response)}
 
-      <Grid container className={classes.helpful} direction="row">
+      <Grid
+        container
+        className={classes.helpful}
+        alignItems="center"
+        direction="row"
+      >
         <Typography variant="subtitle2" className={classes.helpfulTitle}>
           Helpful?
         </Typography>
         <Button
-          className={classes.button}
+          // className={classes.button}
           onClick={handleHelpful.bind(this, review.review_id)}
         >
           Yes ({review.helpfulness})
         </Button>
         <Typography>|</Typography>
         <Button
-          className={classes.button}
+          // className={classes.button}
           onClick={handleReport.bind(this, review.review_id)}
         >
           Report

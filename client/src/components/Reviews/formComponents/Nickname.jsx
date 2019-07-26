@@ -2,16 +2,19 @@ import React from 'react';
 
 // Material UI Components
 import { useStyles } from './inputStyle.js';
-import { Box, TextField } from '@material-ui/core';
+import { Box, TextField, InputLabel } from '@material-ui/core';
 
 const Nickname = ({ name, handleChange, error }) => {
   const classes = useStyles();
 
   return (
     <Box>
-      <h4 className={error ? classes.titleError : classes.title}>
+      <InputLabel
+        asterisk="true"
+        className={error ? classes.titleError : classes.title}
+      >
         What is your nickname*
-      </h4>
+      </InputLabel>
       <TextField
         className={classes.textField}
         required={true}
@@ -22,10 +25,8 @@ const Nickname = ({ name, handleChange, error }) => {
         value={name}
         name="name"
         error={error}
+        helperText="For privacy reasons, do not use your full name or email address"
       />
-      <Box className={classes.description}>
-        For privacy reasons, do not use your full name or email address
-      </Box>
     </Box>
   );
 };
