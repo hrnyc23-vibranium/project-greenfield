@@ -2,7 +2,7 @@ import React from 'react';
 
 // Material UI Components
 import { useStyles } from './inputStyle.js';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, InputLabel } from '@material-ui/core';
 import Rating from '@material-ui/lab/Rating';
 
 const OverallRating = ({ form, setForm, error }) => {
@@ -27,11 +27,16 @@ const OverallRating = ({ form, setForm, error }) => {
 
   return (
     <Box>
-      <h4 className={error ? classes.titleError : classes.title}>
-        Overall Rating*
-      </h4>
-      <Grid container direction="row">
+      <InputLabel
+        asterisk="true"
+        className={error ? classes.titleError : classes.title}
+        error={error}
+      >
+        Overall Rating
+      </InputLabel>
+      <Grid container direction="row" style={{ marginTop: '5px' }}>
         <Rating
+          label="Overall Rating*"
           name="rating"
           value={form.rating}
           onChange={handleChange}

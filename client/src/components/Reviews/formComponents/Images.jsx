@@ -12,7 +12,6 @@ const Images = ({ form, setForm }) => {
 
   return (
     <React.Fragment>
-      <h4>Upload your photos</h4>
       <FileUpload handleUpload={handleUpload.bind(this)} />
     </React.Fragment>
   );
