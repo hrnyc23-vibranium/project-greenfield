@@ -20,7 +20,7 @@ const Answer = props => {
       )}
 
       <Grid container direction="row" justify="flex-start" alignItems="center">
-        <Typography variant="caption">
+        <Typography variant="subtitle2">
           by{' '}
           <span
             className={
@@ -33,7 +33,7 @@ const Answer = props => {
           , {formatDate(props.answer.date)} | Helpful?
         </Typography>
         <Button
-          size="small"
+          // size="small"
           disabled={disabled}
           onClick={() => {
             props.voteAnswer(props.answer.answer_id);
@@ -43,7 +43,7 @@ const Answer = props => {
         </Button>
         <Typography component="h4"> | </Typography>
         <Button
-          size="small"
+          // size="small"
           onClick={() => {
             props.reportAnswer(props.answer.answer_id);
           }}>

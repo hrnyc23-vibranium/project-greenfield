@@ -105,8 +105,7 @@ const Reviews = props => {
               open={props.open}
               onClose={handleClose}
               fullWidth={true}
-              maxWidth="sm"
-            >
+              maxWidth="sm">
               <WriteReview handleClose={handleClose.bind(this)} />
             </Dialog>
           </Box>
