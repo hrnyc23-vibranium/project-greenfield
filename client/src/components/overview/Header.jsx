@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import clsx from 'clsx';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/overview/setCart.js';
 // Material UI Components
@@ -110,6 +111,15 @@ const ShieldIcon = props => {
   );
 };
 
+const HomeLink = forwardRef((props, ref) => (
+  <Link
+    innerRef={ref}
+    to="/shop/1"
+    style={{ textDecoration: 'none', color: 'white' }}
+    {...props}
+  />
+));
+
 const Header = props => {
   const classes = useStyles();
 
@@ -148,7 +158,7 @@ const Header = props => {
             variant="h4"
             noWrap
             style={{ fontFamily: 'Cinzel', fontWeight: 700 }}>
-            Vibranium
+            <HomeLink>Vibranium</HomeLink>
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>

@@ -56,8 +56,8 @@ const CartIcon = props => {
   );
 };
 
-const AdapterLink = forwardRef((props, ref) => (
-  <Link innerRef={ref} {...props} />
+const CheckoutLink = forwardRef((props, ref) => (
+  <Link innerRef={ref} {...props} to="/cart" />
 ));
 
 const CartPopover = props => {
@@ -185,8 +185,7 @@ const CartPopover = props => {
                 <Button
                   variant="outlined"
                   className={classes.checkout}
-                  component={AdapterLink}
-                  to="/cart">
+                  component={CheckoutLink}>
                   Checkout
                 </Button>
               </ButtonGroup>
