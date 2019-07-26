@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/overview/setCart.js';
 // Material UI Components
@@ -39,8 +39,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const TAX_RATE = 0.07;
+
+const shipping = 5.99;
+
 const Cart = props => {
   const classes = useStyles();
+
+  const [itemTotal, setItemTotal] = useState();
+
+  const getItemTotal = () => {
+    let total = 0;
+
+    if (props.cart.cart) {
+      props.cart.cart.forEach(item => {
+        total += item.quantity * item.price;
+      });
+    }
+    setItemTotal(total);
+  };
+
+  useEffect(() => {
+    getItemTotal();
+  });
+
+  const taxes = TAX_RATE * itemTotal;
+
+  const subtotal = itemTotal + taxes + shipping;
 
   return (
     <Fragment>
@@ -52,9 +77,9 @@ const Cart = props => {
         <TableHead>
           <TableRow>
             <TableCell>Product</TableCell>
-            <TableCell>Quantity</TableCell>
-            <TableCell>Price</TableCell>
-            <TableCell>Total Price</TableCell>
+            <TableCell align="center">Quantity</TableCell>
+            <TableCell align="right">Price</TableCell>
+            <TableCell align="right">Total Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -92,24 +117,43 @@ const Cart = props => {
                     </Grid>
                   </Grid>
                 </TableCell>
-                <TableCell>
-                  <Grid container spacing={2}>
-                    <Grid item>
-                      <Typography variant="body2">{item.quantity}</Typography>
-                    </Grid>
-                  </Grid>
+                <TableCell align="center">
+                  <Typography variant="body2">{item.quantity}</Typography>
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                   <Typography variant="body2">{`$${item.price}`}</Typography>
                 </TableCell>
-                <TableCell>
-                  <Typography variant="body2">{`$${item.price}`}</Typography>
+                <TableCell align="right">
+                  <Typography variant="body2">{`$${item.quantity *
+                    item.price}`}</Typography>
                 </TableCell>
               </TableRow>
             ))
           ) : (
             <CircularProgress className={classes.progress} />
           )}
+          <TableRow>
+            <TableCell rowSpan={4} />
+            <TableCell colSpan={2}>Item Total</TableCell>
+            <TableCell align="right">{`$${itemTotal}`}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Tax</TableCell>
+            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(
+              0
+            )} %`}</TableCell>
+            <TableCell align="right">{`$${taxes.toFixed(2)}`}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Shipping</TableCell>
+            <TableCell />
+            <TableCell align="right">{`$${shipping}`}</TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Subtotal</TableCell>
+            <TableCell />
+            <TableCell align="right">{`$${subtotal.toFixed(2)}`}</TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </Fragment>
