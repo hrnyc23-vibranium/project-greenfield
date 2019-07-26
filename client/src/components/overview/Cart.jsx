@@ -121,11 +121,14 @@ const Cart = props => {
                   <Typography variant="body2">{item.quantity}</Typography>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography variant="body2">{`$${item.price}`}</Typography>
+                  <Typography variant="body2">{`$${item.price.toFixed(
+                    2
+                  )}`}</Typography>
                 </TableCell>
                 <TableCell align="right">
-                  <Typography variant="body2">{`$${item.quantity *
-                    item.price}`}</Typography>
+                  <Typography variant="body2">{`$${(
+                    item.quantity * item.price
+                  ).toFixed(2)}`}</Typography>
                 </TableCell>
               </TableRow>
             ))
@@ -135,7 +138,7 @@ const Cart = props => {
           <TableRow>
             <TableCell rowSpan={4} />
             <TableCell colSpan={2}>Item Total</TableCell>
-            <TableCell align="right">{`$${itemTotal}`}</TableCell>
+            <TableCell align="right">{`$${itemTotal.toFixed(2)}`}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Tax</TableCell>
