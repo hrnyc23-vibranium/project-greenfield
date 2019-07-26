@@ -18,6 +18,7 @@ import {
   Button,
   Slide,
   Box,
+  InputLabel,
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
@@ -152,9 +153,15 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
               </DialogContentText>
               {renderErrors(error)}
               <form>
+                <InputLabel
+                  htmlFor="answerbody"
+                  required
+                  error={error.answer ? true : false}>
+                  Your answer
+                </InputLabel>
                 <TextField
                   id="answerbody"
-                  label="Your answer"
+                  // label="Your answer"
                   multiline
                   required
                   inputProps={{ maxLength: 1000 }}
@@ -164,10 +171,16 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                   error={error.answer ? true : false}
                   name="answer"
                 />
+                <InputLabel
+                  htmlFor="nickname"
+                  required
+                  error={error.name ? true : false}>
+                  What is your nickname
+                </InputLabel>
                 <TextField
                   id="nickname"
                   required
-                  label="What is your nickname"
+                  // label="What is your nickname"
                   placeholder="Example:jack543!"
                   fullWidth
                   required
@@ -177,13 +190,19 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                   name="name"
                   error={error.name ? true : false}
                 />
+                <InputLabel
+                  htmlFor="email"
+                  required
+                  error={error.name ? true : false}>
+                  Your email
+                </InputLabel>
                 <TextField
                   id="email"
                   required
                   fullWidth
-                  label="Your email"
+                  // label="Your email"
                   inputProps={{ maxLength: 60 }}
-                  placeholder="Why did you like the product or not"
+                  placeholder="email@email.com"
                   helperText="For authentication reasons, you will not be emailed"
                   onChange={handleChange.bind(this)}
                   value={form.email}
