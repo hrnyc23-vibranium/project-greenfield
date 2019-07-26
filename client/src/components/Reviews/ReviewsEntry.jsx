@@ -134,8 +134,7 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
         container
         direct="row"
         justify="space-between"
-        className={classes.rating}
-      >
+        className={classes.rating}>
         <Ratings rating={review.rating} />
         <Box>
           <Typography variant="caption">
@@ -155,21 +154,23 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
       {renderRecommend(review.recommend)}
       {renderResponse(review.response)}
 
-      <Grid container className={classes.helpful} direction="row">
+      <Grid
+        container
+        className={classes.helpful}
+        direction="row"
+        alignItems="center">
         <Typography variant="subtitle2" className={classes.helpfulTitle}>
           Helpful?
         </Typography>
         <Button
-          className={classes.button}
-          onClick={handleHelpful.bind(this, review.review_id)}
-        >
+          // className={classes.button}
+          onClick={handleHelpful.bind(this, review.review_id)}>
           Yes ({review.helpfulness})
         </Button>
         <Typography>|</Typography>
         <Button
-          className={classes.button}
-          onClick={handleReport.bind(this, review.review_id)}
-        >
+          // className={classes.button}
+          onClick={handleReport.bind(this, review.review_id)}>
           Report
         </Button>
       </Grid>

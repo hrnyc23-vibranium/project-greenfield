@@ -54,7 +54,7 @@ const QuestionButtons = props => {
       {props.showLoadMore ? (
         <Button
           variant="outlined"
-          className={classes.button}
+          // className={classes.button}
           onClick={() => {
             props.loadMore();
           }}>
@@ -63,7 +63,7 @@ const QuestionButtons = props => {
       ) : props.showCollapes ? (
         <Button
           variant="outlined"
-          className={classes.button}
+          // className={classes.button}
           onClick={() => {
             props.collapesQuestions();
           }}>

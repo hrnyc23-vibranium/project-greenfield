@@ -58,7 +58,7 @@ const Reviews = props => {
       <Button
         variant="outlined"
         onClick={handleLimit.bind(this)}
-        className={classes.moreButton}
+        // className={classes.moreButton}
       >
         MORE REVIEWS
       </Button>
@@ -68,7 +68,7 @@ const Reviews = props => {
       <Button
         variant="outlined"
         onClick={handleOpen.bind(this)}
-        className={classes.addButton}
+        // className={classes.addButton}
       >
         ADD A REVIEW +
       </Button>
@@ -105,8 +105,7 @@ const Reviews = props => {
               open={props.open}
               onClose={handleClose}
               fullWidth={true}
-              maxWidth="sm"
-            >
+              maxWidth="sm">
               <WriteReview handleClose={handleClose.bind(this)} />
             </Dialog>
           </Box>
