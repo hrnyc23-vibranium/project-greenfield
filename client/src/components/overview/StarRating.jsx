@@ -43,7 +43,7 @@ class StarRating extends Component {
     return (
       <Fragment>
         {numReviews ? (
-          <Box display="flex" flexWrap="nowrap">
+          <Box display="flex" flexWrap="nowrap" style={{ marginBottom: '5px' }}>
             <Box component="span" style={{ marginRight: '5px' }}>
               <Ratings rating={rating} />
             </Box>
