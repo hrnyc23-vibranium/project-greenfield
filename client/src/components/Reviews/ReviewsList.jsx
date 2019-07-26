@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 
 // Material UI Components
@@ -8,11 +8,16 @@ import Box from '@material-ui/core/Box';
 // React Components
 import { getList, getMeta } from '../../actions/Reviews/getData.js';
 import { setShown } from '../../actions/Reviews/setShown.js';
+import { setLimit } from '../../actions/Reviews/setListLimit.js';
 import ReviewsEntry from './ReviewsEntry.jsx';
 import ReviewSort from '../Reviews/ReviewSort.jsx';
 import ReviewSearch from './ReviewSearch.jsx';
 
 const useStyles = makeStyles(theme => ({
+  listContainer: {
+    maxHeight: '600px',
+    overflowY: 'auto',
+  },
   title: {
     display: 'inline-block',
     fontSize: 16,
@@ -70,6 +75,19 @@ const ReviewsList = props => {
     return reviewsList.slice(0, listLimit);
   };
 
+  //settimeout to make expanded view noticible
+  const handleScroll = e => {
+    let box = e.target;
+    //scrollHeight: total height of scrollable div
+    //scrollTop: height scrolled from the top
+    //clientHeight: height that the div
+    if (box.scrollHeight - box.scrollTop - 1 === box.clientHeight) {
+      setTimeout(() => {
+        props.expandView();
+      }, 100);
+    }
+  };
+
   return reviews.results ? (
     <Fragment>
       <Box>
@@ -81,7 +99,9 @@ const ReviewsList = props => {
         </span>
       </Box>
       <ReviewSearch />
-      {renderList()}
+      <Box onScroll={handleScroll} className={classes.listContainer}>
+        {renderList()}
+      </Box>
     </Fragment>
   ) : (
     <Box>Loading...</Box>
@@ -106,6 +126,9 @@ const mapDispatchToprops = dispatch => ({
   },
   getMeta: productId => {
     dispatch(getMeta(productId));
+  },
+  expandView: () => {
+    dispatch(setLimit());
   },
 });
 

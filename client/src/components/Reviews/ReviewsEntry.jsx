@@ -15,13 +15,13 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'block',
     borderBottom: '1px solid gray',
-    marginTop: theme.spacing(4),
+    marginTop: theme.spacing(3),
   },
   body: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   images: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   image: {
     marginRight: theme.spacing(1),
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     height: 100,
   },
   recommend: {
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   check: {
     fontSize: 20,
@@ -38,20 +38,20 @@ const useStyles = makeStyles(theme => ({
   response: {
     display: 'block',
     background: '#D9D9D9',
-    marginBottom: theme.spacing(3),
-    padding: theme.spacing(3, 2),
+    marginBottom: theme.spacing(1),
+    padding: theme.spacing(2, 1),
   },
   responseTitle: {
     fontWeight: 'bold',
     margin: theme.spacing(0),
-    marginBottom: theme.spacing(3),
+    marginBottom: theme.spacing(1),
   },
   responseBody: {
     margin: theme.spacing(0),
   },
   helpful: {
     marginBottom: theme.spacing(1),
-    fontSize: 15,
+    // fontSize: 15,
   },
   helpfulTitle: {
     marginTop: theme.spacing(0.3),
@@ -59,9 +59,9 @@ const useStyles = makeStyles(theme => ({
   },
   button: {
     display: 'inline',
-    marginRight: theme.spacing(1),
+    marginRight: theme.spacing(0.5),
     padding: theme.spacing(0),
-    fontSize: 15,
+    // fontSize: 15,
     textDecoration: 'underline',
     textTransform: 'none',
     fontWeight: 'normal',
@@ -84,8 +84,10 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
   const renderRecommend = recommend => {
     return recommend ? (
       <Box className={classes.recommend}>
-        <span className={classes.check}>&#10003;</span>
-        <span className={classes.recommendBody}>I recommend this product</span>
+        <Typography variant="body2" className={classes.recommendBody}>
+          <span className={classes.check}>&#10003;</span>I recommend this
+          product
+        </Typography>
       </Box>
     ) : (
       ''
@@ -95,8 +97,12 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
   const renderResponse = response => {
     return response ? (
       <Box className={classes.response}>
-        <p className={classes.responseTitle}>Response:</p>
-        <p className={classes.responseBody}>{response}</p>
+        <Typography variant="body2" className={classes.responseTitle}>
+          <strong>Response: </strong>
+        </Typography>
+        <Typography variant="body2" className={classes.responseBody}>
+          {response}
+        </Typography>
       </Box>
     ) : (
       ''
@@ -119,17 +125,25 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
       <Grid container direct="row" justify="space-between">
         <Ratings rating={review.rating} />
         <Box>
-          {review.reviewer_name}, {formatDate(review.date)}
+          <Typography variant="caption">
+            {review.reviewer_name}, {formatDate(review.date)}
+          </Typography>
         </Box>
       </Grid>
-      <h3 className={classes.summary}>{markdown(review.summary, query)}</h3>
-      <p className={classes.body}>{markdown(review.body, query)}</p>
+      <Typography variant="h6" className={classes.summary}>
+        {markdown(review.summary, query)}
+      </Typography>
+      <Typography variant="body1" className={classes.body}>
+        {markdown(review.body, query)}
+      </Typography>
 
       {renderPhotos(review.photos)}
       {renderRecommend(review.recommend)}
       {renderResponse(review.response)}
       <Grid container className={classes.helpful} direction="row">
-        <Typography className={classes.helpfulTitle}>Helpful?</Typography>
+        <Typography variant="subtitle2" className={classes.helpfulTitle}>
+          Helpful?
+        </Typography>
         <Button
           component="span"
           className={classes.button}
@@ -137,6 +151,7 @@ const ReviewsEntry = ({ review, updateHelpful, updateReport, query }) => {
         >
           Yes ({review.helpfulness})
         </Button>
+        <Typography>|</Typography>
         <Button
           component="span"
           className={classes.button}
