@@ -1,12 +1,25 @@
-### Status
+# Project Greenfield - Vibranium
 
-[![Build Status](https://travis-ci.com/hrnyc23-vibranium/project-greenfield.png)](https://travis-ci.com/hrnyc23-vibranium/project-greenfield)
+![Main Page](documentation/Logos.png)
 
-# project-greenfield
+> Project Greenfield comprises a complete redesign of an outdated client-facing retail web-portal. This redesign provides an item details page which includes an image gallery, styles, questions and answers, and ratings and reviews
+>
+> - Built entirely using React, React Hooks, and Redux
+> - Client pages served through an Express server
+> - Built using Webpack
 
-Redesign outdated client-facing retail web-portal.
+## Table of Contents
 
-## Building and running on localhost
+1. [Requirements](#Requirements)
+2. [Build] (#Building and Running)
+
+## Requirements
+
+Beyond the npm modules in the package.json, you should have the following installed:
+
+- Node v10.16.0 (LTS as of July 2019) or higher
+
+## Building and Running
 
 First install dependencies:
 
@@ -20,8 +33,18 @@ To create a development build:
 npm run build
 ```
 
+To create a production build:
+
+```sh
+npm run production
+```
+
 To start the server and continuously build webpack
 
 ```sh
 npm run dev
+```
+
+```sh
+[Vibranium](http://localhost:3000/shop/1)
 ```
