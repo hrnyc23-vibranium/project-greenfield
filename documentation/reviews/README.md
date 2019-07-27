@@ -1,3 +1,5 @@
 # Ratings and Reviews Component
 
-![interface](screenshots/keyword_search.gif)
+![keyword_search](screenshots/keyword_search.gif)
+
+![sort_filter](screenshots/sort_filter.gif)
