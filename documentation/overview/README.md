@@ -2,12 +2,12 @@
 
 ## Carousel
 
-[Carousel](Carousel.gif)
+![Carousel](Carousel.gif)
 
 ## Styles and Cart
 
-[Styles and Cart](Cart.gif)
+![Styles and Cart](Cart.gif)
 
 ## Share and Sidebar
 
-[Share and Sidebar](Sidebar.gif)
+![Share and Sidebar](Sidebar.gif)
