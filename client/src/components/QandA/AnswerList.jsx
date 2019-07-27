@@ -85,6 +85,7 @@ class Answers extends React.Component {
           {this.state.load < this.state.answers.length ? (
             <Button
               variant="text"
+              className="loadmore"
               onClick={() => {
                 this.loadMore();
               }}>
@@ -93,6 +94,7 @@ class Answers extends React.Component {
           ) : this.state.load > 2 ? (
             <Button
               variant="text"
+              className="loadmore"
               onClick={() => {
                 this.collapesAnswers();
               }}>
