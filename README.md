@@ -1,10 +1,6 @@
-### Status
-
-[![Build Status](https://travis-ci.com/hrnyc23-vibranium/project-greenfield.png)](https://travis-ci.com/hrnyc23-vibranium/project-greenfield)
+# Project Greenfield - Vibranium
 
 ![Main Page](documentation/Logos.png)
-
-# Project Greenfield - Vibranium
 
 > Project Greenfield comprises a complete redesign of an outdated client-facing retail web-portal. This redesign provides an item details page which includes an image gallery, styles, questions and answers, and ratings and reviews
 >
