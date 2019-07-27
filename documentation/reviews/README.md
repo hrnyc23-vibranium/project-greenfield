@@ -1,3 +1,3 @@
 # Ratings and Reviews Component
 
-![interface](/keyword_search.gif)
+![interface](keyword_search.gif)
