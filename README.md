@@ -11,7 +11,8 @@
 ## Table of Contents
 
 1. [Requirements](#Requirements)
-2. [Build] (#Building and Running)
+2. [Build](#Building-and-Running)
+3. [Components](#Components)
 
 ## Requirements
 
@@ -45,6 +46,12 @@ To start the server and continuously build webpack
 npm run dev
 ```
 
-```sh
+Click this link to view the product
+
 [Vibranium](http://localhost:3000/shop/1)
-```
+
+## Components
+
+1. [Product Overview](documentation/overview/README.md)
+2. [Questions and Answers](documentation/questions/README.md)
+3. [Ratings and Reviews](documentation/reviews/README.md)
