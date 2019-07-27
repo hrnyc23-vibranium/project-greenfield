@@ -7,3 +7,7 @@
 ## Sort and Filter
 
 ![sort_filter](screenshots/sort_filter_small.gif)
+
+## Form
+
+![form](screenshots/form.gif)
