@@ -20,6 +20,15 @@ Beyond the npm modules in the package.json, you should have the following instal
 
 - Node v10.16.0 (LTS as of July 2019) or higher
 
+##Initial Config##
+After cloning the folder,please
+
+1.Make a copy of the /client/config_example folder, and rename it as /client/config
+
+2. Create an account in https://www.filestack.com/, and replace the apikey in /client/config/config.js
+
+IMPORTANT!!! NEVER Checkout your API key to github
+
 ## Building and Running
 
 First install dependencies:
