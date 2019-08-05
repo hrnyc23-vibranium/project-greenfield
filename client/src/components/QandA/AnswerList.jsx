@@ -1,10 +1,10 @@
 //Dev Dependencies
-import React, { Fragment } from 'react';
-import Answer from './Answer';
-import axios from 'axios';
+import React, { Fragment } from "react";
+import Answer from "./Answer";
+import axios from "axios";
 
 //Material UI
-import { Button } from '@material-ui/core';
+import { Button } from "@material-ui/core";
 
 class Answers extends React.Component {
   constructor(props) {
@@ -21,19 +21,19 @@ class Answers extends React.Component {
   }
   loadMore() {
     this.setState({
-      load: this.state.load + 2,
+      load: this.state.load + 2
     });
   }
   collapesAnswers() {
     this.setState({
-      load: 2,
+      load: 2
     });
   }
 
   getAnswers(page = 1, count = 50) {
     axios
       .get(
-        `http://18.222.40.124/qa/${
+        `http://34.201.38.46/qa/${
           this.props.questionId
         }/answers?page=${page}&count=${count}`
       )
@@ -46,7 +46,7 @@ class Answers extends React.Component {
   }
   voteAnswer(answerId) {
     axios
-      .put(`http://18.222.40.124/qa/answer/${answerId}/helpful`)
+      .put(`http://34.201.38.46/qa/answer/${answerId}/helpful`)
       .then(res => {
         this.getAnswers();
       })
@@ -56,7 +56,7 @@ class Answers extends React.Component {
   }
   reportAnswer(answerId) {
     axios
-      .put(`http://18.222.40.124/qa/answer/${answerId}/report`)
+      .put(`http://34.201.38.46/qa/answer/${answerId}/report`)
       .then(res => {
         this.getAnswers();
       })
@@ -88,7 +88,8 @@ class Answers extends React.Component {
               className="loadmore"
               onClick={() => {
                 this.loadMore();
-              }}>
+              }}
+            >
               Load more answers
             </Button>
           ) : this.state.load > 2 ? (
@@ -97,7 +98,8 @@ class Answers extends React.Component {
               className="loadmore"
               onClick={() => {
                 this.collapesAnswers();
-              }}>
+              }}
+            >
               Collapse answers
             </Button>
           ) : (

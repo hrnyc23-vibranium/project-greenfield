@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from "axios";
 
 const filterAnswers = (questions, searchKeyword) => {
   const result = [];
@@ -30,10 +30,10 @@ export const getQuestions = (
   productId,
   page = 1,
   count = 4,
-  searchKeyword = ''
+  searchKeyword = ""
 ) => async dispatch => {
   const res = await axios.get(
-    `http://18.222.40.124/qa/${productId}?page=${page}&count=${count}`
+    `http://34.201.38.46/qa/${productId}?page=${page}&count=${count}`
   );
   let questions = res.data.results;
   let answeredQuestions = [];
@@ -49,7 +49,7 @@ export const getQuestions = (
     );
   }
   dispatch({
-    type: 'GET_QUESTIONS',
-    payload: { results: answeredQuestions },
+    type: "GET_QUESTIONS",
+    payload: { results: answeredQuestions }
   });
 };

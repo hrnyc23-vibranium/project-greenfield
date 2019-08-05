@@ -1,12 +1,12 @@
 //Dev Dependencies
-import React, { Fragment } from 'react';
-import { connect } from 'react-redux';
-import { getQuestions } from '../../actions/QandA/getQuestions';
-import axios from 'axios';
+import React, { Fragment } from "react";
+import { connect } from "react-redux";
+import { getQuestions } from "../../actions/QandA/getQuestions";
+import axios from "axios";
 
 //React Components
-import Question from './Question';
-import QuestionButtons from './QuestionButtons';
+import Question from "./Question";
+import QuestionButtons from "./QuestionButtons";
 
 //Material Componenets
 
@@ -14,7 +14,7 @@ class Questions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      load: 4,
+      load: 4
     };
     this.voteQuestion = this.voteQuestion.bind(this);
     this.loadMore = this.loadMore.bind(this);
@@ -23,18 +23,18 @@ class Questions extends React.Component {
   loadMore() {
     if (this.state.load < this.props.questions.results.length)
       this.setState({
-        load: this.state.load + 2,
+        load: this.state.load + 2
       });
   }
   collapesQuestions() {
     this.setState({
-      load: 4,
+      load: 4
     });
   }
 
   voteQuestion(questionId) {
     axios
-      .put(`http://18.222.40.124/qa/question/${questionId}/helpful`)
+      .put(`http://34.201.38.46/qa/question/${questionId}/helpful`)
       .then(res => {
         this.props.getQuestions(
           this.props.productId,
@@ -70,7 +70,7 @@ class Questions extends React.Component {
   }
   render() {
     var QuestionContainer = {
-      maxHeight: window.innerHeight - 200,
+      maxHeight: window.innerHeight - 200
     };
     if (this.props.questions.results.length > 0) {
       return (
@@ -78,7 +78,8 @@ class Questions extends React.Component {
           <div
             style={QuestionContainer}
             className="QuestionContainer"
-            onScroll={this.handleScroll}>
+            onScroll={this.handleScroll}
+          >
             {this.props.questions.results.map((question, index) => {
               if (index < this.state.load) {
                 return (
@@ -111,7 +112,7 @@ const mapStateToProps = state => {
     productId: state.productId,
     searchKeyword: state.searchKeyword,
     questions: state.questions,
-    productName: state.product.name,
+    productName: state.product.name
   };
 };
 

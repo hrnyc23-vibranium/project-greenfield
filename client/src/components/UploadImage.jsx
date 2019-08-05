@@ -1,14 +1,14 @@
 //Dev Dependencies
-import React from 'react';
-import * as filestack from 'filestack-js';
-import { FileUploader_API_KEY } from '../../config/config.js';
+import React from "react";
+import * as filestack from "filestack-js";
+import { FileUploader_API_KEY } from "../../config/config.js";
 
 //React Componenets
-import ImageGallery from './ImageGallery';
+import ImageGallery from "./ImageGallery";
 
 //Material UI
-import { Button, Box, InputLabel, Grid, Typography } from '@material-ui/core';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import { Button, Box, InputLabel, Grid, Typography } from "@material-ui/core";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 
 const client = filestack.init(FileUploader_API_KEY);
 
@@ -16,7 +16,7 @@ class FileUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      images: [],
+      images: []
     };
     this.handleUpload = this.handleUpload.bind(this);
   }
@@ -34,10 +34,10 @@ class FileUpload extends React.Component {
   }
   render() {
     const pickerOptions = {
-      fromSources: ['local_file_system', 'instagram', 'facebook'],
+      fromSources: ["local_file_system", "instagram", "facebook"],
       onFileUploadFinished: res => {
         this.handleUpload(res.url, res.handle);
-      },
+      }
     };
     return (
       <Box id="ImageUploader">
@@ -52,7 +52,8 @@ class FileUpload extends React.Component {
                 color="default"
                 onClick={() => {
                   client.picker(pickerOptions).open();
-                }}>
+                }}
+              >
                 Upload
                 <CloudUploadIcon />
               </Button>
