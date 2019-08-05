@@ -104,7 +104,8 @@ const ReviewsList = props => {
       </Box>
     </Fragment>
   ) : (
-    <Box>Loading...</Box>
+    <Box>Loading...
+    </Box>
   );
 };
 
