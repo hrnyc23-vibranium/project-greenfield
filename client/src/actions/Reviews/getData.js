@@ -11,6 +11,7 @@ export const getList = (productId, sort, count = 50) => async dispatch => {
       },
     }
   );
+
   dispatch({
     type: GET_LIST,
     payload: reviewList.data,
