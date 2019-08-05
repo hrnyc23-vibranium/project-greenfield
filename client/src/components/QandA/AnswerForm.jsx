@@ -1,10 +1,10 @@
 //Dev Dependencies
-import React, { Fragment } from 'react';
-import axios from 'axios';
-import { validate } from '../helpers';
+import React, { Fragment } from "react";
+import axios from "axios";
+import { validate } from "../helpers";
 
 //React Components
-import UploadImage from '../UploadImage';
+// import UploadImage from '../UploadImage';
 
 //Material Componenet
 import {
@@ -18,35 +18,35 @@ import {
   Button,
   Slide,
   Box,
-  InputLabel,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import CheckCircleOutline from '@material-ui/icons/CheckCircleOutline';
+  InputLabel
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import CheckCircleOutline from "@material-ui/icons/CheckCircleOutline";
 
 const useStyles = makeStyles(theme => ({
   button: {
     margin: theme.spacing(1),
-    'border-radius': 0,
-    padding: '15px',
+    "border-radius": 0,
+    padding: "15px"
   },
   root: {
-    textAlign: 'center',
+    textAlign: "center"
   },
   checkMark: {
     width: 50,
     height: 50,
-    color: 'green',
-  },
+    color: "green"
+  }
 }));
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
 const defaultForm = {
-  answer: '',
-  email: '',
-  name: '',
-  photos: [],
+  answer: "",
+  email: "",
+  name: "",
+  photos: []
 };
 
 //helper function for validation
@@ -88,28 +88,28 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
 
   const submitForm = (form, questionId) => {
     axios({
-      method: 'post',
-      url: `http://18.222.40.124/qa/${questionId}/answers`,
+      method: "post",
+      url: `http://34.201.38.46/qa/${questionId}/answers`,
       data: {
         body: form.answer,
         name: form.name,
         email: form.email,
-        photos: form.photos,
-      },
+        photos: form.photos
+      }
     })
       .then(data => {
         setSuccess(true);
       })
       .catch(err => {
         console.log(err);
-        alert('Error occurred when submitting your answer');
+        alert("Error occurred when submitting your answer");
       });
   };
 
   //set errors, if there are no errors make post request. Show snackbar depending on success/error
   const handleSubmit = e => {
     //returns an arr or errors or false
-    let errorList = validate(form, 'answer', null);
+    let errorList = validate(form, "answer", null);
     setErrors(errorList);
     if (!errorList) {
       submitForm(form, questionId);
@@ -142,10 +142,11 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
         open={open}
         onClose={handleClose}
         onClick={success ? handleClose : () => {}}
-        aria-labelledby="form-dialog-title">
+        aria-labelledby="form-dialog-title"
+      >
         {!success ? (
           <Fragment>
-            {' '}
+            {" "}
             <DialogTitle>Submit your Answer</DialogTitle>
             <DialogContent>
               <DialogContentText>
@@ -156,7 +157,8 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                 <InputLabel
                   htmlFor="answerbody"
                   required
-                  error={error.answer ? true : false}>
+                  error={error.answer ? true : false}
+                >
                   Your answer
                 </InputLabel>
                 <TextField
@@ -174,7 +176,8 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                 <InputLabel
                   htmlFor="nickname"
                   required
-                  error={error.name ? true : false}>
+                  error={error.name ? true : false}
+                >
                   What is your nickname
                 </InputLabel>
                 <TextField
@@ -193,7 +196,8 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                 <InputLabel
                   htmlFor="email"
                   required
-                  error={error.name ? true : false}>
+                  error={error.name ? true : false}
+                >
                   Your email
                 </InputLabel>
                 <TextField
@@ -209,10 +213,10 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                   error={error.email ? true : false}
                   name="email"
                 />
-                <UploadImage
+                {/* <UploadImage
                   form={form}
                   handleUpload={handleUpload.bind(this)}
-                />
+                /> */}
               </form>
             </DialogContent>
             <DialogActions>
@@ -224,7 +228,8 @@ const AnswerForm = ({ product, question, questionId, answer }) => {
                   onClick={e => {
                     event.preventDefault();
                     handleSubmit();
-                  }}>
+                  }}
+                >
                   Submit
                 </Button>
               </Grid>
