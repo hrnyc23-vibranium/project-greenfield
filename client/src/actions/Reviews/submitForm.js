@@ -4,7 +4,7 @@ import axios from 'axios';
 export const submitForm = form => (dispatch, getState) => {
   const { productId, sort } = getState();
   axios
-    .post(`http://127.0.0.1:8901/reviews/${productId}`, {
+    .post(`http://3.92.130.185/reviews/${productId}`, {
       rating: form.rating,
       summary: form.summary,
       body: form.body,
