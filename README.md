@@ -27,6 +27,16 @@ API Key from Filestack
 
 - Config file with API key (FileUploader_API_KEY) required in client/config folder to access the file uploader used to upload images you have for answers to questions and for reviews
 
+## Initial Config
+
+After cloning the folder, please
+
+1.Make a copy of the /client/config_example folder, and rename it as /client/config
+
+2.Create an account in https://www.filestack.com/, and replace the apikey in /client/config/config.js
+
+!!!IMPORTANT!!! NEVER Checkout your API key to github
+
 ## Building and Running
 
 First install dependencies:
